@@ -11,7 +11,7 @@ function init() {
 		let heightCluster =  height5*3
 	
 		// constants for clusterchart
-		padding = 1.5, // separation between same-color nodes
+		let padding = 1.5, // separation between same-color nodes
 		clusterPadding = 6, // separation between different-color nodes
 		maxRadius = 12;
 		
@@ -38,7 +38,7 @@ function init() {
 		tooltipHeadline.attr("width", width5/5)
 	
 		// create dataset to for logos of the first chart
-		logoData = [{site:"nytimes.com", link:"https://www.vectorlogo.zone/logos/nytimes/nytimes-icon.svg"},
+		let logoData = [{site:"nytimes.com", link:"https://www.vectorlogo.zone/logos/nytimes/nytimes-icon.svg"},
 					{site:"dailymail.co.uk", link:"https://seeklogo.com/images/D/Daily_Mail-logo-EBD7A83A1F-seeklogo.com.png"},
 					{site:"cnn.com", link:"https://www.vectorlogo.zone/logos/cnn/cnn-icon.svg"},//https://www.vectorlogo.zone/logos/cnn/cnn-wordmark.svg
 					{site:"bbc.co.uk", link:"https://www.vectorlogo.zone/logos/bbc/bbc-icon.svg"},
@@ -89,22 +89,22 @@ function init() {
 		//drawBarLegend()
 		// Load data and run functions to render charts
 		Promise.all([
-			d3.csv("../data/processed/headlines_site_rapi.csv"),
-			d3.csv("../data/processed/headlines_cl_sent_sm_rapi.csv"),
-			d3.csv("../data/processed/country_time_freqrank_rapi_clean.csv", d3.autoType),
-			d3.csv("../data/processed/polarity_comparison.csv", d3.autoType),
-			d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
-			d3.csv("../data/processed/word_themes.csv", d3.autoType)
+			d3.csv("../assets/data/headlines_site_rapi.csv"),
+			d3.csv("../assets/data/headlines_cl_sent_sm_rapi.csv"),
+			d3.csv("../assets/data/country_time_freqrank_rapi_clean.csv", d3.autoType),
+			d3.csv("../assets/data/polarity_comparison.csv", d3.autoType),
+			d3.csv("../assets/data/country_freqtheme_pivoted.csv", d3.autoType),
+			d3.csv("../assets/data/word_themes.csv", d3.autoType)
 		  ])
 			.then((datasets) => {
 				// define each dataset
-				headlinesSite = datasets[0]
+				let headlinesSite = datasets[0]
 				// countries_data = datasets[1]
-				headlines = datasets[1]
-				tempWords = datasets[2]
-				polComparison = datasets[3]
-				dataWords = datasets[4]
-				themes = datasets[5]
+				let headlines = datasets[1]
+				let tempWords = datasets[2]
+				let polComparison = datasets[3]
+				let dataWords = datasets[4]
+				let themes = datasets[5]
 	
 				// 1) stacked bars chart
 				renderStackedBars(dataWords, themes)
@@ -118,9 +118,9 @@ function init() {
 				// drawBar(countries_data, "#chart4", "South Africa", 5) 
 				
 				// 2) temporal chart
-				filter_years = [2009, 2022]
-				country = "USA"
-				variable = "freq_prop_headlines" //freq_prop_headlines // frequency
+				var filter_years = [2009, 2022];
+				var country = "USA";
+				var variable = "freq_prop_headlines"; //freq_prop_headlines // frequency
 				renderTempChart(tempWords, filter_years, country, variable)
 				// update chart when country is changed
 				d3.selectAll("button.country").on("click", function() {
@@ -253,30 +253,13 @@ function init() {
 						.attr("class", "barLegendText")
 						.call(wrap, 170)
 			}
-	  
-			// function drawBar(countries_data, chart, selected_country, word_count) {
-	
-			//     // set the dimensions and margins of the graph
-			//     var margin = {top: 50, right: 30, bottom: 10, left: 50},
-			//     width = 300 - margin.left - margin.right,
-			//     height = 420 - margin.bottom - margin.top;
 	
 			function drawBar(countries_data, chart, selected_country, word_count) {
-	
-				//countries_data = if (selected_country == "All"){return}
-	
-				// var margin = {top: 50, right: 30, bottom: 10, left: 50},
-				// width = 250 - margin.left - margin.right,
-				// height = 350 - margin.bottom - margin.top;
 	
 				// set the dimensions and margins of the graph
 				var margin = {top: 50, right: 0, bottom: 10, left: 0},
 				width = 150 - margin.left - margin.right,
 				height = 200 - margin.bottom - margin.top;
-	
-				// data = function(d) {if (selected_country !='All') {return countries_data.filter(d=>d.country == selected_country)}
-				// else {return countries_data}}
-				// console.log(data)
 	
 				data = [{country:"South Africa", data:countries_data.filter(d=>d.country == selected_country)}, 
 				{country:"USA", data:countries_data.filter(d=>d.country == selected_country)}, 
@@ -295,8 +278,8 @@ function init() {
 				console.log(top10)
 	
 	
-				flags = [{country:"South Africa", flag:"flags/south-africa.svg"}, {country:"USA", flag:"flags/united-states.svg"}, 
-							{country:"India", flag:"flags/india.svg"}, {country:"UK", flag:"flags/united-kingdom.svg"}, {country: 'All', flag:'None'}]
+				flags = [{country:"South Africa", flag:"svg/flags/south-africa.svg"}, {country:"USA", flag:"svg/flags/united-states.svg"}, 
+							{country:"India", flag:"svg/flags/india.svg"}, {country:"UK", flag:"svg/flags/united-kingdom.svg"}, {country: 'All', flag:'None'}]
 	
 				countryNames = [{country:"South Africa", name:"South Africa"}, {country:"USA", name:"United States"}, 
 							{country:"India", name:"India"}, {country:"UK", name:"United Kingdom"}, {country: 'All', name:'All 4 countries'}]
@@ -638,41 +621,41 @@ function init() {
 			function renderTempChart(dataset, filter, country, variable) {
 				// dimensions
 				// margin = ({top: 400, bottom: 20, left: 40, right: 40})
-				margin = ({top: 150, bottom: 20, left: 40, right: 40})
+				var margin = ({top: 150, bottom: 20, left: 40, right: 40});
 				// margin = ({top: 150, bottom: 20, left: 200, right: 200})
-				visWidth = 1200 - margin.left - margin.right
-				visHeight = 10000 - margin.top - margin.bottom
-				stickyAxisHeight = 200
+				var visWidth = 1200 - margin.left - margin.right;
+				var visHeight = 10000 - margin.top - margin.bottom;
+				var stickyAxisHeight = 200;
 				// colors
-				mainColor = "#3569DC" //"red" //"cyan"
-				lineThickness = 1.5 //2.5
+				var mainColor = "#3569DC"; //"red" //"cyan"
+				var lineThickness = 1.5; //2.5
 				// structure of plots
-				cols = 1
-				rows = 200/cols
+				var cols = 1;
+				var rows = 200/cols;
 				// grid data
-				grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }))
+				var grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }))
 	
 				console.log(grid)
 	
 				// row/col scales
-				row = d3.scaleBand()
+				var row = d3.scaleBand()
 					.domain(d3.range(rows))
 					.range([0, visHeight])
 					.paddingInner(-1)
 	
-				col = d3.scaleBand()
+				var col = d3.scaleBand()
 					.domain(d3.range(cols))
 					.range([0, visWidth])
 					.paddingInner(0.2) 
 	
 				// world events data
-				radius = 6
-				padding = 1.5
-				numberOfCategories = 5
-				categories = ["0", "1", "2", "3", "4"]
-				dateRange = [new Date(2010, 0).getTime(), new Date(2021, 0).getTime()];
+				var radius = 6
+				var padding = 1.5
+				var numberOfCategories = 5
+				var categories = ["0", "1", "2", "3", "4"]
+				var dateRange = [new Date(2010, 0).getTime(), new Date(2021, 0).getTime()];
 	
-			eventsWorld = [
+			var eventsWorld = [
 					{uid: 1, 
 					 name: "Horrifying gang rape and murder in New Delhi, India", 
 					 category: 4, 
@@ -860,7 +843,7 @@ function init() {
 			 {uid: 3, 
 					 name: "defamation case filed by former Union minister M J Akbar's against journalist Priya Ramani who had accused him of sexual harassment", 
 					 category: 4, 
-					 date: new Date(2021, 4, 05)},
+					 date: new Date(2021, 4, 5)},
 			 {uid: 3, 
 					 name: "A majority judgement which declared the prohibition of entry of women aged between 10 and 50 into Sabarimala temple, as unconstitutional and discriminatory", 
 					 category: 4, 
@@ -904,15 +887,15 @@ function init() {
 			 {uid: 3, 
 					 name: "Brutal gang rape and subsequent death of South African teenager", 
 					 category: 4, 
-					 date: new Date(2013, 1, 02)},
+					 date: new Date(2013, 1, 2)},
 			 {uid: 3, 
 					 name: "Monica Lewinsky breaks decade-long media silence", 
 					 category: 4, 
-					 date: new Date(2014, 4, 06)}
+					 date: new Date(2014, 4, 6)}
 			  
 			 ]
 			 
-				words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country))
+				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country))
 				console.log("words")
 				console.log(words)
 				words = words.map(d=> {
@@ -924,7 +907,7 @@ function init() {
 					}
 				})
 	
-				freqByWord = d3.rollup(
+				var freqByWord = d3.rollup(
 					words,
 					g => g.map(({ year, frequency}) => ({date: new Date(year, 0, 1), frequency})),
 					d => d.word
@@ -935,7 +918,7 @@ function init() {
 				// topWords = d3.sort(freqByWord, d=>-d.frequency).filter(function(d,i){ return i<50 })
 				
 				// add grid data to word data
-				data = d3.zip(Array.from(freqByWord), grid).map(
+				var data = d3.zip(Array.from(freqByWord), grid).map(
 					([[word, rates], { row, col }]) => ({
 					word,
 					rates,
@@ -947,16 +930,16 @@ function init() {
 				console.log(data)
 	
 				// same x-scale for all charts
-				minDate = data[0].rates[0].date
-				maxDate = data[0].rates[data[0].rates.length - 1].date
+				var minDate = data[0].rates[0].date
+				var maxDate = data[0].rates[data[0].rates.length - 1].date
 				// maxDate = new Date(2021, 6, 0)
 	
-				x = d3.scaleTime()
+				var x = d3.scaleTime()
 					.domain([minDate, maxDate])
 					.range([0, col.bandwidth()])
 	
 				// function to calculate y-scale and area generator depending on the word
-				wordToScaleAndArea = Object.fromEntries(
+				var wordToScaleAndArea = Object.fromEntries(
 					data.map(d => {
 					const maxRate = d3.max(d.rates, d => d.frequency);
 					// console.log(maxRate)
@@ -964,7 +947,7 @@ function init() {
 						.domain([0, maxRate])
 						.range([row.bandwidth(), 0]).nice();
 					
-					curve = d3.curveMonotoneX // d3.curveBasis
+					var curve = d3.curveMonotoneX // d3.curveBasis
 					const area = d3.area()
 						.x(d => x(d.date))
 						.y1(d => y(d.frequency))
@@ -1482,15 +1465,15 @@ function init() {
 			// function to draw the first chart
 			function drawBubbleChart(data, chart, variable) {
 				
-				ttip = variable //"ttip"
+				var ttip = variable //"ttip"
 				// console.log(chart, variable)
 				// set dimensions
-				let margin5 = {left: 50, bottom: 20, right: 30, top: 110}
+				var margin5 = {left: 50, bottom: 20, right: 30, top: 110}
 				let bodywidth5 = width5 - margin5.left - margin5.right;
 				let bodyheight5 = height5 - margin5.top - margin5.bottom;
 				
 				// filter data, removing irrelevant news outlets
-				filterD = data.filter(d=>(+d.monthly_visits !== 0)&(+d[variable] !== 0)&
+				var filterD = data.filter(d=>(+d.monthly_visits !== 0)&(+d[variable] !== 0)&
 											(d.site !== "msn.com")&(d.site !== "sports.yahoo.com")&
 											(d.site !== "finance.yahoo.com")&(d.site !== "news.google.com")&
 											(d.site !== "news.yahoo.com")&(d.site !== "bbc.com")&
@@ -1533,7 +1516,7 @@ function init() {
 				// console.log(chart, variable, d3.extent(filterData, d => +d[variable]))
 	
 				// create radial scale for bubble size
-				extentvisits = d3.extent(filterData, d=>+d.monthly_visits)
+				var extentvisits = d3.extent(filterData, d=>+d.monthly_visits)
 				// console.log(extentvisits)
 				// console.log(d3.extent(filterData, d=>+d.polarity))
 	
@@ -1561,24 +1544,24 @@ function init() {
 							.on('tick', function() {
 				
 							// function for collision detection
-							for ( i = 0; i < filterData.length; i++ ) {
-								var node = filterData[i];
-								node.cx = node.x;
-								node.cy = node.y;
-							}
+							// for ( i = 0; i < filterData.length; i++ ) {
+							// 	var node = filterData[i];
+							// 	node.cx = node.x;
+							// 	node.cy = node.y;
+							// }
 							
 							// define circles elements
-						circles = chart.select("#body"+variable)
+						var circles = chart.select("#body"+variable)
 											.selectAll('circle')
 											.data(filterData);
 	
 							// define logos elements
-						logos = chart.select("#body"+variable)
+						var logos = chart.select("#body"+variable)
 											.selectAll('image')
 											.data(filterData);
 					
 							// append the circles and define style properties and hover events (tooltip)
-							newCircles = circles.join('circle')
+							var newCircles = circles.join('circle')
 								.attr("class", "forceCircles")
 								// .attr("fill", "white")
 								.style("opacity", "1")
@@ -1597,7 +1580,7 @@ function init() {
 								.on("mouseleave.color", function() { d3.select(this).style("stroke", "#323232").style("stroke-width", "0.6px"); })
 								
 							// append the logos and define style properties and hover events (tooltip)
-							newLogos = logos.join("svg:image")
+							var newLogos = logos.join("svg:image")
 									.attr("class", "forceLogo")
 									// each logo needs to be centered in the bubble (couldnt find better way of doing this)
 									.attr("transform", d=>d.site=="bbc.co.uk" ? "translate(-50,-50)"
@@ -1662,7 +1645,7 @@ function init() {
 					
 	
 			// line coordinates
-			wp = +data.filter(d=>d.site==="telegraph.co.uk")[0].bias+0.01
+			var wp = +data.filter(d=>d.site==="telegraph.co.uk")[0].bias+0.01
 			chart.append("line")
 				.attr("y1", bodyheight5/3.2)
 				.attr("x1",bodywidth5/1.2)
@@ -1701,13 +1684,13 @@ function init() {
 					.text(variable==="bias"?"More Biased Language →":"More Polarizing Language →")
 					
 			// create the dataset for the bubble legend
-			legendData = [{level: "", radius: radius(10000000), y: bodyheight5+75, x: bodywidth5/2.2, anchor:"end", xtext: bodywidth5/2.235, ytext: bodyheight5+53,id: ""}, 
+			var legendData = [{level: "", radius: radius(10000000), y: bodyheight5+75, x: bodywidth5/2.2, anchor:"end", xtext: bodywidth5/2.235, ytext: bodyheight5+53,id: ""}, 
 			{level: "", radius: radius(100000000), y: bodyheight5+75, x: bodywidth5/2.05,id: ""}, 
 			{level: "1B Monthly Viewers", radius: radius(1000000000), y: bodyheight5+75, x: bodywidth5/1.85, anchor:"middle", xtext: bodywidth5/1.85, ytext: bodyheight5+46,id: ""},
 			{level: "?", radius: radius(30000000), y: bodyheight5*1.08+11, x: bodywidth5+15, anchor:"middle", xtext: bodywidth5+15, ytext: bodyheight5*1.08+16,id: "info"}]
 	
 			// make the bubble legend and initialize the tooltip for methodology info if they hover on the "#info" circle
-			legend = chart.append("g")
+			var legend = chart.append("g")
 					.selectAll("circle")
 					.data(legendData)
 					.join('circle')
@@ -1721,7 +1704,7 @@ function init() {
 					.on("mouseover", (event, d)=>d.id==="info" ? tooltipInfo(event.clientX-150, event.clientY-420):"")
 					.on("mouseleave", (event, d)=>d3.select("#tooltipInfo").style("visibility", "hidden"))
 				
-			textLegend = chart.append("g")
+			var textLegend = chart.append("g")
 				// textLegend = legend.append("g")
 					.selectAll("text")
 					.data(legendData)
@@ -1799,10 +1782,10 @@ function init() {
 			function renderStackedBars(data, themes) {
 	
 		
-				margin = ({top: 100, right: 0, bottom: 0, left: 100})
+				var margin = ({top: 100, right: 0, bottom: 0, left: 100});
 			
-				var height = 2000 - margin.top - margin.bottom
-				var width = 500 - margin.left - margin.right
+				var height = 2000 - margin.top - margin.bottom;
+				var width = 500 - margin.left - margin.right;
 				// var height = 600 - margin.top - margin.bottom
 				// var width = 200 - margin.left - margin.right
 			
@@ -1822,7 +1805,7 @@ function init() {
 				// console.log(themes.filter(d=>d.word==="accuse")[0].theme)
 			
 				// stack data
-				series = d3.stack()
+				var series = d3.stack()
 				.keys(data.columns.slice(2))
 				// .keys(data.map(d=>d.country))
 			  (data)
@@ -1833,12 +1816,12 @@ function init() {
 				// console.log(series.map(d=>d[1]))
 			
 				// xscale
-				x = d3.scaleBand()
+				var x = d3.scaleBand()
 				.domain(data.map(d => d.country))
 				.range([margin.left, width - margin.right])
 				.padding(0.1)
 			
-				y = d3.scaleLinear()
+				var y = d3.scaleLinear()
 				// .domain([d3.max(series, d => d3.max(d, d => d[1])), 0])
 				.domain([series.length, 0])
 				// .domain([0, series.length])
@@ -1853,13 +1836,13 @@ function init() {
 				console.log([series.length, 0])
 				// console.log(d3.max(series, d => d3.max(d, d => d[1])))
 			
-				xAxis = g => g
+				var xAxis = g => g
 				// .attr("transform", `translate(0,${height - margin.bottom})`)
 				.call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
 				.call(g => g.selectAll(".domain").remove())
 				
 			
-				yAxis = g => g
+				var yAxis = g => g
 				.attr("transform", `translate(${width+margin.right+30},210)`)
 				.call(d3.axisRight(y).tickSizeOuter(0).tickSizeInner(0))
 				.call(g => g.selectAll(".domain").remove())
@@ -1886,10 +1869,10 @@ function init() {
 				// svg.append("g")
 				//         .call(yAxis);
 			
-				formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en")
+				var formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en")
 			
 				  
-				rects = svg.append("g")
+				var rects = svg.append("g")
 					  .attr("class", "stackedBars")
 					  .selectAll("g")
 					  .data(series)
@@ -1897,7 +1880,7 @@ function init() {
 					  .selectAll("rect")
 					  .data(d => d)
 					  
-				rect = rects.join("rect")
+				var rect = rects.join("rect")
 						.attr("class", d=>d.key)
 						// .attr("id", "stackedRects")
 						// .attr("fill", "#FEFAF1")
@@ -1928,10 +1911,10 @@ function init() {
 						// console.log(xAxis.selectAll(".tick")._groups[0][1].textContent)
 			
 						// country names and flags
-						flags = [{country:"South Africa", flag:"flags/south-africa.svg"}, {country:"USA", flag:"flags/united-states.svg"}, 
-						{country:"India", flag:"flags/india.svg"}, {country:"UK", flag:"flags/united-kingdom.svg"}, {country: 'All countries', flag:''}]
-			
-			
+						var flags = [{country:"South Africa", flag:"svg/flags/south-africa.svg"}, {country:"USA", flag:"svg/flags/united-states.svg"}, 
+						{country:"India", flag:"svg/flags/india.svg"}, {country:"UK", flag:"svg/flags/united-kingdom.svg"}, {country: 'All countries', flag:''}]
+		
+	
 						xAxis.selectAll(".tick")
 							.append("text")
 							.text(d=>d)
@@ -2537,12 +2520,12 @@ function init() {
 			// function to draw the barcharts in the final visualization
 			function drawBars(countries_data, chart, selected_country, word_count, country_name, svgID) {
 				// set the dimensions of each chart
-				margin = {top: 69, right: 90, bottom: 5, left: 90},
-				width = width/1.5,
-				height = height;
+				var margin = {top: 69, right: 90, bottom: 5, left: 90};
+				var width = width/1.5;
+				var height = height;
 				// change bar height if we draw more bars
-				barpad = word_count===20 ? 20: word_count===50 ? 7:20
-				font_size = word_count===20 ? "15px": word_count===50 ? "12px":"15px"
+				var barpad = word_count===20 ? 20: word_count===50 ? 7:20
+				var font_size = word_count===20 ? "15px": word_count===50 ? "12px":"15px"
 	
 				// filter the data based on the country of interest
 				country_data = countries_data.filter(d=>d.country == selected_country)
