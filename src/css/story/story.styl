@@ -1,47 +1,37 @@
 /* CUSTOM STORY STYLE */
 /* CSS Styles */
 
-/* scrolling text at the top */
-
-   /* -------- Marquee method*/
-
-   .txtscroll {
+.txtscroll {
     height: 70px;  
-    /* overflow:hidden; */
-    /* position: relative; */
-    background-color:#E75C33;
-   }
+    background-color:$red;
+}
 
-   .txtscroll h1 {
-    font-size: 2.2em;
-    color: #282828;
-    /* position: absolute; */
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: 16;
-    font-style: italic;
-    /* line-height: 50px; */
-    /* text-align: left; */
-
-   }
+.txtscroll h1 {
+  font-size: 2.2em;
+  color: $off-black;
+  font-family: $national;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin: 16;
+  font-style: italic;
+}
 
 /* ---------------------- */
 body {
-    background-color: #FEFAF1;
+    background-color: $bg;
 }
 
 .annotation {
-    fill: black;
-    font-family: Helvetica;
+    fill: $off-black;
+    font-family: $national;
     font-size: 13px;
     text-anchor: middle;
     transform: translate(-45px, 6px)
 }
 
 .annotationButton {
-    fill: black;
-    font-family: Helvetica;
+    fill: $off-black;
+    font-family: $national;
     font-size: 13px;
     text-anchor: middle;
     transform: translate(-45px, 15px)
@@ -57,46 +47,35 @@ body {
     margin-right: 2px;
     font-size: 100px;
     font-family: Georgia;
-    color: #282828;
+    color: $off-black;
   }
 
   #hoverGuide {
     font-size: 17px;
-    fill:#282828;
+    fill: $off-black;
     font-weight: bold; 
-    font-family: sans-serif;
+    font-family: $national;
   }
 
   #hoverGuideLine {
-      stroke: #282828;
+      stroke: $off-black;
       stroke-width: 0.8px;
   }
 
   .txt-rotate {
-    fill: #282828;
+    fill: $off-black;
   }
   
 #tooltipText {
-    /* border: solid 1px #282828;
-    top: 10px;
-    left: 0px;
-    padding: 5px; */
-    /* font-size: 12px; */
-    font-family: Arial, Helvetica, sans-serif;
-    /* position: fixed; */
+    font-family: $national;
     display: block;
-    /* background-color: none; */
-    /* fill:rgb(196, 195, 195);            */
-    /* color:#282828;            */
 }
 
 .tooltipTL {
-    font-family: Arial, Helvetica, sans-serif;
-    /* font-size: 10px; */
-    color: #161616;
-    background-color: #FEFAF1;
-    border: 1.5px #282828 solid;
-    /* font-weight: 500; */
+    font-family: $national;
+    color: $off-black;
+    background-color: $bg;
+    border: 1.5px $off-black solid;
 }
 
 #tooltipTLleft {
@@ -130,76 +109,52 @@ body {
 .exampleheadlines {
     display: flex;
     flex-direction: row;
-    /* text-align: center; */
     justify-content: center;
     margin-bottom: 50;
 }
 
 #tooltipHeadline {
-    /* border: solid 1px #282828; */
     top: 10px;
     left: 0px;
     padding: 5px;
     position:fixed;
     visibility: hidden;
-    /* opacity:0; */
-    /* hide it for when theres no hovering */
-    /* display:none; */
-    background-color: #FEFAF1;
+    background-color: $bg;
 }
 
 
 #tooltipHeadline path {
-    fill: none
+    fill: none;
 }
 
 .forceText {
-font-weight: bold;
-font-family: Arial, Helvetica, sans-serif;
-font-size: 8px;
-text-anchor: middle;
-fill: silver;
+  font-weight: bold;
+  font-family: $national;
+  font-size: 8px;
+  text-anchor: middle;
+  fill: silver;
 }
 
 .forceCircles {
-    fill: #FEFAF1;
-    /* opacity: 1; */
-    stroke: #282828;
+    fill: $bg;
+    stroke: $off-black;
     stroke-width: 0.6px;
-    /* stroke: #FEFAF1 */
 }
 
 .themesText {
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $national;
     font-size: 14px;
     text-anchor: middle;
-    fill: #282828;
+    fill: $off-black;
     }
 
-/* .forceLogo {
-    display: ;
-    margin-left: auto;
-    margin-right: auto;
-    width: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    } */
-
-/* .xAxis text, .yAxis text{
-fill: silver;
-font-size: 10px;
-font-family: Arial, Helvetica, sans-serif;
-} */
-
 .xAxis line, .yAxis line{
-stroke: silver;
+  stroke: silver;
 }
 
 .xAxis text {
-font-family: Arial, Helvetica, sans-serif;
+  font-family: $national;
 }
 
 .xAxis path, .yAxis path {
@@ -208,39 +163,31 @@ font-family: Arial, Helvetica, sans-serif;
 
 #xAxisLabel {
     font-size: 17px;
-    fill: #282828;
-    font-family: sans-serif
-
+    fill: $off-black;
+    font-family: $national;
 }
 
 .axisLabel {
-font-weight: bold;
-font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-family: $national;
 }
 
 h1 {
-    /* text-align: left; */
     font-family: Georgia;
-    /* font-size: x-large; */
     font-style: bold;
-    color: #282828
+    color: $off-black;
     }
 
 .title {
-    /* margin-top: 80px; */
     margin-bottom: 30px;
     font-weight:900;
     font-size:150px;
     max-width: 1200px;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    /* font-family: Georgia, 'Times New Roman', Times, serif; */
-    /* font-size: x-large; */
+    font-family: $national;
     font-style: bold;
     text-transform: uppercase;
-    color: #282828;
-    /* font-weight: 900; */
-    /* font-size: 200px; */
+    color: $off-black;
     line-height: 39px;
 }
 
@@ -248,16 +195,12 @@ h1 {
     font-weight:500;
     font-size:25px;
     opacity: 0.9;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $national;
     text-transform: uppercase;
-    /* padding-left: 1000px; */
-    /* padding-right: 200px; */
-    /* margin-top: 0px;
-    margin-bottom: 0px; */
 }
 
 .creditLink{
-    color: #282828;
+    color: $off-black;
     text-transform: uppercase;
 }
 
@@ -266,17 +209,16 @@ h1 {
     font-size:14;
     opacity: 0.8;
     /* margin-bottom: 50px; */
-    font-family: Arial, Helvetica, sans-serif;
-    color: #282828;
+    font-family: $national;
+    color: $off-black;
     position:absolute;
 }
 
 .sectionHeader {
-    /* text-align: left; */
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: $national;
     font-style: italic;
     font-weight: 900px;
-    color: #282828;
+    color: $off-black;
     max-width: 1000;
     text-anchor: middle;
     justify-content:left;
@@ -284,53 +226,71 @@ h1 {
     }
 
 h2 {
-    /* text-align: left; */
     font-family: Georgia;
-    /* font-size: x-large; */
     font-style: bold;
-    color: #282828
+    color: $off-black;
     }
 
 h4 {
-/* text-align: left; */
-font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-font-size: x-large;
-font-style: bold;
-color: #282828
+  font-family: $tiempos;
+  font-size: x-large;
+  font-style: bold;
+  color: $off-black
 }
 
 h5 {
-/* text-align: left; */
-font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-font-size:medium;
-/* font-style:oblique; */
-font-weight: 600;
-text-align: center;
-margin-bottom: 0;
-color: #282828
+  font-family: $tiempos;
+  font-size:medium;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0;
+  color: $off-black;
 }
 
 .description {
-max-width: 45vw;
-text-align: justify;
-text-anchor: middle;
-color: #282828;
-/* font-family: Verdana, Geneva, Tahoma, sans-serif; */
-font-family: Georgia, 'Times New Roman', Times, serif;
-font-size: 18px;
-margin-bottom: 0;
+  max-width: $column-width;
+  text-align: justify;
+  text-anchor: middle;
+  color: $off-black;
+  font-family: $tiempos;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+ul {
+  max-width: $column-width;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.intro-questions {
+  margin: 0 auto;
+  padding: 1rem 0;
+  font-family: $tiempos;
+  font-style: italic;
 }
 
 .stackedChartDescription {
     max-width: 15vw;
     text-align: left;
-    /* text-anchor: middle; */
-    color: #282828;
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
-    font-family: sans-serif;
+    color: $off-black;
+    font-family: $national;
     font-size: 16px;
     margin-bottom: 0;
     transform:translateY(150px)
+}
+
+.deets {
+  font-family: $national;
+  color: $red;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.exampleheadlines .headline {
+  font-family: $national;
+  font-size: 12px;
 }
 
 #stackedChartLegend {
@@ -338,45 +298,28 @@ margin-bottom: 0;
 }
 
 .subtitle {
-margin-top: 0;
-margin-bottom: 10;
-display: flex;
-justify-content: center;
+  margin-top: 0;
+  margin-bottom: 10;
+  display: flex;
+  justify-content: center;
 }
 
 .header {
-justify-content: center;
-display: flex;
-text-anchor: middle;
+  justify-content: center;
+  display: flex;
+  text-anchor: middle;
 }
 
 .titleArt {
-justify-content: center;
-display: flex;
-text-anchor: middle;
-margin-bottom: 100px;
-/* padding: 100px; */
-flex-direction: row;
-/* border: 1px red solid; */
-/* max-width: 100%; */
-/* margin-top: 100px; */
-/* border: 2px solid #282828; */
+  justify-content: center;
+  display: flex;
+  text-anchor: middle;
+  margin-bottom: 100px;
+  flex-direction: row;
 }
-
-/* .titlewords { */
-    /* border: 1.5px solid #282828;
-    padding-top: 0px;
-    transform: translate(); */
-    /* margin-left: 0px; */
-    /* margin-right: 50px; */
-
-/* } */
-
 .titlesep {
   width: 100%;
-  /* margin-left: auto;
-  margin-right: auto; */
-  border: 0.1px solid #282828;
+  border: 0.1px solid $off-black;
   transform: translate(0,32px);
   line-height: 0px;
   margin-top: 0px;
@@ -384,58 +327,41 @@ flex-direction: row;
 }
 
 .titleCredits {
-    justify-content: center;
-    /* display: flex; */
-    /* text-anchor: middle; */
-    /* text-align: center; */
-    vertical-align: middle;
-    max-width: 200px;
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-top: 190px;
-    /* border:1px solid #282828 */
-    /* margin-left: 50px; */
-    /* margin-right: 0px; */
-
+  justify-content: center;
+  vertical-align: middle;
+  max-width: 200px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 190px;
 }
 
 .dropOptions {
-font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-font-size: x-large;
-font-weight: bold;
+  font-family: $tiempos;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 .buttons {
-justify-content: center;
-display: flex;
-margin-top: 50px;
+  justify-content: center;
+  display: flex;
+  margin-top: 50px;
 }
 
 button {
-border-color: #FEFAF1;
-background-color: #FEFAF1;
-color: #282828;
-font-weight: 400px;
-border-style:solid;
-border-width: 1;
-/* color: white; */
-padding: 0px 20px;
-margin-top: 5;
-text-align: center;
-text-decoration: none;
-/* display: inline-block; */
-font-size: 20px;
-font-family: Arial, Helvetica, sans-serif;
-text-transform: uppercase;
-/* max-height: 500px; */
-/* transform: translateY(9px); */
+  border-color: $bg;
+  background-color: $bg;
+  color: $off-black;
+  font-weight: 400px;
+  border-style:solid;
+  border-width: 1;
+  padding: 0px 20px;
+  margin-top: 5;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: $national;
+  text-transform: uppercase;
 }
-
-/* button text {
-    transform: translateY(100px);
-} */
-
-
 
 #wordFreq {
     margin-top: 0;
@@ -443,34 +369,28 @@ text-transform: uppercase;
 }
 
 button:hover {
-background-color: #fdf4de;
-color: #161616;
+  background-color: $bg;
+  color: $off-black;
 }
 
 button:focus {
-    background-color: #F7DC5B    ;
-    color: #161616;
-    font-weight: 900px;
+  background-color: #F7DC5B    ;
+  color: $off-black;
+  font-weight: 900px;
 
-    }
-
-/* button:focus{
-font-weight: bold;
-} */
+  }
 
 select::selection{
     background-color: #F7DC5B    ;
-    color: #161616;
+    color: $off-black;
     font-weight: 900px;
 }
 
 .flag {
-    /* padding: 10px; */
     height:35px;
     text-anchor: middle;
     padding-right: 10px;
     transform: translateY(13px);
-
 }
 
 .country {
@@ -479,216 +399,161 @@ select::selection{
 }
 
 .search {
-text-align: center;
+  text-align: center;
 }
 
 .legend circle {
-fill: none;
-stroke: #282828;
+  fill: none;
+  stroke: $off-black;
 }
 
 .legendBubble {
-    fill: none;
-    stroke: #282828;
-    stroke-width: 0.8;
-    }
+  fill: none;
+  stroke: $off-black;
+  stroke-width: 0.8;
+}
 
 .legend text {
-fill: silver;
-font: 8px sans-serif;
-text-anchor: end;
+  fill: silver;
+  font: 8px sans-serif;
+  text-anchor: end;
 }
 
 .svg-container {
-display: inline-block;
-position: relative;
-width: 95%;
-padding-bottom: 40%;
-margin-left: 2.5%;
-margin-right: 2.5%;
-vertical-align: top;
-overflow: hidden;
+  display: inline-block;
+  position: relative;
+  width: 95%;
+  padding-bottom: 40%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  vertical-align: top;
+  overflow: hidden;
 }
 
 .svg-container2 {
-    display: inline-block;
-    position: relative;
-    width: 95%;
-    padding-bottom: 50%;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    vertical-align: top;
-    overflow: hidden;
-    }
+  display: inline-block;
+  position: relative;
+  width: 95%;
+  padding-bottom: 50%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  vertical-align: top;
+  overflow: hidden;
+}
 
 .svg-content {
-display: inline-block;
-position: absolute;
-text-align: center;
-top: 50;
-left: 0;
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  top: 50;
+  left: 0;
 }
 
 #tooltipCluster {
-    border: solid 1px #282828;
+    border: solid 1px $off-black;
     padding: 10px;
     /* change the tooltip so that its position can be moved around */
     position: fixed;
     /* hide it for when theres no hovering */
     display: block;
     /* background-color: white; */
-    color:#03071e;            
+    color:$off-black;            
 }
 
 #tooltipInfo {
-    border: solid 1px #282828;
-    /* visibility:hidden; */
-    padding: 10px;
-    max-width: 180px;
-    text-align: justify;
-    /* change the tooltip so that its position can be moved around */
-    position: fixed;
-    /* hide it for when theres no hovering */
-    display: block;
-    color: #282828; 
-    /* background-color: white; */
-    background-color: #FEFAF1;           
+  border: solid 1px $off-black;
+  padding: 10px;
+  max-width: 180px;
+  text-align: justify;
+  /* change the tooltip so that its position can be moved around */
+  position: fixed;
+  /* hide it for when theres no hovering */
+  display: block;
+  color: $off-black; 
+  background-color: $bg;           
 }
 
 .clusterLegend {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /* width: 50%; */
-  }
-
-.netbars {
-    display: grid;
-    grid-template-columns: 27vw 65vw; 
-    grid-template-rows: 60vh 60vh 60vh 60vh;
-    column-gap: 0vw;
-    row-gap: 40vh;
-    align-items: center;
-    margin-top:30vh;
-    margin-left:4vw;
-    margin-right:4vw;
-    }
-
-.barLegend {
-    margin-top:20px;
-    padding-bottom:10px
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* .barLegendText {
-    font-size: 12px;
-    font-family: sans-serif;
-    fill:silver;
-    text-anchor: start;
-    text-align:center;
-    opacity:0.65
-} */
+.netbars {
+  display: grid;
+  grid-template-columns: 27vw 65vw; 
+  grid-template-rows: 60vh 60vh 60vh 60vh;
+  column-gap: 0vw;
+  row-gap: 40vh;
+  align-items: center;
+  margin-top:30vh;
+  margin-left:4vw;
+  margin-right:4vw;
+}
+
+.barLegend {
+  margin-top:20px;
+  padding-bottom:10px
+}
 
 .barLegendText {
-    font-size: 13px;
-    font-family: Georgia;
-    fill:silver;
-    text-anchor: start;
-    text-align:left;
-    opacity:0.9;
-    font-weight: 800;
+  font-size: 13px;
+  font-family: $tiempos;
+  fill:silver;
+  text-anchor: start;
+  text-align:left;
+  opacity:0.9;
+  font-weight: 800;
 }
 
 /* sticky axis for wavy chart */
 #stickyXaxis {
-    /* position: -webkit-sticky; */
-    position: sticky;
-    top: 0;
-    background-color: #FEFAF1;
-    fill: #282828;
-    color: #282828;
-    stroke-width: 1;
-    font-weight: 800;
-    font-size: 12
-    /* z-index:0; */
+  position: sticky;
+  top: 0;
+  background-color: $tan;
+  fill: $off-black;
+  color: $off-black;
+  stroke-width: 1;
+  font-weight: 800;
+  font-size: 12
 }
 
 .wordText {
-    text-anchor: end;
-    fill: #282828;
-    font-weight: bold;
-    font-size: 14px;
-    font-family: Helvetica;
-    text-transform: uppercase
+  text-anchor: end;
+  fill: $off-black;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: $national;
+  text-transform: uppercase
 }
 
 
 .timeRuler {
-    z-index:10;
-    position:fixed;
-    stroke:#282828;
-    fill: none;
-    stroke-width: 1;
-    width: 20;
-    /* opacity: 0.2 */
-
+  z-index:10;
+  position:fixed;
+  stroke:$off-black;
+  fill: none;
+  stroke-width: 1;
+  width: 20;
 }
-
-/* .SMaxisSticky {
-    background-color: #c0c0c0;
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:100;
-} */
 
 /* FIRST BAR CHART */
 
-/* .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 17vw);
-    grid-template-rows: 70vh; 
-    grid-column-gap: 2vw;
-    transform: translateX(12vw)
-  } */
-    /* grid-template-columns: 15vw 15vw 15vw 15vw; */
-    /* grid-template-columns: repeat(auto-fit, 17vw); */
-    /* align-items: center; */
-    /* justify-items: center;  */
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction:row;
+  justify-content: center;
+}
 
-  .container {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction:row;
-    justify-content: center;
-    /* flex-direction: row; */
-    /* grid-template-columns: 15vw 15vw 15vw 15vw; */
-    /* grid-template-columns: repeat(auto-fit, 17vw); */
-    /* grid-template-columns: repeat(auto-fit, 17vw);
-    grid-template-rows: 70vh; 
-    grid-column-gap: 2vw;
-    transform: translateX(12vw) */
-    /* align-items: center; */
-    /* justify-items: center;  */
-  }
+.freqBars {
+  width: 16vw;
+  height:35vw
+}
 
-  /* .centeredCont {
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    text-align: center;
-
-    } */
-  
-
-  .freqBars {
-    width: 16vw;
-    height:35vw
-    /* margin: 0 auto; */
-  }
-
-  .movingHeadline{
-    font-size: 20px;
-    font-family: sans-serif
+.movingHeadline{
+  font-size: 20px;
+  font-family: sans-serif
 }
 
 #hlAnimation {
@@ -696,51 +561,42 @@ left: 0;
 }
 
 .barChart {
-    /* font-size: 13px;
-    font-family: Helvetica; */
-    /* fill:cyan; */
-    text-anchor: start;
-    text-align:left;
-
+  text-anchor: start;
+  text-align:left;
 }
 
 .yAxis text {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    text-anchor: end;
-    fill: silver;
-    font-weight: bold;
+  font-family: $national;
+  text-align: center;
+  text-anchor: end;
+  fill: silver;
+  font-weight: bold;
 }
     
 
 span{
-    /* color: silver; */
-    font-family: sans-serif
+  font-family: sans-serif
 }
 
 /* method section */
 
 .inputTitle {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
-    color: #282828;
-  }
+  font-family: $national;
+  font-size:14px;
+  color: $off-black;
+}
 
-  .methodDescription {
-    /* max-width: 520px; */
-    text-align: justify;
-    text-anchor: middle;
-    /* color: rgb(167, 167, 167); */
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: small;
-    margin-bottom: 0;
-    line-height: 1.1;
-    max-width: 45vw;
-    text-align: justify;
-    text-anchor: middle;
-    color: #282828;
-    /* color: rgb(167, 167, 167); */
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+.methodDescription {
+  max-width: $column-width;
+  text-align: justify;
+  text-anchor: middle;
+  font-family: $national;
+  font-size: small;
+  margin: 0 auto;
+  padding: 1rem 0;
+  line-height: 1.1;
+  text-align: justify;
+  text-anchor: middle;
 }
 
 .methodSep {
@@ -749,277 +605,235 @@ span{
   margin-right: auto;
   border: 0.1px solid;
   color:rgb(112, 112, 112)
-
 }
 
 .intextLink{
-    color: #E75C33;
-    font-weight:500;
-    text-decoration: underline;
-  }
+  color: $red;
+  font-weight:500;
+  text-decoration: underline;
+}
 
-  /* Polarity Comparison bubble chart styling */
-  .polarityCompyAxis text {
-    font-family: Helvetica;
-    text-align: left;
-    text-anchor: end;
-    fill: #282828;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+/* Polarity Comparison bubble chart styling */
+.polarityCompyAxis text {
+  font-family: $national;
+  text-align: left;
+  text-anchor: end;
+  fill: $off-black;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 
-  .polarityCompyAxis .domain {
-      stroke:none;
-  }
+.polarityCompyAxis .domain {
+    stroke:none;
+}
   
-   .grid {
-    stroke: lightgrey;
-    stroke-width: 1px;
-    
-    shape-rendering: crispEdges;
-  }
+.grid {
+  stroke: lightgrey;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
   
-  .polarityCompBubbleLeft {
-    /* fill: #FEFAF1; */
-    fill: #282828;
-    stroke: #282828;
-    stroke-width: 2.5px;
-    box-sizing: border-box;
+.polarityCompBubbleLeft {
+  fill: $off-black;
+  stroke: $off-black;
+  stroke-width: 2.5px;
+  box-sizing: border-box;
+}
   
-  }
+.polarityCompBubbleRight {
+  fill: $green;
+  stroke: $off-black;
+  stroke-width: 2.5px;
+  box-sizing: border-box;
+}
   
-  .polarityCompBubbleRight {
-    fill: #0BBF99;
-    stroke: #282828;
-    /* fill: #FEFAF1;
-    stroke: #0BBF99; */
-    stroke-width: 2.5px;
-    box-sizing: border-box;
-    
-  }
+.polarityCompFemText {
+  fill: $green;
+  font-family: $national;
+  font-weight: bold;
+  font-size: 13px;
+  text-anchor: middle;
+  transform: translate(0,-40px);
+}
+
+.polarityDiffAnnotation {
+  fill: $green;
+  font-family: $national;
+  font-weight: 400;
+  font-size: 12px;
+  text-anchor: left;
+  transform: translate(20px, -10px);
+}
   
-  .polarityCompFemText {
-    fill: #0BBF99;
-    font-family: Helvetica;
-    font-weight: bold;
-    font-size: 13px;
-    text-anchor: middle;
-    transform: translate(0,-40px);
-  }
-
-  .polarityDiffAnnotation {
-    fill: #0BBF99;
-    font-family: Helvetica;
-    font-weight: 400;
-    font-size: 12px;
-    text-anchor: left;
-    transform: translate(20px, -10px);
-  }
+.polarityCompAllText {
+  fill: $off-black;
+  font-family: $national;
+  font-size: 13px;
+  text-anchor: middle;
+  transform: translate(0,-20px)
+}
   
-  .polarityCompAllText {
-    fill: black;
-    font-family: Helvetica;
-    font-size: 13px;
-    text-anchor: middle;
-    transform: translate(0,-20px)
-  }
+.polarityCompxAxisLabel {
+  font-size: 12px;
+  fill: $off-black;
+  font-family: $national;
+}
   
-  
-  .polarityCompxAxisLabel {
-    font-size: 12px;
-    fill: #282828;
-    font-family: sans-serif
-  
-  }
-  
-  
-  .polarityCompxAxis {
-    display:none;
-  } 
+.polarityCompxAxis {
+  display:none;
+} 
 
-  .lollipop {
-      transform: translate(-90px, 0);
-  }
+.lollipop {
+    transform: translate(-90px, 0);
+}
 
-  /* dropdown */
+/* dropdown */
 
-  .dropdownOptions {
-    border-color:#282828;
-    background-color: #FEFAF1;
-    border-width: 0.5;
-    border-style: solid;
-    font-size: 14px;
-    text-transform: uppercase;
-    /* font-weight: bold; */
-    padding: 5;
-    margin: 10;
-  }
+.dropdownOptions {
+  border-color:$off-black;
+  background-color: $tan;
+  border-width: 0.5;
+  border-style: solid;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 5;
+  margin: 10;
+}
 
-  .dropdownOptions.active {
-    background-color: #E75C33;
-  }
+.dropdownOptions.active {
+  background-color: $red;
+}
 
-  .bubbleFilters {
-    /* display: flex; */
-    /* flex-direction: row; */
-    text-align: center;
-    background-color: #FEFAF1;
-    z-index: 1;
-    }
+.bubbleFilters {
+  text-align: center;
+  background-color: $tan;
+  z-index: 1;
+}
 
-    .scoreChartBar {
-      stroke: #282828;
-      stroke-width: 0.5px;
+.scoreChartBar {
+  stroke: $off-black;
+  stroke-width: 0.5px;
+}
 
-    }
-    .scoreChartTitle {
-      margin-bottom: 30px;
-      font-weight:500;
-      transform: translateX(10px);
-      font-size:10px;
-      max-width: 10px;
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      font-style: bold;
-      text-transform: uppercase;
-      color: #282828;
-      
-  }
+.scoreChartTitle {
+  margin-bottom: 30px;
+  font-weight:500;
+  transform: translateX(10px);
+  font-size:10px;
+  max-width: 10px;
+  text-align: center;
+  font-family: $national;
+  font-style: bold;
+  text-transform: uppercase;
+  color: $off-black;
+}
 
-  .scoreChartBarText {
-      font-family: sans-serif;
-      font-size: 9px;
+.scoreChartBarText {
+    font-family: $national;
+    font-size: 9px;
+}
 
-  }
+.stackedBarAnnotation {
+  fill: $red;
+  font-family: $national;
+  font-weight: 900;
+  font-size: 12px;
+  text-anchor:end;
+  text-transform: uppercase;
+  transform: translate(100px, 5px)
+}
 
-  .stackedBarAnnotation {
-    fill: #E75C33;
-    font-family: Helvetica;
-    font-weight: 900;
-    font-size: 12px;
-    text-anchor:end;
-    text-transform: uppercase;
-    transform: translate(100px, 5px)
-  }
+.stackedBarTextAnnotation {
+  color: $red;
+  font-family: $national;
+  font-weight: 900;
+  font-size: 16px;
+  text-transform: uppercase;
+}
 
-  .stackedBarTextAnnotation {
-    color: #E75C33;
-    font-family: Helvetica;
-    font-weight: 900;
-    font-size: 16px;
-    text-transform: uppercase;
-    /* transform: translate(100px, 5px) */
-  }
+.lollipopTextbutton {
+  color: $green;
+  font-weight: 400px;
+  font-family: $national;
+  font-size: 18px;    
+  text-transform: uppercase;
+}
 
-  .lollipopTextbutton {
-    color: #0BBF99;
-    /* font-family: Helvetica; */
-    font-weight: 400px;
-    /* font-size: 16px; */
-    /* font-family: Georgia, 'Times New Roman', Times, serif; */
-    font-family: sans-serif;
-    font-size: 18px;    
-    text-transform: uppercase;
-    /* transform: translate(100px, 5px) */
-  }
+.stackedBarThemeAnnotation {
+  font-family: $national;
+  font-weight: 900;
+  font-size: 16px;
+  text-transform: uppercase;
+}
 
-  .stackedBarThemeAnnotation {
-    /* color: #E75C33; */
-    font-family: Helvetica;
-    font-weight: 900px;
-    font-size: 16px;
-    text-transform: uppercase;
-    /* transform: translate(100px, 5px) */
-  }
+#inTextViolence {
+  color: $pink
+}
+#inTextBias {
+  color: $green
+}
+#inTextEmpowerment {
+  color: $yellow
+}
 
-  #inTextViolence {
-    color: #F2C5D3
-  }
-  #inTextBias {
-    color: #0BBF99
-  }
-  #inTextEmpowerment {
-    color: #F7DC5B
-  }
+.stackedBarTextAnnotation:hover {
+  background-color: $red;
+  color: $bg;
+}
 
-  .stackedBarTextAnnotation:hover {
-    background-color: #E75C33;
-    color: #FEFAF1;
-    
-  }
+.lollipopTextbutton:hover {
+  background-color: $green;
+  color: $bg;
+}
 
-  .lollipopTextbutton:hover {
-    background-color: #0BBF99;
-    color: #FEFAF1;
-  }
+.lollipopTextbutton:focus {
+  background-color: $green;
+  color: $bg;
+  font-weight: 900px;
+}
 
-  .lollipopTextbutton:focus {
-    background-color: #0BBF99    ;
-    color: #FEFAF1;
-    font-weight: 900px;
+#inTextViolence:hover {
+  background-color: $pink;
+  color: $bg
+}
 
-    }
+#inTextBias:hover {
+  background-color: $green;
+  color: $bg
+}
 
-  #inTextViolence:hover {
-    background-color: #F2C5D3;
-    color: #FEFAF1
-  }
+#inTextEmpowerment:hover {
+  background-color: $yellow;
+  color: $bg;
+}
 
-  #inTextBias:hover {
-    background-color: #0BBF99;
-    color: #FEFAF1
-  }
+.stackedBars {
+  transform: translateX(10px)
+}
 
-  #inTextEmpowerment:hover {
-    background-color: #F7DC5B;
-    color: #FEFAF1
-  }
-
-  .stackedBars {
-    transform: translateX(10px)
-  }
-
-  .stackedChartCountries {
-    margin-bottom:20px;
-    margin-top:30px;
-    transform: translate(10px, 80px);
-    max-width: 13px;
-    text-align: center;
-    fill: #FEFAF1;
-    z-index: 10
-    
+.stackedChartCountries {
+  margin-bottom:20px;
+  margin-top:30px;
+  transform: translate(10px, 80px);
+  max-width: 13px;
+  text-align: center;
+  fill: $tan;
+  z-index: 10    
 }
 
 .stackedChartTicks {
-    font-weight:900px;
-    font-size:12px;
-    font-family: Arial, Helvetica, sans-serif;
-    /* font-style: bold; */
-    text-transform: uppercase;
-    fill: #282828;
+  font-weight:900px;
+  font-size:12px;
+  font-family: $national;
+  /* font-style: bold; */
+  text-transform: uppercase;
+  fill: $off-black;
 }
 
 .stackedBarSection {
-    display:flex;
-    flex-direction: row;
-    /* text-align: center; */
-    margin: auto;
-    width: 60%;
-    /* align-items: center; */
+  display:flex;
+  flex-direction: row;
+  margin: auto;
+  width: 60%;
 }
-
-/* #stackedChart {
-    text-align: center;
-}
-
-#stackedChartLegend {
-    text-align: center;
-} */
-
-  /* #stackedRects {
-
-    stroke: #282828;
-    fill: #FEFAF1;
-    stroke-width: 0.1px;
-  } */
