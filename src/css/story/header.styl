@@ -4,19 +4,42 @@ header
 	top 0
 	left 0
 	width 100%
-	background-color $white
+	background-color $yellow
 	font-family $sans
+	border-bottom 1px solid $off-black
+
+	.header-skew
+		position relative
+		z-index 999
+
+		.skew
+			position absolute
+			border-right 1px solid $off-black
+			background-color $yellow
+			width 12.25rem
+			max-width 12.25rem
+			height 3rem
+			left -1rem
+			transform skew(-10deg, 0)
 
 	a.logo
-		display block
+		position absolute
 		border none
-		max-width 9rem
-		margin 1rem auto
+		width 10rem
+		max-width 10rem
+		margin 0.5rem
+		height 2rem
 
 		svg
 			fill $off-black
 			display block
-			width 100%
+			width 85%
+			margin 0 auto
+
+.header__container
+	display flex 
+	flex-direction row 	
+
 	
 header.is-sticky
 	position fixed
@@ -36,6 +59,7 @@ header.is-sticky
 		margin auto 
 		position relative 
 		display flex 
+		flex-direction row
 		align-items center 
 		height 100% 
 	

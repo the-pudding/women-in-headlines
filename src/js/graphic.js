@@ -2,7 +2,6 @@
 function resize() { }
 
 function init() {
-	console.log('Make something!');
 
 	    // constants for charts
 		let width5 = 1500;
@@ -69,21 +68,13 @@ function init() {
 			.select("body")
 			.append("div")
 			.attr("class", "tooltipTL")
-			// .style("font-size", "10pt")
-			// .style("font-family", "Lato")
 			.style("position", "absolute")
 			.style("text-align", "left")
 			.style("width", "200")
 			.style("height", "auto")
 			.style("padding", "5px")
-			// .style("background", "#161616")
-			// .style("background", "grey")
-			// .style("border", "1.5px grey solid")
-			// .style("stroke", "grey")
-			// .style("border-width", 1)
 			.style("pointer-events", "none")
 			.style("opacity", 0)
-			// .attr("z-index", "100")
 		
 		// draw the legend for first chart
 		//drawBarLegend()
@@ -278,8 +269,8 @@ function init() {
 				console.log(top10)
 	
 	
-				flags = [{country:"South Africa", flag:"svg/flags/south-africa.svg"}, {country:"USA", flag:"svg/flags/united-states.svg"}, 
-							{country:"India", flag:"svg/flags/india.svg"}, {country:"UK", flag:"svg/flags/united-kingdom.svg"}, {country: 'All', flag:'None'}]
+				flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
+							{country:"India", flag:"assets/images/flags/india.svg"}, {country:"UK", flag:"assets/images/flags/united-kingdom.svg"}, {country: 'All', flag:'None'}]
 	
 				countryNames = [{country:"South Africa", name:"South Africa"}, {country:"USA", name:"United States"}, 
 							{country:"India", name:"India"}, {country:"UK", name:"United Kingdom"}, {country: 'All', name:'All 4 countries'}]
@@ -483,7 +474,6 @@ function init() {
 				.attr("cy", -60)
 				.attr("r", "4")
 				.attr("class", "polarityCompBubbleLeft")
-				// .style("fill", "#69b3a2")
 		  
 			// Circles of variable 2
 			lollipopChart.append("circle")
@@ -492,13 +482,11 @@ function init() {
 				.attr("class", "polarityCompBubbleRight")
 				// size of the bubble
 				.attr("r", "11")
-				// .style("fill", "#4C4082")
 	
 			lollipopChart.append("text")
 				.attr("class", "xAxisLabel")
 				.attr("x", 0)
 				.attr("y", -60)
-				// .attr("dy", "-2em")
 				.text("All headlines")
 				.attr("class", "polarityCompAllText")
 						  
@@ -510,11 +498,9 @@ function init() {
 				.text("Headlines about women")
 				.attr("class", "polarityCompFemText")
 				.call(wrap, 100)
-				// .attr("dy", "-5em")
 	
 			lollipopChart.append("text")
 				.attr("class", "polarityCompxAxisLabel")
-				// .attr("y", height)
 				.attr("y", -15)
 				.attr("x",margin)
 				.attr("dy", "1em")
@@ -524,7 +510,6 @@ function init() {
 			  
 			lollipopChart.append("text")
 				.attr("class", "polarityCompxAxisLabel")
-				// .attr("y", height)
 				.attr("y", -15)
 				.attr("x",width)
 				.attr("dy", "1em")
@@ -538,7 +523,7 @@ function init() {
 			d3.select("#sortLollipopDiff")
 				.on("click", function(){
 					// reorder site names
-					dataSort = data.sort((a,b)=> d3.descending(+a.difference, +b.difference))
+					var dataSort = data.sort((a,b)=> d3.descending(+a.difference, +b.difference))
 					y.domain(dataSort.map(d=>d.site_clean))
 					// change axis
 					lollipopChart.select(".polarityCompyAxis").transition().duration("1000").call(d3.axisLeft(y)
@@ -579,7 +564,7 @@ function init() {
 			d3.select("#sortLollipopPol")
 				.on("click", function(){
 					// reorder site names
-					dataSort = data.sort((a,b)=> d3.descending(+a.polarity_women, +b.polarity_women))
+					var dataSort = data.sort((a,b)=> d3.descending(+a.polarity_women, +b.polarity_women))
 					y.domain(dataSort.map(d=>d.site_clean))
 					// change axis
 					lollipopChart.select(".polarityCompyAxis").transition().duration("1000").call(d3.axisLeft(y)
@@ -620,9 +605,7 @@ function init() {
 			// temporal multiples chart functions
 			function renderTempChart(dataset, filter, country, variable) {
 				// dimensions
-				// margin = ({top: 400, bottom: 20, left: 40, right: 40})
 				var margin = ({top: 150, bottom: 20, left: 40, right: 40});
-				// margin = ({top: 150, bottom: 20, left: 200, right: 200})
 				var visWidth = 1200 - margin.left - margin.right;
 				var visHeight = 10000 - margin.top - margin.bottom;
 				var stickyAxisHeight = 200;
@@ -1105,27 +1088,19 @@ function init() {
 						// g.append("g")
 						stickyAxis.append("g")
 								.attr('transform', `translate(${col(0)}, ${margin.top})`)
-								// .attr('transform', `translate(${col(0)}, -${margin.top/3})`)
 								.selectAll("circle")
-								// .attr("class", "SMaxisSticky")
-								// .data(events)
 								.data(dodge(eventsWorld.filter(d=>d.date<=maxDate), {radius: radius * 2 + padding, x: d => x(d.date)}))
 	
 				// console.log(dodge(eventsWorld, {radius: radius * 2 + padding, x: d => x(d.date)}))
 	
 				const circles = circleEvents
 								.join("circle")
-								// .attr("class", "SMaxisSticky")
-								// .attr('transform', (d, i) => `translate(0, ${d.uid * 12 * (d.position ? 1 : -1 )})`)
-								// .attr("cx", d=>x(d.date))
-								// .attr("cy", 0)
 								.attr("cx", d => d.x)
 								.attr("cy", d =>  d.y)
 								.attr("fill", mainColor)
 								.attr("r", radius)
 								.attr("opacity", "0.5")
 								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg))
-								// .on("mousemove", (event, d) => timeRuler(event, d, g))
 								.on("mouseleave", (event, d) => {
 												d3.selectAll(".timeRuler").remove()
 												tooltip
@@ -1181,9 +1156,6 @@ function init() {
 	
 	
 					group.append("g").attr("class", "catLabel").append("text")
-					// .attr("x", 110)
-					// .attr("y", -12)
-					// .attr("text-anchor", "middle")
 					.attr("x", -10)
 					.attr("y", row.bandwidth())
 					.attr("class", "wordText")
@@ -1203,11 +1175,8 @@ function init() {
 								.attr("class", "timeRuler")
 								.attr('transform', `translate(${col(0)}, -${margin.top/3})`)
 								.attr("x", x(d.date)-9)
-								// .attr("x2", x(d.date))
 								.attr("y", 0)
-								// .attr("width", 10)
 								.attr("height", visHeight)
-								// .attr("y2", visHeight)
 	
 								console.log(new Date("2021"))
 			
@@ -1228,17 +1197,10 @@ function init() {
 					// <b>${format(+d[metric_p])+"</b> "+legend_label_p.toLowerCase()}`)
 					.html(`<b>${d3.timeFormat("%m/%Y")(d.date)}</b><br>
 					<i>${(d.name)}`)
-					// .style("left", event.pageX + "px")
-					// .style("top", event.pageY - 100 + "px")
 					.attr('transform', `translate(${-col(0)*3}, -${margin.top/3})`)
 					.style("left", x(new Date("01-01-2025")))
-					// .style("left", "1500px")
 					.style("top", event.pageY + "px")
 					.attr("class", "tooltipTL")
-					// .style("font-family", "sans-serif")
-					// .attr("font-size", "10px")
-					// .style("color", "#161616");
-					// .style("color", "grey");
 			
 				// const textBox = g.append("g")
 				//                   .append("rect")
@@ -1565,7 +1527,6 @@ function init() {
 								.attr("class", "forceCircles")
 								// .attr("fill", "white")
 								.style("opacity", "1")
-								// .style('stroke', "#161616")
 								.attr('r', d=>radius(+d.monthly_visits))
 								.on("mouseenter", (event, d) => {
 									showTooltipHeadline(ttip, d.site, d.country_of_pub, d.monthly_visits, [event.clientX, event.clientY], headlines, d.polarity, d)
@@ -1576,8 +1537,8 @@ function init() {
 								.on("mouseleave", (event, d) => {
 									d3.select("#tooltipHeadline").style("display", "none")
 								})
-								.on("mouseover.color", function() { d3.select(this).style("stroke", "#E75C33").style("stroke-width", "2px"); })
-								.on("mouseleave.color", function() { d3.select(this).style("stroke", "#323232").style("stroke-width", "0.6px"); })
+								.on("mouseover.color", function() { d3.select(this).style("stroke", "#E75C33").style("stroke-width", "3px"); })
+								.on("mouseleave.color", function() { d3.select(this).style("stroke", "#323232").style("stroke-width", "1px"); })
 								
 							// append the logos and define style properties and hover events (tooltip)
 							var newLogos = logos.join("svg:image")
@@ -1861,8 +1822,7 @@ function init() {
 					// .text((d, i)=>console.log("ytick"+i))
 					.attr("x", 0)             
 					.attr("y", 0)
-					.attr("class", "stackedChartTicks")
-					.style("text-transform", "lowercase")
+					.attr("class", "stackedChartTicks stackedChartTicks-light")
 					.style("transform", "rotate(-90deg)")
 					// .call(wrap, 10)
 			
@@ -1911,8 +1871,8 @@ function init() {
 						// console.log(xAxis.selectAll(".tick")._groups[0][1].textContent)
 			
 						// country names and flags
-						var flags = [{country:"South Africa", flag:"svg/flags/south-africa.svg"}, {country:"USA", flag:"svg/flags/united-states.svg"}, 
-						{country:"India", flag:"svg/flags/india.svg"}, {country:"UK", flag:"svg/flags/united-kingdom.svg"}, {country: 'All countries', flag:''}]
+						var flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
+						{country:"India", flag:"assets/images/flags/india.svg"}, {country:"UK", flag:"assets/images/flags/united-kingdom.svg"}, {country: 'All countries', flag:''}]
 		
 	
 						xAxis.selectAll(".tick")

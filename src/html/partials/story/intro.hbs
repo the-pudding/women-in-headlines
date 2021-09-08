@@ -1,144 +1,156 @@
-<div class='intro'>
-	  <marquee class="txtscroll" behavior="scroll" scrollamount="20" direction="left"><h1> <b>Woman</b> with later start to periods, menopause more likely to reach age 90... <b>Woman</b> may be missing out on outpatient hospital care in northern India... <b>Woman</b> had fatal heart attack due to years of taking antipsychotics, inquest hears... <b>Woman</b> dies after house catches fire in Wythenshawe... <b>Woman</b> found dead in River Goyt following major emergency service presence... <b>Woman</b>, 33, dies following crash on M66 motorway near Bury... <b>Woman</b>, killed in Oldham named as man charged with murder... <b>Woman</b> banned from owning pets after dog left in dark cupboard to starve to death... <b>Woman</b> fined £650 for dropping cigarette butt in town centre... <b>Woman</b> arrested as armed police close off road for several hours... <b>Woman</b> who went missing before being found dead at park was suffering from depression, inquest opening hears... <b>Woman</b>, dies and girl, 16, seriously hurt after fire rips through home in Birmingham... <b>Woman</b> taken to hospital after falling from M60 bridge in early hours... <b>Woman</b> taken to hospital after being hit by car in Stockport... <b>Woman</b> taken to hospital after being rescued from Stalybridge canal... <b>Woman</b> nearly crashes into police officers on M60 after her husband is caught drink driving... <b>Woman</b> spends £10k transforming her home into a pink paradise... <b>Woman</b> confronts masked gang stealing catalytic converter, then this happened... <b>Woman</b> faked terminal cancer to dupe friends into paying for dream wedding... <b>Woman</b>, 31, found dead in a disused graveyard after 18 day search... <b>Woman</b>, two days away from being deported stabbed housemate 30 times... <b>Woman</b> who stabbed boyfriend while high on crack walks free in time for Christmas... <b>Woman</b> who gave birth on flight had no idea she was pregnant... <b>Women</b> suffer more with anxiety, depression during months of isolation due to COVID 19 Gender differences... <b>Women</b> are a valuable human resource, there should be zero tolerance towards gender insensitivity... <b>Women</b> in Data Science: Changing the rules of the game... <b>Woman</b> capable of creating history, future with formidable grace: Rahul Gandhi
-</marquee>
-  <div class="titleArt">
-      <div class="titlewords">
-        <h1 class="title">{{copy.title}}</h1>
-      </div>
-      <div class="titleCredits">
-        <h2 class="subTitleArt">{{copy.subtitle}}</h1>
-        <p class="credits">By 
-            <b><a href="https://www.leonardonicoletti.com" target="_blank" class="creditLink">{{copy.author1}}</a></b> <br>
-            and <b><a href="https://twitter.com/sahitisarva" target="_blank" class="creditLink">{{copy.author}}</a></b></h2>
-      </div>
-    </div>
-    <!-- <div class="header">
-    <h1 style = "text-align: center" class="subTitle" >A visual essay about the representation of women in the news</h1>
-    </div>
-    <p style = "text-align: center" class="credits">By 
-        <b><a href="https://www.leonardonicoletti.com" target="_blank" class="creditLink">Leonardo Nicoletti</a></b> 
-        and <b><a href="https://twitter.com/sahitisarva" target="_blank" class="creditLink">Sahiti Sarva</a></b></h1> -->
-    <!-- INTRO -->
-    <div class="subtitle"></div>
-      {{#each copy.intro}}
-        <p class="description">{{{value}}}</p>
-      {{/each}}
-      <ul>
-        {{#each copy.intro-questions}}
-          <li class="intro-questions">{{{value}}}</li>
-        {{/each}}
-      </ul>
-    </div>
-    <!-- STACKED BAR SECTION -->
-    <div class="stackedBarSection" >
-      <!-- style="text-align: center;" -->
-      <div id="stickyStackedChart">
-        <svg id="stackedChart"></svg>
-      </div>
-      <div id="stackedChartLegend">
-          {{#each copy.stacked-bar}}
-            <p class="stackedChartDescription">{{{value}}}</p>
-          {{/each}}
-      </div>
-    </div>
-    <div id="endStackedbarSection"></div>
-      {{#each copy.stacked-bar-outro}}
-        <p class="description">{{{value}}}</p>
-      {{/each}}
-    <div class="exampleheadlines">
-      {{#each copy.example-headlines}}
-        <div class="tooltipTL" id="{{tooltip}}">
-          <p class="deets">{{date}}  |  {{org}}</p>
-          <p class="headline">{{headline}}</p>
-        </div>
-      {{/each}}
-    </div>
-    <!-- BARBELL SECTION -->
-    <div class="header">
-      <h1 style = "text-align: center" class="sectionHeader">{{copy.barbell-headline}}</h1>
-    </div>
-    <div id="sortLollipop" style="text-align: center;">
-      {{#each copy.barbell}}
-        <p class="description">{{{value}}}</p>
-      {{/each}}
-    </div>
-    <div class="lollipop" class="svg-container" style="text-align: center;">
-      <div id="lollipopChart"></div>
-    </div>
-    {{#each copy.barbell-outro}}
-      <p class="description">{{{value}}}</p>
-    {{/each}}
-    <div class="header">
-      <h1 style = "text-align: center" class="sectionHeader">{{copy.polarity-headline}}</h1>
-      </div>
-      <div class="bubbleFilters">
-        <p style="text-align: center" class="annotationButton">Filter by:</p>
-        <div>
-          <select id="countrydropdown" class="dropdownOptions"></select>
-          <select id="pubdropdown" class="dropdownOptions"></select>
-        </div>
-      </div>
-    <div id="chartP" class="svg-container" style="text-align: center;">
-      <svg id="bubblechartPolarity">
-          <g class="xAxispolarity" />
-          <g class="yAxispolarity" />
-          <g id="bodypolarity" />
-      </svg>
-      </div>
-    {{#each copy.polarity-outro}}
-      <p class="description">{{{value}}}</p>
-    {{/each}}
-    <div class="header" id="biasSection">
-      <h1 style = "text-align: center" class="sectionHeader">{{copy.bias-headline}}</h1>
-      </div>
-    <div id="chartB" class="svg-container" style="text-align: center;">
-      <svg id="bubblechartBias">
-          <g class="xAxisbias" />
-          <g class="yAxisbias" />
-          <g id="bodybias" />
-      </svg>
-    </div>
-    {{#each copy.bias-outro}}
-      <p class="description">{{{value}}}</p>
-    {{/each}}
-    <!-- 2 TEMPORAL CHART -->
-    <div class="header">
-    <h1 style = "text-align: center" class="sectionHeader" id="waveChartSection">{{copy.wave-headline}}</h1>
-    </div>
-        <div class="buttons">
-          <p style="text-align: center" class="annotationButton">Filter by Country</p>
-          <button class="country" value="USA">
-            <img inline src='flags/united-states.svg' class="flag">
-            <p>United States</p>
-          </button>
-          <button class="country" value="South Africa">
-            <img inline src='flags/south-africa.svg' class="flag">
-            <p>South Africa</p>
-          </button>
-          <button class="country" value="UK">
-            <img inline src='flags/united-kingdom.svg' class="flag">
-            <p>United Kingdom</p>
-          </button>
-          <button class="country" value="India">
-            <img inline src='flags/india.svg' class="flag">
-            <p>India</p>
-          </button>
-        </div>
-      <div id = "stickyXaxis" style="text-align: center;"></div>
-      <div id="smChart" class="svg-container3" style="text-align: center;"></div>
-    </div>
-    <div class="header" id="conclusionSection">
-      <h1 style = "text-align: center" class="sectionHeader">{{copy.conclusion-headline}}</h1>
-    </div>
-    {{#each copy.conclusion}}
-      <p class="description">{{{value}}}</p>
-    {{/each}}
-    <hr class="methodSep">
-    <h5 class="inputTitle">Methods</h4>
-
-    {{#each copy.methods}}
-      <p class="methodDescription">{{{value}}}</p>
-    {{/each}}
-    <svg id="tooltipHeadline"></svg>
-    <div id="tooltipInfo"></div>
+<!-- TITLE -->
+<div class="titleArt">
+  <div class="titlewords">
+    <h1 class="title">{{{copy.title}}}</h1>
+  </div>
+  <div class="titleCredits">
+    <h2 class="subTitleArt">{{copy.subtitle}}</h2>
+    <p class="credits">By <a href="https://www.leonardonicoletti.com" target="_blank" class="creditLink">{{copy.author1}}</a><br>
+        and <a href="https://twitter.com/sahitisarva" target="_blank" class="creditLink">{{copy.author2}}</a></p>
+  </div>
 </div>
+
+<!-- INTRO -->
+<section class="intro-section">
+  {{#each copy.intro}}
+    <p class="description">{{{value}}}</p>
+  {{/each}}
+  <ul>
+    {{#each copy.intro-questions}}
+      <li class="intro-questions">{{{value}}}</li>
+    {{/each}}
+  </ul>
+</section>
+
+<!-- STACKED BAR SECTION -->
+<section class="stacked-bar-section">
+  <div class="stackedBarSection" >
+    <div id="stickyStackedChart">
+      <svg id="stackedChart"></svg>
+    </div>
+    <div id="stackedChartLegend">
+      {{#each copy.stacked-bar}}
+        <p class="stackedChartDescription">{{{value}}}</p>
+      {{/each}}
+    </div>
+  </div>
+  <div id="endStackedbarSection"></div>
+    {{#each copy.stacked-bar-outro}}
+      <p class="description">{{{value}}}</p>
+    {{/each}}
+  <div class="exampleheadlines">
+    {{#each copy.example-headlines}}
+      <div class="tooltipTL" id="{{tooltip}}">
+        <p class="deets">{{date}}  |  {{org}}</p>
+        <p class="headline">{{headline}}</p>
+      </div>
+    {{/each}}
+  </div>
+</section>
+
+<!-- BARBELL SECTION -->
+<section class="barbell-section">
+  <div class="header">
+    <h2 class="sectionHeader">{{copy.barbell-headline}}</h2>
+  </div>
+  <div id="sortLollipop" style="text-align: center;">
+    {{#each copy.barbell}}
+      <p class="description">{{{value}}}</p>
+    {{/each}}
+  </div>
+  <div class="lollipop" class="svg-container" style="text-align: center;">
+    <div id="lollipopChart"></div>
+  </div>
+  {{#each copy.barbell-outro}}
+    <p class="description">{{{value}}}</p>
+  {{/each}}
+</section>
+
+<!-- HEADLINE POLARITY SECTION -->
+<section class="headline-polarity-section">
+  <div class="header">
+    <h2 class="sectionHeader">{{copy.polarity-headline}}</h2>
+  </div>
+  <div class="bubbleFilters">
+    <p class="annotationButton">Filter by</p>
+    <div>
+      <select id="countrydropdown" class="dropdownOptions"></select>
+      <select id="pubdropdown" class="dropdownOptions"></select>
+    </div>
+  </div>
+  <div id="chartP" class="svg-container" style="text-align: center;">
+    <svg id="bubblechartPolarity">
+        <g class="xAxispolarity" />
+        <g class="yAxispolarity" />
+        <g id="bodypolarity" />
+    </svg>
+  </div>
+  {{#each copy.polarity-outro}}
+    <p class="description">{{{value}}}</p>
+  {{/each}}
+</section>
+
+<!-- HEADLINE BIAS SECTION -->
+<section class="headline-bias-section">
+  <div class="header" id="biasSection">
+    <h2 class="sectionHeader">{{copy.bias-headline}}</h2>
+  </div>
+  <div id="chartB" class="svg-container" style="text-align: center;">
+    <svg id="bubblechartBias">
+        <g class="xAxisbias" />
+        <g class="yAxisbias" />
+        <g id="bodybias" />
+    </svg>
+  </div>
+  {{#each copy.bias-outro}}
+    <p class="description">{{{value}}}</p>
+  {{/each}}
+</section>
+
+<!-- 2 TEMPORAL CHART -->
+<section class="temporal-chart-section">
+  <div class="header">
+    <h2 style = "text-align: center" class="sectionHeader" id="waveChartSection">{{copy.wave-headline}}</h2>
+  </div>
+  <div class="buttons">
+    <p style="text-align: center" class="annotationButton">Filter by country</p>
+    <button class="country" value="USA">
+      <img inline src='flags/united-states.svg' class="flag">
+      <p>United States</p>
+    </button>
+    <button class="country" value="South Africa">
+      <img inline src='flags/south-africa.svg' class="flag">
+      <p>South Africa</p>
+    </button>
+    <button class="country" value="UK">
+      <img inline src='flags/united-kingdom.svg' class="flag">
+      <p>United Kingdom</p>
+    </button>
+    <button class="country" value="India">
+      <img inline src='flags/india.svg' class="flag">
+      <p>India</p>
+    </button>
+  </div>
+  <div id = "stickyXaxis" style="text-align: center;"></div>
+  <div id="smChart" class="svg-container3" style="text-align: center;"></div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="conclusion-section">
+  <div class="header" id="conclusionSection">
+    <h2 style = "text-align: center" class="sectionHeader">{{copy.conclusion-headline}}</h2>
+  </div>
+  {{#each copy.conclusion}}
+    <p class="description">{{{value}}}</p>
+  {{/each}}
+  <hr class="methodSep">
+  
+  <h5 class="inputTitle">Methods</h4>
+  {{#each copy.methods}}
+    <p class="methodDescription">{{{value}}}</p>
+  {{/each}}
+</section>  
+
+<!-- TOOLTIPS -->
+<svg id="tooltipHeadline"></svg>
+<div id="tooltipInfo"></div>

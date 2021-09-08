@@ -2,17 +2,18 @@
 /* CSS Styles */
 
 .txtscroll {
-    height: 70px;  
+    height: 3rem;  
     background-color:$red;
+    display: flex;
+    align-items: center;
 }
 
-.txtscroll h1 {
-  font-size: 2.2em;
+.txtscroll p {
+  font-size: 1.25em;
   color: $off-black;
-  font-family: $national;
+  font-family: $barlow;
   text-transform: uppercase;
-  font-weight: 500;
-  margin: 16;
+  font-weight: 300;
   font-style: italic;
 }
 
@@ -23,38 +24,41 @@ body {
 
 .annotation {
     fill: $off-black;
-    font-family: $national;
-    font-size: 13px;
+    font-family: $barlow;
+    font-weight: 400;
+    font-size: 14px;
     text-anchor: middle;
     transform: translate(-45px, 6px)
 }
 
 .annotationButton {
     fill: $off-black;
-    font-family: $national;
-    font-size: 13px;
-    text-anchor: middle;
-    transform: translate(-45px, 15px)
+    font-family: $barlow;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0 1rem 0 0;
 }
 .padded-dropcap {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 1rem 1.25rem 1rem 1rem;
     float: left;
     position: relative;
-    top: -0.15em;
-    margin-bottom: -0.5em;
-    margin-left: -6px;
-    margin-right: 2px;
-    font-size: 100px;
-    font-family: Georgia;
+    top: -0.1em;
+    margin: 1rem 1.25rem -0.5rem 0.25rem;
+    font-size: 64px;
+    font-family: $barlow;
     color: $off-black;
+    font-weight: 900;
+    background-color: $pink;
+    border 1px solid $off-black;
+    transform: skew(-10deg, 0deg);
+    line-height: 0.8;
   }
 
   #hoverGuide {
-    font-size: 17px;
+    font-size: 16px;
     fill: $off-black;
-    font-weight: bold; 
-    font-family: $national;
+    font-weight: 600; 
+    font-family: $barlow;
   }
 
   #hoverGuideLine {
@@ -72,38 +76,19 @@ body {
 }
 
 .tooltipTL {
-    font-family: $national;
+    font-family: $barlow;
     color: $off-black;
     background-color: $bg;
-    border: 1.5px $off-black solid;
+    border: 1px $off-black solid;
+    border-top: 2px $off-black solid;
+    margin: 1rem;
+    padding: 1rem;
+    width: 25%;
+    max-height: 15rem;
 }
 
-#tooltipTLleft {
-    width: 220px;
-    height: 120px;
-    margin-left: 20;
-    margin-right: 20;
-    padding:20;
-    text-transform: uppercase;
-}
-
-#tooltipTLmid{
-    width: 220px;
-    height: 120px;
-    transform: translateY(30px);
-    margin-left: 20;
-    margin-right: 20;
-    padding:20;
-    text-transform: uppercase;
-}
-
-#tooltipTLright {
-    width: 220px;
-    height: 120px;
-    margin-left: 20;
-    margin-right: 20;
-    padding:20;
-    text-transform: uppercase;
+.tooltipTL:nth-child(2), .tooltipTL:nth-child(4) {
+  margin-top: 4rem;
 }
 
 .exampleheadlines {
@@ -138,12 +123,13 @@ body {
 .forceCircles {
     fill: $bg;
     stroke: $off-black;
-    stroke-width: 0.6px;
+    stroke-width: 1px;
+    cursor: pointer;
 }
 
 .themesText {
-    font-weight: bold;
-    font-family: $national;
+    font-weight: 600;
+    font-family: $barlow;
     font-size: 14px;
     text-anchor: middle;
     fill: $off-black;
@@ -162,9 +148,10 @@ body {
 }
 
 #xAxisLabel {
-    font-size: 17px;
+    font-size: 16px;
     fill: $off-black;
-    font-family: $national;
+    font-family: $barlow;
+    font-weight: 600;
 }
 
 .axisLabel {
@@ -179,51 +166,59 @@ h1 {
     }
 
 .title {
-    margin-bottom: 30px;
     font-weight:900;
     font-size:150px;
-    max-width: 1200px;
-    text-align: center;
-    font-family: $national;
-    font-style: bold;
+    text-align: left;
+    font-family: $barlow;
     text-transform: uppercase;
     color: $off-black;
-    line-height: 39px;
+    line-height: 1;
+}
+
+.title span {
+    font-family: $barlow;
+    font-weight:900;
+    border-bottom: 1px solid $off-black;
+    display: block;
+    padding: 2rem 2rem 0 2rem;
+    font-style: italic;
+    line-height: 0.8;
 }
 
 .subTitleArt {
-    font-weight:500;
-    font-size:25px;
+    font-weight:300;
+    font-size:36px;
     opacity: 0.9;
-    font-family: $national;
+    font-family: $barlow;
     text-transform: uppercase;
 }
 
 .creditLink{
     color: $off-black;
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 .credits {
-    font-weight:500;
-    font-size:14;
-    opacity: 0.8;
-    /* margin-bottom: 50px; */
-    font-family: $national;
+    font-weight:300;
+    font-size:16;
+    font-family: $barlow;
     color: $off-black;
-    position:absolute;
 }
 
 .sectionHeader {
-    font-family: $national;
-    font-style: italic;
-    font-weight: 900px;
-    color: $off-black;
-    max-width: 1000;
-    text-anchor: middle;
-    justify-content:left;
-    text-transform: uppercase;
-    }
+  font-family: $barlow;
+  font-style: italic;
+  font-weight: 900;
+  color: $off-black;
+  text-align: center;
+  width: 100%;
+  font-size: 48px;
+  margin: 6rem auto 1rem auto;
+  text-transform: uppercase;
+  line-height: 0.8;
+  border-bottom: 1px solid $off-black;
+}
 
 h2 {
     font-family: Georgia;
@@ -249,12 +244,11 @@ h5 {
 
 .description {
   max-width: $column-width;
-  text-align: justify;
-  text-anchor: middle;
   color: $off-black;
   font-family: $tiempos;
   margin: 0 auto;
   padding: 1rem 0;
+  text-align: left;
 }
 
 ul {
@@ -272,25 +266,30 @@ ul {
 }
 
 .stackedChartDescription {
-    max-width: 15vw;
+    max-width: 20rem;
     text-align: left;
     color: $off-black;
-    font-family: $national;
-    font-size: 16px;
+    font-family: $barlow;
+    font-size: 18px;
     margin-bottom: 0;
+    line-height: 1.75;
     transform:translateY(150px)
 }
 
 .deets {
-  font-family: $national;
+  font-family: $barlow;
   color: $red;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 900;
+  margin: 0;
 }
 
 .exampleheadlines .headline {
-  font-family: $national;
-  font-size: 12px;
+  font-family: $barlow;
+  font-weight: 300;
+  font-size: 18px;
+  font-style: italic;
+  text-transform: uppercase;
 }
 
 #stackedChartLegend {
@@ -311,12 +310,16 @@ ul {
 }
 
 .titleArt {
-  justify-content: center;
   display: flex;
-  text-anchor: middle;
-  margin-bottom: 100px;
   flex-direction: row;
+  margin-bottom: 4rem;
 }
+
+.titlewords {
+  width: 70%;
+  border-right: 1px solid $off-black;
+}
+
 .titlesep {
   width: 100%;
   border: 0.1px solid $off-black;
@@ -327,12 +330,12 @@ ul {
 }
 
 .titleCredits {
+  width: 30%;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  vertical-align: middle;
-  max-width: 200px;
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-top: 190px;
+  border-bottom: 1px solid $off-black;
 }
 
 .dropOptions {
@@ -343,6 +346,7 @@ ul {
 
 .buttons {
   justify-content: center;
+  align-items: center;
   display: flex;
   margin-top: 50px;
 }
@@ -390,12 +394,26 @@ select::selection{
     height:35px;
     text-anchor: middle;
     padding-right: 10px;
-    transform: translateY(13px);
 }
 
 .country {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $off-black;
+    border-radius: 0.25rem;
+    width: 12rem;
+    margin: 0 0.5rem;
+    padding: 0;
+}
+
+.country p {
+  margin: 0;
+  padding: 0;
+  font-family: $barlow;
+  font-size: 20px;
+  font-weight: 400;
 }
 
 .search {
@@ -521,10 +539,15 @@ select::selection{
 .wordText {
   text-anchor: end;
   fill: $off-black;
-  font-weight: bold;
-  font-size: 14px;
-  font-family: $national;
-  text-transform: uppercase
+  font-weight: 600;
+  font-size: 16px;
+  font-family: $barlow;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.SMCell {
+  cursor: pointer;
 }
 
 
@@ -581,46 +604,42 @@ span{
 /* method section */
 
 .inputTitle {
-  font-family: $national;
-  font-size:14px;
+  font-family: $barlow;
+  font-size:20px;
+  font-weight: 600;
   color: $off-black;
+  text-transform: uppercase;
 }
 
 .methodDescription {
   max-width: $column-width;
-  text-align: justify;
-  text-anchor: middle;
   font-family: $national;
-  font-size: small;
+  font-size: 14px;
   margin: 0 auto;
   padding: 1rem 0;
-  line-height: 1.1;
-  text-align: justify;
-  text-anchor: middle;
+  line-height: 1.65;
+  text-align: left;
 }
 
 .methodSep {
-  width: 45%;
-  margin-left: auto;
-  margin-right: auto;
-  border: 0.1px solid;
-  color:rgb(112, 112, 112)
+  width: $column-width;
+  border: 1px solid $off-black;
+  margin: 4rem auto 1rem auto;
 }
 
 .intextLink{
   color: $red;
-  font-weight:500;
-  text-decoration: underline;
+  font-weight:600;
 }
 
 /* Polarity Comparison bubble chart styling */
 .polarityCompyAxis text {
-  font-family: $national;
+  font-family: $barlow;
   text-align: left;
   text-anchor: end;
   fill: $off-black;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
@@ -650,34 +669,34 @@ span{
   
 .polarityCompFemText {
   fill: $green;
-  font-family: $national;
-  font-weight: bold;
-  font-size: 13px;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 14px;
   text-anchor: middle;
   transform: translate(0,-40px);
 }
 
 .polarityDiffAnnotation {
   fill: $green;
-  font-family: $national;
-  font-weight: 400;
-  font-size: 12px;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 14px;
   text-anchor: left;
   transform: translate(20px, -10px);
 }
   
 .polarityCompAllText {
   fill: $off-black;
-  font-family: $national;
-  font-size: 13px;
+  font-family: $barlow;
+  font-size: 14px;
   text-anchor: middle;
   transform: translate(0,-20px)
 }
   
 .polarityCompxAxisLabel {
-  font-size: 12px;
+  font-size: 14px;
   fill: $off-black;
-  font-family: $national;
+  font-family: $barlow;
 }
   
 .polarityCompxAxis {
@@ -691,14 +710,16 @@ span{
 /* dropdown */
 
 .dropdownOptions {
-  border-color:$off-black;
   background-color: $tan;
-  border-width: 0.5;
-  border-style: solid;
-  font-size: 14px;
+  border: 1px solid $off-black;
+  font-size: 20px;
   text-transform: uppercase;
-  padding: 5;
-  margin: 10;
+  padding: 0.25rem;
+  margin: 1rem 0.25rem;
+  font-family: $barlow;
+  font-weight: 400;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
 .dropdownOptions.active {
@@ -709,6 +730,11 @@ span{
   text-align: center;
   background-color: $tan;
   z-index: 1;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .scoreChartBar {
@@ -746,35 +772,50 @@ span{
 
 .stackedBarTextAnnotation {
   color: $red;
-  font-family: $national;
-  font-weight: 900;
+  font-family: $barlow;
+  font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border 1px solid $red;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
 .lollipopTextbutton {
   color: $green;
-  font-weight: 400px;
-  font-family: $national;
+  font-weight: 600;
+  font-family: $barlow;
   font-size: 18px;    
   text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  border 1px solid $green;
 }
 
 .stackedBarThemeAnnotation {
-  font-family: $national;
-  font-weight: 900;
+  font-family: $barlow;
+  font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
 #inTextViolence {
-  color: $pink
+  color: $pink;
+  border: 1px solid $pink;
 }
 #inTextBias {
-  color: $green
+  color: $green;
+  border: 1px solid $green;
 }
 #inTextEmpowerment {
-  color: $yellow
+  color: $yellow;
+  border: 1px solid $yellow;
 }
 
 .stackedBarTextAnnotation:hover {
@@ -812,6 +853,10 @@ span{
   transform: translateX(10px)
 }
 
+.stackedBars g {
+  cursor: pointer
+}
+
 .stackedChartCountries {
   margin-bottom:20px;
   margin-top:30px;
@@ -823,17 +868,21 @@ span{
 }
 
 .stackedChartTicks {
-  font-weight:900px;
-  font-size:12px;
-  font-family: $national;
-  /* font-style: bold; */
+  font-weight:600;
+  font-size:14px;
+  font-family: $barlow;
   text-transform: uppercase;
   fill: $off-black;
+}
+
+.stackedChartTicks-light {
+  font-weight: 500;
+  text-transform: none;
 }
 
 .stackedBarSection {
   display:flex;
   flex-direction: row;
-  margin: auto;
-  width: 60%;
+  margin: 0 auto;
+  max-width: $double-width;
 }
