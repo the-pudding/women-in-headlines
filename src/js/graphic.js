@@ -80,12 +80,12 @@ function init() {
 		//drawBarLegend()
 		// Load data and run functions to render charts
 		Promise.all([
-			d3.csv("../assets/data/headlines_site_rapi.csv"),
-			d3.csv("../assets/data/headlines_cl_sent_sm_rapi.csv"),
-			d3.csv("../assets/data/country_time_freqrank_rapi_clean.csv", d3.autoType),
-			d3.csv("../assets/data/polarity_comparison.csv", d3.autoType),
-			d3.csv("../assets/data/country_freqtheme_pivoted.csv", d3.autoType),
-			d3.csv("../assets/data/word_themes.csv", d3.autoType)
+			d3.csv("/assets/data/headlines_site_rapi.csv"),
+			d3.csv("/assets/data/headlines_cl_sent_sm_rapi.csv"),
+			d3.csv("/assets/data/country_time_freqrank_rapi_clean.csv", d3.autoType),
+			d3.csv("/assets/data/polarity_comparison.csv", d3.autoType),
+			d3.csv("/assets/data/country_freqtheme_pivoted.csv", d3.autoType),
+			d3.csv("/assets/data/word_themes.csv", d3.autoType)
 		  ])
 			.then((datasets) => {
 				// define each dataset
