@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang='en' data-version='1631638190893'>
+
+<head>
+
+	<title>Title Case Hed Goes Here</title>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+	<meta name='description' content='Sentence case dek goes down here. Modify these in data/meta.json.' />
+	<meta name='news_keywords' content='tk' />
+	
+	<meta property='og:title' content='Title Case Hed Goes Here' />
+	<meta property='og:site_name' content='The Pudding' />
+	<meta property='og:url' content='https://pudding.cool/year/month/name/' />
+	<meta property='og:description' content='Sentence case dek goes down here. Modify these in data/meta.json.' />
+	<meta property='og:type' content='article' />
+	<meta property='og:locale' content='en_US' />
+	
+	<meta property='og:image' content='https://pudding.cool/year/month/name/assets/social/social-facebook.jpg' />
+	<meta property='og:image:type' content='image/jpeg' />
+	<meta property='og:image:width' content='1200' />
+	<meta property='og:image:height' content='600' />
+	
+	<meta name='twitter:card' content='summary_large_image' />
+	<meta name='twitter:site' content='https://pudding.cool' />
+	<meta name='twitter:creator' content='@puddingviz' />
+	<meta name='twitter:title' content='Title Case Hed Goes Here' />
+	<meta name='twitter:description' content='Sentence case dek goes down here. Modify these in data/meta.json.' />
+	<meta name='twitter:image:src' content='https://pudding.cool/year/month/name/assets/social/social-twitter.jpg' />
+	
+	<meta name="robots" content="max-image-preview:large">
+	
+	<link rel='canonical' href='https://pudding.cool/year/month/name/' />
+	
+	<link rel='apple-touch-icon' sizes='180x180' href='https://pudding.cool/apple-touch-icon.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://pudding.cool/favicon-32x32.png'>
+	<link rel='icon' type='image/png' sizes='16x16' href='https://pudding.cool/favicon-16x16.png'>
+	<link rel='manifest' href='https://pudding.cool/site.webmanifest'>
+	<link rel='mask-icon' href='https://pudding.cool/safari-pinned-tab.svg' color='#5bbad5'>
+	<meta name='msapplication-TileColor' content='#ffc40d'>
+	<meta name='theme-color' content='#ffffff'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/national/National2Web-Regular.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/national/National2Web-Bold.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/national/National2NarrowWeb-Regular.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/national/National2NarrowWeb-Bold.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2'>
+
+	<style>*{-webkit-box-sizing:border-box;box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section{display:block}a img{border:none}blockquote{quotes:none}blockquote:before,blockquote:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}.xxx-small{font-size:10px;line-height:1.65}.xx-small{font-size:11px;line-height:1.65}.x-small{font-size:12px;line-height:1.65}.small{font-size:14px;line-height:1.65}.root{font-size:16px;line-height:1.65}.medium{font-size:18px;line-height:1.65}.large{font-size:20px;line-height:1.5}.x-large{font-size:24px;line-height:1.4}.xx-large{font-size:32px;line-height:1.4}.xxx-large{font-size:40px;line-height:1.4}.xxxx-large{font-size:48px;line-height:1.2}.xxxxx-large{font-size:64px;line-height:1.2}.hide-accessible{width:1px;height:1px;overflow:hidden;position:absolute}.hide-invisible{visibility:hidden}.hide-display{display:none}.skip-to-main{border:none;width:1px;height:1px;overflow:hidden;position:absolute}.skip-to-main:focus{width:auto;height:auto;background-color:#f4f4f4;padding:.5rem;z-index:1000}.prose{max-width:40rem;margin:0 auto;padding:0 1rem}.media-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRDMDBGQ0Y5NEI4NjExRTM5RTg2QTY1RTUyQjIxNEQyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRDMDBGQ0ZBNEI4NjExRTM5RTg2QTY1RTUyQjIxNEQyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REMwMEZDRjc0Qjg2MTFFMzlFODZBNjVFNTJCMjE0RDIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REMwMEZDRjg0Qjg2MTFFMzlFODZBNjVFNTJCMjE0RDIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6C0EmkAAAAGElEQVR42mJiYGD4DwQMTECCEchhAAgwAEcGBv9dngKPAAAAAElFTkSuQmCC")}#starter-guide{max-width:40rem;margin:0 auto}body{background-color:#fefaf1;color:#282828;font-weight:500;font-family:'Tiempos Text Web',Georgia,Times,serif;-webkit-font-feature-settings:'kern' 1,'onum' 0,'liga' 0,'tnum' 1;font-feature-settings:'kern' 1,'onum' 0,'liga' 0,'tnum' 1;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:rgba(0,0,0,0);font-size:16px}@media only screen and (min-width:30em){body{font-size:18px}}body.modal-open{overflow-y:hidden;padding-right:1rem;height:100vh}h1{font-size:32px;line-height:1.4;margin-top:1.5rem}h2{font-size:24px;line-height:1.4;margin-top:1.5rem}h3{font-size:20px;line-height:1.5;margin-top:1.5rem}h4{font-size:18px;line-height:1.65;margin-top:1.5rem}h5{font-size:16px;line-height:1.65;margin-top:1.5rem}h6{font-size:14px;line-height:1.65;margin-top:1.5rem}p{margin:1.5rem 0;font-size:16px;line-height:1.65}@media only screen and (min-width:30em){p{font-size:18px;line-height:1.65}}a{border-bottom:1px solid #282828;color:#282828;text-decoration:none}a:visited,a:hover{color:#282828}strong,b{font-weight:700}em,i{font-style:italic}ul{list-style-type:none}li{font-size:16px}@media only screen and (min-width:30em){li{font-size:18px}}img,video{display:block;width:100%}button{margin:0;padding:0;border:none;cursor:pointer;font-size:16px}@media only screen and (min-width:30em){button{font-size:18px}}sub,sup{position:relative;vertical-align:baseline;font-size:.75rem;line-height:0}sup{top:-.5em}sub{bottom:-.25em}footer.pudding-footer{padding:3rem 1rem;border-top:4px solid #000;font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;margin-top:3rem}footer.pudding-footer .footer-recirc{max-width:65rem;margin:0 auto}footer.pudding-footer .footer-recirc__articles{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}footer.pudding-footer .footer-recirc__article{display:block;width:100%;border:none;margin-bottom:2rem}@media only screen and (min-width:50em){footer.pudding-footer .footer-recirc__article{width:calc(25% - 1.5rem);margin-right:1.5rem}footer.pudding-footer .footer-recirc__article:last-of-type{margin-right:0}}footer.pudding-footer .footer-recirc .article__headline{font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;font-size:20px;line-height:1;font-weight:700;padding-left:.5rem}footer.pudding-footer .footer-company{margin:0 auto;margin-top:3rem;max-width:65rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;font-family:'Barlow Condensed',Helvetica,Arial,sans-serif}@media only screen and (min-width:50em){footer.pudding-footer .footer-company{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}}footer.pudding-footer .footer-company__cta{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1;margin:2rem 0 0 0;width:100%}@media only screen and (min-width:50em){footer.pudding-footer .footer-company__cta{width:22rem;margin:0 0 0 2rem}}footer.pudding-footer .footer-company__cta-list{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;height:12rem}@media only screen and (min-width:50em){footer.pudding-footer .footer-company__cta-list{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}}footer.pudding-footer .footer-company__cta-list li{display:-webkit-box;display:-ms-flexbox;display:flex;width:50%;margin-bottom:1rem;-webkit-box-align:center;-ms-flex-align:center;align-items:center}@media only screen and (min-width:50em){footer.pudding-footer .footer-company__cta-list li{padding-left:1rem}}footer.pudding-footer .footer-company__cta-list li a{display:-webkit-box;display:-ms-flexbox;display:flex;border:none}footer.pudding-footer .footer-company__cta-list li p{font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;margin:0;padding-left:.5rem;padding-top:.1rem;line-height:1;color:#949494}@media only screen and (min-width:40em){footer.pudding-footer .footer-company__cta-list li p{font-size:20px}}footer.pudding-footer .footer-company__cta-list li svg{fill:#949494;stroke:none;vertical-align:middle}footer.pudding-footer .footer-company__cta-list li svg circle,footer.pudding-footer .footer-company__cta-list li svg polyline,footer.pudding-footer .footer-company__cta-list li svg line{fill:none;stroke:#949494}footer.pudding-footer .footer-company__cta-list li .feather-mail path,footer.pudding-footer .footer-company__cta-list li .feather-lock path,footer.pudding-footer .footer-company__cta-list li .feather-rss path{stroke:#949494;fill:none}footer.pudding-footer .footer-company__about{-webkit-box-ordinal-group:1;-ms-flex-order:0;order:0;width:100%;color:#949494;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}@media only screen and (min-width:50em){footer.pudding-footer .footer-company__about{width:calc(100% - 24rem)}}footer.pudding-footer .footer-company__about p{margin:0;font-size:16px;line-height:1.4}footer.pudding-footer .footer-company__about svg{width:12rem;margin-bottom:.5rem}header{z-index:1000;position:absolute;top:0;left:0;width:100%;background-color:#f7dc5b;font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;border-bottom:1px solid #282828}header .header-skew{position:relative;z-index:999}header .header-skew .skew{position:absolute;border-right:1px solid #282828;background-color:#f7dc5b;width:12.25rem;max-width:12.25rem;height:3rem;left:-1rem;-webkit-transform:skew(-10deg,0);-ms-transform:skew(-10deg,0);transform:skew(-10deg,0)}header a.logo{position:absolute;border:none;width:10rem;max-width:10rem;margin:.5rem;height:2rem}header a.logo svg{fill:#282828;display:block;width:85%;margin:0 auto}.header__container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}header.is-sticky{position:fixed;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);background-color:#fff;-webkit-box-shadow:0 0 7px 1px #c9c9c9;box-shadow:0 0 7px 1px #c9c9c9;height:3rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}header.is-sticky a.logo{margin:0 auto}header.is-sticky .header__container{width:100%;padding:0 2rem;margin:auto;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:100%}header.is-sticky .header__toggle{display:block;pointer-events:all;visibility:visible;position:fixed;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);top:0;right:0;padding:.75rem;cursor:pointer;line-height:1;z-index:1000;border:none;background-color:transparent}header.is-sticky .header__toggle svg{stroke:#282828}header.is-sticky .header__toggle:focus{outline:2px solid}header.is-sticky .header__toggle span:first-of-type{display:block}header.is-sticky .header__toggle span:last-of-type{display:none}header.is-sticky .header__toggle.is-visible span:first-of-type{display:none}header.is-sticky .header__toggle.is-visible span:last-of-type{display:block}header.is-sticky .header__toggle.is-visible span svg{stroke:#f4f4f4}header.is-sticky #slide__menu{position:absolute;top:3rem;right:0;-webkit-transform:translateX(100%);-ms-transform:translateX(100%);transform:translateX(100%);height:100vh;width:100%;max-width:30rem;padding:1rem 1.5rem;background-color:#282828;color:#f4f4f4;z-index:1000;-webkit-transition:-webkit-transform 200ms ease-in-out;transition:-webkit-transform 200ms ease-in-out;-o-transition:transform 200ms ease-in-out;transition:transform 200ms ease-in-out;transition:transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;visibility:hidden}@media only screen and (min-width:30em){header.is-sticky #slide__menu{border-left:1px solid #5b5b5b}}header.is-sticky #slide__menu.is-visible{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0);-webkit-transition:-webkit-transform 200ms ease-in-out;transition:-webkit-transform 200ms ease-in-out;-o-transition:transform 200ms ease-in-out;transition:transform 200ms ease-in-out;transition:transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;visibility:visible}header.is-sticky #slide__menu a{color:#f4f4f4;border-bottom:1px solid #f4f4f4}header.is-sticky #slide__menu a:hover{color:#c9c9c9}header.is-sticky #slide__menu .menu__links{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}@media only screen and (min-width:40em){header.is-sticky #slide__menu .menu__links{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}}header.is-sticky #slide__menu .menu__links li{font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;font-weight:700;text-transform:uppercase;margin-bottom:.5em;margin-right:.5em;font-size:20px}@media only screen and (min-width:30em){header.is-sticky #slide__menu .menu__links li{font-size:24px}}header.is-sticky #slide__menu a.patreon-link{font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;font-weight:700;text-transform:uppercase;border:none;background-color:#f4f4f4;color:#282828;padding:.5em .75em}header.is-sticky #slide__menu a.patreon-link:hover{opacity:.75}header.is-sticky .menu__patrons ul{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}header.is-sticky .menu__patrons li:after{display:inline;content:',';margin-right:.25em}header.is-sticky .menu__patrons li:last-of-type:after{content:'.'}header.is-sticky.is-dark{background-color:#282828;-webkit-box-shadow:0 0 7px 1px #5b5b5b;box-shadow:0 0 7px 1px #5b5b5b}header.is-sticky.is-dark svg path{fill:#f4f4f4}header.is-sticky.is-dark .header__menu{background-color:#fff;color:#282828}@media only screen and (min-width:30em){header.is-sticky.is-dark .header__menu{border-left:1px solid #c9c9c9}}header.is-sticky.is-dark a{color:#282828;border-bottom:1px solid #282828}header.is-sticky.is-dark a:hover{color:#5b5b5b}header.is-sticky.is-dark .header__toggle svg{stroke:#f4f4f4}header.is-sticky.is-dark .header__toggle.is-visible span svg{stroke:#282828}.intro{margin:0 auto;padding:3rem 0 3rem 0}.intro__hed{max-width:60rem;margin:0 auto;text-align:center}.intro__dek{max-width:40rem;margin:0 auto;margin-top:1rem;text-align:center}.intro__byline{max-width:40rem;margin:0 auto;margin-top:1rem;text-align:center}.intro__time{display:block;max-width:40rem;margin:0 auto;margin-top:1rem;text-align:center}.txtscroll{height:3rem;background-color:#e75c33;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.txtscroll p{font-size:1.25em;color:#282828;font-family:'Barlow Condensed';text-transform:uppercase;font-weight:300;font-style:italic}body{background-color:#fefaf1}.annotation{fill:#282828;font-family:'Barlow Condensed';font-weight:400;font-size:14px;text-anchor:middle;-webkit-transform:translate(-45px,6px);-ms-transform:translate(-45px,6px);transform:translate(-45px,6px)}.annotationButton{fill:#282828;font-family:'Barlow Condensed';font-weight:400;font-size:16px;margin:0 1rem 0 0}.padded-dropcap{padding:1rem 1.25rem 1rem 1rem;float:left;position:relative;top:-.1em;margin:1rem 1.25rem -.5rem .25rem;font-size:64px;font-family:'Barlow Condensed';color:#282828;font-weight:900;background-color:#f2c5d3;border:1px solid #282828;-webkit-transform:skew(-10deg,0);-ms-transform:skew(-10deg,0);transform:skew(-10deg,0);line-height:.8}#hoverGuide{font-size:16px;fill:#282828;font-weight:600;font-family:'Barlow Condensed'}#hoverGuideLine{stroke:#282828;stroke-width:.8px}.txt-rotate{fill:#282828}#tooltipText{font-family:'National 2 Web';display:block}.tooltipTL{font-family:'Barlow Condensed';color:#282828;background-color:#fefaf1;border:1px #282828 solid;border-top:2px #282828 solid;margin:1rem;padding:1rem;width:25%;max-height:15rem}.tooltipTL:nth-child(2),.tooltipTL:nth-child(4){margin-top:4rem}.exampleheadlines{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-bottom:50}#tooltipHeadline{top:10px;left:0;padding:5px;position:fixed;visibility:hidden;background-color:#fefaf1}#tooltipHeadline path{fill:none}.forceText{font-weight:bold;font-family:'National 2 Web';font-size:8px;text-anchor:middle;fill:#c0c0c0}.forceCircles{fill:#fefaf1;stroke:#282828;stroke-width:1px;cursor:pointer}.themesText{font-weight:600;font-family:'Barlow Condensed';font-size:14px;text-anchor:middle;fill:#282828}.xAxis line,.yAxis line{stroke:#c0c0c0}.xAxis text{font-family:'National 2 Web'}.xAxis path,.yAxis path{display:none}#xAxisLabel{font-size:16px;fill:#282828;font-family:'Barlow Condensed';font-weight:600}.axisLabel{font-weight:bold;font-family:'National 2 Web'}h1{font-family:Georgia;font-style:bold;color:#282828}.title{font-weight:900;font-size:150px;text-align:left;font-family:'Barlow Condensed';text-transform:uppercase;color:#282828;line-height:1}.title span{font-family:'Barlow Condensed';font-weight:900;border-bottom:1px solid #282828;display:block;padding:2rem 2rem 0 2rem;font-style:italic;line-height:.8}.subTitleArt{font-weight:300;font-size:36px;opacity:.9;font-family:'Barlow Condensed';text-transform:uppercase}.creditLink{color:#282828;text-transform:uppercase;font-weight:700}.credits{font-weight:300;font-size:16;font-family:'Barlow Condensed';color:#282828}.sectionHeader{font-family:'Barlow Condensed';font-style:italic;font-weight:900;color:#282828;text-align:center;width:100%;font-size:48px;margin:6rem auto 1rem auto;text-transform:uppercase;line-height:.8;border-bottom:1px solid #282828}h2{font-family:Georgia;font-style:bold;color:#282828}h4{font-family:'Tiempos Text Web';font-size:x-large;font-style:bold;color:#282828}h5{font-family:'Tiempos Text Web';font-size:medium;font-weight:600;text-align:center;margin-bottom:0;color:#282828}.description{max-width:40rem;color:#282828;font-family:'Tiempos Text Web';margin:0 auto;padding:1rem 0;text-align:left}ul{max-width:40rem;margin:0 auto;padding-left:1.5rem;list-style-type:disc}.intro-questions{margin:0 auto;padding:1rem 0;font-family:'Tiempos Text Web';font-style:italic}.stackedChartDescription{max-width:20rem;text-align:left;color:#282828;font-family:'Barlow Condensed';font-size:18px;margin-bottom:0;line-height:1.75;-webkit-transform:translateY(150px);-ms-transform:translateY(150px);transform:translateY(150px)}.deets{font-family:'Barlow Condensed';color:#e75c33;font-size:14px;font-weight:900;margin:0}.exampleheadlines .headline{font-family:'Barlow Condensed';font-weight:300;font-size:18px;font-style:italic;text-transform:uppercase}#stackedChartLegend{-webkit-transform:translateY(100);-ms-transform:translateY(100);transform:translateY(100)}.subtitle{margin-top:0;margin-bottom:10;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.header{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;display:-webkit-box;display:-ms-flexbox;display:flex;text-anchor:middle}.titleArt{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin-bottom:4rem}.titlewords{width:70%;border-right:1px solid #282828}.titlesep{width:100%;border:.1px solid #282828;-webkit-transform:translate(0,32px);-ms-transform:translate(0,32px);transform:translate(0,32px);line-height:0;margin-top:0;margin-bottom:0}.titleCredits{width:30%;padding:0 2rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;border-bottom:1px solid #282828}.dropOptions{font-family:'Tiempos Text Web';font-size:x-large;font-weight:bold}.buttons{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;margin-top:50px}button{border-color:#fefaf1;background-color:#fefaf1;color:#282828;font-weight:400px;border-style:solid;border-width:1;padding:0 20px;margin-top:5;text-align:center;text-decoration:none;font-size:20px;font-family:'National 2 Web';text-transform:uppercase}#wordFreq{margin-top:0;margin-bottom:100}button:hover{background-color:#fefaf1;color:#282828}button:focus{background-color:#f7dc5b;color:#282828;font-weight:900px}select::-moz-selection{background-color:#f7dc5b;color:#282828;font-weight:900px}select::selection{background-color:#f7dc5b;color:#282828;font-weight:900px}.flag{height:35px;text-anchor:middle;padding-right:10px}.country{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;border:1px solid #282828;border-radius:.25rem;width:12rem;margin:0 .5rem;padding:0}.country p{margin:0;padding:0;font-family:'Barlow Condensed';font-size:20px;font-weight:400}.search{text-align:center}.legend circle{fill:none;stroke:#282828}.legendBubble{fill:none;stroke:#282828;stroke-width:.8}.legend text{fill:#c0c0c0;font:8px sans-serif;text-anchor:end}.svg-container{display:inline-block;position:relative;width:95%;padding-bottom:40%;margin-left:2.5%;margin-right:2.5%;vertical-align:top;overflow:hidden}.svg-container2{display:inline-block;position:relative;width:95%;padding-bottom:50%;margin-left:2.5%;margin-right:2.5%;vertical-align:top;overflow:hidden}.svg-content{display:inline-block;position:absolute;text-align:center;top:50;left:0}#tooltipCluster{border:solid 1px #282828;padding:10px;position:fixed;display:block;color:#282828}#tooltipInfo{border:solid 1px #282828;padding:10px;max-width:180px;text-align:justify;position:fixed;display:block;color:#282828;background-color:#fefaf1}.clusterLegend{display:block;margin-left:auto;margin-right:auto}.netbars{display:grid;grid-template-columns:27vw 65vw;grid-template-rows:60vh 60vh 60vh 60vh;-webkit-column-gap:0;-moz-column-gap:0;column-gap:0;row-gap:40vh;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:30vh;margin-left:4vw;margin-right:4vw}.barLegend{margin-top:20px;padding-bottom:10px}.barLegendText{font-size:13px;font-family:'Tiempos Text Web';fill:#c0c0c0;text-anchor:start;text-align:left;opacity:.9;font-weight:800}#stickyXaxis{position:sticky;top:0;background-color:#fefaf1;fill:#282828;color:#282828;stroke-width:1;font-weight:800;font-size:12}.wordText{text-anchor:end;fill:#282828;font-weight:600;font-size:16px;font-family:'Barlow Condensed';text-transform:uppercase;cursor:pointer}.SMCell{cursor:pointer}.timeRuler{z-index:10;position:fixed;stroke:#282828;fill:none;stroke-width:1;width:20}.container{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:nowrap;flex-wrap:nowrap;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.freqBars{width:16vw;height:35vw}.movingHeadline{font-size:20px;font-family:sans-serif}#hlAnimation{height:15vh}.barChart{text-anchor:start;text-align:left}.yAxis text{font-family:'National 2 Web';text-align:center;text-anchor:end;fill:#c0c0c0;font-weight:bold}span{font-family:sans-serif}.inputTitle{font-family:'Barlow Condensed';font-size:20px;font-weight:600;color:#282828;text-transform:uppercase}.methodDescription{max-width:40rem;font-family:'National 2 Web';font-size:14px;margin:0 auto;padding:1rem 0;line-height:1.65;text-align:left}.methodSep{width:40rem;border:1px solid #282828;margin:4rem auto 1rem auto}.intextLink{color:#e75c33;font-weight:600}.polarityCompyAxis text{font-family:'Barlow Condensed';text-align:left;text-anchor:end;fill:#282828;font-size:14px;font-weight:600;text-transform:uppercase}.polarityCompyAxis .domain{stroke:none}.grid{stroke:#d3d3d3;stroke-width:1px;shape-rendering:crispEdges}.polarityCompBubbleLeft{fill:#282828;stroke:#282828;stroke-width:2.5px;-webkit-box-sizing:border-box;box-sizing:border-box}.polarityCompBubbleRight{fill:#53b67c;stroke:#282828;stroke-width:2.5px;-webkit-box-sizing:border-box;box-sizing:border-box}.polarityCompFemText{fill:#53b67c;font-family:'Barlow Condensed';font-weight:600;font-size:14px;text-anchor:middle;-webkit-transform:translate(0,-40px);-ms-transform:translate(0,-40px);transform:translate(0,-40px)}.polarityDiffAnnotation{fill:#53b67c;font-family:'Barlow Condensed';font-weight:600;font-size:14px;text-anchor:left;-webkit-transform:translate(20px,-10px);-ms-transform:translate(20px,-10px);transform:translate(20px,-10px)}.polarityCompAllText{fill:#282828;font-family:'Barlow Condensed';font-size:14px;text-anchor:middle;-webkit-transform:translate(0,-20px);-ms-transform:translate(0,-20px);transform:translate(0,-20px)}.polarityCompxAxisLabel{font-size:14px;fill:#282828;font-family:'Barlow Condensed'}.polarityCompxAxis{display:none}.lollipop{-webkit-transform:translate(-90px,0);-ms-transform:translate(-90px,0);transform:translate(-90px,0)}.dropdownOptions{background-color:#fefaf1;border:1px solid #282828;font-size:20px;text-transform:uppercase;padding:.25rem;margin:1rem .25rem;font-family:'Barlow Condensed';font-weight:400;border-radius:.25rem;cursor:pointer}.dropdownOptions.active{background-color:#e75c33}.bubbleFilters{text-align:center;background-color:#fefaf1;z-index:1;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;width:100%;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.scoreChartBar{stroke:#282828;stroke-width:.5px}.scoreChartTitle{margin-bottom:30px;font-weight:500;-webkit-transform:translateX(10px);-ms-transform:translateX(10px);transform:translateX(10px);font-size:10px;max-width:10px;text-align:center;font-family:'National 2 Web';font-style:bold;text-transform:uppercase;color:#282828}.scoreChartBarText{font-family:'National 2 Web';font-size:9px}.stackedBarAnnotation{fill:#e75c33;font-family:'National 2 Web';font-weight:900;font-size:12px;text-anchor:end;text-transform:uppercase;-webkit-transform:translate(100px,5px);-ms-transform:translate(100px,5px);transform:translate(100px,5px)}.stackedBarTextAnnotation{color:#e75c33;font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;border:1px solid #e75c33;white-space:nowrap;border-radius:.25rem;cursor:pointer}.lollipopTextbutton{color:#53b67c;font-weight:600;font-family:'Barlow Condensed';font-size:18px;text-transform:uppercase;white-space:nowrap;border-radius:.25rem;border:1px solid #53b67c}.stackedBarThemeAnnotation{font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer}#inTextViolence{color:#f2c5d3;border:1px solid #f2c5d3}#inTextBias{color:#53b67c;border:1px solid #53b67c}#inTextEmpowerment{color:#f7dc5b;border:1px solid #f7dc5b}.stackedBarTextAnnotation:hover{background-color:#e75c33;color:#fefaf1}.lollipopTextbutton:hover{background-color:#53b67c;color:#fefaf1}.lollipopTextbutton:focus{background-color:#53b67c;color:#fefaf1;font-weight:900px}#inTextViolence:hover{background-color:#f2c5d3;color:#fefaf1}#inTextBias:hover{background-color:#53b67c;color:#fefaf1}#inTextEmpowerment:hover{background-color:#f7dc5b;color:#fefaf1}.stackedBars{-webkit-transform:translateX(10px);-ms-transform:translateX(10px);transform:translateX(10px)}.stackedBars g{cursor:pointer}.stackedChartCountries{margin-bottom:20px;margin-top:30px;-webkit-transform:translate(10px,80px);-ms-transform:translate(10px,80px);transform:translate(10px,80px);max-width:13px;text-align:center;fill:#fefaf1;z-index:10}.stackedChartTicks{font-weight:600;font-size:14px;font-family:'Barlow Condensed';text-transform:uppercase;fill:#282828}.stackedChartTicks-light{font-weight:500;text-transform:none}.stackedBarSection{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin:0 auto;max-width:60rem}</style>
+
+	<style>
+		/*
+	        This font software is the property of Commercial Type.
+	
+	        You may not modify the font software, use it on another website, or install it on a computer.
+	
+	        License information is available at http://commercialtype.com/eula
+	        For more information please visit Commercial Type at http://commercialtype.com or email us at info[at]commercialtype.com
+	
+	        Copyright (C) 2017 Schwartzco Inc.
+	        License: 1704-GNCLGK
+	*/
+	
+	
+	/*
+		********************
+			Barlow Condensed
+		********************
+		*/
+	
+		@font-face {
+			font-family: 'Barlow Condensed';
+			src: url('https://pudding.cool/assets/fonts/barlow/BarlowCondensed-Black.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/barlow/BarlowCondensed-Black.woff') format('woff');
+			font-weight: 900;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Barlow Condensed';
+			src: url('https://pudding.cool/assets/fonts/barlow/BarlowCondensed-Bold.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/barlow/BarlowCondensed-Bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Barlow Condensed';
+			src: url('https://pudding.cool/assets/fonts/barlow/BarlowCondensed-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/barlow/BarlowCondensed-Regular.woff') format('woff');
+			font-weight: 400;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Barlow Condensed';
+			src: url('https://pudding.cool/assets/fonts/barlow/BarlowCondensed-Light.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/barlow/BarlowCondensed-Light.woff') format('woff');
+			font-weight: 300;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		/*
+		********************
+			National
+		********************
+		*/
+	
+		@font-face {
+			font-family: 'National 2 Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2Web-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2Web-Regular.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'National 2 Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2Web-Bold.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2Web-Bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		/*
+		********************
+			National Narrow
+		********************
+		*/
+	
+		/*
+		@font-face {
+			font-family: 'National 2 Narrow Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Extralight.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Extralight.woff') format('woff');
+			font-weight: 200;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+		
+		@font-face {
+			font-family: 'National 2 Narrow Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Regular.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'National 2 Narrow Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Bold.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		/*
+		@font-face {
+			font-family: 'National 2 Narrow Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Black.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Black.woff') format('woff');
+			font-weight: 900;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+	
+		/*
+		********************
+			Tiempos Text
+		********************
+		*/
+	
+		@font-face {
+			font-family: 'Tiempos Text Web';
+			src: url('https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Tiempos Text Web';
+			src: url('https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		/*
+		********************
+			Tiempos Headline
+		********************
+		*/
+	
+		/*
+		@font-face {
+			font-family: 'Tiempos Headline Web';
+			src: url('https://pudding.cool/assets/fonts/tiempos/TiemposHeadlineWeb-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/tiempos/TiemposHeadlineWeb-Regular.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+		
+		/*
+		********************
+			Publico Text
+		********************
+		*/
+		/*
+		@font-face {
+			font-family: 'Publico Text Web';
+			src: url('https://pudding.cool/assets/fonts/publico/PublicoText-Roman-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/publico/PublicoText-Roman-Web.woff') format('woff');
+			font-weight: 400;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Publico Text Web';
+			src: url('https://pudding.cool/assets/fonts/publico/PublicoText-Bold-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/publico/PublicoText-Bold-Web.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+		
+		/*
+		********************
+			Atlas Grotesk
+		********************
+		*/
+	
+		/*
+		@font-face {
+			font-family: 'Atlas Grotesk Web';
+			src: url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Regular-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Regular-Web.woff') format('woff');
+			font-weight: 400;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Atlas Grotesk Web';
+			src: url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Medium-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Medium-Web.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		
+		@font-face {
+			font-family: 'Atlas Grotesk Web';
+			src: url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Bold-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Bold-Web.woff') format('woff');
+			font-weight: 600;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+	</style>
+</head>
+
+<body>
+
+	<a href='#content' class='skip-to-main'>Skip to main content</a>
+	
+	<header
+		class=''>
+		<div class='header__container'>
+			<div class="header-skew">
+				<div class="skew"></div>
+				<a href='https://pudding.cool' target='_blank' class='logo'>
+					<svg id="wordmark" x="0px" y="0px" style="enable-background:new 0 0 192.6 50;" xml:space="preserve" viewBox="0 0 192.6 50">
+<g>
+	<path class="st0" d="M150.1,9.5c1.5,0,2.8,1.3,2.8,2.8s-1.3,2.8-2.8,2.8s-2.8-1.3-2.8-2.8S148.6,9.5,150.1,9.5z"/>
+	<path class="st0" d="M147.2,17.3h5.6v18.2h-5.6V17.3z"/>
+	<path class="st0" d="M77.1,9.5h-1.9h-7v19.3v6.7h5.6v-6.7v-1.4h1.4h1.9c4.9,0,8.9-4,8.9-8.9S82.1,9.5,77.1,9.5z M77.1,21.8h-1.9
+		h-1.4v-1.4v-3.8v-1.4h1.4h1.9c1.8,0,3.3,1.5,3.3,3.3S79,21.8,77.1,21.8z"/>
+	<path class="st0" d="M105.7,17.6h-5.6v8.9c0,1.8-1.5,3.3-3.3,3.3s-3.3-1.5-3.3-3.3v-8.9h-5.6v8.9c0,4.9,4,8.9,8.9,8.9
+		s8.9-4,8.9-8.9V17.6z"/>
+	<path class="st0" d="M164.1,17.6c-4.9,0-8.9,4-8.9,8.9v8.9h5.6v-8.9c0-1.8,1.5-3.3,3.3-3.3s3.3,1.5,3.3,3.3v8.9h5.6v-8.9
+		C173,21.6,169,17.6,164.1,17.6z"/>
+	<path class="st0" d="M119.7,16.2v1.4h-1.4h-1.9c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h7V16.2V9.5l-5.6,3.3
+		C119.7,12.8,119.7,16.2,119.7,16.2z M119.8,24.6v3.8v1.4h-1.4h-1.9c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9h1.4V24.6z"/>
+	<path class="st0" d="M139.3,16.2v1.4h-1.4H136c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h7V16.2V9.5l-5.6,3.3V16.2z M139.4,24.6v3.8
+		v1.4h-1.5H136c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9h1.4v1.4H139.4z"/>
+	<path class="st0" d="M183.7,17.6c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h1.4v1.4v0.9v1.4v1.4c0,1.8-1.5,3.3-3.3,3.3
+		s-3.3-1.5-3.3-3.3V38l-5.6,3.3c0.4,4.5,4.2,8.1,8.9,8.1c4.9,0,8.9-4,8.9-8.9v-1.4v-2.3V17.6h-7H183.7z M187,23.4v1.4v3.8V30h-1.4
+		h-1.9c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9C185.6,23.4,187,23.4,187,23.4z"/>
+	<path class="st0" d="M28.6,17.6c-1.2,0-2.3,0.2-3.3,0.6V9.5l-5.6,3.3v13.7v2v6.9h5.6v-6.9l0,0v-2c0-1.8,1.5-3.3,3.3-3.3
+		s3.3,1.5,3.3,3.3v8.9h5.6v-8.9C37.5,21.6,33.5,17.6,28.6,17.6z"/>
+	<path class="st0" d="M17.8,9.5H0v5.6h6.1v20.3h5.6V15.1h6.1V9.5z"/>
+	<path class="st0" d="M48.3,30.2c-0.4,0-1.2-0.1-1.8-0.4l5.2-2.1l5.6-2.3l-1-2.3l-0.1-0.2c-0.1-0.3-0.3-0.6-0.5-1
+		c-0.1-0.1-0.1-0.2-0.2-0.3c0,0,0-0.1-0.1-0.1l-0.1-0.1l-0.1-0.1c-1.6-2.2-4-3.5-6.7-3.7l0,0h-0.6c-4.9,0-8.9,4-8.9,8.9
+		c0,0.4,0,0.9,0.1,1.4l0,0V28c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0.3,0.1,0.5,0.2,0.8v0.1v0.1c0.1,0.3,0.2,0.7,0.4,1v0.1v0.1
+		c0.1,0.3,0.3,0.5,0.4,0.8c0,0.1,0.1,0.1,0.1,0.2l0,0c0.1,0.2,0.3,0.4,0.4,0.6c0,0,0,0,0,0.1c0,0,0,0.1,0.1,0.1l0.1,0.1
+		c1.7,2.1,4.4,3.4,7.2,3.4h6.1v-5.2C54.5,30.2,50.6,30.2,48.3,30.2L48.3,30.2z M56.2,22.9L56.2,22.9L56.2,22.9z M44.6,25.7
+		L44.6,25.7l-0.2,0.1c0.2-1.9,1.8-3.5,3.7-3.5c0.9,0,1.8,0.4,2.4,0.9L46.2,25L44.6,25.7L44.6,25.7z"/>
+</g>
+</svg>
+				</a>
+			</div>
+			<marquee class="txtscroll" behavior="scroll" scrollamount="10" direction="left"><p><strong>Woman</strong> with later start to periods, menopause more likely to reach age 90... <strong>Woman</strong> may be missing out on outpatient hospital care in northern India... <strong>Woman</strong> had fatal heart attack due to years of taking antipsychotics, inquest hears... <strong>Woman</strong> dies after house catches fire in Wythenshawe... <strong>Woman</strong> found dead in River Goyt following major emergency service presence... <strong>Woman</strong>, 33, dies following crash on M66 motorway near Bury... <strong>Woman</strong>, killed in Oldham named as man charged with murder... <strong>Woman</strong> banned from owning pets after dog left in dark cupboard to starve to death... <strong>Woman</strong> fined £650 for dropping cigarette butt in town centre... <strong>Woman</strong> arrested as armed police close off road for several hours... <strong>Woman</strong> who went missing before being found dead at park was suffering from depression, inquest opening hears... <strong>Woman</strong>, dies and girl, 16, seriously hurt after fire rips through home in Birmingham... <strong>Woman</strong> taken to hospital after falling from M60 bridge in early hours... <strong>Woman</strong> taken to hospital after being hit by car in Stockport... <strong>Woman</strong> taken to hospital after being rescued from Stalybridge canal... <strong>Woman</strong> nearly crashes into police officers on M60 after her husband is caught drink driving... <strong>Woman</strong> spends £10k transforming her home into a pink paradise... <strong>Woman</strong> confronts masked gang stealing catalytic converter, then this happened... <strong>Woman</strong> faked terminal cancer to dupe friends into paying for dream wedding... <strong>Woman</strong>, 31, found dead in a disused graveyard after 18 day search... <strong>Woman</strong>, two days away from being deported stabbed housemate 30 times... <strong>Woman</strong> who stabbed boyfriend while high on crack walks free in time for Christmas... <strong>Woman</strong> who gave birth on flight had no idea she was pregnant... <strong>Women</strong> suffer more with anxiety, depression during months of isolation due to COVID 19 Gender differences... <strong>Women</strong> are a valuable human resource, there should be zero tolerance towards gender insensitivity... <strong>Women</strong> in Data Science: Changing the rules of the game... <strong>Woman</strong> capable of creating history, future with formidable grace: Rahul Gandhi</p>
+	</marquee>
+			
+			
+		</div>
+	
+	</header>
+	<main id='content'>
+
+		<!-- TITLE -->
+		<div class="titleArt">
+		  <div class="titlewords">
+		    <h1 class="title"><span>When</span> <span>Women</span> <span>Make</span> <span>Headlines</span></h1>
+		  </div>
+		  <div class="titleCredits">
+		    <h2 class="subTitleArt">A visual essay about the (mis)representation of women in the news</h2>
+		    <p class="credits">By <a href="https://www.leonardonicoletti.com" target="_blank" class="creditLink">​​Leonardo Nicoletti</a><br>
+		        and <a href="https://twitter.com/sahitisarva" target="_blank" class="creditLink">Sahiti Sarva</a></p>
+		  </div>
+		</div>
+		
+		<!-- INTRO -->
+		<section class="intro-section">
+		    <p class="description"><span class=padded-dropcap>A</span>s observed in a lot of competitive and high paying fields, there is proven lack of representation of both women and racial minorities in newsrooms. This unbalance is reflected in the news articles that we read every day, where women are often described in ways that reinforce social stereotypes and deepen gender biases. Extensive reporting on this issue in different forms - open editorials, journal papers and academic articles - has pushed people to think about the exacerbating effect that news outlets is having on gender misrepresentation (reference). Still, many questions remain unanswered:</p>
+		  <ul>
+		      <li class="intro-questions">What is the extent of  gender bias and polarity across influential news outlets?</li>
+		      <li class="intro-questions">How prevalent are specific topics around the topic of women across different countries?</li>
+		      <li class="intro-questions">What are the most commonly used words to talk about women in headlines across different countries?</li>
+		      <li class="intro-questions">What  kind  of  words  are  used  in  conjunction  with  each  other around the topic of women?</li>
+		  </ul>
+		</section>
+		
+		<!-- STACKED BAR SECTION -->
+		<section class="stacked-bar-section">
+		  <div class="stackedBarSection" >
+		    <div id="stickyStackedChart">
+		      <svg id="stackedChart"></svg>
+		    </div>
+		    <div id="stackedChartLegend">
+		        <p class="stackedChartDescription">Since 2005, a total of <strong>406 unique words</strong> have been used by Indian, South African, English, and American newsrooms in headlines that speak about <strong>women</strong>. But do cultural/geographical/political differences influence the way we portray women?</p>
+		        <p class="stackedChartDescription">Across 4 continents, the words most frequently used in headlines about women are strikingly similar.  <span class=stackedBarTextAnnotation id=inTextMan value=man>man</span> tops the charts in all 4 countries, followed by <span class=stackedBarTextAnnotation id=inTextKill value=kill>kill</span>, <span class=stackedBarTextAnnotation id=inTextDie value=die>die</span>, and <span class=stackedBarTextAnnotation id=inTextPolice value=police>police</span>. You get the idea... In fact, it turns out that most words used in headlines about women can be categorized into distinct categories: <span class=stackedBarThemeAnnotation id=inTextViolence value=violence>violence</span> and <span class=stackedBarThemeAnnotation id=inTextBias value=female_bias>women stereotypes</span>.</p>
+		        <p class="stackedChartDescription">But what about language that is <span class=stackedBarThemeAnnotation id=inTextEmpowerment value=empowerement>empowering</span> towards women? Those words rank much lower in the frequency chart...</p>
+		    </div>
+		  </div>
+		  <div id="endStackedbarSection"></div>
+		      <p class="description">It is these grounds that inform this study. The idea that we are what we consume is the ground from which we rise.</p>
+		      <p class="description">While news consumption can influence our perceptions, news headlines allow a piece to turn from an article to a story. Headlines are designed to be catchy, sensational and with the advent of 24/7 news cycles, anxiety inducing. They make an imprint on our minds. In this piece, we used data from more than 50,000 headlines from the news outlets of 4 different countries to illustrate how women are represented in news headlines around the world.</p>
+		  <div class="exampleheadlines">
+		      <div class="tooltipTL" id="tooltipTLmid">
+		        <p class="deets">MAY 2015  |  TELEGRAPH.CO.UK</p>
+		        <p class="headline">Mum lets 6 year old daughter shaver her head to prove girls don&#x27;t have to be girly</p>
+		      </div>
+		      <div class="tooltipTL" id="tooltipTLleft">
+		        <p class="deets">NOV 2016  |  DAILYMAIL.COM</p>
+		        <p class="headline">Woman who gave birth on plane had no idea she was pregnant</p>
+		      </div>
+		      <div class="tooltipTL" id="tooltipTLmid">
+		        <p class="deets">APR 2016  |  FOXNEWS.COM</p>
+		        <p class="headline">More single women hunt for homes, not husbands</p>
+		      </div>
+		      <div class="tooltipTL" id="tooltipTLright">
+		        <p class="deets">OCT 2020  |  AAJTAK.IN</p>
+		        <p class="headline">GUJARAT: man decapitates 12 year old cousin after raping her in Banaskantha</p>
+		      </div>
+		      <div class="tooltipTL" id="tooltipTLmid">
+		        <p class="deets">JAN 2014  |  FORBES.COM</p>
+		        <p class="headline">Women say they&#x27;re most attracted to guys driving pickups</p>
+		      </div>
+		  </div>
+		</section>
+		
+		<!-- BARBELL SECTION -->
+		<section class="barbell-section">
+		  <div class="header">
+		    <h2 class="sectionHeader">Headlines about women are more polarizing</h2>
+		  </div>
+		  <div id="sortLollipop" style="text-align: center;">
+		      <p class="description">Clearly, newsrooms choose strong language and topics to communicate stories about women subjects. Wait a second... isn't that what newsrooms are all about? To only share <italic>high impact stories</italic>, so as to capture the reader's attention in the shortest time possible? This gives reason to think that <italic>all headlines</italic> are <italic>polarizing</italic>, not just those about <italic>women</italic>.</p>
+		      <p class="description">With this hypothesis in mind, or team went on to analyze the language used in headlines taken at random (regarding just about any topic) and compared it the language that is used in headlines that portray women subjects. We found, that on average, across more than <strong>200 newsrooms</strong> In 4 continents, headlines that speak about women subjects are <strong>40% more polarizing</strong> than the average headline.</p>
+		      <p class="description">In the chart below, we rank newsrooms according to where this<button id=sortLollipopDiff class=lollipopTextbutton>difference is most pronounced</button> or according to their<button id=sortLollipopPol class=lollipopTextbutton>absolute polarity score</button> regarding their women-focused headlines.</p>
+		  </div>
+		  <div class="lollipop" class="svg-container" style="text-align: center;">
+		    <div id="lollipopChart"></div>
+		  </div>
+		    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a sodales arcu, quis mollis orci. Curabitur bibendum ac arcu nec bibendum. Nulla lobortis felis id sapien pulvinar, quis blandit orci interdum. Cras quis tincidunt ligula. Donec a magna in risus bibendum interdum malesuada eget leo. Cras vitae neque at sem sagittis porta eget eget metus. Nulla facilisi. In eget ipsum felis. Cras interdum iaculis sem a ullamcorper. Cras ac scelerisque erat. Duis venenatis justo sed maximus ornare. Fusce non varius justo.</p>
+		</section>
+		
+		<!-- HEADLINE POLARITY SECTION -->
+		<section class="headline-polarity-section">
+		  <div class="header">
+		    <h2 class="sectionHeader">News outlet headline polarity</h2>
+		  </div>
+		  <div class="bubbleFilters">
+		    <p class="annotationButton">Filter by</p>
+		    <div>
+		      <select id="countrydropdown" class="dropdownOptions"></select>
+		      <select id="pubdropdown" class="dropdownOptions"></select>
+		    </div>
+		  </div>
+		  <div id="chartP" class="svg-container" style="text-align: center;">
+		    <svg id="bubblechartPolarity">
+		        <g class="xAxispolarity" />
+		        <g class="yAxispolarity" />
+		        <g id="bodypolarity" />
+		    </svg>
+		  </div>
+		    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a sodales arcu, quis mollis orci. Curabitur bibendum ac arcu nec bibendum. Nulla lobortis felis id sapien pulvinar, quis blandit orci interdum. Cras quis tincidunt ligula. Donec a magna in risus bibendum interdum malesuada eget leo. Cras vitae neque at sem sagittis porta eget eget metus. Nulla facilisi. In eget ipsum felis. Cras interdum iaculis sem a ullamcorper. Cras ac scelerisque erat. Duis venenatis justo sed maximus ornare. Fusce non varius justo.</p>
+		</section>
+		
+		<!-- HEADLINE BIAS SECTION -->
+		<section class="headline-bias-section">
+		  <div class="header" id="biasSection">
+		    <h2 class="sectionHeader">News outlet headline bias</h2>
+		  </div>
+		  <div id="chartB" class="svg-container" style="text-align: center;">
+		    <svg id="bubblechartBias">
+		        <g class="xAxisbias" />
+		        <g class="yAxisbias" />
+		        <g id="bodybias" />
+		    </svg>
+		  </div>
+		    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a sodales arcu, quis mollis orci. Curabitur bibendum ac arcu nec bibendum. Nulla lobortis felis id sapien pulvinar, quis blandit orci interdum. Cras quis tincidunt ligula. Donec a magna in risus bibendum interdum malesuada eget leo. Cras vitae neque at sem sagittis porta eget eget metus. Nulla facilisi. In eget ipsum felis. Cras interdum iaculis sem a ullamcorper. Cras ac scelerisque erat. Duis venenatis justo sed maximus ornare. Fusce non varius justo.</p>
+		</section>
+		
+		<!-- 2 TEMPORAL CHART -->
+		<section class="temporal-chart-section">
+		  <div class="header">
+		    <h2 style = "text-align: center" class="sectionHeader" id="waveChartSection">A decade of headlines: the words we cho(o)se to sensationalize women</h2>
+		  </div>
+		  <div class="buttons">
+		    <p style="text-align: center" class="annotationButton">Filter by country</p>
+		    <button class="country" value="USA">
+		      <svg id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 512 512;" xml:space="preserve" viewBox="0 0 512 512" class="flag">
+<path style="fill:#F5F5F5;" d="M473.655,88.276H38.345C17.167,88.276,0,105.443,0,126.621V385.38
+	c0,21.177,17.167,38.345,38.345,38.345h435.31c21.177,0,38.345-17.167,38.345-38.345V126.621
+	C512,105.443,494.833,88.276,473.655,88.276z"/>
+<g>
+	<path style="fill:#FF4B55;" d="M2.109,114.08H509.89c-5.196-15.017-19.452-25.804-36.235-25.804H38.345
+		C21.561,88.276,7.306,99.063,2.109,114.08z"/>
+	<rect y="191.49" style="fill:#FF4B55;" width="512" height="25.803"/>
+	<rect y="139.88" style="fill:#FF4B55;" width="512" height="25.803"/>
+	<path style="fill:#FF4B55;" d="M0,260.074c0,4.875,3.953,8.828,8.828,8.828H512v-25.804H0V260.074z"/>
+	<rect y="346.32" style="fill:#FF4B55;" width="512" height="25.804"/>
+	<path style="fill:#FF4B55;" d="M509.891,397.92H2.109c5.197,15.017,19.453,25.804,36.236,25.804h435.31
+		C490.439,423.724,504.694,412.937,509.891,397.92z"/>
+	<rect y="294.71" style="fill:#FF4B55;" width="512" height="25.803"/>
+</g>
+<path style="fill:#41479B;" d="M8.828,268.902h220.69c4.875,0,8.828-3.953,8.828-8.828V97.103c0-4.876-3.953-8.828-8.828-8.828
+	H38.345C17.167,88.276,0,105.443,0,126.621v133.453C0,264.95,3.953,268.902,8.828,268.902z"/>
+<g>
+	<path style="fill:#F5F5F5;" d="M24.789,108.537l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.669
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928L24,122.841l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.669c-0.643-0.476-0.312-1.496,0.488-1.502l6.177-0.047l1.954-5.86C23.463,107.778,24.535,107.778,24.789,108.537z"/>
+	<path style="fill:#F5F5F5;" d="M24.789,139.191l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928L24,153.496l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C23.463,138.433,24.535,138.433,24.789,139.191z"/>
+	<path style="fill:#F5F5F5;" d="M24.789,169.846l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928L24,184.151l-5.025,3.592c-0.651,0.465-1.518-0.165-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C23.463,169.087,24.535,169.087,24.789,169.846z"/>
+	<path style="fill:#F5F5F5;" d="M24.789,200.5l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928L24,214.805l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C23.463,199.741,24.535,199.741,24.789,200.5z"/>
+	<path style="fill:#F5F5F5;" d="M24.789,231.154l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928L24,245.459l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C23.463,230.396,24.535,230.396,24.789,231.154z"/>
+	<path style="fill:#F5F5F5;" d="M48.582,123.566l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C47.256,122.808,48.329,122.808,48.582,123.566z"/>
+	<path style="fill:#F5F5F5;" d="M48.582,154.221l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.165-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C47.256,153.462,48.329,153.462,48.582,154.221z"/>
+	<path style="fill:#F5F5F5;" d="M48.582,184.875l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C47.256,184.116,48.329,184.116,48.582,184.875z"/>
+	<path style="fill:#F5F5F5;" d="M48.582,215.529l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C47.256,214.771,48.329,214.771,48.582,215.529z"/>
+	<path style="fill:#F5F5F5;" d="M72.375,108.537l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.669
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.669c-0.643-0.476-0.312-1.496,0.488-1.502l6.177-0.047l1.954-5.86C71.049,107.778,72.122,107.778,72.375,108.537z"/>
+	<path style="fill:#F5F5F5;" d="M72.375,139.191l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C71.049,138.433,72.122,138.433,72.375,139.191z"/>
+	<path style="fill:#F5F5F5;" d="M72.375,169.846l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.165-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C71.049,169.087,72.122,169.087,72.375,169.846z"/>
+	<path style="fill:#F5F5F5;" d="M72.375,200.5l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C71.049,199.741,72.122,199.741,72.375,200.5z"/>
+	<path style="fill:#F5F5F5;" d="M72.375,231.154l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C71.049,230.396,72.122,230.396,72.375,231.154z"/>
+	<path style="fill:#F5F5F5;" d="M96.169,123.566l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C94.842,122.808,95.916,122.808,96.169,123.566z"/>
+	<path style="fill:#F5F5F5;" d="M96.169,154.221l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.165-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C94.842,153.462,95.916,153.462,96.169,154.221z"/>
+	<path style="fill:#F5F5F5;" d="M96.169,184.875l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C94.842,184.116,95.916,184.116,96.169,184.875z"/>
+	<path style="fill:#F5F5F5;" d="M96.169,215.529l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C94.842,214.771,95.916,214.771,96.169,215.529z"/>
+	<path style="fill:#F5F5F5;" d="M119.962,108.537l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.669
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.026-3.591l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.669c-0.643-0.476-0.312-1.496,0.488-1.502l6.177-0.047l1.954-5.86C118.636,107.778,119.709,107.778,119.962,108.537z"/>
+	<path style="fill:#F5F5F5;" d="M119.962,139.191l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.026-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C118.636,138.433,119.709,138.433,119.962,139.191z"/>
+	<path style="fill:#F5F5F5;" d="M119.962,169.846l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.026-3.593l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C118.636,169.087,119.709,169.087,119.962,169.846z"/>
+	<path style="fill:#F5F5F5;" d="M119.962,200.5l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.026-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C118.636,199.741,119.709,199.741,119.962,200.5z"/>
+	<path style="fill:#F5F5F5;" d="M119.962,231.154l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.026-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C118.636,230.396,119.709,230.396,119.962,231.154z"/>
+	<path style="fill:#F5F5F5;" d="M143.755,123.566l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C142.43,122.808,143.502,122.808,143.755,123.566z"/>
+	<path style="fill:#F5F5F5;" d="M143.755,154.221l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.165-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C142.43,153.462,143.502,153.462,143.755,154.221z"/>
+	<path style="fill:#F5F5F5;" d="M143.755,184.875l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C142.43,184.116,143.502,184.116,143.755,184.875z"/>
+	<path style="fill:#F5F5F5;" d="M143.755,215.529l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C142.43,214.771,143.502,214.771,143.755,215.529z"/>
+	<path style="fill:#F5F5F5;" d="M167.549,108.537l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.669
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.669c-0.643-0.476-0.312-1.496,0.488-1.502l6.177-0.047l1.954-5.86C166.222,107.778,167.296,107.778,167.549,108.537z"/>
+	<path style="fill:#F5F5F5;" d="M167.549,139.191l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C166.222,138.433,167.296,138.433,167.549,139.191z"/>
+	<path style="fill:#F5F5F5;" d="M167.549,169.846l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.165-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C166.222,169.087,167.296,169.087,167.549,169.846z"/>
+	<path style="fill:#F5F5F5;" d="M167.549,200.5l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C166.222,199.741,167.296,199.741,167.549,200.5z"/>
+	<path style="fill:#F5F5F5;" d="M167.549,231.154l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C166.222,230.396,167.296,230.396,167.549,231.154z"/>
+	<path style="fill:#F5F5F5;" d="M191.342,123.566l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C190.016,122.808,191.089,122.808,191.342,123.566z"/>
+	<path style="fill:#F5F5F5;" d="M191.342,154.221l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.165-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C190.016,153.462,191.089,153.462,191.342,154.221z"/>
+	<path style="fill:#F5F5F5;" d="M191.342,184.875l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C190.016,184.116,191.089,184.116,191.342,184.875z"/>
+	<path style="fill:#F5F5F5;" d="M191.342,215.529l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C190.016,214.771,191.089,214.771,191.342,215.529z"/>
+	<path style="fill:#F5F5F5;" d="M215.136,108.537l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.669
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.466-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.669c-0.643-0.476-0.312-1.496,0.488-1.502l6.177-0.047l1.954-5.86C213.81,107.778,214.882,107.778,215.136,108.537z"/>
+	<path style="fill:#F5F5F5;" d="M215.136,139.191l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C213.81,138.433,214.882,138.433,215.136,139.191z"/>
+	<path style="fill:#F5F5F5;" d="M215.136,169.846l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.165-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C213.81,169.087,214.882,169.087,215.136,169.846z"/>
+	<path style="fill:#F5F5F5;" d="M215.136,200.5l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.027,0.488,1.502l-4.969,3.67l1.864,5.889
+		c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889l-4.969-3.67
+		c-0.643-0.474-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C213.81,199.741,214.882,199.741,215.136,200.5z"/>
+	<path style="fill:#F5F5F5;" d="M215.136,231.154l1.954,5.86l6.177,0.047c0.8,0.007,1.131,1.026,0.488,1.502l-4.969,3.67
+		l1.864,5.889c0.242,0.762-0.627,1.394-1.278,0.928l-5.025-3.592l-5.025,3.592c-0.651,0.465-1.518-0.166-1.278-0.928l1.864-5.889
+		l-4.969-3.67c-0.643-0.476-0.312-1.495,0.488-1.502l6.177-0.047l1.954-5.86C213.81,230.396,214.882,230.396,215.136,231.154z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+		      <p>United States</p>
+		    </button>
+		    <button class="country" value="South Africa">
+		      <svg id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 512 512;" xml:space="preserve" viewBox="0 0 512 512" class="flag">
+<polygon style="fill:#464655;" points="0,150.069 0,361.931 141.241,256 "/>
+<path style="fill:#FF4B55;" d="M473.655,88.276H70.621l158.897,123.586H512v-85.241C512,105.443,494.833,88.276,473.655,88.276z"/>
+<path style="fill:#41479B;" d="M70.621,423.724h403.034c21.177,0,38.345-17.167,38.345-38.345v-85.241H229.517L70.621,423.724z"/>
+<path style="fill:#73AF00;" d="M56.889,88.276H38.345C17.167,88.276,0,105.443,0,126.621v6.692L154.974,256L0,378.691v6.688
+	c0,21.177,17.167,38.345,38.345,38.345h18.539L224.146,291.31H512v-70.62H224.148L56.889,88.276z"/>
+<polygon style="fill:#F5F5F5;" points="85.333,88.276 56.889,88.276 224.148,220.69 512,220.69 512,203.034 230.291,203.034 "/>
+<polygon style="fill:#FFE15A;" points="0,133.313 0,155.831 126.53,256 0,356.173 0,378.691 154.974,256 "/>
+<polygon style="fill:#F5F5F5;" points="224.147,291.31 56.884,423.724 85.329,423.724 230.289,308.966 512,308.966 512,291.31 "/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+		      <p>South Africa</p>
+		    </button>
+		    <button class="country" value="UK">
+		      <svg id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 512 512;" xml:space="preserve" viewBox="0 0 512 512" class="flag">
+<path style="fill:#41479B;" d="M473.655,88.276H38.345C17.167,88.276,0,105.443,0,126.621V385.38
+	c0,21.177,17.167,38.345,38.345,38.345h435.31c21.177,0,38.345-17.167,38.345-38.345V126.621
+	C512,105.443,494.833,88.276,473.655,88.276z"/>
+<path style="fill:#F5F5F5;" d="M511.469,120.282c-3.022-18.159-18.797-32.007-37.814-32.007h-9.977l-163.54,107.147V88.276h-88.276
+	v107.147L48.322,88.276h-9.977c-19.017,0-34.792,13.847-37.814,32.007l139.778,91.58H0v88.276h140.309L0.531,391.717
+	c3.022,18.159,18.797,32.007,37.814,32.007h9.977l163.54-107.147v107.147h88.276V316.577l163.54,107.147h9.977
+	c19.017,0,34.792-13.847,37.814-32.007l-139.778-91.58H512v-88.276H371.691L511.469,120.282z"/>
+<g>
+	<polygon style="fill:#FF4B55;" points="282.483,88.276 229.517,88.276 229.517,229.517 0,229.517 0,282.483 229.517,282.483 
+		229.517,423.724 282.483,423.724 282.483,282.483 512,282.483 512,229.517 282.483,229.517 	"/>
+	<path style="fill:#FF4B55;" d="M24.793,421.252l186.583-121.114h-32.428L9.224,410.31
+		C13.377,415.157,18.714,418.955,24.793,421.252z"/>
+	<path style="fill:#FF4B55;" d="M346.388,300.138H313.96l180.716,117.305c5.057-3.321,9.277-7.807,12.287-13.075L346.388,300.138z"
+		/>
+	<path style="fill:#FF4B55;" d="M4.049,109.475l157.73,102.387h32.428L15.475,95.842C10.676,99.414,6.749,104.084,4.049,109.475z"/>
+	<path style="fill:#FF4B55;" d="M332.566,211.862l170.035-110.375c-4.199-4.831-9.578-8.607-15.699-10.86L300.138,211.862H332.566z"
+		/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+		      <p>United Kingdom</p>
+		    </button>
+		    <button class="country" value="India">
+		      <svg id="Layer_1" x="0px" y="0px" style="enable-background:new 0 0 512 512;" xml:space="preserve" viewBox="0 0 512 512" class="flag">
+<path style="fill:#FAB446;" d="M473.655,88.276H38.345C17.167,88.276,0,105.443,0,126.621v73.471h512v-73.471
+	C512,105.443,494.833,88.276,473.655,88.276z"/>
+<path style="fill:#73AF00;" d="M0,385.379c0,21.177,17.167,38.345,38.345,38.345h435.31c21.177,0,38.345-17.167,38.345-38.345
+	v-73.471H0V385.379z"/>
+<rect y="200.09" style="fill:#F5F5F5;" width="512" height="111.81"/>
+<g>
+	<path style="fill:#41479B;" d="M256,303.448c-26.164,0-47.448-21.284-47.448-47.448s21.284-47.448,47.448-47.448
+		s47.448,21.284,47.448,47.448S282.164,303.448,256,303.448z M256,217.379c-21.298,0-38.621,17.323-38.621,38.621
+		s17.323,38.621,38.621,38.621s38.621-17.323,38.621-38.621S277.298,217.379,256,217.379z"/>
+	<circle style="fill:#41479B;" cx="256" cy="256" r="5.379"/>
+	<polygon style="fill:#41479B;" points="256,256.807 242.33,258.187 212.966,256.807 212.966,255.193 242.33,253.813 256,255.193 	
+		"/>
+	<polygon style="fill:#41479B;" points="256,256.807 269.67,258.187 299.034,256.807 299.034,255.193 269.67,253.813 256,255.193 	
+		"/>
+	<polygon style="fill:#41479B;" points="255.193,256 253.813,242.33 255.193,212.966 256.807,212.966 258.187,242.33 256.807,256 	
+		"/>
+	<polygon style="fill:#41479B;" points="255.193,256 253.813,269.67 255.193,299.034 256.807,299.034 258.187,269.67 256.807,256 	
+		"/>
+	<polygon style="fill:#41479B;" points="255.43,256.57 244.788,247.881 225,226.141 226.141,225 247.881,244.788 256.57,255.43 	"/>
+	<polygon style="fill:#41479B;" points="255.43,256.57 264.119,267.212 285.859,287 287,285.859 267.212,264.119 256.57,255.43 	"/>
+	<polygon style="fill:#41479B;" points="255.43,255.43 264.119,244.788 285.859,225 287,226.141 267.212,247.881 256.57,256.57 	"/>
+	<polygon style="fill:#41479B;" points="255.43,255.43 244.788,264.119 225,285.859 226.141,287 247.881,267.212 256.57,256.57 	"/>
+	<polygon style="fill:#41479B;" points="256.309,256.746 244.207,263.252 216.551,273.214 215.933,271.723 242.534,259.211 
+		255.691,255.254 	"/>
+	<polygon style="fill:#41479B;" points="256.309,256.746 269.466,252.789 296.067,240.277 295.449,238.786 267.793,248.748 
+		255.691,255.254 	"/>
+	<polygon style="fill:#41479B;" points="255.254,256.309 248.748,244.207 238.786,216.551 240.277,215.933 252.789,242.534 
+		256.746,255.691 	"/>
+	<polygon style="fill:#41479B;" points="255.254,256.309 259.211,269.466 271.723,296.067 273.214,295.449 263.252,267.793 
+		256.746,255.691 	"/>
+	<polygon style="fill:#41479B;" points="255.691,256.746 242.534,252.789 215.933,240.277 216.551,238.786 244.207,248.748 
+		256.309,255.254 	"/>
+	<polygon style="fill:#41479B;" points="255.691,256.746 267.793,263.252 295.449,273.214 296.067,271.723 269.466,259.211 
+		256.309,255.254 	"/>
+	<polygon style="fill:#41479B;" points="255.254,255.691 259.211,242.534 271.723,215.933 273.214,216.551 263.252,244.207 
+		256.746,256.309 	"/>
+	<polygon style="fill:#41479B;" points="255.254,255.691 248.748,267.793 238.786,295.449 240.277,296.067 252.789,269.466 
+		256.746,256.309 	"/>
+</g>
+<circle style="fill:#F5F5F5;" cx="256" cy="256" r="7.256"/>
+<circle style="fill:#41479B;" cx="256" cy="256" r="4.351"/>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+		      <p>India</p>
+		    </button>
+		  </div>
+		  <div id = "stickyXaxis" style="text-align: center;"></div>
+		  <div id="smChart" class="svg-container3" style="text-align: center;"></div>
+		</section>
+		
+		<!-- CONCLUSION -->
+		<section class="conclusion-section">
+		  <div class="header" id="conclusionSection">
+		    <h2 style = "text-align: center" class="sectionHeader">Bias-less news?</h2>
+		  </div>
+		    <p class="description">News articles have the potential to define perceptions and shape the general public opinion around different topics. At a time when women need allies more than ever before, news outlets can be a powerful partner in fostering an unbiased public opinion about women. In practice, however, they are not.</p>
+		    <p class="description">For a given news outlet, the chart below shows the amount of gender bias and polarity used in headlines of that outlet. Bubbles represent outlets, and are sized by the size of their audience.</p>
+		    <p class="description">For each headline we measure <strong>polarity</strong> by using sentiment analysis, a machine learning technique that is used to detect emotional affect in text. In this analysis we chose to consider the emotional <strong>strength</strong> of each headline as a proxy for polarity (irrespective of whether the emotion is positive or negative). By aggregating the polarity scores of an outlet's headlines we can rank each outlet on the basis of their average polarity.</p>
+		    <p class="description">For each headline we measure <strong>bias</strong> by tracking the combined occurrence of gendered language and social stereotypes usually associated with women. Gendered language includes gendered pronouns (i.e. she, her, mrs, mis etc.) and gendered nouns (i.e. girl, spokeswoman, girlfriend etc.). Examples of words that we categorize as social stereotypes are <strong> slut </strong>, <strong>emotional</strong>, <strong>sensitive</strong>, or <strong>married</strong>, among many others. By counting these co-occurrences we are able to assign a gender bias score to each headline. For example, a recent headline by the <i>Daily Mail</i> reads:</p>
+		    <p class="description">'<strong>Woman</strong> reveals <strong>she</strong>'s thinking about dumping <strong>her</strong> boyfriend because of his close <strong>female</strong> friend'</p>
+		    <p class="description">This headline would get a bias score of 4. Finally, by aggregating all headline scores by news outlet we rank each outlet from most biased to least biased.</p>
+		  <hr class="methodSep">
+		  
+		  <h5 class="inputTitle">Methods</h4>
+		    <p class="methodDescription">The core data source for this visual exploration is a collection of 400,000 headlines retrieved from the Google News <a href=https://rapidapi.com/newscatcher-api-newscatcher-api-default/api/google-news/pricing target=_blank class=intextLink>API</a>. The analysis presented here covers the January 1st, 2010 to June 11th, 2021 timeframe. The data was processed and analyzed using the Python programming language. This visual essay was designed using the d3.js javascript package. The code used for the entire project, from data-collection and analysis to visualization and web-development can be found in our <a href=https://github.com/lnicoletti/womeninnews target=_blank class=intextLink>GitHub Repository</a>. For any questions or inquiries about this project please contact <a href=https://www.leonardonicoletti.com/about target=_blank class=intextLink>Leonardo Nicoletti</a> or <a href=https://twitter.com/sahitisarva target=_blank class=intextLink>Sahiti Sarva</a>.</p>
+		    <p class="methodDescription">Many thanks to <a href=https://pudding.cool/author/jan-diehm/ target=_blank class=intextLink>Jan Diehm</a> and <a href=https://pudding.cool/author/russell-goldenberg/ target=_blank class=intextLink>Russel Goldenberg</a> for supporting us throughout this process and to <a href=https://pudding.cool/ target=_blank class=intextLink>The Pudding</a> team for making it possible!</p>
+		</section>  
+		
+		<!-- TOOLTIPS -->
+		<svg id="tooltipHeadline"></svg>
+		<div id="tooltipInfo"></div>
+	</main>
+
+	<footer class='pudding-footer'>
+	
+		<div class='footer-recirc'>
+			<div class='footer-recirc__articles'></div>
+		</div>
+	
+		<div class='footer-company'>
+			<div class='footer-company__cta'>
+				<ul class='footer-company__cta-list'>
+					<li>
+						<a href='https://facebook.com/pudding.viz/'>
+							<svg width="24" height="24" fill="#000000" stroke="currentColor" stroke-width=".2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+							<p>FACEBOOK</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://twitter.com/puddingviz/'>
+							<svg width="24" height="24" fill="#000" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+							<p>TWITTER</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://www.instagram.com/the.pudding'>
+							<svg width="24" height="24" id="Layer_1" x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve" viewBox="0 0 24 24">
+<path d="M17,23H7c-3.3,0-6-2.7-6-6V7c0-3.3,2.7-6,6-6h10c3.3,0,6,2.7,6,6v10C23,20.3,20.3,23,17,23z M7,3C4.8,3,3,4.8,3,7v10
+	c0,2.2,1.8,4,4,4h10c2.2,0,4-1.8,4-4V7c0-2.2-1.8-4-4-4H7z"/>
+<path d="M12,17c-1.1,0-2.1-0.3-3-1c-1.1-0.8-1.8-2-2-3.3C6.7,10,8.6,7.4,11.3,7c0.5-0.1,1-0.1,1.5,0c2.2,0.3,3.9,2,4.2,4.2l0,0
+	c0.2,1.3-0.1,2.6-0.9,3.7c-0.8,1.1-2,1.8-3.3,2C12.5,16.9,12.3,17,12,17z M12,9c-0.1,0-0.3,0-0.4,0c-1.6,0.2-2.8,1.8-2.5,3.4
+	c0.2,1.6,1.8,2.8,3.4,2.5c0.8-0.1,1.5-0.5,2-1.2s0.7-1.4,0.6-2.2l0,0c-0.2-1.3-1.2-2.3-2.5-2.5C12.3,9,12.2,9,12,9z"/>
+<path d="M17.5,7.5c-0.3,0-0.5-0.1-0.7-0.3c-0.1-0.1-0.2-0.2-0.2-0.3c-0.1-0.1-0.1-0.2-0.1-0.4c0-0.3,0.1-0.5,0.3-0.7
+	c0.4-0.4,1-0.4,1.4,0c0.2,0.2,0.3,0.4,0.3,0.7c0,0.1,0,0.3-0.1,0.4s-0.1,0.2-0.2,0.3C18,7.4,17.8,7.5,17.5,7.5z"/>
+</svg>
+							<p>INSTAGRAM</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://patreon.com/thepudding/'>
+							<svg id="Layer_1" width="24" height="24" x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve" viewBox="0 0 24 24">
+<g>
+
+		<path fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" d="
+		M15.7,3.3c-3.7,0-6.8,3-6.8,6.8c0,3.7,3,6.7,6.8,6.7c3.7,0,6.7-3,6.7-6.7C22.4,6.3,19.4,3.3,15.7,3.3"/>
+
+		<rect x="3.7" y="3.3" stroke-linecap="round" stroke-linejoin="round" width="3.3" height="18"/>
+</g>
+</svg>
+							<p>PATREON</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://pudding.cool/about'>
+							<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>
+							<p>ABOUT</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://pudding.cool/privacy/'>
+							<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+							<p>PRIVACY</p>
+						</a>
+					</li>
+					<li>
+						<a href='http://eepurl.com/czym6f'>
+							<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+							<p>NEWSLETTER</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://pudding.cool/feed/index.xml'>
+							<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+							<p>RSS</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+	
+			<div class='footer-company__about'>
+				<svg id="wordmark" x="0px" y="0px" style="enable-background:new 0 0 192.6 50;" xml:space="preserve" viewBox="0 0 192.6 50">
+<g>
+	<path class="st0" d="M150.1,9.5c1.5,0,2.8,1.3,2.8,2.8s-1.3,2.8-2.8,2.8s-2.8-1.3-2.8-2.8S148.6,9.5,150.1,9.5z"/>
+	<path class="st0" d="M147.2,17.3h5.6v18.2h-5.6V17.3z"/>
+	<path class="st0" d="M77.1,9.5h-1.9h-7v19.3v6.7h5.6v-6.7v-1.4h1.4h1.9c4.9,0,8.9-4,8.9-8.9S82.1,9.5,77.1,9.5z M77.1,21.8h-1.9
+		h-1.4v-1.4v-3.8v-1.4h1.4h1.9c1.8,0,3.3,1.5,3.3,3.3S79,21.8,77.1,21.8z"/>
+	<path class="st0" d="M105.7,17.6h-5.6v8.9c0,1.8-1.5,3.3-3.3,3.3s-3.3-1.5-3.3-3.3v-8.9h-5.6v8.9c0,4.9,4,8.9,8.9,8.9
+		s8.9-4,8.9-8.9V17.6z"/>
+	<path class="st0" d="M164.1,17.6c-4.9,0-8.9,4-8.9,8.9v8.9h5.6v-8.9c0-1.8,1.5-3.3,3.3-3.3s3.3,1.5,3.3,3.3v8.9h5.6v-8.9
+		C173,21.6,169,17.6,164.1,17.6z"/>
+	<path class="st0" d="M119.7,16.2v1.4h-1.4h-1.9c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h7V16.2V9.5l-5.6,3.3
+		C119.7,12.8,119.7,16.2,119.7,16.2z M119.8,24.6v3.8v1.4h-1.4h-1.9c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9h1.4V24.6z"/>
+	<path class="st0" d="M139.3,16.2v1.4h-1.4H136c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h7V16.2V9.5l-5.6,3.3V16.2z M139.4,24.6v3.8
+		v1.4h-1.5H136c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9h1.4v1.4H139.4z"/>
+	<path class="st0" d="M183.7,17.6c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h1.4v1.4v0.9v1.4v1.4c0,1.8-1.5,3.3-3.3,3.3
+		s-3.3-1.5-3.3-3.3V38l-5.6,3.3c0.4,4.5,4.2,8.1,8.9,8.1c4.9,0,8.9-4,8.9-8.9v-1.4v-2.3V17.6h-7H183.7z M187,23.4v1.4v3.8V30h-1.4
+		h-1.9c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9C185.6,23.4,187,23.4,187,23.4z"/>
+	<path class="st0" d="M28.6,17.6c-1.2,0-2.3,0.2-3.3,0.6V9.5l-5.6,3.3v13.7v2v6.9h5.6v-6.9l0,0v-2c0-1.8,1.5-3.3,3.3-3.3
+		s3.3,1.5,3.3,3.3v8.9h5.6v-8.9C37.5,21.6,33.5,17.6,28.6,17.6z"/>
+	<path class="st0" d="M17.8,9.5H0v5.6h6.1v20.3h5.6V15.1h6.1V9.5z"/>
+	<path class="st0" d="M48.3,30.2c-0.4,0-1.2-0.1-1.8-0.4l5.2-2.1l5.6-2.3l-1-2.3l-0.1-0.2c-0.1-0.3-0.3-0.6-0.5-1
+		c-0.1-0.1-0.1-0.2-0.2-0.3c0,0,0-0.1-0.1-0.1l-0.1-0.1l-0.1-0.1c-1.6-2.2-4-3.5-6.7-3.7l0,0h-0.6c-4.9,0-8.9,4-8.9,8.9
+		c0,0.4,0,0.9,0.1,1.4l0,0V28c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0.3,0.1,0.5,0.2,0.8v0.1v0.1c0.1,0.3,0.2,0.7,0.4,1v0.1v0.1
+		c0.1,0.3,0.3,0.5,0.4,0.8c0,0.1,0.1,0.1,0.1,0.2l0,0c0.1,0.2,0.3,0.4,0.4,0.6c0,0,0,0,0,0.1c0,0,0,0.1,0.1,0.1l0.1,0.1
+		c1.7,2.1,4.4,3.4,7.2,3.4h6.1v-5.2C54.5,30.2,50.6,30.2,48.3,30.2L48.3,30.2z M56.2,22.9L56.2,22.9L56.2,22.9z M44.6,25.7
+		L44.6,25.7l-0.2,0.1c0.2-1.9,1.8-3.5,3.7-3.5c0.9,0,1.8,0.4,2.4,0.9L46.2,25L44.6,25.7L44.6,25.7z"/>
+</g>
+</svg>
+				<p class='footer-company__description'><a href='https://pudding.cool'>The Pudding</a> is a digital publication
+					that
+					explains ideas debated in culture with visual essays.</p>
+			</div>
+	
+		</div>
+	</footer>
+
+
+	<script src='https://pudding.cool/assets/scripts/d3.v6.0.0.min.js'></script>
+	<script src='bundle.js?version=1631638190893' async></script>
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+
+</html>
