@@ -1867,7 +1867,7 @@ function init() {
 								.attr("fill", mainColor)
 								.attr("r", radius)
 								.attr("opacity", "0.5")
-								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg, col))
+								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg, col, minDate, maxDate, visHeight))
 								.on("mouseleave", (event, d) => {
 												d3.selectAll(".timeRuler").remove()
 												tooltip
@@ -1934,9 +1934,18 @@ function init() {
 	
 			}
 	
-			function timeRuler(event, d, g, svg, col) {
+			function timeRuler(event, d, g, svg, col, minDate, maxDate, visHeight) {
+
+				//console.log(data[0].rates[0].date, "data in temporal chart")
 
 				var margin = ({top: 150, bottom: 20, left: 40, right: 40});
+
+				// let minDate = data[0].rates[0].date
+				// var maxDate = data[0].rates[data[0].rates.length - 1].date
+
+				var x = d3.scaleTime()
+					.domain([minDate, maxDate])
+					.range([0, col.bandwidth()])
 		
 	
 				const rulerg = g.append("g")
@@ -2043,6 +2052,8 @@ function init() {
 			// tooltip functions
 			//// area charts hover
 			function showTooltip(event, d) {
+
+				console.log("entered show tooltip in temporal chart")
 				
 				d3.selectAll(".wordArea").attr("opacity", 0.25)
 				d3.selectAll(".wordLine").attr("opacity", 0.4)
