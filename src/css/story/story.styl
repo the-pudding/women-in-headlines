@@ -190,6 +190,7 @@ h1 {
     font-size:36px;
     opacity: 0.9;
     font-family: $barlow;
+    max-width: 20rem;
     text-transform: uppercase;
 }
 
@@ -312,7 +313,9 @@ ul {
 .titleArt {
   display: flex;
   flex-direction: row;
-  margin-bottom: 4rem;
+  margin-top: 2rem;
+  height: 90vh;
+  margin-bottom: 5rem
 }
 
 .titlewords {
@@ -331,7 +334,7 @@ ul {
 
 .titleCredits {
   width: 30%;
-  padding: 0 2rem;
+  padding: 10rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -920,13 +923,13 @@ article {
   margin-bottom: 1rem;
   background-color: #FEFAF1;
   transition: background-color 250ms ease-in-out;
-  max-width: 15vw;
+  max-width: 20vw;
   
   text-align: left;
   /* text-anchor: middle; */
   color: #282828;
   /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
-  font-family: sans-serif;
+  font-family: $barlow;
   font-size: 16px;
   margin-bottom: 0;
   transform:translateY(100vh)
@@ -1029,6 +1032,8 @@ article {
 .stackedChartCountries {
   margin-bottom:20px;
   margin-top:30px;
+  font-weight: 900;
+  font-family: $barlow;
   transform: translate(10px, 80px);
   max-width: 13px;
   text-align: center;
@@ -1040,7 +1045,7 @@ article {
 .stackedChartTicks {
   font-weight:900px;
   font-size:12px;
-  font-family: Arial, Helvetica, sans-serif;
+  // font-family: Arial, Helvetica, sans-serif;
   /* font-style: bold; */
   text-transform: uppercase;
   fill: #282828;
