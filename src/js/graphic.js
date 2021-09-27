@@ -94,6 +94,7 @@ function init() {
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
 			d3.csv("./assets/data/word_themes_rank.csv", d3.autoType),
 			d3.csv("./assets/data/words_theme_freq.csv", d3.autoType)
+
 		  ])
 			.then((datasets) => {
 				// define each dataset
