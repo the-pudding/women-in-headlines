@@ -1,9 +1,6 @@
 /* global d3 */
 function resize() { }
 
-	
-	
-
 function init() {
 
 	    // constants for charts
@@ -99,7 +96,7 @@ function init() {
 				let polComparison = datasets[3]
 				let dataWords = datasets[4]
 				let themes = datasets[5]
-				
+	
 				// 1) stacked bars chart
 				renderStackedBars(dataWords, themes)
 				// 1) lollipop chart
@@ -122,7 +119,7 @@ function init() {
 					d3.select(".mainContainer").remove()
 					d3.select(".stickyAxis").remove()
 					let country = d3.select(this).property("value")
-					//console.log(country)
+					console.log(country)
 					renderTempChart(tempWords, filter_years, country, variable)
 				})
 				
@@ -130,8 +127,8 @@ function init() {
 				// console.log("hd", headlinesSite)
 				populateDropdown(headlinesSite, "#countrydropdown", "country_of_pub")
 				populateDropdown(headlinesSite, "#pubdropdown", "site")
-				drawBubbleChart(headlinesSite, headlines, bubbleChartB, "bias")
-				drawBubbleChart(headlinesSite, headlines, bubbleChartP, "polarity")
+				drawBubbleChart(headlinesSite, bubbleChartB, "bias")
+				drawBubbleChart(headlinesSite, bubbleChartP, "polarity")
 			})
 	
 			// Sticky timeline enabled only during temporal chart
@@ -269,7 +266,7 @@ function init() {
 				//console.log(dataBars)
 				
 				top10 = dataBars.filter(function(d,i){ return i<word_count })
-				//console.log(top10)
+				console.log(top10)
 	
 	
 				flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
@@ -371,7 +368,7 @@ function init() {
 				// data = data.filter(d=> Math.abs(d.difference) > 0.05)
 				// data = data.filter(d=>d.site_clean !== "dailysun.co.za")
 	
-				//console.log(data)
+				console.log(data)
 			
 			
 			  // Add X axis
@@ -621,7 +618,7 @@ function init() {
 				// grid data
 				var grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }))
 	
-				//console.log(grid)
+				console.log(grid)
 	
 				// row/col scales
 				var row = d3.scaleBand()
@@ -882,8 +879,8 @@ function init() {
 			 ]
 			 
 				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country))
-				//console.log("words")
-				//console.log(words)
+				console.log("words")
+				console.log(words)
 				words = words.map(d=> {
 					return {
 						year: d.year,
@@ -912,8 +909,8 @@ function init() {
 					col,
 					})
 				)
-				// console.log("test")
-				// console.log(data)
+				console.log("test")
+				console.log(data)
 	
 				// same x-scale for all charts
 				var minDate = data[0].rates[0].date
@@ -949,7 +946,12 @@ function init() {
 					})
 				)
 	
-			
+				// console.log(words)
+				// console.log(freqByWord)
+				// console.log(data)
+				// console.log(minDate, maxDate)
+				// console.log(wordToScaleAndArea)
+	
 				// draw the chart
 				// create and select an svg element that is the size of the bars plus margins 
 				const svg = d3.select("div#smChart")
@@ -1061,7 +1063,12 @@ function init() {
 						.call(xaxis)
 						// .attr("class", "SMaxisSticky")
 						.call(g=>g.selectAll(".tick")
-						
+						// .attr("color", (d, i) => i == 0 || i == 9 ? "grey": "none")
+						// .attr("opacity", (d, i) => i == 0 ||  i == 9 ? 1: 0)
+						// .attr("color", "grey")
+						// .attr('stroke-width', 2)
+						// .attr("font-weight", 800)
+						// .attr("font-size", 12)
 						)
 						.call(g => g.select('.domain').attr('stroke-width', 2).attr("color", "#282828"))//.attr("color", "grey")
 						// .call(g => g.select('.domain').remove())
@@ -1084,6 +1091,7 @@ function init() {
 								.selectAll("circle")
 								.data(dodge(eventsWorld.filter(d=>d.date<=maxDate), {radius: radius * 2 + padding, x: d => x(d.date)}))
 	
+				// console.log(dodge(eventsWorld, {radius: radius * 2 + padding, x: d => x(d.date)}))
 	
 				const circles = circleEvents
 								.join("circle")
@@ -1092,7 +1100,7 @@ function init() {
 								.attr("fill", mainColor)
 								.attr("r", radius)
 								.attr("opacity", "0.5")
-								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg, col))
+								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg))
 								.on("mouseleave", (event, d) => {
 												d3.selectAll(".timeRuler").remove()
 												tooltip
@@ -1112,7 +1120,41 @@ function init() {
 					const yaxis = d3.axisLeft(wordToScaleAndArea[d.word].y)
 						.ticks(2)
 						.tickSizeOuter(0)
+						// .tickSizeInner((d, i) => i == 0 ? 0: 10)
+						// .tickFormat((d, i) => i == 0 ? "": d);
+	
+						// .tickFormat((d, i) => i == 0 || i == 2 ? d: "");
 					
+					// const xaxis = d3.axisBottom(x)
+					//     .ticks(7)
+					//     .tickSizeOuter(0)
+					//     .tickFormat((d, i) => i == 0 || i == 9 ? d3.timeFormat('%Y')(new Date(d)): "");//.tickFormat(d3.format(".0s"))
+					
+					// group.call(yaxis)
+					//      .call(g=>g.selectAll(".tick").attr("color", "grey"))
+					//      .call(g => g.select('.domain').remove())
+						//  .call(g =>
+						//     g
+						//       .select(".tick:last-of-type text")
+						//       .clone()
+						//       .attr("x", col.bandwidth()/2)
+						//     //   .attr("y", +30)
+						//       .attr("text-anchor", "start")
+						//       .attr("font-weight", 800)
+						//       // .attr("font-weight", "bold")
+						//     //   .text("↑ more frequent"))
+						//     .text(d.word))
+	
+					
+					// group.append("g")
+					//      .attr("transform", `translate(0,${row.bandwidth()})`)
+					//      .call(xaxis).attr("class", "SMaxis")
+					//      .call(g=>g.selectAll(".tick")
+					//         .attr("color", (d, i) => i == 0 || i == 9 ? "grey": "none")
+					//         .attr("font-weight", 500))
+					//      .call(g => g.select('.domain').remove())
+	
+	
 					group.append("g").attr("class", "catLabel").append("text")
 					.attr("x", -10)
 					.attr("y", row.bandwidth())
@@ -1125,9 +1167,7 @@ function init() {
 	
 			}
 	
-			function timeRuler(event, d, g, svg, col) {
-
-				var margin = ({top: 150, bottom: 20, left: 40, right: 40});
+			function timeRuler(event, d, g, svg) {
 		
 	
 				const rulerg = g.append("g")
@@ -1138,16 +1178,11 @@ function init() {
 								.attr("y", 0)
 								.attr("height", visHeight)
 	
-							//	console.log(new Date("2021"))
+								console.log(new Date("2021"))
 			
 				// rect dimensions
 				const boxWidth = 200
 				const boxHeight = 100
-
-				// var col = d3.scaleBand()
-				// 	.domain(d3.range(cols))
-				// 	.range([0, visWidth])
-				// 	.paddingInner(0.2) 
 				
 				tooltip
 					.transition()
@@ -1157,7 +1192,9 @@ function init() {
 					.style("height", boxHeight)
 					
 				tooltip
-				
+					// .html(`<b>${d.title}</b><br>
+					// <b>${format(+d[metric_t])+"</b> "+legend_label_t.toLowerCase()}<br>
+					// <b>${format(+d[metric_p])+"</b> "+legend_label_p.toLowerCase()}`)
 					.html(`<b>${d3.timeFormat("%m/%Y")(d.date)}</b><br>
 					<i>${(d.name)}`)
 					.attr('transform', `translate(${-col(0)*3}, -${margin.top/3})`)
@@ -1165,7 +1202,27 @@ function init() {
 					.style("top", event.pageY + "px")
 					.attr("class", "tooltipTL")
 			
+				// const textBox = g.append("g")
+				//                   .append("rect")
+				//                   .attr('transform', `translate(${col(0)}, -${d.uid * 12 + margin.top/1.5})`)
+				//                   .attr("x", x(d.date)-boxWidth/2)
+				//                   .attr("y", 0)
+				//                   .attr("width", boxWidth)
+				//                   .attr("height", boxHeight)
+				//                 //   .attr("fill", "grey")
+				//                 //   .attr("fill", "none")
+				//                   .attr("stroke", "grey")
+				//                   .attr("opacity", 0.5)
+				//                 //   .attr("class", "timeRuler")
 			
+				// const text = g.append("g")
+				//                     .append("text")
+				//                     .text(d.name)
+				//                     .attr("x", x(d.date)-boxWidth/2)
+				//                     .attr("y", 0)
+				//                     // .attr("font-family", "Georgia")
+				//                     .attr("font-size", "12px")
+				//                     .style("color", "white")
 			}
 			
 			// function for beeswarm timeline
@@ -1223,8 +1280,8 @@ function init() {
 				d3.selectAll(".wordText").attr("opacity", 0.5)
 				// console.log(d3.max(d.rates, c=>c.date))
 				// console.log(d3.max(d.rates, c=>c.frequency))
-				// console.log(d.rates)
-				// console.log(d.rates[d.rates.length-1].frequency)
+				console.log(d.rates)
+				console.log(d.rates[d.rates.length-1].frequency)
 	
 				const endDate = d3.max(d.rates, c=>c.date)
 				const endFreq = d.rates[d.rates.length-1].frequency
@@ -1263,8 +1320,6 @@ function init() {
 			// BUBBLE CHART
 			// tooltip function for the bubble chart
 			function showTooltipHeadline(ttip, text1, text2, text3, coords, data, polarity, c) {
-
-				console.log("entered show tooltip function")
 				// set position of tooltip
 				let x = coords[0]-120;
 				let y = coords[1]-200;
@@ -1292,9 +1347,7 @@ function init() {
 				// console.log(data)
 	
 				// find a random headline
-				console.log( Math.floor(Math.random() * data.length))
-				let randHeadline = Math.floor(Math.random()*data.length)
-				console.log(randHeadline)
+				randHeadline = Math.floor(Math.random() * data.length)
 				// console.log(d3.timeFormat("%d/%m/%Y")(new Date(data[randHeadline].time)))
 				// console.log(data[randHeadline].subtitle)
 	
@@ -1372,7 +1425,7 @@ function init() {
 			}
 	
 			// function to draw the first chart
-			function drawBubbleChart(data, headlines, chart, variable) {
+			function drawBubbleChart(data, chart, variable) {
 				
 				var ttip = variable //"ttip"
 				// console.log(chart, variable)
@@ -1414,7 +1467,7 @@ function init() {
 					}
 				})
 	
-				//console.log("fil data", filterData)
+				console.log("fil data", filterData)
 				// create chart horizontal scale
 				// var xScale = d3.scaleLinear()
 				var xScale = d3.scaleSymlog()
@@ -1469,7 +1522,6 @@ function init() {
 											.selectAll('image')
 											.data(filterData);
 					
-						//console.log("headlines", headlines)
 							// append the circles and define style properties and hover events (tooltip)
 							var newCircles = circles.join('circle')
 								.attr("class", "forceCircles")
@@ -1642,8 +1694,8 @@ function init() {
 				// console.log(circles._groups[0].filter(d=>d.__data__.country_of_pub.toLowerCase().match(selection.toLowerCase())))
 	
 				// allCircs = Array.from(d3.selectAll(".forceCircles")._groups[0])
-				let allCircs = d3.selectAll(".forceCircles")
-				let allLogos = d3.selectAll(".forceLogos")
+				allCircs = d3.selectAll(".forceCircles")
+				allLogos = d3.selectAll(".forceLogos")
 				
 				// console.log(allCircs.filter(d=>d.__data__.country_of_pub.toLowerCase() === selection))
 				// console.log("up",circles)
@@ -1670,8 +1722,8 @@ function init() {
 				// console.log(circles._groups[0].filter(d=>d.__data__.country_of_pub.toLowerCase() === selection))
 				// console.log(circles._groups[0].filter(d=>d.__data__.site.toLowerCase().match(selection.toLowerCase())))
 	
-				let allCircs = d3.selectAll(".forceCircles")
-				let allLogos = d3.selectAll(".forceLogos")
+				allCircs = d3.selectAll(".forceCircles")
+				allLogos = d3.selectAll(".forceLogos")
 	
 				// console.log(filterData.map(d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()))
 	
@@ -1710,7 +1762,7 @@ function init() {
 				// height = +svg.attr("height")+1000 - margin.top - margin.bottom,
 				// g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 			  
-				//console.log(data)
+				console.log(data)
 				// console.log(themes.filter(d=>d.word==="accuse")[0].theme)
 			
 				// stack data
@@ -1720,7 +1772,7 @@ function init() {
 			  (data)
 				.map(d => (d.forEach(v => v.key = d.key), d))
 			  
-				//console.log(series)
+				console.log(series)
 				// console.log(series.length)
 				// console.log(series.map(d=>d[1]))
 			
@@ -1742,7 +1794,7 @@ function init() {
 				// .range(d3.schemeSpectral[series.length])
 				// .unknown("#ccc")
 			
-				//console.log([series.length, 0])
+				console.log([series.length, 0])
 				// console.log(d3.max(series, d => d3.max(d, d => d[1])))
 			
 				var xAxis = g => g
@@ -1788,15 +1840,13 @@ function init() {
 					  .selectAll("rect")
 					  .data(d => d)
 					  
-				console.log(themes)
 				var rect = rects.join("rect")
 						.attr("class", d=>d.key)
 						// .attr("id", "stackedRects")
 						// .attr("fill", "#FEFAF1")
-						//.attr("xlink:href", d => console.log(d))
-						.attr("fill", d=>themes.filter(c=>c.word==d.key).theme==="female_bias"?"#0BBF99":
-										 themes.filter(c=>c.word===d.key).theme==="empowerement"?"#F7DC5B":
-										 themes.filter(c=>c.word===d.key).theme==="violence"?"#F2C5D3":"#ccc")
+						.attr("fill", d=>themes.filter(c=>c.word===d.key)[0].theme==="female_bias"?"#0BBF99":
+										 themes.filter(c=>c.word===d.key)[0].theme==="empowerement"?"#F7DC5B":
+										 themes.filter(c=>c.word===d.key)[0].theme==="violence"?"#F2C5D3":"#ccc")
 						// .attr("fill", d => color(d.key))
 						.attr("stroke", "#FEFAF1")
 						.attr("stroke-width", "0.2px")
@@ -1899,7 +1949,7 @@ function init() {
 					$('.stackedBarTextAnnotation').on('mouseover', function () {
 						// var word = $(this)[0].innerText.toLowerCase()
 						var word = $(this)[0].attributes.value.value
-						//console.log(word)
+						console.log(word)
 						highlightWords(word, "inTextHover")
 						// d3.select("#rectsBlock").select("#barchart").select('svg rect[data-key='+key+']').style('fill', 'brown');
 					})
@@ -1913,7 +1963,7 @@ function init() {
 					$('.stackedBarThemeAnnotation').on('mouseover', function () {
 						// var word = $(this)[0].innerText.toLowerCase()
 						var theme = $(this)[0].attributes.value.value
-						//console.log(theme)
+						console.log(theme)
 						// highlightThemes(theme)
 						d3.selectAll(".stackedBars")
 								.selectAll("rect")//.attr("fill", d=>d.key==="man"?"red":"blue")
@@ -1965,7 +2015,7 @@ function init() {
 	
 			// tooltip function for the second chart
 			function tooltipCluster(word, freq, theme, country, coords, pc_freq) {
-				//console.log(word)
+				console.log(word)
 				d3.select("#tooltipCluster")
 					.style("display", "block")
 					.style("top", (coords[1]+10) + "px")
@@ -1977,7 +2027,7 @@ function init() {
 			}
 			// info (bottom right methodology info) tooltip function for the first chart
 			function tooltipInfo(width, height) {
-				//console.log("working")
+				console.log("working")
 				info = d3.select("#tooltipInfo")
 					.style("display", "block")
 					.style("visibility", "visible")
@@ -2036,7 +2086,7 @@ function init() {
 							cs.push(d.cluster);
 						}
 				});
-				//console.log(cs)
+				console.log(cs)
 				
 				n = data.length, // total number of nodes
 				m = cs.length; // number of distinct clusters
@@ -2048,7 +2098,7 @@ function init() {
 				for (var i = 0; i<n; i++){
 					nodes.push(create_nodes(data,i));
 				}
-				//console.log(nodes)
+				console.log(nodes)
 	
 				// select html element, add circles to chart, and define hover event (tooltip showing word frequency)
 				var svg = wordClusters
@@ -2240,11 +2290,11 @@ function init() {
 				const links = data.links.map(d => Object.create(d))
 				const nodes = data.nodes.map(d => Object.create(d))
 			
-				//console.log(data)
+				console.log(data)
 			
 				// define scales
 				extentWordFreq = d3.extent(nodes, d=>d.perc_freq)
-							//console.log(extentWordFreq)
+							console.log(extentWordFreq)
 				
 				// scale for node size
 				var bubbleRadius = d3.scaleSqrt()
@@ -2254,7 +2304,7 @@ function init() {
 								.range([0.1, 4])
 				
 				extentLinkWeight = d3.extent(links, d=>d.weight)
-						//console.log(extentLinkWeight)
+						console.log(extentLinkWeight)
 				// scale for link thickness
 				var linkWeight = d3.scaleLinear()
 								.domain(extentLinkWeight)
@@ -2396,7 +2446,7 @@ function init() {
 				
 				// function to create interaction link between bar charts on the left and networks
 				function barInteract(d) {
-					//console.log(d.id)
+					console.log(d.id)
 					word = d.id
 			
 					// 1) change opacity of other nodes
@@ -2408,7 +2458,7 @@ function init() {
 					y = parseInt(d3.select(bars).select('rect#bar'+d.id).attr("y")) + 86
 					fill = d3.select(bars).select('rect#bar'+d.id).attr("fill")
 			
-					//console.log(x, y)
+					console.log(x, y)
 					
 					// select the bar that matches the specific node being hovered on and show information about frequency
 					d3

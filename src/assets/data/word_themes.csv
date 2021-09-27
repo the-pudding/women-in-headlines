@@ -1,1232 +1,407 @@
-,word,theme,rank,count
-0,abandon,No theme,392.0,300
-1,abduct,No theme,581.0,170
-2,abortion,empowerement,23.0,889
-3,abuse,violence,19.0,2074
-4,accident,No theme,170.0,608
-5,accidentally,No theme,429.0,280
-6,account,No theme,655.0,147
-7,accuse,No theme,9.0,3636
-8,accuser,No theme,762.0,124
-9,acid,No theme,560.0,179
-10,act,No theme,73.0,1073
-11,action,No theme,313.0,391
-12,activist,empowerement,38.0,513
-13,actor,empowerement,29.0,724
-14,actress,female stereotypes,19.0,1333
-15,actually,No theme,395.0,299
-16,add,No theme,431.0,279
-17,address,No theme,782.0,121
-18,admit,No theme,59.0,1215
-19,adopt,No theme,399.0,296
-20,adorable,female stereotypes,52.0,462
-21,advice,No theme,186.0,578
-22,affair,female stereotypes,46.0,522
-23,affect,No theme,756.0,125
-24,age,No theme,41.0,1500
-25,aged,No theme,524.0,207
-26,agent,No theme,736.0,128
-27,agony,No theme,767.0,123
-28,ahead,No theme,366.0,322
-29,aim,No theme,665.0,144
-30,airport,No theme,344.0,352
-31,aka,No theme,944.0,15
-32,alabama,No theme,714.0,132
-33,album,No theme,191.0,562
-34,alia,No theme,407.0,292
-35,alight,No theme,921.0,18
-36,alive,No theme,123.0,771
-37,allegation,violence,70.0,268
-38,allege,violence,37.0,1078
-39,alleged,violence,75.0,169
-40,allegedly,violence,21.0,1780
-41,allow,No theme,120.0,778
-42,amanda,No theme,405.0,293
-43,amazing,No theme,250.0,473
-44,amber,No theme,681.0,139
-45,angry,No theme,294.0,419
-46,anniversary,No theme,422.0,283
-47,answer,No theme,227.0,501
-48,anti,No theme,168.0,614
-49,apartment,No theme,474.0,250
-50,apologise,No theme,391.0,301
-51,apologize,No theme,456.0,261
-52,app,No theme,244.0,479
-53,appeal,No theme,439.0,271
-54,appoint,empowerement,51.0,169
-55,area,No theme,648.0,149
-56,arizona,No theme,572.0,173
-57,armed,violence,84.0,17
-58,army,No theme,151.0,668
-59,arrest,violence,7.0,4257
-60,art,No theme,115.0,799
-61,artist,empowerement,22.0,935
-62,asian,No theme,306.0,404
-63,assam,No theme,529.0,201
-64,assault,violence,15.0,2299
-65,athlete,No theme,293.0,420
-66,attack,violence,8.0,3690
-67,attacker,No theme,844.0,110
-68,attempt,No theme,139.0,711
-69,attend,No theme,432.0,279
-70,attorney,No theme,829.0,114
-71,author,empowerement,37.0,529
-72,authority,empowerement,54.0,155
-73,auto,No theme,614.0,159
-74,avoid,No theme,280.0,435
-75,award,empowerement,8.0,1601
-76,baby,female stereotypes,1.0,6595
-77,bachelor,No theme,533.0,196
-78,backlash,No theme,512.0,221
-79,bad,No theme,47.0,1399
-80,bae,No theme,903.0,20
-81,bag,No theme,207.0,536
-82,bail,violence,81.0,52
-83,bakkie,No theme,998.0,12
-84,ball,No theme,470.0,253
-85,ban,No theme,61.0,1203
-86,band,No theme,666.0,144
-87,basketball,No theme,530.0,200
-88,bathabile,No theme,922.0,18
-89,bathroom,No theme,830.0,114
-90,battle,violence,30.0,1247
-91,bay,No theme,879.0,45
-92,bbc,No theme,503.0,225
-93,beach,No theme,319.0,384
-94,bear,No theme,38.0,1561
-95,beat,violence,22.0,1761
-96,beautiful,female stereotypes,26.0,926
-97,beauty,female stereotypes,24.0,1014
-98,bed,No theme,334.0,361
-99,begin,No theme,789.0,120
-100,behead,No theme,999.0,12
-101,believe,No theme,128.0,749
-102,bell,No theme,684.0,138
-103,benefit,No theme,450.0,266
-104,bid,No theme,401.0,295
-105,bieber,No theme,640.0,151
-106,bigg,No theme,541.0,192
-107,bikini,female stereotypes,59.0,268
-108,bill,No theme,117.0,785
-109,billboard,No theme,851.0,109
-110,bird,No theme,601.0,162
-111,birth,female stereotypes,11.0,2194
-112,bit,No theme,840.0,111
-113,bizarre,No theme,728.0,129
-114,black,No theme,11.0,3384
-115,blake,No theme,588.0,168
-116,blame,No theme,173.0,603
-117,blast,No theme,685.0,138
-118,blind,No theme,542.0,191
-119,blood,violence,62.0,389
-120,blow,No theme,819.0,116
-121,blue,No theme,281.0,433
-122,board,No theme,216.0,521
-123,body,female stereotypes,8.0,2819
-124,boity,No theme,927.0,17
-125,bollywood,No theme,251.0,473
-126,boost,No theme,945.0,15
-127,border,No theme,682.0,139
-128,boss,empowerement,19.0,962
-129,bottle,No theme,869.0,106
-130,bowl,No theme,566.0,175
-131,box,No theme,252.0,472
-132,boy,No theme,18.0,2439
-133,boyfriend,No theme,19.0,2404
-134,brain,No theme,131.0,728
-135,brave,No theme,341.0,356
-136,breast,female stereotypes,29.0,904
-137,bride,female stereotypes,49.0,487
-138,bridge,No theme,375.0,315
-139,brit,No theme,707.0,133
-140,britain,No theme,257.0,463
-141,bronx,No theme,353.0,343
-142,brother,No theme,37.0,1572
-143,brown,No theme,189.0,565
-144,brutal,No theme,590.0,167
-145,build,No theme,188.0,571
-146,building,No theme,768.0,123
-147,bull,No theme,724.0,130
-148,bullet,No theme,1000.0,12
-149,bully,No theme,171.0,608
-150,bump,No theme,536.0,194
-151,burn,violence,34.0,1107
-152,bury,No theme,653.0,148
-153,bush,No theme,700.0,134
-154,business,empowerement,17.0,1096
-155,bust,No theme,507.0,223
-156,butt,No theme,832.0,113
-157,camera,No theme,269.0,443
-158,camp,No theme,979.0,13
-159,campaign,No theme,82.0,989
-160,cancel,No theme,857.0,108
-161,cancer,No theme,25.0,2180
-162,candidate,No theme,329.0,368
-163,captain,No theme,442.0,270
-164,capture,No theme,402.0,295
-165,card,No theme,433.0,279
-166,cardiff,No theme,825.0,115
-167,care,female stereotypes,28.0,911
-168,career,empowerement,14.0,1149
-169,carpet,No theme,396.0,299
-170,carrie,No theme,694.0,135
-171,cash,No theme,670.0,143
-172,caste,No theme,658.0,146
-173,caster,No theme,880.0,43
-174,cctv,No theme,790.0,120
-175,ceiling,No theme,701.0,134
-176,celebrate,No theme,40.0,1524
-177,celebrity,No theme,175.0,602
-178,center,No theme,548.0,185
-179,ceo,empowerement,27.0,746
-180,challenge,No theme,144.0,701
-181,champion,No theme,416.0,287
-182,championship,No theme,591.0,167
-183,change,No theme,24.0,2221
-184,channel,No theme,837.0,112
-185,character,No theme,102.0,863
-186,charlotte,No theme,702.0,134
-187,chase,No theme,504.0,224
-188,cheat,female stereotypes,43.0,581
-189,chef,No theme,980.0,13
-190,cheryl,No theme,838.0,112
-191,chicago,No theme,321.0,378
-192,chief,empowerement,28.0,730
-193,child,female stereotypes,3.0,4847
-194,chinese,No theme,169.0,610
-195,choice,No theme,445.0,269
-196,choose,No theme,247.0,474
-197,chris,No theme,708.0,133
-198,christian,No theme,410.0,290
-199,christina,No theme,604.0,161
-200,christmas,No theme,162.0,634
-201,church,No theme,192.0,559
-202,cinema,No theme,671.0,143
-203,claim,No theme,13.0,3329
-204,clear,No theme,586.0,169
-205,clinic,No theme,959.0,14
-206,clip,No theme,773.0,122
-207,clothe,No theme,483.0,242
-208,coach,No theme,149.0,681
-209,cocaine,No theme,763.0,124
-210,code,No theme,715.0,132
-211,collapse,No theme,960.0,14
-212,college,No theme,104.0,850
-213,color,No theme,498.0,227
-214,colorado,No theme,641.0,151
-215,combat,No theme,364.0,323
-216,comedy,No theme,561.0,179
-217,comfort,No theme,852.0,109
-218,comic,No theme,649.0,149
-219,comment,No theme,132.0,728
-220,commission,No theme,552.0,183
-221,commit,female stereotypes,54.0,398
-222,community,No theme,380.0,310
-223,company,No theme,110.0,816
-224,complaint,No theme,565.0,176
-225,con,No theme,744.0,127
-226,concert,No theme,461.0,259
-227,confront,No theme,805.0,118
-228,congress,No theme,198.0,550
-229,control,No theme,246.0,475
-230,controversy,No theme,686.0,138
-231,convict,violence,57.0,539
-232,cookie,No theme,423.0,283
-233,cool,No theme,870.0,106
-234,cooper,No theme,716.0,132
-235,cop,violence,14.0,2382
-236,cortez,No theme,845.0,110
-237,costume,No theme,555.0,181
-238,council,No theme,820.0,116
-239,councillor,No theme,1001.0,12
-240,couple,No theme,185.0,580
-241,court,violence,16.0,2277
-242,crash,violence,24.0,1595
-243,crazy,female stereotypes,61.0,167
-244,creator,No theme,821.0,116
-245,credit,No theme,853.0,109
-246,crew,No theme,615.0,159
-247,cricket,No theme,487.0,239
-248,cricketer,No theme,554.0,182
-249,crime,violence,47.0,808
-250,critic,No theme,418.0,286
-251,critical,No theme,936.0,16
-252,criticise,No theme,846.0,110
-253,crown,No theme,750.0,126
-254,cruise,No theme,809.0,117
-255,crush,No theme,233.0,494
-256,cry,female stereotypes,33.0,770
-257,culture,No theme,316.0,389
-258,cup,No theme,99.0,870
-259,custody,No theme,610.0,160
-260,cut,No theme,67.0,1146
-261,cyrus,No theme,336.0,358
-262,dad,No theme,49.0,1364
-263,daily,No theme,810.0,117
-264,dalit,No theme,330.0,367
-265,dance,No theme,88.0,947
-266,dangerous,No theme,477.0,247
-267,dark,No theme,282.0,433
-268,date,No theme,26.0,2024
-269,daughter,female stereotypes,2.0,5270
-270,dead,violence,9.0,3471
-271,death,violence,3.0,5919
-272,debate,No theme,290.0,423
-273,debut,No theme,86.0,977
-274,decade,No theme,298.0,413
-275,decision,No theme,729.0,129
-276,declare,No theme,946.0,15
-277,deepika,No theme,525.0,207
-278,defence,No theme,914.0,19
-279,defend,violence,44.0,892
-280,defense,violence,79.0,124
-281,deliver,No theme,337.0,358
-282,demand,No theme,184.0,581
-283,democratic,No theme,751.0,126
-284,deny,No theme,84.0,981
-285,depression,No theme,479.0,245
-286,deputy,empowerement,58.0,24
-287,describe,No theme,411.0,290
-288,deserve,No theme,659.0,146
-289,design,No theme,314.0,390
-290,designer,No theme,301.0,411
-291,desperate,No theme,806.0,118
-292,devastate,No theme,1002.0,12
-293,diagnose,No theme,872.0,105
-294,diary,No theme,811.0,117
-295,die,violence,2.0,6744
-296,diego,No theme,569.0,174
-297,diet,No theme,464.0,257
-298,different,No theme,264.0,455
-299,dinner,No theme,709.0,133
-300,director,empowerement,15.0,1122
-301,disabled,No theme,478.0,247
-302,disappearance,No theme,737.0,128
-303,discover,No theme,205.0,538
-304,discrimination,No theme,738.0,128
-305,discuss,No theme,595.0,166
-306,disease,No theme,325.0,372
-307,dish,No theme,769.0,123
-308,disney,No theme,371.0,319
-309,district,No theme,703.0,134
-310,ditch,No theme,812.0,117
-311,divorce,female stereotypes,35.0,745
-312,dlamini,No theme,904.0,20
-313,doctor,empowerement,7.0,1697
-314,documentary,No theme,858.0,108
-315,doll,No theme,434.0,277
-316,domestic,female stereotypes,50.0,466
-317,dominate,No theme,770.0,123
-318,donald,No theme,147.0,692
-319,door,No theme,286.0,430
-320,double,No theme,218.0,519
-321,downton,No theme,859.0,108
-322,dowry,No theme,635.0,152
-323,drag,No theme,209.0,534
-324,dragon,No theme,497.0,228
-325,drama,female stereotypes,58.0,296
-326,draw,No theme,248.0,474
-327,dream,empowerement,18.0,1035
-328,dress,female stereotypes,12.0,1985
-329,drink,No theme,119.0,780
-330,driver,No theme,43.0,1459
-331,drown,violence,59.0,441
-332,drug,violence,27.0,1316
-333,drunk,No theme,197.0,552
-334,duchess,female stereotypes,63.0,129
-335,dump,No theme,393.0,300
-336,early,No theme,270.0,443
-337,earn,No theme,212.0,532
-338,east,No theme,381.0,310
-339,eastern,No theme,883.0,37
-340,education,empowerement,49.0,190
-341,egg,No theme,660.0,146
-342,elderly,No theme,153.0,661
-343,elect,No theme,382.0,310
-344,election,No theme,167.0,616
-345,embrace,No theme,1003.0,12
-346,emma,No theme,774.0,122
-347,emotional,female stereotypes,42.0,595
-348,employee,empowerement,42.0,456
-349,empower,empowerement,39.0,485
-350,empowerment,No theme,428.0,281
-351,engage,No theme,642.0,151
-352,engagement,No theme,465.0,257
-353,engineer,No theme,687.0,138
-354,england,No theme,260.0,461
-355,entrepreneur,empowerement,36.0,547
-356,entry,No theme,539.0,193
-357,episode,No theme,352.0,344
-358,equal,empowerement,44.0,316
-359,equality,empowerement,40.0,478
-360,escape,violence,56.0,587
-361,event,No theme,210.0,533
-362,evidence,No theme,981.0,13
-363,evil,No theme,725.0,130
-364,exam,No theme,576.0,171
-365,executive,No theme,739.0,128
-366,experience,No theme,217.0,520
-367,expert,empowerement,47.0,241
-368,explain,No theme,66.0,1147
-369,expose,No theme,643.0,151
-370,express,No theme,622.0,157
-371,facebook,No theme,62.0,1199
-372,fact,No theme,619.0,158
-373,factor,No theme,620.0,158
-374,fail,No theme,118.0,785
-375,fake,No theme,105.0,843
-376,fall,violence,17.0,2141
-377,fame,No theme,462.0,259
-378,family,female stereotypes,6.0,4057
-379,famous,No theme,254.0,468
-380,far,No theme,331.0,364
-381,farm,No theme,884.0,37
-382,farmer,No theme,672.0,143
-383,fashion,No theme,52.0,1312
-384,fast,No theme,303.0,409
-385,fat,No theme,136.0,717
-386,fatal,No theme,514.0,219
-387,fatally,No theme,372.0,318
-388,fate,No theme,1004.0,12
-389,father,No theme,21.0,2310
-390,favourite,No theme,847.0,110
-391,fear,female stereotypes,25.0,970
-392,feature,No theme,234.0,492
-393,feed,No theme,317.0,389
-394,feel,female stereotypes,18.0,1586
-395,feminism,No theme,721.0,131
-396,feminist,female stereotypes,39.0,634
-397,festival,No theme,271.0,443
-398,fiance,No theme,417.0,287
-399,field,No theme,386.0,309
-400,fight,violence,10.0,2819
-401,fighter,No theme,231.0,497
-402,figure,No theme,367.0,322
-403,file,No theme,228.0,501
-404,finale,No theme,567.0,175
-405,fire,violence,18.0,2091
-406,firefighter,No theme,982.0,13
-407,firm,No theme,795.0,119
-408,first,No theme,2.0,10644
-409,fit,No theme,453.0,264
-410,flash,No theme,717.0,132
-411,flee,No theme,516.0,218
-412,flood,No theme,887.0,27
-413,floor,No theme,376.0,314
-414,florida,No theme,65.0,1164
-415,focus,No theme,437.0,272
-416,food,No theme,121.0,776
-417,foot,No theme,157.0,641
-418,footage,No theme,592.0,167
-419,football,No theme,150.0,673
-420,forbe,No theme,730.0,129
-421,force,No theme,27.0,1950
-422,forget,No theme,245.0,479
-423,founder,empowerement,48.0,230
-424,fox,No theme,256.0,465
-425,fraud,violence,82.0,21
-426,freedom,empowerement,55.0,150
-427,fun,No theme,796.0,119
-428,fund,No theme,420.0,285
-429,funeral,No theme,360.0,330
-430,funny,No theme,397.0,299
-431,furious,No theme,722.0,131
-432,future,No theme,161.0,635
-433,gadot,No theme,255.0,467
-434,gain,No theme,826.0,115
-435,gal,female stereotypes,48.0,506
-436,gallery,No theme,983.0,13
-437,gandhi,No theme,267.0,449
-438,gang,violence,40.0,1005
-439,gangrape,violence,72.0,203
-440,gap,No theme,182.0,593
-441,garden,No theme,667.0,144
-442,gay,No theme,166.0,620
-443,gender,No theme,34.0,1655
-444,generation,No theme,679.0,140
-445,genital,No theme,551.0,184
-446,george,No theme,414.0,288
-447,gets,No theme,597.0,165
-448,ghost,No theme,577.0,171
-449,giant,No theme,783.0,121
-450,girlfriend,female stereotypes,27.0,923
-451,glasgow,No theme,690.0,137
-452,glass,No theme,240.0,481
-453,global,No theme,605.0,161
-454,globe,No theme,578.0,171
-455,goat,No theme,710.0,133
-456,gold,No theme,116.0,787
-457,golden,No theme,178.0,600
-458,golf,No theme,860.0,108
-459,gomez,No theme,557.0,180
-460,google,No theme,355.0,336
-461,gop,No theme,570.0,174
-462,gossip,female stereotypes,40.0,623
-463,government,No theme,261.0,460
-464,govt,No theme,347.0,350
-465,grace,female stereotypes,65.0,39
-466,grade,No theme,937.0,16
-467,graduate,empowerement,59.0,14
-468,grammy,No theme,549.0,185
-469,grandma,female stereotypes,62.0,140
-470,granny,No theme,947.0,15
-471,grant,No theme,961.0,14
-472,great,No theme,57.0,1243
-473,green,No theme,550.0,185
-474,grope,No theme,365.0,323
-475,ground,No theme,1005.0,12
-476,grow,No theme,106.0,839
-477,guard,No theme,606.0,161
-478,guest,No theme,562.0,178
-479,guide,No theme,447.0,268
-480,guilty,violence,46.0,847
-481,gun,violence,45.0,878
-482,guy,No theme,206.0,537
-483,hail,No theme,948.0,15
-484,hair,No theme,35.0,1618
-485,hall,No theme,488.0,239
-486,halloween,No theme,693.0,136
-487,handbag,No theme,1006.0,12
-488,hang,No theme,159.0,639
-489,harass,violence,55.0,667
-490,harassment,violence,32.0,1158
-491,harry,No theme,616.0,159
-492,haryana,No theme,491.0,233
-493,hate,violence,52.0,685
-494,head,No theme,33.0,1689
-495,health,No theme,74.0,1070
-496,heart,No theme,46.0,1411
-497,heartbreaking,No theme,596.0,166
-498,heavy,No theme,984.0,13
-499,heel,No theme,813.0,117
-500,heist,No theme,985.0,13
-501,hell,No theme,745.0,127
-502,help,No theme,7.0,3921
-503,hero,No theme,141.0,710
-504,hijab,No theme,342.0,356
-505,hijacking,No theme,894.0,23
-506,hilarious,No theme,427.0,282
-507,hill,No theme,349.0,347
-508,hindu,No theme,351.0,346
-509,hire,No theme,288.0,425
-510,historic,No theme,822.0,116
-511,history,No theme,44.0,1435
-512,hit,violence,13.0,2410
-513,hiv,No theme,949.0,15
-514,hockey,No theme,553.0,183
-515,hollywood,No theme,60.0,1207
-516,home,No theme,8.0,3845
-517,homeless,No theme,268.0,446
-518,honor,No theme,259.0,462
-519,honour,No theme,253.0,469
-520,hope,No theme,85.0,980
-521,horrific,violence,71.0,207
-522,horror,violence,43.0,903
-523,horse,No theme,636.0,152
-524,hospital,violence,23.0,1610
-525,hot,No theme,95.0,897
-526,hotel,No theme,172.0,605
-527,housewife,female stereotypes,60.0,190
-528,hubby,No theme,886.0,28
-529,human,No theme,202.0,543
-530,hunt,No theme,350.0,347
-531,hurt,No theme,287.0,426
-532,husband,No theme,5.0,3989
-533,ias,No theme,797.0,119
-534,ice,No theme,409.0,291
-535,iconic,No theme,775.0,122
-536,idea,No theme,513.0,221
-537,identity,No theme,861.0,108
-538,idol,No theme,915.0,19
-539,ign,No theme,466.0,257
-540,ill,No theme,683.0,139
-541,image,No theme,180.0,595
-542,important,No theme,746.0,127
-543,incident,No theme,905.0,20
-544,include,No theme,211.0,533
-545,increase,No theme,637.0,152
-546,incredible,No theme,518.0,216
-547,injure,violence,54.0,680
-548,injury,violence,61.0,406
-549,inspire,empowerement,21.0,955
-550,inspiring,No theme,589.0,168
-551,instagram,No theme,81.0,997
-552,instead,No theme,814.0,117
-553,internet,No theme,146.0,697
-554,interview,No theme,71.0,1083
-555,investigate,No theme,662.0,145
-556,investigation,No theme,505.0,224
-557,iron,No theme,448.0,268
-558,isis,No theme,109.0,817
-559,islamic,No theme,784.0,121
-560,island,No theme,309.0,398
-561,issue,No theme,127.0,755
-562,jail,violence,11.0,2622
-563,japan,No theme,638.0,152
-564,japanese,No theme,489.0,239
-565,jayalalithaa,No theme,644.0,151
-566,jayde,No theme,986.0,13
-567,jean,No theme,656.0,147
-568,jersey,No theme,531.0,197
-569,jharkhand,No theme,740.0,128
-570,job,empowerement,6.0,1754
-571,joke,No theme,328.0,369
-572,journalist,No theme,494.0,231
-573,journey,No theme,338.0,357
-574,judge,violence,41.0,934
-575,justice,violence,50.0,722
-576,justin,No theme,339.0,357
-577,kenya,No theme,1007.0,12
-578,key,No theme,274.0,441
-579,khumalo,No theme,896.0,22
-580,kid,female stereotypes,14.0,1807
-581,kidnap,violence,49.0,736
-582,kidnapping,violence,76.0,145
-583,kill,violence,1.0,7713
-584,killer,violence,31.0,1225
-585,killing,violence,73.0,186
-586,kind,female stereotypes,64.0,109
-587,king,No theme,291.0,423
-588,kinney,No theme,815.0,117
-589,kiss,No theme,133.0,722
-590,knife,violence,66.0,352
-591,knock,No theme,848.0,110
-592,krugersdorp,No theme,923.0,18
-593,ksl,No theme,798.0,119
-594,labour,No theme,688.0,138
-595,lack,No theme,731.0,129
-596,lake,No theme,631.0,153
-597,lakh,No theme,467.0,256
-598,language,No theme,1008.0,12
-599,las,No theme,718.0,132
-600,later,No theme,229.0,499
-601,laugh,No theme,495.0,231
-602,launch,empowerement,13.0,1217
-603,laura,No theme,443.0,270
-604,law,violence,20.0,1912
-605,lawmaker,No theme,854.0,109
-606,lawsuit,violence,65.0,359
-607,lawyer,empowerement,34.0,592
-608,lead,empowerement,4.0,2255
-609,leader,empowerement,16.0,1116
-610,leadership,empowerement,53.0,157
-611,league,No theme,272.0,443
-612,learn,No theme,91.0,922
-613,legacy,No theme,747.0,127
-614,legal,No theme,472.0,252
-615,leigh,No theme,1009.0,12
-616,lerato,No theme,987.0,13
-617,lesbian,No theme,771.0,123
-618,lesson,No theme,359.0,332
-619,level,No theme,757.0,125
-620,lie,female stereotypes,38.0,682
-621,lift,No theme,408.0,292
-622,light,No theme,258.0,463
-623,lille,No theme,892.0,25
-624,lindiwe,No theme,962.0,14
-625,lion,No theme,888.0,27
-626,lip,No theme,871.0,106
-627,little,No theme,16.0,2538
-628,lively,No theme,726.0,130
-629,liverpool,No theme,517.0,217
-630,lock,No theme,310.0,396
-631,london,No theme,55.0,1272
-632,loose,female stereotypes,36.0,717
-633,lose,No theme,14.0,2972
-634,loss,No theme,176.0,602
-635,lot,No theme,285.0,431
-636,lovato,No theme,573.0,173
-637,love,female stereotypes,5.0,4222
-638,lover,female stereotypes,44.0,564
-639,low,No theme,295.0,417
-640,lucknow,No theme,752.0,126
-641,madiba,No theme,924.0,18
-642,madjozi,No theme,928.0,17
-643,magazine,No theme,449.0,268
-644,maharashtra,No theme,363.0,324
-645,major,No theme,394.0,300
-646,makeup,female stereotypes,56.0,369
-647,male,No theme,36.0,1590
-648,mall,No theme,889.0,26
-649,mama,female stereotypes,66.0,23
-650,mamata,No theme,558.0,180
-651,mamelodi,No theme,950.0,15
-652,man,No theme,1.0,14996
-653,manager,empowerement,57.0,115
-654,manchester,No theme,346.0,351
-655,manhattan,No theme,758.0,125
-656,mantsoe,No theme,951.0,15
-657,marathon,No theme,704.0,134
-658,march,No theme,201.0,545
-659,maria,No theme,799.0,119
-660,marine,No theme,626.0,156
-661,mark,No theme,156.0,646
-662,marriage,female stereotypes,20.0,1291
-663,married,female stereotypes,55.0,372
-664,marry,female stereotypes,15.0,1764
-665,marvel,No theme,326.0,372
-666,mary,No theme,759.0,125
-667,matric,No theme,916.0,19
-668,matter,No theme,691.0,137
-669,maul,No theme,906.0,20
-670,mayor,empowerement,56.0,143
-671,mazwai,No theme,907.0,20
-672,mcdonald,No theme,663.0,145
-673,mean,No theme,124.0,770
-674,mec,No theme,897.0,22
-675,medal,No theme,657.0,147
-676,medical,No theme,421.0,285
-677,meghan,No theme,929.0,17
-678,melania,No theme,203.0,540
-679,memba,No theme,593.0,167
-680,member,No theme,174.0,603
-681,memoir,No theme,760.0,125
-682,memorial,No theme,908.0,20
-683,memory,No theme,988.0,13
-684,mental,No theme,412.0,290
-685,metoo,No theme,357.0,334
-686,metro,No theme,506.0,224
-687,michelle,No theme,469.0,254
-688,michigan,No theme,575.0,172
-689,middle,No theme,481.0,244
-690,mile,No theme,668.0,144
-691,miley,No theme,335.0,361
-692,military,No theme,378.0,311
-693,mind,No theme,307.0,401
-694,minister,empowerement,33.0,640
-695,minnie,No theme,963.0,14
-696,minor,No theme,296.0,417
-697,minute,No theme,305.0,408
-698,miracle,No theme,776.0,122
-699,mission,No theme,646.0,150
-700,mistake,No theme,343.0,355
-701,mkhwebane,No theme,909.0,20
-702,mla,No theme,501.0,226
-703,mock,No theme,833.0,113
-704,model,No theme,64.0,1165
-705,modern,No theme,327.0,372
-706,mokoena,No theme,952.0,15
-707,molest,No theme,383.0,310
-708,mom,female stereotypes,7.0,3614
-709,money,No theme,80.0,998
-710,monster,No theme,496.0,231
-711,morning,No theme,362.0,328
-712,motsepe,No theme,989.0,13
-713,mountain,No theme,964.0,14
-714,mourn,No theme,785.0,121
-715,movement,No theme,484.0,241
-716,movie,No theme,32.0,1741
-717,mpumalanga,No theme,938.0,16
-718,mrs,female stereotypes,69.0,12
-719,mum,female stereotypes,17.0,1680
-720,murder,violence,6.0,4549
-721,murderer,violence,83.0,21
-722,music,No theme,51.0,1332
-723,muslim,No theme,28.0,1941
-724,mutilation,No theme,777.0,122
-725,mystery,No theme,154.0,658
-726,mzansi,No theme,1010.0,12
-727,nab,No theme,895.0,23
-728,nadu,No theme,368.0,321
-729,nasa,No theme,800.0,119
-730,nation,No theme,899.0,21
-731,navy,No theme,543.0,190
-732,ncwane,No theme,1011.0,12
-733,neighbor,No theme,632.0,153
-734,neighbour,No theme,534.0,196
-735,netflix,No theme,463.0,259
-736,newborn,female stereotypes,53.0,427
-737,newcastle,No theme,571.0,174
-738,nfl,No theme,519.0,214
-739,nick,No theme,390.0,303
-740,nigerian,No theme,953.0,15
-741,ninow,No theme,990.0,13
-742,noida,No theme,764.0,124
-743,north,No theme,114.0,804
-744,nose,No theme,816.0,117
-745,note,No theme,236.0,490
-746,novel,No theme,468.0,255
-747,npa,No theme,910.0,20
-748,nurse,female stereotypes,57.0,333
-749,nyc,No theme,369.0,320
-750,nypd,No theme,623.0,157
-751,officer,empowerement,9.0,1506
-752,ohio,No theme,515.0,219
-753,olympic,No theme,103.0,858
-754,online,No theme,72.0,1082
-755,opinion,No theme,183.0,582
-756,ordeal,No theme,925.0,18
-757,order,No theme,134.0,719
-758,orgasm,No theme,862.0,108
-759,oscar,No theme,101.0,865
-760,outfit,No theme,823.0,116
-761,outrage,violence,69.0,285
-762,owner,empowerement,46.0,268
-763,paedophile,No theme,574.0,173
-764,pain,No theme,222.0,509
-765,pak,No theme,765.0,124
-766,pal,No theme,873.0,105
-767,panayiotou,No theme,965.0,14
-768,pant,No theme,855.0,109
-769,parent,empowerement,10.0,1503
-770,paris,No theme,297.0,414
-771,parliament,No theme,898.0,22
-772,partner,No theme,143.0,702
-773,party,No theme,42.0,1497
-774,passenger,No theme,419.0,286
-775,past,No theme,232.0,497
-776,pastor,No theme,881.0,38
-777,patient,female stereotypes,68.0,13
-778,pearl,No theme,893.0,24
-779,pen,No theme,807.0,118
-780,penis,No theme,582.0,170
-781,perfect,empowerement,32.0,642
-782,perform,No theme,158.0,640
-783,performance,No theme,241.0,481
-784,period,No theme,356.0,335
-785,perry,No theme,323.0,373
-786,person,No theme,220.0,514
-787,personal,No theme,451.0,265
-788,pet,No theme,547.0,187
-789,phoenix,No theme,991.0,13
-790,pic,No theme,78.0,1046
-791,pill,No theme,791.0,120
-792,pilot,No theme,148.0,682
-793,pink,No theme,194.0,555
-794,pit,No theme,900.0,21
-795,plane,No theme,276.0,440
-796,plastic,No theme,508.0,223
-797,player,No theme,142.0,709
-798,plead,violence,60.0,425
-799,plot,No theme,446.0,269
-800,plymouth,No theme,598.0,165
-801,point,No theme,400.0,296
-802,poison,No theme,930.0,17
-803,police,violence,4.0,5903
-804,politic,No theme,312.0,392
-805,political,No theme,370.0,320
-806,politician,No theme,741.0,128
-807,politico,No theme,527.0,202
-808,poll,No theme,340.0,357
-809,poor,No theme,692.0,137
-810,pop,No theme,299.0,412
-811,pope,No theme,761.0,125
-812,poppie,No theme,954.0,15
-813,port,No theme,966.0,14
-814,portrait,No theme,863.0,108
-815,pose,No theme,219.0,516
-816,position,No theme,967.0,14
-817,possible,No theme,808.0,118
-818,pound,No theme,520.0,214
-819,pour,No theme,968.0,14
-820,power,empowerement,11.0,1442
-821,powerful,empowerement,26.0,772
-822,praise,No theme,384.0,310
-823,pray,No theme,911.0,20
-824,pregnancy,female stereotypes,34.0,756
-825,pregnant,No theme,12.0,3370
-826,premier,No theme,912.0,20
-827,premiere,No theme,377.0,314
-828,prepare,No theme,939.0,16
-829,president,No theme,58.0,1238
-830,pretty,female stereotypes,45.0,538
-831,price,No theme,583.0,170
-832,priest,No theme,695.0,135
-833,prince,No theme,94.0,907
-834,princess,female stereotypes,32.0,773
-835,prison,violence,29.0,1272
-836,private,No theme,617.0,159
-837,prize,No theme,969.0,14
-838,pro,No theme,618.0,159
-839,probe,No theme,398.0,298
-840,producer,No theme,650.0,149
-841,project,No theme,476.0,249
-842,promise,No theme,457.0,261
-843,promote,No theme,689.0,138
-844,property,No theme,792.0,120
-845,prosecutor,No theme,490.0,237
-846,protea,No theme,955.0,15
-847,protect,No theme,239.0,486
-848,protector,No theme,901.0,21
-849,protest,empowerement,20.0,959
-850,proud,No theme,354.0,337
-851,prove,No theme,125.0,767
-852,publish,No theme,556.0,181
-853,pune,No theme,413.0,290
-854,pupil,No theme,629.0,155
-855,queen,empowerement,5.0,1777
-856,question,No theme,113.0,806
-857,quit,No theme,179.0,599
-858,race,No theme,155.0,651
-859,racist,violence,64.0,366
-860,rage,violence,80.0,108
-861,rahul,No theme,502.0,226
-862,railway,No theme,587.0,169
-863,raise,No theme,93.0,919
-864,rajasthan,No theme,510.0,222
-865,rally,No theme,424.0,283
-866,ram,No theme,753.0,126
-867,range,No theme,992.0,13
-868,rank,No theme,676.0,142
-869,rant,No theme,849.0,110
-870,rape,violence,5.0,5653
-871,rapist,violence,68.0,314
-872,rapper,No theme,754.0,126
-873,rare,No theme,137.0,716
-874,reach,No theme,308.0,399
-875,react,No theme,435.0,277
-876,reaction,No theme,374.0,317
-877,ready,No theme,204.0,540
-878,reality,No theme,315.0,390
-879,reason,No theme,97.0,890
-880,recall,No theme,277.0,439
-881,recent,No theme,645.0,151
-882,record,No theme,68.0,1142
-883,recount,No theme,970.0,14
-884,recover,No theme,940.0,16
-885,reese,No theme,786.0,121
-886,reeva,No theme,956.0,15
-887,reflect,No theme,607.0,161
-888,regret,No theme,801.0,119
-889,reject,No theme,403.0,294
-890,relationship,female stereotypes,30.0,891
-891,release,No theme,69.0,1116
-892,relive,No theme,993.0,13
-893,remark,No theme,540.0,193
-894,reply,No theme,778.0,122
-895,reportedly,No theme,624.0,157
-896,reporter,No theme,311.0,396
-897,represent,No theme,971.0,14
-898,republican,No theme,563.0,178
-899,rescue,No theme,70.0,1110
-900,research,No theme,876.0,104
-901,resign,No theme,1012.0,12
-902,respect,No theme,748.0,127
-903,response,No theme,320.0,381
-904,rest,No theme,890.0,26
-905,restaurant,No theme,436.0,274
-906,reunite,No theme,226.0,502
-907,reveal,No theme,3.0,5520
-908,revenge,No theme,841.0,111
-909,rich,No theme,199.0,550
-910,ring,No theme,129.0,743
-911,rip,No theme,454.0,264
-912,rise,empowerement,12.0,1270
-913,risk,violence,48.0,793
-914,river,No theme,373.0,318
-915,rob,violence,63.0,387
-916,robber,violence,85.0,15
-917,robbery,violence,77.0,144
-918,robert,No theme,664.0,145
-919,romance,No theme,772.0,123
-920,room,No theme,152.0,662
-921,rousey,No theme,824.0,116
-922,royal,No theme,111.0,814
-923,rugby,No theme,941.0,16
-924,rule,No theme,98.0,890
-925,rumor,No theme,621.0,158
-926,rumour,No theme,480.0,245
-927,rural,No theme,526.0,207
-928,rush,No theme,867.0,107
-929,ryan,No theme,475.0,250
-930,sabarimala,No theme,318.0,388
-931,sabha,No theme,727.0,130
-932,safe,No theme,145.0,701
-933,safety,No theme,332.0,363
-934,sale,No theme,793.0,120
-935,salman,No theme,499.0,227
-936,san,No theme,284.0,432
-937,sangoma,No theme,1013.0,12
-938,sap,No theme,1014.0,12
-939,sassa,No theme,972.0,14
-940,saudi,No theme,79.0,1042
-941,save,No theme,22.0,2301
-942,scam,No theme,913.0,20
-943,scandal,No theme,387.0,308
-944,scheme,No theme,647.0,150
-945,school,No theme,15.0,2775
-946,schoolgirl,No theme,633.0,153
-947,science,No theme,289.0,425
-948,scientist,empowerement,43.0,367
-949,scot,No theme,651.0,149
-950,scott,No theme,673.0,143
-951,scream,No theme,611.0,160
-952,screen,No theme,661.0,146
-953,sea,No theme,917.0,19
-954,search,No theme,96.0,893
-955,seat,No theme,273.0,443
-956,secret,No theme,45.0,1413
-957,security,violence,67.0,345
-958,selfie,No theme,388.0,308
-959,senior,No theme,612.0,160
-960,sentence,violence,39.0,1043
-961,serial,No theme,452.0,265
-962,seriously,No theme,584.0,170
-963,serve,No theme,278.0,438
-964,service,No theme,195.0,555
-965,sex,female stereotypes,4.0,4464
-966,sexism,female stereotypes,51.0,465
-967,sexist,female stereotypes,41.0,605
-968,sexual,female stereotypes,10.0,2198
-969,sexually,female stereotypes,23.0,1157
-970,sexy,female stereotypes,37.0,707
-971,shame,No theme,165.0,629
-972,shed,No theme,787.0,121
-973,shirt,No theme,794.0,120
-974,sho,No theme,931.0,17
-975,shock,No theme,140.0,711
-976,shocking,No theme,224.0,504
-977,shoe,No theme,719.0,132
-978,shoot,violence,12.0,2608
-979,shooting,violence,58.0,496
-980,shop,female stereotypes,47.0,507
-981,short,No theme,190.0,563
-982,shot,No theme,455.0,262
-983,showbiz,No theme,1015.0,12
-984,shut,No theme,732.0,129
-985,siam,No theme,957.0,15
-986,sick,No theme,599.0,165
-987,sight,No theme,994.0,13
-988,sikh,No theme,711.0,133
-989,silence,No theme,249.0,474
-990,simpson,No theme,802.0,119
-991,sing,No theme,242.0,481
-992,singer,No theme,107.0,835
-993,single,female stereotypes,21.0,1201
-994,sinha,No theme,696.0,135
-995,sisulu,No theme,918.0,19
-996,sit,No theme,459.0,260
-997,size,No theme,221.0,511
-998,skin,No theme,238.0,487
-999,slam,violence,38.0,1047
-1000,slap,No theme,537.0,194
-1001,slave,No theme,669.0,144
-1002,slay,No theme,425.0,283
-1003,slaying,No theme,766.0,124
-1004,small,No theme,473.0,251
-1005,smash,No theme,608.0,161
-1006,smile,No theme,485.0,241
-1007,snake,No theme,932.0,17
-1008,snap,No theme,680.0,140
-1009,snl,No theme,803.0,119
-1010,soccer,No theme,406.0,293
-1011,society,No theme,559.0,180
-1012,soda,No theme,733.0,129
-1013,soldier,No theme,262.0,460
-1014,somizi,No theme,1016.0,12
-1015,son,No theme,6.0,3928
-1016,song,No theme,77.0,1049
-1017,soon,No theme,585.0,170
-1018,soul,No theme,1017.0,12
-1019,sound,No theme,864.0,108
-1020,source,No theme,674.0,143
-1021,south,No theme,48.0,1388
-1022,space,No theme,200.0,546
-1023,spear,No theme,544.0,190
-1024,special,No theme,130.0,739
-1025,speech,No theme,237.0,488
-1026,spice,No theme,734.0,129
-1027,spider,No theme,639.0,152
-1028,spirit,No theme,942.0,16
-1029,split,No theme,322.0,377
-1030,sport,No theme,87.0,951
-1031,spy,No theme,839.0,112
-1032,stab,violence,26.0,1437
-1033,staff,No theme,385.0,310
-1034,stage,No theme,160.0,637
-1035,stalk,No theme,654.0,148
-1036,stand,No theme,83.0,982
-1037,star,empowerement,1.0,5201
-1038,startup,No theme,564.0,178
-1039,statue,No theme,430.0,280
-1040,steal,violence,28.0,1289
-1041,stellenbosch,No theme,973.0,14
-1042,stepfather,No theme,933.0,17
-1043,stereotype,No theme,594.0,167
-1044,stewart,No theme,579.0,171
-1045,stick,No theme,358.0,333
-1046,stone,No theme,177.0,602
-1047,store,No theme,404.0,294
-1048,storm,No theme,742.0,128
-1049,stranger,No theme,625.0,157
-1050,strangle,No theme,891.0,26
-1051,strike,No theme,163.0,633
-1052,strip,No theme,444.0,270
-1053,strong,empowerement,31.0,650
-1054,struggle,No theme,135.0,719
-1055,student,No theme,31.0,1750
-1056,study,No theme,29.0,1911
-1057,stun,No theme,705.0,134
-1058,stunning,No theme,831.0,114
-1059,style,No theme,89.0,941
-1060,subway,No theme,492.0,233
-1061,success,empowerement,35.0,569
-1062,successful,empowerement,52.0,166
-1063,sue,No theme,39.0,1532
-1064,suffer,violence,42.0,929
-1065,suggest,No theme,842.0,111
-1066,suicide,violence,25.0,1462
-1067,summer,No theme,389.0,307
-1068,sun,No theme,743.0,128
-1069,sunday,No theme,779.0,122
-1070,sunny,No theme,697.0,135
-1071,superhero,No theme,698.0,135
-1072,support,female stereotypes,22.0,1186
-1073,supreme,No theme,521.0,214
-1074,surgery,No theme,92.0,921
-1075,survive,empowerement,30.0,711
-1076,survivor,empowerement,41.0,460
-1077,susan,No theme,995.0,13
-1078,suspect,violence,33.0,1114
-1079,suspend,No theme,652.0,149
-1080,sweep,No theme,902.0,21
-1081,sweet,No theme,509.0,223
-1082,swift,No theme,100.0,869
-1083,syndrome,No theme,568.0,175
-1084,syria,No theme,817.0,117
-1085,table,No theme,943.0,16
-1086,talaq,No theme,493.0,233
-1087,tale,No theme,438.0,272
-1088,tambo,No theme,996.0,13
-1089,tamil,No theme,275.0,441
-1090,tape,No theme,723.0,131
-1091,target,No theme,193.0,558
-1092,tattoo,No theme,112.0,812
-1093,taxi,No theme,878.0,46
-1094,taylor,No theme,53.0,1303
-1095,tea,No theme,974.0,14
-1096,teach,No theme,214.0,529
-1097,teacher,No theme,90.0,930
-1098,tear,No theme,164.0,630
-1099,teen,No theme,17.0,2507
-1100,teenage,No theme,75.0,1057
-1101,teenager,No theme,283.0,433
-1102,temple,No theme,333.0,363
-1103,tennis,No theme,720.0,132
-1104,teresa,No theme,304.0,409
-1105,term,No theme,675.0,143
-1106,terrifying,No theme,735.0,129
-1107,terror,No theme,600.0,164
-1108,testify,No theme,677.0,141
-1109,text,No theme,440.0,271
-1110,thatcher,No theme,850.0,110
-1111,theatre,No theme,818.0,117
-1112,thrash,No theme,602.0,162
-1113,threat,No theme,263.0,458
-1114,threaten,violence,51.0,701
-1115,throne,No theme,348.0,349
-1116,thug,violence,74.0,182
-1117,tie,No theme,361.0,330
-1118,tiger,No theme,749.0,127
-1119,time,No theme,4.0,5022
-1120,tinder,No theme,613.0,160
-1121,title,No theme,279.0,438
-1122,toddler,No theme,223.0,508
-1123,toilet,No theme,266.0,452
-1124,tongue,No theme,603.0,162
-1125,tooth,No theme,877.0,104
-1126,top,No theme,630.0,155
-1127,torture,No theme,345.0,352
-1128,touch,No theme,302.0,410
-1129,tough,No theme,712.0,133
-1130,toy,No theme,780.0,122
-1131,track,No theme,235.0,491
-1132,traffic,No theme,975.0,14
-1133,trafficking,No theme,934.0,17
-1134,tragedy,No theme,713.0,133
-1135,tragic,No theme,522.0,214
-1136,trans,No theme,225.0,503
-1137,transform,No theme,804.0,119
-1138,transgender,No theme,50.0,1340
-1139,trap,No theme,426.0,283
-1140,treat,No theme,196.0,553
-1141,treatment,No theme,208.0,535
-1142,tree,No theme,460.0,260
-1143,trial,violence,53.0,681
-1144,tribal,No theme,535.0,195
-1145,trick,No theme,788.0,121
-1146,trip,No theme,243.0,481
-1147,triple,No theme,486.0,241
-1148,troll,No theme,187.0,575
-1149,truck,No theme,706.0,134
-1150,true,No theme,230.0,498
-1151,truth,No theme,324.0,373
-1152,tube,No theme,874.0,105
-1153,tumi,No theme,1018.0,12
-1154,tumour,No theme,868.0,107
-1155,tweet,No theme,108.0,822
-1156,twice,No theme,471.0,253
-1157,twin,No theme,126.0,761
-1158,twitter,No theme,63.0,1179
-1159,uber,No theme,441.0,271
-1160,uct,No theme,919.0,19
-1161,ugly,No theme,865.0,108
-1162,union,No theme,500.0,227
-1163,universe,No theme,997.0,13
-1164,university,No theme,292.0,423
-1165,unveil,No theme,875.0,105
-1166,usa,No theme,755.0,126
-1167,utah,No theme,528.0,202
-1168,uttar,No theme,523.0,210
-1169,uyinene,No theme,976.0,14
-1170,vagina,No theme,546.0,188
-1171,valley,No theme,834.0,113
-1172,van,No theme,882.0,38
-1173,vanish,No theme,856.0,109
-1174,vegas,No theme,609.0,161
-1175,victim,female stereotypes,16.0,1717
-1176,victoria,No theme,415.0,288
-1177,view,No theme,215.0,527
-1178,viewer,No theme,627.0,156
-1179,violence,violence,36.0,1094
-1180,violent,violence,78.0,131
-1181,virginia,No theme,580.0,171
-1182,vogue,No theme,482.0,244
-1183,voice,empowerement,25.0,778
-1184,vote,No theme,122.0,773
-1185,voter,No theme,835.0,113
-1186,vow,No theme,926.0,18
-1187,wake,No theme,300.0,412
-1188,wale,No theme,545.0,190
-1189,walk,No theme,54.0,1286
-1190,wall,No theme,265.0,454
-1191,war,violence,35.0,1097
-1192,warn,No theme,181.0,595
-1193,washington,No theme,532.0,197
-1194,watson,No theme,827.0,115
-1195,wear,No theme,20.0,2311
-1196,weather,No theme,836.0,113
-1197,wedding,female stereotypes,13.0,1855
-1198,weekend,No theme,781.0,122
-1199,weight,female stereotypes,31.0,816
-1200,welsh,No theme,678.0,141
-1201,west,No theme,76.0,1057
-1202,white,No theme,30.0,1791
-1203,widow,female stereotypes,67.0,16
-1204,wife,female stereotypes,9.0,2592
-1205,wild,No theme,458.0,261
-1206,williams,No theme,634.0,153
-1207,win,empowerement,3.0,3034
-1208,window,No theme,628.0,156
-1209,windsor,No theme,866.0,108
-1210,wine,No theme,977.0,14
-1211,wing,No theme,699.0,135
-1212,winner,empowerement,45.0,316
-1213,winter,No theme,843.0,111
-1214,witbank,No theme,978.0,14
-1215,witherspoon,No theme,828.0,115
-1216,witness,No theme,885.0,34
-1217,womens,No theme,958.0,15
-1218,womensmonth,No theme,935.0,17
-1219,wonder,No theme,23.0,2261
-1220,wood,No theme,379.0,311
-1221,work,empowerement,2.0,3526
-1222,worker,empowerement,24.0,806
-1223,workplace,No theme,511.0,222
-1224,worth,empowerement,50.0,182
-1225,write,No theme,56.0,1269
-1226,writer,No theme,213.0,532
-1227,wrong,No theme,138.0,712
-1228,young,No theme,10.0,3527
-1229,youth,No theme,538.0,194
-1230,zephany,No theme,920.0,19
+,word,theme
+0,accident,No theme
+1,accuse,No theme
+2,act,No theme
+3,action,No theme
+4,admit,No theme
+5,african,No theme
+6,age,No theme
+7,album,No theme
+8,alight,No theme
+9,alive,No theme
+10,allow,No theme
+11,american,No theme
+12,anti,No theme
+13,apartment,No theme
+14,apologise,No theme
+15,apologize,No theme
+16,appeal,No theme
+17,army,No theme
+18,art,No theme
+19,asian,No theme
+20,athlete,No theme
+21,attempt,No theme
+22,bad,No theme
+23,ban,No theme
+24,basketball,No theme
+25,bear,No theme
+26,bed,No theme
+27,believe,No theme
+28,bid,No theme
+29,bill,No theme
+30,black,No theme
+31,blame,No theme
+32,board,No theme
+33,boy,No theme
+34,boyfriend,No theme
+35,brain,No theme
+36,brother,No theme
+37,brown,No theme
+38,build,No theme
+39,bully,No theme
+40,bury,No theme
+41,bust,No theme
+42,campaign,No theme
+43,cancer,No theme
+44,caster,No theme
+45,celebrate,No theme
+46,celebrity,No theme
+47,challenge,No theme
+48,change,No theme
+49,character,No theme
+50,chinese,No theme
+51,church,No theme
+52,claim,No theme
+53,coach,No theme
+54,college,No theme
+55,color,No theme
+56,comment,No theme
+57,commission,No theme
+58,community,No theme
+59,company,No theme
+60,cricket,No theme
+61,cup,No theme
+62,cut,No theme
+63,dad,No theme
+64,dance,No theme
+65,date,No theme
+66,debut,No theme
+67,deliver,No theme
+68,demand,No theme
+69,deny,No theme
+70,disabled,No theme
+71,discover,No theme
+72,drag,No theme
+73,drink,No theme
+74,driver,No theme
+75,dump,No theme
+76,elderly,No theme
+77,election,No theme
+78,empowerment,No theme
+79,experience,No theme
+80,explain,No theme
+81,fail,No theme
+82,fake,No theme
+83,farm,No theme
+84,fashion,No theme
+85,fat,No theme
+86,fatally,No theme
+87,father,No theme
+88,file,No theme
+89,food,No theme
+90,football,No theme
+91,force,No theme
+92,funeral,No theme
+93,future,No theme
+94,gender,No theme
+95,gold,No theme
+96,government,No theme
+97,great,No theme
+98,grow,No theme
+99,hair,No theme
+100,hang,No theme
+101,head,No theme
+102,health,No theme
+103,heart,No theme
+104,help,No theme
+105,hero,No theme
+106,hijacking,No theme
+107,hire,No theme
+108,history,No theme
+109,hiv,No theme
+110,home,No theme
+111,homeless,No theme
+112,honor,No theme
+113,honour,No theme
+114,hope,No theme
+115,hot,No theme
+116,human,No theme
+117,hunt,No theme
+118,husband,No theme
+119,incredible,No theme
+120,internet,No theme
+121,interview,No theme
+122,issue,No theme
+123,journalist,No theme
+124,journey,No theme
+125,king,No theme
+126,kiss,No theme
+127,lakh,No theme
+128,learn,No theme
+129,little,No theme
+130,lose,No theme
+131,loss,No theme
+132,male,No theme
+133,man,No theme
+134,march,No theme
+135,mean,No theme
+136,member,No theme
+137,metoo,No theme
+138,minor,No theme
+139,model,No theme
+140,molest,No theme
+141,money,No theme
+142,mourn,No theme
+143,movie,No theme
+144,music,No theme
+145,muslim,No theme
+146,mystery,No theme
+147,nab,No theme
+148,online,No theme
+149,opinion,No theme
+150,order,No theme
+151,pain,No theme
+152,partner,No theme
+153,party,No theme
+154,pastor,No theme
+155,perform,No theme
+156,pilot,No theme
+157,player,No theme
+158,positive,No theme
+159,pregnant,No theme
+160,president,No theme
+161,probe,No theme
+162,prosecutor,No theme
+163,protect,No theme
+164,prove,No theme
+165,pupil,No theme
+166,question,No theme
+167,quit,No theme
+168,race,No theme
+169,raise,No theme
+170,rare,No theme
+171,ready,No theme
+172,reason,No theme
+173,recall,No theme
+174,record,No theme
+175,release,No theme
+176,reporter,No theme
+177,rescue,No theme
+178,reveal,No theme
+179,ring,No theme
+180,river,No theme
+181,royal,No theme
+182,rule,No theme
+183,safe,No theme
+184,safety,No theme
+185,save,No theme
+186,school,No theme
+187,search,No theme
+188,secret,No theme
+189,service,No theme
+190,sexist,No theme
+191,sexy,No theme
+192,shock,No theme
+193,shocking,No theme
+194,shot,No theme
+195,silence,No theme
+196,singer,No theme
+197,slain,No theme
+198,slay,No theme
+199,soccer,No theme
+200,son,No theme
+201,space,No theme
+202,special,No theme
+203,sport,No theme
+204,stand,No theme
+205,strangle,No theme
+206,strike,No theme
+207,struggle,No theme
+208,student,No theme
+209,study,No theme
+210,style,No theme
+211,sue,No theme
+212,surgery,No theme
+213,suspend,No theme
+214,teacher,No theme
+215,tear,No theme
+216,teen,No theme
+217,teenage,No theme
+218,teenager,No theme
+219,temple,No theme
+220,term,No theme
+221,testify,No theme
+222,toddler,No theme
+223,toilet,No theme
+224,tongue,No theme
+225,trans,No theme
+226,transgender,No theme
+227,troll,No theme
+228,tweet,No theme
+229,twin,No theme
+230,twitter,No theme
+231,university,No theme
+232,vote,No theme
+233,walk,No theme
+234,warn,No theme
+235,wear,No theme
+236,white,No theme
+237,witness,No theme
+238,wonder,No theme
+239,write,No theme
+240,wrong,No theme
+241,young,No theme
+242,youth,No theme
+243,zulu,No theme
+244,abortion,empowerement
+245,activist,empowerement
+246,actor,empowerement
+247,appoint,empowerement
+248,artist,empowerement
+249,author,empowerement
+250,award,empowerement
+251,boss,empowerement
+252,business,empowerement
+253,career,empowerement
+254,chief,empowerement
+255,deputy,empowerement
+256,director,empowerement
+257,doctor,empowerement
+258,dream,empowerement
+259,empower,empowerement
+260,entrepreneur,empowerement
+261,founder,empowerement
+262,inspire,empowerement
+263,job,empowerement
+264,launch,empowerement
+265,lawyer,empowerement
+266,lead,empowerement
+267,leader,empowerement
+268,mayor,empowerement
+269,minister,empowerement
+270,officer,empowerement
+271,owner,empowerement
+272,parent,empowerement
+273,perfect,empowerement
+274,power,empowerement
+275,powerful,empowerement
+276,protest,empowerement
+277,rise,empowerement
+278,star,empowerement
+279,strong,empowerement
+280,success,empowerement
+281,survive,empowerement
+282,survivor,empowerement
+283,voice,empowerement
+284,win,empowerement
+285,work,empowerement
+286,worker,empowerement
+287,actress,female_bias
+288,baby,female_bias
+289,beautiful,female_bias
+290,beauty,female_bias
+291,birth,female_bias
+292,body,female_bias
+293,breast,female_bias
+294,care,female_bias
+295,child,female_bias
+296,commit,female_bias
+297,cry,female_bias
+298,daughter,female_bias
+299,divorce,female_bias
+300,dress,female_bias
+301,family,female_bias
+302,fear,female_bias
+303,feel,female_bias
+304,feminist,female_bias
+305,girlfriend,female_bias
+306,gossip,female_bias
+307,grace,female_bias
+308,kid,female_bias
+309,lie,female_bias
+310,loose,female_bias
+311,love,female_bias
+312,lover,female_bias
+313,marriage,female_bias
+314,marry,female_bias
+315,mom,female_bias
+316,mum,female_bias
+317,newborn,female_bias
+318,nurse,female_bias
+319,pregnancy,female_bias
+320,princess,female_bias
+321,queen,female_bias
+322,queens,female_bias
+323,relationship,female_bias
+324,sex,female_bias
+325,sexual,female_bias
+326,sexually,female_bias
+327,shop,female_bias
+328,single,female_bias
+329,support,female_bias
+330,victim,female_bias
+331,wedding,female_bias
+332,weight,female_bias
+333,wife,female_bias
+334,abuse,violence
+335,allege,violence
+336,alleged,violence
+337,allegedly,violence
+338,arrest,violence
+339,assault,violence
+340,attack,violence
+341,bail,violence
+342,battle,violence
+343,beat,violence
+344,burn,violence
+345,cop,violence
+346,court,violence
+347,crash,violence
+348,crime,violence
+349,dead,violence
+350,death,violence
+351,defend,violence
+352,die,violence
+353,drown,violence
+354,drug,violence
+355,escape,violence
+356,fall,violence
+357,fight,violence
+358,fire,violence
+359,gang,violence
+360,guilty,violence
+361,gun,violence
+362,harass,violence
+363,harassment,violence
+364,hate,violence
+365,hit,violence
+366,horror,violence
+367,hospital,violence
+368,injure,violence
+369,injury,violence
+370,jail,violence
+371,judge,violence
+372,justice,violence
+373,kidnap,violence
+374,kidnapping,violence
+375,kill,violence
+376,killer,violence
+377,killing,violence
+378,knife,violence
+379,law,violence
+380,lawsuit,violence
+381,murder,violence
+382,plead,violence
+383,police,violence
+384,prison,violence
+385,racist,violence
+386,rape,violence
+387,rapist,violence
+388,risk,violence
+389,rob,violence
+390,robbery,violence
+391,security,violence
+392,sentence,violence
+393,shoot,violence
+394,shooting,violence
+395,slam,violence
+396,stab,violence
+397,steal,violence
+398,suffer,violence
+399,suicide,violence
+400,suspect,violence
+401,threaten,violence
+402,trial,violence
+403,violence,violence
+404,war,violence
+405,wound,violence
