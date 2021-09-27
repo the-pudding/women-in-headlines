@@ -760,28 +760,28 @@ span{
     font-size: 9px;
 }
 
-.stackedBarAnnotation {
-  fill: $red;
-  font-family: $national;
-  font-weight: 900;
-  font-size: 12px;
-  text-anchor:end;
-  text-transform: uppercase;
-  transform: translate(100px, 5px)
-}
+// .stackedBarAnnotation {
+//   fill: $red;
+//   font-family: $national;
+//   font-weight: 900;
+//   font-size: 12px;
+//   text-anchor:end;
+//   text-transform: uppercase;
+//   transform: translate(100px, 5px)
+// }
 
-.stackedBarTextAnnotation {
-  color: $red;
-  font-family: $barlow;
-  font-weight: 600;
-  font-size: 16px;
-  text-transform: uppercase;
-  padding: 0.25rem 0.5rem;
-  border 1px solid $red;
-  white-space: nowrap;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
+// .stackedBarTextAnnotation {
+//   color: $red;
+//   font-family: $barlow;
+//   font-weight: 600;
+//   font-size: 16px;
+//   text-transform: uppercase;
+//   padding: 0.25rem 0.5rem;
+//   border 1px solid $red;
+//   white-space: nowrap;
+//   border-radius: 0.25rem;
+//   cursor: pointer;
+// }
 
 .lollipopTextbutton {
   color: $green;
@@ -794,16 +794,16 @@ span{
   border 1px solid $green;
 }
 
-.stackedBarThemeAnnotation {
-  font-family: $barlow;
-  font-weight: 600;
-  font-size: 16px;
-  text-transform: uppercase;
-  padding: 0.25rem 0.5rem;
-  white-space: nowrap;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
+// .stackedBarThemeAnnotation {
+//   font-family: $barlow;
+//   font-weight: 600;
+//   font-size: 16px;
+//   text-transform: uppercase;
+//   padding: 0.25rem 0.5rem;
+//   white-space: nowrap;
+//   border-radius: 0.25rem;
+//   cursor: pointer;
+// }
 
 #inTextViolence {
   color: $pink;
@@ -849,12 +849,181 @@ span{
   color: $bg;
 }
 
-.stackedBars {
-  transform: translateX(10px)
-}
+// .stackedBars {
+//   transform: translateX(10px)
+// }
 
 .stackedBars g {
   cursor: pointer
+}
+
+// .stackedChartCountries {
+//   margin-bottom:20px;
+//   margin-top:30px;
+//   transform: translate(10px, 80px);
+//   max-width: 13px;
+//   text-align: center;
+//   fill: $tan;
+//   z-index: 10    
+// }
+
+// .stackedChartTicks {
+//   font-weight:600;
+//   font-size:14px;
+//   font-family: $barlow;
+//   text-transform: uppercase;
+//   fill: $off-black;
+// }
+
+.stackedChartTicks-light {
+  font-weight: 500;
+  text-transform: none;
+}
+
+// .stackedBarSection {
+//   display:flex;
+//   flex-direction: row;
+//   margin: 0 auto;
+//   max-width: $double-width;
+// }
+
+/* STACKED CHART SCROLLY*/
+#scrolly-side .scrolly {
+  display: flex;
+  max-width: 60rem;
+  margin: 3rem auto;
+  /* background-color: cornsilk; */
+  border: 1px;
+  padding: 1rem;
+  height: 1050vh;
+  /* height:590vh */
+}
+#scrolly-side {
+  height: 1450vh;
+  /* height: 750vh; */
+  /* background-color: grey; */
+  border: 1px
+
+}
+
+* {
+   flex: 1;
+}
+
+article {
+  padding-right: 1rem;
+  max-width: 30rem;
+}
+  
+.step {
+  min-height: 67vh;
+  margin-bottom: 1rem;
+  background-color: #FEFAF1;
+  transition: background-color 250ms ease-in-out;
+  max-width: 15vw;
+  
+  text-align: left;
+  /* text-anchor: middle; */
+  color: #282828;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+  font-family: sans-serif;
+  font-size: 16px;
+  margin-bottom: 0;
+  transform:translateY(100vh)
+}
+
+.step:last-of-type {
+  margin-bottom: 0;
+}
+.step.is-active {
+  background-color: #ffe5a7;
+}
+
+/* article > p {
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 400;
+  color: black;
+}	 */
+
+#stickyStackedChart.sticky {
+  position: sticky;
+  width: 100%;
+  height: 100vh;
+  /* background: silver; */
+  margin: 0;
+  top: 5vh;
+  left: 0;
+}
+
+.stackedBarAnnotation {
+  fill: $red;
+  font-family: $national;
+  font-weight: 900;
+  font-size: 12px;
+  text-anchor:end;
+  text-transform: uppercase;
+  transform: translate(100px, 5px)
+}
+
+.stackedBarTextAnnotation {
+  color: $red;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border 1px solid $red;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.stackedBarThemeAnnotation {
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+// #inTextViolence {
+//   color: #F2C5D3
+// }
+// #inTextBias {
+//   color: #0BBF99
+// }
+// #inTextEmpowerment {
+//   color: #F7DC5B
+// }
+
+// .stackedBarTextAnnotation:hover {
+//   background-color: #E75C33;
+//   color: #FEFAF1;
+  
+// }
+
+// #inTextViolence:hover {
+//   background-color: #F2C5D3;
+//   color: #FEFAF1
+// }
+
+// #inTextBias:hover {
+//   background-color: #0BBF99;
+//   color: #FEFAF1
+// }
+
+// #inTextEmpowerment:hover {
+//   background-color: #F7DC5B;
+//   color: #FEFAF1
+// }
+
+.stackedBars {
+  transform: translateX(10px)
 }
 
 .stackedChartCountries {
@@ -863,26 +1032,47 @@ span{
   transform: translate(10px, 80px);
   max-width: 13px;
   text-align: center;
-  fill: $tan;
-  z-index: 10    
+  fill: #FEFAF1;
+  z-index: 10
+  
 }
 
 .stackedChartTicks {
-  font-weight:600;
-  font-size:14px;
-  font-family: $barlow;
+  font-weight:900px;
+  font-size:12px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-style: bold; */
   text-transform: uppercase;
-  fill: $off-black;
+  fill: #282828;
 }
 
-.stackedChartTicks-light {
-  font-weight: 500;
-  text-transform: none;
+.themesChartTicks {
+  font-weight:900px;
+  font-size:12px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-style: bold; */
+  text-transform: uppercase;
+  fill: #282828;
 }
 
-.stackedBarSection {
-  display:flex;
-  flex-direction: row;
-  margin: 0 auto;
-  max-width: $double-width;
+.stackedChartyTicks {
+  font-weight:900px;
+  font-size:15px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-style: bold; */
+  text-transform: uppercase;
+  fill: #282828;
+}
+
+.themesChartyTicks {
+  font-weight:900px;
+  font-size:15px;
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-style: bold; */
+  text-transform: uppercase;
+  fill: #282828;
+}
+
+.spacer {
+  height:55vh
 }
