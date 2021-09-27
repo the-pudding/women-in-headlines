@@ -153,8 +153,8 @@ function init() {
 				// console.log("hd", headlinesSite)
 				populateDropdown(headlinesSite, "#countrydropdown", "country_of_pub")
 				populateDropdown(headlinesSite, "#pubdropdown", "site")
-				drawBubbleChart(headlinesSite, bubbleChartB, "bias")
-				drawBubbleChart(headlinesSite, bubbleChartP, "polarity")
+				drawBubbleChart(headlinesSite, headlines, bubbleChartB, "bias")
+				drawBubbleChart(headlinesSite, headlines, bubbleChartP, "polarity")
 			})
 	
 			// Sticky timeline enabled only during temporal chart
@@ -1867,7 +1867,7 @@ function init() {
 								.attr("fill", mainColor)
 								.attr("r", radius)
 								.attr("opacity", "0.5")
-								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg))
+								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg, col, minDate, maxDate, visHeight))
 								.on("mouseleave", (event, d) => {
 												d3.selectAll(".timeRuler").remove()
 												tooltip
@@ -1934,7 +1934,18 @@ function init() {
 	
 			}
 	
-			function timeRuler(event, d, g, svg) {
+			function timeRuler(event, d, g, svg, col, minDate, maxDate, visHeight) {
+
+				//console.log(data[0].rates[0].date, "data in temporal chart")
+
+				var margin = ({top: 150, bottom: 20, left: 40, right: 40});
+
+				// let minDate = data[0].rates[0].date
+				// var maxDate = data[0].rates[data[0].rates.length - 1].date
+
+				var x = d3.scaleTime()
+					.domain([minDate, maxDate])
+					.range([0, col.bandwidth()])
 		
 	
 				const rulerg = g.append("g")
@@ -2041,6 +2052,8 @@ function init() {
 			// tooltip functions
 			//// area charts hover
 			function showTooltip(event, d) {
+
+				console.log("entered show tooltip in temporal chart")
 				
 				d3.selectAll(".wordArea").attr("opacity", 0.25)
 				d3.selectAll(".wordLine").attr("opacity", 0.4)
@@ -2114,7 +2127,7 @@ function init() {
 				// console.log(data)
 	
 				// find a random headline
-				randHeadline = Math.floor(Math.random() * data.length)
+				let randHeadline = Math.floor(Math.random() * data.length)
 				// console.log(d3.timeFormat("%d/%m/%Y")(new Date(data[randHeadline].time)))
 				// console.log(data[randHeadline].subtitle)
 	
@@ -2192,7 +2205,7 @@ function init() {
 			}
 	
 			// function to draw the first chart
-			function drawBubbleChart(data, chart, variable) {
+			function drawBubbleChart(data, headlines, chart, variable) {
 				
 				var ttip = variable //"ttip"
 				// console.log(chart, variable)
@@ -2461,8 +2474,8 @@ function init() {
 				// console.log(circles._groups[0].filter(d=>d.__data__.country_of_pub.toLowerCase().match(selection.toLowerCase())))
 	
 				// allCircs = Array.from(d3.selectAll(".forceCircles")._groups[0])
-				allCircs = d3.selectAll(".forceCircles")
-				allLogos = d3.selectAll(".forceLogos")
+				let allCircs = d3.selectAll(".forceCircles")
+				let allLogos = d3.selectAll(".forceLogos")
 				
 				// console.log(allCircs.filter(d=>d.__data__.country_of_pub.toLowerCase() === selection))
 				// console.log("up",circles)
@@ -2489,8 +2502,8 @@ function init() {
 				// console.log(circles._groups[0].filter(d=>d.__data__.country_of_pub.toLowerCase() === selection))
 				// console.log(circles._groups[0].filter(d=>d.__data__.site.toLowerCase().match(selection.toLowerCase())))
 	
-				allCircs = d3.selectAll(".forceCircles")
-				allLogos = d3.selectAll(".forceLogos")
+				let allCircs = d3.selectAll(".forceCircles")
+				let allLogos = d3.selectAll(".forceLogos")
 	
 				// console.log(filterData.map(d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()))
 	
