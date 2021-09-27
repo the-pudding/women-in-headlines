@@ -85,7 +85,16 @@ function init() {
 			d3.csv("./assets/data/country_time_freqrank_rapi_clean.csv", d3.autoType),
 			d3.csv("./assets/data/polarity_comparison.csv", d3.autoType),
 			d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes.csv", d3.autoType)
+			d3.csv("./assets/data/word_themes.csv", d3.autoType),
+	
+			d3.csv("./assets/data/country_freqtheme_pivoted_all.csv", d3.autoType),
+			// d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
+			// d3.csv("../data/processed/word_themes.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_all.csv", d3.autoType),
+			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
+			d3.csv("./assets/data/word_themes_rank.csv", d3.autoType),
+			d3.csv("./assets/data/words_theme_freq.csv", d3.autoType)
+
 		  ])
 			.then((datasets) => {
 				// define each dataset
@@ -94,11 +103,28 @@ function init() {
 				let headlines = datasets[1]
 				let tempWords = datasets[2]
 				let polComparison = datasets[3]
-				let dataWords = datasets[4]
-				let themes = datasets[5]
+				let dataWordsOLD = datasets[4]
+				let themesOLD = datasets[5]
+				let data = datasets[6]
+				let themes = datasets[7]
+				let themesRank = datasets[8]
+				let themesFreq = datasets[9]
+				// console.log(dataFreq)
+				// console.log(themes)
+				// console.log(themesRank)
+				// console.log(themesFreq)
+				// renderStackedBars(dataWords, themes)
+				let dataWords = prepareWordData(data, themes)
+				let scales = prepareXYScales(data, dataWords)
+				// console.log("scales", scales)
+				// dataThemes = prepareThemesData(data, themes)
+				// console.log("unstacked", data)
+				// console.log("stacked", dataWords)
+				renderBarAxis(data, dataWords)
+				stackedBarScroll(data, dataWords, themes, themesRank, themesFreq, scales)
 	
 				// 1) stacked bars chart
-				renderStackedBars(dataWords, themes)
+				// renderStackedBars(dataWords, themes)
 				// 1) lollipop chart
 				renderLollipop(polComparison)
 				// 1) bar charts
@@ -109,9 +135,9 @@ function init() {
 				// drawBar(countries_data, "#chart4", "South Africa", 5) 
 				
 				// 2) temporal chart
-				var filter_years = [2009, 2022];
-				var country = "USA";
-				var variable = "freq_prop_headlines"; //freq_prop_headlines // frequency
+				var filter_years = [2009, 2022]
+				var country = "USA"
+				var variable = "freq_prop_headlines" //freq_prop_headlines // frequency
 				renderTempChart(tempWords, filter_years, country, variable)
 				// update chart when country is changed
 				d3.selectAll("button.country").on("click", function() {
@@ -149,14 +175,14 @@ function init() {
 				}
 			});
 	
-			// sticky chart stacked bar
-			$(window).scroll(function() {
-				if ($(this).scrollTop() - $('#endStackedbarSection').position().top > -100){
-					$('#stickyStackedChart').css({'position': 'static', 'top': '0px'}); 
-				}else{
-					$('#stickyStackedChart').css({'position': 'sticky', 'top': '0px'}); 
-				}
-			});
+			// // sticky chart stacked bar
+			// $(window).scroll(function() {
+			// 	if ($(this).scrollTop() - $('#endStackedbarSection').position().top > -100){
+			// 		$('#stickyStackedChart').css({'position': 'static', 'top': '0px'}); 
+			// 	}else{
+			// 		$('#stickyStackedChart').css({'position': 'sticky', 'top': '0px'}); 
+			// 	}
+			// });
 	
 			// Text transition
 			var TxtRotate = function(el, toRotate, period) {
@@ -219,8 +245,749 @@ function init() {
 				css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666}";
 				document.body.appendChild(css);
 			};
+
+			 // STACKED BARS SCROLLY
+			function prepareXYScales(data, series) {
+
+				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
+			
+				var height = 5000 - margin.top - margin.bottom
+				var width = 500 - margin.left - margin.right
+
+				var x = d3.scaleBand()
+				.domain(data.map(d => d.country))
+				.range([margin.left, width - margin.right])
+				.padding(0.1)
+			
+				var y = d3.scaleLinear()
+				// .domain([d3.max(series, d => d3.max(d, d => d[1])), 0])
+				.domain([series.length, 0])
+				// .domain([0, series.length])
+				.range([height - margin.bottom, margin.top])
+
+				return {x, y}
+
+
+			 }
+
+			function prepareWordData (data, themes) {
+
+
+				// themes = themes.filter(d=>d.word!=="youtube")
+			
+				let series = d3.stack()
+					.keys(data.columns.slice(2))
+					// .keys(data.map(d=>d.country))
+				(data)
+					.map(d => (d.forEach(v => v.key = themes.filter(c=>c.word===d.key)[0]!== undefined?
+													{"word": d.key, "theme": themes.filter(c=>c.word===d.key)[0].theme}:
+													{"word": d.key, "theme": "No theme"}), d))
+				
+					// console.log(series)
+			
+				return series
+			
+			}
+			
+			function stackedBarScroll(data, words, themes, themesRank, themesFreq, scales) {
+			
+				const container = d3.select('#scrolly-side');
+				var figure = container.select('stickyStackedChart');
+				var article = container.select('article');
+				const stepSel = article.selectAll('.step');
+				var x = scales.x
+				var y = scales.y
+				// instantiate the scrollama
+				const scroller = scrollama();
+			
+				// generic window resize listener event
+				function handleResize() {
+					// 1. update height of step elements
+					var stepH = Math.floor(window.innerHeight * 0.75);
+					stepSel.style('height', stepH + 'px');
+					var figureHeight = window.innerHeight / 2
+					var figureMarginTop = (window.innerHeight - figureHeight) / 2  
+					figure
+						.style('height', figureHeight + 'px')
+						.style('top', figureMarginTop + 'px');
+					// 3. tell scrollama to update new element dimensions
+					scroller.resize();
+				}
+			
+				// scrollama event handlers
+				function handleStepEnter(response) {
+					// console.log(response)
+					updateChart(response.index, "enter")
+				}
+			
+				function handleStepExit (response) {
+					// console.log(response)
+					updateChart(response.index, "exit")
+				}
+			
+				function updateChart(index, action) {
+					const sel = container.select(`[data-index='${index}']`);
+					// const width = sel.attr('data-width');
+					const task = sel.attr('task')
+					const hovertype = sel.attr('hovertype')
+			
+					console.log(task)
+					if (task==="highlightwords") {
+						const word = sel.attr('word');
+						if (action==="enter") {
+							stepSel.classed('is-active', (d, i) => i === index);
+						// container.select('.bar-inner').style('width', width);
+							highlightWords(themes, word, "inTextHover", x, y)
+						} else {
+							unHighlightWords(themes, word, hovertype)
+						}  
+			
+					} else if (task === "drawbars") {
+						renderStackedBars(data, words)
+						sel.attr('task', 'none')
+					} else if (task === "highlightthemes") {
+						colorThemes()
+						sel.attr('task', 'none')
+					} else if (task === "tooltip") {
+						activateTooltip(themes, x, y)
+					} else if (task === "exploreChart") {
+						revertOriginal(x, y, words)
+					} else if (task === "themeBarsTransition") {
+						renderThemeBars(themesRank, themesFreq, themes, x, y)
+					}
+					
+				}
+			
+				function init() {
+					Stickyfill.add(d3.select('.sticky').node());
+			
+					// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+					handleResize();
+			
+					// 2. setup the scroller passing options
+					// this will also initialize trigger observations
+					// 3. bind scrollama event handlers (this can be chained like below)
+					scroller.setup({
+						step: '#scrolly-side article .step',
+						offset: 0.5,
+						debug: false
+					})
+					.onStepEnter(handleStepEnter)
+					.onStepExit(handleStepExit)
+			
+					// setup resize event
+					window.addEventListener('resize', handleResize);
+			
+				}
+			
+				init()
+			
+			}
+			
+			function revertOriginal(x, y, series) {
+			
+				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
+			
+				var height = 5000 - margin.top - margin.bottom
+				var width = 500 - margin.left - margin.right
+			
+				d3.selectAll(".stackedBars")
+					.selectAll("rect")
+					// .transition().duration("3000")
+					// .ease(d3.easeCubic)
+					// .delay((d, i) => {
+					//     // console.log(d, i)
+					//     // return i * 10;
+					//     return i * Math.random() * 0.2;
+						
+					//   })
+					.attr("visibility", "visible")
+			
+				// select bars with a theme and transition them back in old axis
+				var rectsThemes = d3.selectAll(".stackedBars")
+					 .selectAll("rect")
+					 .filter(d=>(d.key.theme!=="No theme")&&(d.data.country==="All countries"))
+					 .transition().duration("2500")
+					 .ease(d3.easeLinear)
+					 .delay((d, i) => {
+						// console.log(d, i)
+						return i * 2;
+						// return i * Math.random() * 0.5;
+						
+					 })
+					 .attr("x", (d, i) => x(d.data.country))
+					 // .attr("height", "4px")
+					 .attr("height", d => d.data[d.key.word]===0 || d.data[d.key.word]===null? 0:height/series.length)
+					 .attr("width", x.bandwidth())
+					 .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
+					 .attr("transform", `translate(0,0)`)
+			
+			
+			}
+			
+			function renderBarAxis(data, series) {
+			
+				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
+			
+				var height = 5000 - margin.top - margin.bottom
+				var width = 500 - margin.left - margin.right
+				// var height = 600 - margin.top - margin.bottom
+				// var width = 200 - margin.left - margin.right
+			
+			
+				var svg = d3.select("#stackedChart")
+						.attr('width', width + margin.left + margin.right)
+						.attr('height', height + margin.top + margin.bottom);
+			
+				// // stack data
+				// series = d3.stack()
+				//     .keys(data.columns.slice(2))
+				//     // .keys(data.map(d=>d.country))
+				// (data)
+				//     .map(d => (d.forEach(v => v.key = d.key), d))
+			
+				var x = d3.scaleBand()
+				.domain(data.map(d => d.country))
+				.range([margin.left, width - margin.right])
+				.padding(0.1)
+			
+				var y = d3.scaleLinear()
+				// .domain([d3.max(series, d => d3.max(d, d => d[1])), 0])
+				.domain([series.length, 0])
+				// .domain([0, series.length])
+				.range([height - margin.bottom, margin.top])
+			
+				// draw axes
+				var xAxis = g => g
+				// .attr("transform", `translate(0,${height - margin.bottom})`)
+				.call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
+				.call(g => g.selectAll(".domain").remove())
+				
+			
+				var yAxis = g => g
+				// .attr("transform", `translate(${width+margin.right+30},210)`)
+				.attr("transform", `translate(${margin.left},220)`)
+				.call(d3.axisRight(y).tickSizeOuter(0).tickSizeInner(0))
+				.call(g => g.selectAll(".domain").remove())
+				// .call(g=>g.selectAll(".tick text")
+				//                 .text((d, i) => i == 0 || i == 8 ? "↑ Frequency": "")).call(wrap, 100)
+			
+				 // y axis
+				yAxis = svg.append("g")
+				 .call(yAxis)
+				 .attr("class", "stackedChartyAxis")
+				
+				yAxis.selectAll(".tick text").remove()
+			
+			
+				var formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en")
+			
+				xAxis = svg.append("g")
+				.call(xAxis)
+				.attr("class", "stackedChartCountries")
+			
+				xAxis.selectAll(".tick text").remove()
+						// .call(wrap, x.bandwidth());
+			
+			
+				xAxis.selectAll(".tick")
+					.append("text")
+					.text(d=>d)
+					.attr("x", 0)             
+					.attr("y", 0)
+					.attr("class", "stackedChartTicks")
+					.call(wrap, x.bandwidth())
+			
+				// country names and flags
+				var flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
+				{country:"India", flag:"assets/images/flags/india.svg"}, {country:"UK", flag:"assets/images/flags/united-kingdom.svg"}, {country: 'All countries', flag:''}]
+			
+			
+				xAxis.selectAll(".tick")
+					.append("svg:image")
+						.attr('height', "35px")
+						.attr("x", 0)             
+						.attr("y", 0)
+						.attr("transform", "translate(-17, -50)")
+						.attr("xlink:href", d => console.log(d))
+						.attr("xlink:href", d => flags.filter(c=>c.country===d)[0].flag)
+			
+			
+			}
+			
+			function renderStackedBars(data, series) {
+			
+				
+				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
+			
+				var height = 5000 - margin.top - margin.bottom
+				var width = 500 - margin.left - margin.right
+				// var height = 600 - margin.top - margin.bottom
+				// var width = 200 - margin.left - margin.right
+			
+			
+				var svg = d3.select("#stackedChart")
+						// .attr('width', width + margin.left + margin.right)
+						// .attr('height', height + margin.top + margin.bottom);
+				// .attr("preserveAspectRatio", "xMinYMin meet")
+				// .attr("viewBox", "0 0 "+ width +"," + height+"")
+				// .classed("svg-content", true);
+				// margin = {top: 40, right: 100, bottom: 60, left: 60},
+				// width = +svg.attr("width")-200 - margin.left - margin.right,
+				// height = +svg.attr("height")+1000 - margin.top - margin.bottom,
+				// g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+				// console.log(data)
+				// console.log(data)
+				// console.log(themes.filter(d=>d.word==="accuse")[0].theme)
+			
+			//     // stack data
+			//     test = d3.stack()
+			//     .keys(data.columns.slice(2))
+			//     // .keys(data.map(d=>d.country))
+			//   (data)
+			//     .map(d => (d.forEach(v => v.key = d.key), d))
+			
+			//     series = d3.stack()
+			//     .keys(data.columns.slice(2))
+			//     // .keys(data.map(d=>d.country))
+			//   (data)
+			//     .map(d => (d.forEach(v => v.key = {"word": d.key, "theme": themes.filter(c=>c.word===d.key)[0].theme}), d))
+			  
+			//     console.log(series)
+				// console.log(test)
+				// console.log(series.length)
+				// console.log(series.map(d=>d[1]))
+			
+				// xscale
+				var x = d3.scaleBand()
+				.domain(data.map(d => d.country))
+				.range([margin.left, width - margin.right])
+				.padding(0.1)
+			
+				var y = d3.scaleLinear()
+				// .domain([d3.max(series, d => d3.max(d, d => d[1])), 0])
+				.domain([series.length, 0])
+				// .domain([0, series.length])
+				.range([height - margin.bottom, margin.top])
+			
+				// color = d3.scaleOrdinal()
+				// .domain(series.map(d => d.data[d.key]))
+				// // .range(d3.schemeSpectral[series.length])
+				// .range(d3.schemeSpectral[series.length])
+				// .unknown("#ccc")
+			
+				console.log([series.length, 0])
+				// console.log(d3.max(series, d => d3.max(d, d => d[1])))
+			
+				// legend
+				d3.select(".stackedChartyAxis")
+					.selectAll(".tick")
+					.append("text")
+					.text((d, i) => i == 8 ?"Frequency of use in headlines ⇢": "")
+					// .text((d, i)=>console.log("ytick"+i))
+					.attr("x", 0)             
+					.attr("y", 0)
+					.attr("class", "stackedChartyTicks")
+					.style("text-transform", "lowercase")
+					.style("transform", "rotate(-90deg)")
+					// .call(wrap, 10)
+			
+				  
+				var rects = svg.append("g")
+					  .attr("class", "stackedBars")
+					  .selectAll("g")
+					  .data(series)
+					  .join("g")
+					  .selectAll("rect")
+					  .data(d => d)
+					  
+				var rect = rects.join("rect")
+						// .attr("class", d=>d.key)
+						.attr("class", d=>d.key.word)
+						// .attr("id", "stackedRects")
+						// .attr("fill", "#FEFAF1")
+						.attr("fill", "lightgrey")
+						// .attr("fill", d=>themes.filter(c=>c.word===d.key)[0].theme==="female_bias"?"#0BBF99":
+						//                  themes.filter(c=>c.word===d.key)[0].theme==="empowerement"?"#F7DC5B":
+						//                  themes.filter(c=>c.word===d.key)[0].theme==="violence"?"#F2C5D3":"#ccc")
+						// .attr("fill", d => color(d.key))
+						.attr("stroke", "#FEFAF1")
+						.attr("stroke-width", "0.2px")
+						.attr("x", (d, i) => x(d.data.country))
+						// .attr("height", "4px")
+						.attr("height", d => d.data[d.key.word]===0 || d.data[d.key.word]===null? 0:height/series.length)
+						.attr("width", x.bandwidth())
+						// .attr("width", x.bandwidth()/4)
 	
-			// BAR CHARTS
+						// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
+						// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
+						.transition().duration("4000")
+							.ease(d3.easeCubic)
+							.delay((d, i) => {
+								// console.log(d, i)
+								return i * 200;
+								// return i * Math.random() * 50;
+								
+							})
+						// .attr("y", d => y(d[1]))
+						// .attr("y", d => y(d.data[d.key]))
+						// .attr("y", d => y(d.data[d.key.word]))
+						.attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
+			
+			// return {x, y}
+			
+			};
+			
+			function colorThemes() {
+			
+				// select bars and color them by theme
+				d3.selectAll(".stackedBars")
+				  .selectAll("rect")
+				//   .attr("fill", d=>themes.filter(c=>c.word===d.key)[0].theme==="female_bias"?"#0BBF99":
+				//                     themes.filter(c=>c.word===d.key)[0].theme==="empowerement"?"#F7DC5B":
+				//                     themes.filter(c=>c.word===d.key)[0].theme==="violence"?"#F2C5D3":"lightgrey")
+				// .transition().duration("3000")
+				//     .ease(d3.easeLinear)
+				//     .delay((d, i) => {
+				//         // console.log(d, i)
+				//         // return i * 10;
+				//         return i * Math.random() * 0.02;
+						
+				//       })
+				.attr("fill", d=>d.key.theme==="female stereotypes"?"#0BBF99":
+								d.key.theme==="empowerement"?"#F7DC5B":
+								d.key.theme==="violence"?"#F2C5D3":"lightgrey")
+				// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
+				// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
+			
+			}
+			
+			function activateTooltip (themes, x, y) {
+			
+				// select bars and color them by theme
+				d3.selectAll(".stackedBars")
+				  .selectAll("rect")
+				.on("mouseover", (event, d) => highlightWords(themes, d.key.word, "chartHover", d, null, null, null, x, y))
+				.on("mouseleave", (event,d)=> unHighlightWords(themes, d.key.word))
+			
+			}
+			
+			function highlightWords(themes, word, hoverType, d, newScale, changeScale, transform, x, y) {
+			
+				// console.log(themes.filter(c=>c.word===word)[0].theme)
+				// console.log(themes.filter(c=>c.word===word)[0].theme)
+				console.log(word)
+				// console.log(transform)
+				d3.selectAll("."+ word)
+				.attr("fill", "#E75C33")
+				//.attr("stroke-width", "0.1px")
+			
+				d3.selectAll(".stackedBars")
+				  .selectAll("rect:not(."+ word+")")
+				  .attr("opacity", "0.5")
+			
+				d3.selectAll(".stackedChartyTicks").style("opacity", "0")
+			
+				if (hoverType === "chartHover") {
+					
+					d3.select("#stackedChart")
+						.append("text")
+						// .attr("y", y(d.data[word]))
+						.attr("y", y(d.data[word]))
+						.text(word)
+						.attr("class", "stackedBarAnnotation")
+			
+				} 
+				
+				if (changeScale === "True") {
+					console.log(d, newScale(d[1]))
+					d3.select("#stackedChart")
+						.append("text")
+						// .attr("y", y(d.data[word]))
+						.attr("y", newScale(d[1])+transform)
+						.text(word)
+						.attr("class", "stackedBarAnnotation")
+						// .attr("transform", `translate(0, ${transform})`)
+				}
+			
+			}
+			
+			function unHighlightWords(themes, word, hoverType) {
+			
+			//      // select bars and color them grey (needed for backwards scroll)
+			//      d3.selectAll(".stackedBars")
+			//      .selectAll("rect")
+			//    .attr("fill", "lightgrey")
+			
+				if (hoverType === "inTextHover") {
+			
+					d3.selectAll("."+ word)
+					  .attr("fill", "lightgray")
+			
+				} else {
+					d3.selectAll("."+ word)
+					  .attr("fill",   themes.filter(c=>c.word===word)[0].theme==="female stereotypes"?"#0BBF99":
+								themes.filter(c=>c.word===word)[0].theme==="empowerement"?"#F7DC5B":
+								themes.filter(c=>c.word===word)[0].theme==="violence"?"#F2C5D3":"lightgrey")
+				}
+				
+				// .attr("fill", "#FEFAF1")
+				d3.selectAll(".stackedBarAnnotation").remove()
+			
+				d3.selectAll(".stackedBars")
+				  .selectAll("rect")
+				  .attr("opacity", "1")
+			
+				d3.selectAll(".stackedChartyTicks").style("opacity", "1")
+			}
+			
+			function highlightThemes(theme) {
+			
+				// console.log(themes.filter(c=>c.word===word)[0].theme)
+				// console.log(themes.filter(c=>c.word===word)[0].theme)
+			
+				// d3.selectAll(".stackedBars")
+				//         .style("opacity", d=>themes.filter(c=>c.word===word)[0].theme===theme?"1":"0.2")
+			
+			
+				// d3.selectAll(".stackedBars")
+				//   .allLogos.style("opacity", d=>d.site.toLowerCase() === selection.toLowerCase()?"1":
+				//   selection===""?"1":"0.2")
+			
+			}
+			
+			function renderThemeBars(data, dataFreq, themes, x, y) {
+			
+				data = data.filter(d=>d.theme!=="No theme")
+				// dataFreq = dataFreq.filter(d=>d.theme!=="No theme")
+				// console.log("themes, long", dataFreq.columns.slice(2))
+			
+				console.log("original datafreq", dataFreq)
+				// stack data
+				var stackedData = d3.stack()
+					.keys(dataFreq.columns.slice(2))
+					.order(d3.stackOrderAscending)
+					// .keys(data.map(d=>d.country))
+				(dataFreq.filter(d=>d.theme!=="No theme"))
+					.map(d => (d.forEach(v => v.key = d.key), d))
+			
+				console.log("stacked themes", stackedData)
+			
+				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
+			
+				var height = 750 - margin.top - margin.bottom
+				// var width = 600 - margin.left - margin.right
+				var width = 400 - margin.left - margin.right
+			
+			
+				// heightChart = 5000 - margin.top - margin.bottom
+				var heightChart = height*4.8 - margin.top - margin.bottom
+				// heightChart = height*7.5 - margin.top - margin.bottom
+			
+				// var height = 600 - margin.top - margin.bottom
+				// var width = 200 - margin.left - margin.right
+			
+			
+				var svg = d3.select("#stackedChart")
+						// .attr('width', width + margin.left + margin.right)
+						// .attr('height', height + margin.top + margin.bottom)
+			
+				// console.log(data)
+				var xThemes = d3.scaleBand()
+				// .domain(data.map(d => d.theme))
+				.domain(["violence","female stereotypes", "empowerement"])
+				.range([margin.left, width - margin.right])
+				.padding(0.1)
+				
+				// console.log("themes", data.map(d => d.theme))
+			
+				// yThemes = d3.scaleLinear()
+				// // .domain([d3.max(series, d => d3.max(d, d => d[1])), 0])
+				// // .domain([data.length, 0])
+				// .domain([d3.max(dataNotheme.map(d=>d.rank)), 0])
+				// // .domain([0, series.length])
+				// .range([margin.top, height - margin.bottom])
+			
+				var yThemesStack = d3.scaleLinear()
+					.domain([d3.max(stackedData, d => d3.max(d, d => d[1])), 0])
+					.rangeRound([margin.top, height - margin.bottom])
+			
+				// console.log(d3.extent(data.map(d=>d.rank)))
+			
+				// draw axes
+				var xAxis = g => g
+				// .attr("transform", `translate(0,${height-margin.top})`)
+				.call(d3.axisBottom(xThemes).tickSizeOuter(0).tickSizeInner(0))
+				.call(g => g.selectAll(".domain").remove())
+				
+			
+				// yAxis = g => g
+				// // .attr("transform", `translate(${width+margin.right+30},210)`)
+				// .attr("transform", `translate(${margin.left},0)`)
+				// .call(d3.axisRight(yThemes).tickSizeOuter(0).tickSizeInner(0))
+				// .call(g => g.selectAll(".domain").remove())
+				// // .call(g=>g.selectAll(".tick text")
+				// //                 .text((d, i) => i == 0 || i == 8 ? "↑ Frequency": "")).call(wrap, 100)
+			
+				var yAxis = g => g
+				// .attr("transform", `translate(${width+margin.right+30},210)`)
+				// .attr("transform", `translate(${margin.left},0)`)
+				.call(d3.axisRight(yThemesStack).tickSizeOuter(0).tickSizeInner(0))
+				.call(g => g.selectAll(".domain").remove())
+				// .call(g=>g.selectAll(".tick text")
+				//                 .text((d, i) => i == 0 || i == 8 ? "↑ Frequency": "")).call(wrap, 100)
+			
+				 // y axis
+				// yAxis = svg.append("g")
+				//  .call(yAxis)
+				//  .attr("class", "themesChartyAxis")
+				//  .attr("id", "themeAxis")
+				//  .attr("transform", `translate(${margin.left},${heightChart-margin.top})`)
+				//  .attr("transform", `translate(0, ${heightChart})`)
+			
+				
+				// yAxis.selectAll(".tick text").remove()
+			
+				 // legend
+				d3.select("#themeAxis")
+				 .selectAll(".tick")
+				 .append("text")
+				 .text((d, i) => i == 8 ?"Frequency of use in headlines ⇢": "")
+				 // .text((d, i)=>console.log("ytick"+i))
+				 .attr("x", 0)             
+				 .attr("y", 0)
+				 .attr("class", "themesChartyTicks")
+				 .attr("dx", "250")
+				 .style("text-transform", "lowercase")
+				 .style("transform", "rotate(-90deg)")
+				 // .call(wrap, 10)
+			
+			
+				// x axis
+				// var formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en")
+			
+				xAxis = svg.append("g")
+				.call(xAxis)
+				.attr("class", "stackedChartCountries")
+				// .attr("transform", `translate(0,${heightChart-margin.top})`)
+			
+				xAxis.selectAll(".tick text").remove()
+						// .call(wrap, x.bandwidth());
+			
+			
+				xAxis.selectAll(".tick")
+					.append("text")
+					// .transition().duration("2000")
+					// .ease(d3.easeBounce)
+					.text(d=>d)
+					.attr("x", 0)             
+					.attr("y", 0)
+					.attr("class", "stackedChartTicks")
+					// .attr("transform", `translate(0,${height-margin.top+25})`)
+					.attr("transform", `translate(0,${heightChart-margin.bottom-margin.top + height-margin.top/2-margin.bottom})`)
+					.call(wrap, xThemes.bandwidth())
+			
+			
+				 // select bars with a theme and transition them in new axis
+				var rectsThemes = d3.selectAll(".stackedBars")
+					.selectAll("rect")
+					.filter(d=>(d.key.theme!=="No theme")&&(d.data.country==="All countries"))
+					.on("mouseover", (event, d) => highlightWords(themes, d.key.word, "chartHover", d, yThemesStack, "True", heightChart-margin.top, x, yThemesStack))
+					.on("mouseleave", (event,d)=> unHighlightWords(themes, d.key.word))
+			
+					// new
+					// .data(stackedData)
+			
+					// test filter
+					// console.log("test filter", stackedData.filter(d=>d.key === "kill")[0].filter(c=>c.data.theme==="violence"))
+					
+				// transition the rects into new axis
+			
+				// w = 100
+			
+				// var totalScale = d3.scaleLinear()
+				//     .domain([d3.max(data.map(d=>d.count)), d3.min(data.map(d=>d.count))]) 
+				//     .range([w, 5]);
+			
+				rectsThemes
+					// .attr("height", "4px")
+					// .attr("width", xThemes.bandwidth())
+					// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
+					// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
+					.transition().duration("3000")
+					.ease(d3.easeLinear)
+					.delay((d, i) => {
+						// console.log(d, i)
+						return i * 10;
+						// return i * Math.random() * 50;
+						
+					  })
+					// .attr("y", d => y(d[1]))
+					// .attr("y", d => y(d.data[d.key]))
+					// OLD
+					// .attr("x", (d, i) => xThemes(d.key.theme))
+					// .attr("y", d => yThemes(data.filter(c=>c.word===d.key.word)[0].rank))
+			
+					// // .attr("y", d => yThemes(data.filter(c=>c.word===d.key.word)[0].rank + totalScale(data.filter(c=>c.word===d.key.word)[0].count)))
+			
+					// // .attr("y", d => w - totalScale(data.filter(c=>c.word===d.key.word)[0].rank))
+					
+					// .attr("height", d => totalScale(data.filter(c=>c.word===d.key.word)[0].count))
+			
+					// NEW
+					// .attr("x", (d, i) => xThemes(d.data.theme))
+					.attr("x", d=> xThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme))
+					.attr("y", d => yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+					.attr("height", d => yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
+										 yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+					.attr("width", xThemes.bandwidth())
+					.attr("transform", `translate(0,${heightChart-margin.top})`)
+					// console.log("test scale", stackedData.filter(c=>c.key === "kill")[0].filter(e=>e.data.theme==="violence")[0][1])
+			
+			
+					// .attr("y", d => yThemesStack(d[1]))
+					// .attr("height", d => yThemesStack(d[0]) - yThemesStack(d[1]))
+			
+				// .style("opacity", d=>d.key.theme==="female_bias"?"1":0)
+			
+				// select bars with no theme AND not in ALL COUNTRIES and remove them
+			
+				var rectsNoThemes = d3.selectAll(".stackedBars")
+					.selectAll("rect")
+					.filter(d=>(d.key.theme==="No theme")||(d.data.country!=="All countries"))
+					// .transition().duration("3000")
+					// .ease(d3.easeCubic)
+					// .delay((d, i) => {
+					//     // console.log(d, i)
+					//     // return i * 10;
+					//     return i * Math.random() * 0.2;
+						
+					//   })
+					.attr("visibility", "hidden")
+					// .attr("opacity", 0)
+					// .remove()
+				
+			}
+			
+			// interaction with text
+			// words
+			$('.stackedBarTextAnnotation').on('mouseover', function () {
+				// var word = $(this)[0].innerText.toLowerCase()
+				var word = $(this)[0].attributes.value.value
+				console.log(word)
+				highlightWords(word, "inTextHover")
+				// d3.select("#rectsBlock").select("#barchart").select('svg rect[data-key='+key+']').style('fill', 'brown');
+			})
+			.on('mouseout', function () {
+				var word = $(this)[0].attributes.value.value
+				var hoverType = $(this)[0].attributes.hoverType.value
+				// console.log($(this)[0].attributes.hoverType.value)
+				// if ATTRIBUTE hoverType === inTextHover do this, otherwise normal hover with themes!
+				unHighlightWords(word, hoverType)
+			})
+
+	
+			// BAR CHARTS (OLD)
 			// function to draw the bar legend in the text leading to the final visualization
 			function drawBarLegend() {
 				svg = d3.select("#barLegend")
@@ -1740,250 +2507,254 @@ function init() {
 			}
 	
 			// function to draw the stacked bar chart
-			function renderStackedBars(data, themes) {
+			// function renderStackedBars(data, themes) {
 	
 		
-				var margin = ({top: 100, right: 0, bottom: 0, left: 100});
+			// 	var margin = ({top: 100, right: 0, bottom: 0, left: 100});
 			
-				var height = 2000 - margin.top - margin.bottom;
-				var width = 500 - margin.left - margin.right;
-				// var height = 600 - margin.top - margin.bottom
-				// var width = 200 - margin.left - margin.right
+			// 	var height = 2000 - margin.top - margin.bottom;
+			// 	var width = 500 - margin.left - margin.right;
+			// 	// var height = 600 - margin.top - margin.bottom
+			// 	// var width = 200 - margin.left - margin.right
 			
 			
-				var svg = d3.select("#stackedChart")
-						.attr('width', width + margin.left + margin.right)
-						.attr('height', height + margin.top + margin.bottom);
-				// .attr("preserveAspectRatio", "xMinYMin meet")
-				// .attr("viewBox", "0 0 "+ width +"," + height+"")
-				// .classed("svg-content", true);
-				// margin = {top: 40, right: 100, bottom: 60, left: 60},
-				// width = +svg.attr("width")-200 - margin.left - margin.right,
-				// height = +svg.attr("height")+1000 - margin.top - margin.bottom,
-				// g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			// 	var svg = d3.select("#stackedChart")
+			// 			.attr('width', width + margin.left + margin.right)
+			// 			.attr('height', height + margin.top + margin.bottom);
+			// 	// .attr("preserveAspectRatio", "xMinYMin meet")
+			// 	// .attr("viewBox", "0 0 "+ width +"," + height+"")
+			// 	// .classed("svg-content", true);
+			// 	// margin = {top: 40, right: 100, bottom: 60, left: 60},
+			// 	// width = +svg.attr("width")-200 - margin.left - margin.right,
+			// 	// height = +svg.attr("height")+1000 - margin.top - margin.bottom,
+			// 	// g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 			  
-				console.log(data)
-				// console.log(themes.filter(d=>d.word==="accuse")[0].theme)
+			// 	console.log(data)
+			// 	// console.log(themes.filter(d=>d.word==="accuse")[0].theme)
 			
-				// stack data
-				var series = d3.stack()
-				.keys(data.columns.slice(2))
-				// .keys(data.map(d=>d.country))
-			  (data)
-				.map(d => (d.forEach(v => v.key = d.key), d))
+			// 	// stack data
+			// 	var series = d3.stack()
+			// 	.keys(data.columns.slice(2))
+			// 	// .keys(data.map(d=>d.country))
+			//   (data)
+			// 	.map(d => (d.forEach(v => v.key = d.key), d))
 			  
-				console.log(series)
-				// console.log(series.length)
-				// console.log(series.map(d=>d[1]))
+			// 	console.log(series)
+			// 	// console.log(series.length)
+			// 	// console.log(series.map(d=>d[1]))
 			
-				// xscale
-				var x = d3.scaleBand()
-				.domain(data.map(d => d.country))
-				.range([margin.left, width - margin.right])
-				.padding(0.1)
+			// 	// xscale
+			// 	var x = d3.scaleBand()
+			// 	.domain(data.map(d => d.country))
+			// 	.range([margin.left, width - margin.right])
+			// 	.padding(0.1)
 			
-				var y = d3.scaleLinear()
-				// .domain([d3.max(series, d => d3.max(d, d => d[1])), 0])
-				.domain([series.length, 0])
-				// .domain([0, series.length])
-				.range([height - margin.bottom, margin.top])
+			// 	var y = d3.scaleLinear()
+			// 	// .domain([d3.max(series, d => d3.max(d, d => d[1])), 0])
+			// 	.domain([series.length, 0])
+			// 	// .domain([0, series.length])
+			// 	.range([height - margin.bottom, margin.top])
 			
-				// color = d3.scaleOrdinal()
-				// .domain(series.map(d => d.data[d.key]))
-				// // .range(d3.schemeSpectral[series.length])
-				// .range(d3.schemeSpectral[series.length])
-				// .unknown("#ccc")
+			// 	// color = d3.scaleOrdinal()
+			// 	// .domain(series.map(d => d.data[d.key]))
+			// 	// // .range(d3.schemeSpectral[series.length])
+			// 	// .range(d3.schemeSpectral[series.length])
+			// 	// .unknown("#ccc")
 			
-				console.log([series.length, 0])
-				// console.log(d3.max(series, d => d3.max(d, d => d[1])))
+			// 	console.log([series.length, 0])
+			// 	// console.log(d3.max(series, d => d3.max(d, d => d[1])))
 			
-				var xAxis = g => g
-				// .attr("transform", `translate(0,${height - margin.bottom})`)
-				.call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
-				.call(g => g.selectAll(".domain").remove())
+			// 	var xAxis = g => g
+			// 	// .attr("transform", `translate(0,${height - margin.bottom})`)
+			// 	.call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
+			// 	.call(g => g.selectAll(".domain").remove())
 				
 			
-				var yAxis = g => g
-				.attr("transform", `translate(${width+margin.right+30},210)`)
-				.call(d3.axisRight(y).tickSizeOuter(0).tickSizeInner(0))
-				.call(g => g.selectAll(".domain").remove())
-				// .call(g=>g.selectAll(".tick text")
-				//                 .text((d, i) => i == 0 || i == 8 ? "↑ Frequency": "")).call(wrap, 100)
+			// 	var yAxis = g => g
+			// 	.attr("transform", `translate(${width+margin.right+30},210)`)
+			// 	.call(d3.axisRight(y).tickSizeOuter(0).tickSizeInner(0))
+			// 	.call(g => g.selectAll(".domain").remove())
+			// 	// .call(g=>g.selectAll(".tick text")
+			// 	//                 .text((d, i) => i == 0 || i == 8 ? "↑ Frequency": "")).call(wrap, 100)
 			
-				 // y axis
-				yAxis = svg.append("g")
-				 .call(yAxis)
+			// 	 // y axis
+			// 	yAxis = svg.append("g")
+			// 	 .call(yAxis)
 				
-				yAxis.selectAll(".tick text").remove()
+			// 	yAxis.selectAll(".tick text").remove()
 			
-				yAxis.selectAll(".tick")
-					.append("text")
-					.text((d, i) => i == 8 ?"Frequency of use in news headlines ⇢": "")
-					// .text((d, i)=>console.log("ytick"+i))
-					.attr("x", 0)             
-					.attr("y", 0)
-					.attr("class", "stackedChartTicks stackedChartTicks-light")
-					.style("transform", "rotate(-90deg)")
-					// .call(wrap, 10)
+			// 	yAxis.selectAll(".tick")
+			// 		.append("text")
+			// 		.text((d, i) => i == 8 ?"Frequency of use in news headlines ⇢": "")
+			// 		// .text((d, i)=>console.log("ytick"+i))
+			// 		.attr("x", 0)             
+			// 		.attr("y", 0)
+			// 		.attr("class", "stackedChartTicks stackedChartTicks-light")
+			// 		.style("transform", "rotate(-90deg)")
+			// 		// .call(wrap, 10)
 			
-				// svg.append("g")
-				//         .call(yAxis);
+			// 	// svg.append("g")
+			// 	//         .call(yAxis);
 			
-				var formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en")
+			// 	var formatValue = x => isNaN(x) ? "N/A" : x.toLocaleString("en")
 			
 				  
-				var rects = svg.append("g")
-					  .attr("class", "stackedBars")
-					  .selectAll("g")
-					  .data(series)
-					  .join("g")
-					  .selectAll("rect")
-					  .data(d => d)
+			// 	var rects = svg.append("g")
+			// 		  .attr("class", "stackedBars")
+			// 		  .selectAll("g")
+			// 		  .data(series)
+			// 		  .join("g")
+			// 		  .selectAll("rect")
+			// 		  .data(d => d)
 					  
-				var rect = rects.join("rect")
-						.attr("class", d=>d.key)
-						// .attr("id", "stackedRects")
-						// .attr("fill", "#FEFAF1")
-						.attr("fill", d=>themes.filter(c=>c.word===d.key)[0].theme==="female_bias"?"#0BBF99":
-										 themes.filter(c=>c.word===d.key)[0].theme==="empowerement"?"#F7DC5B":
-										 themes.filter(c=>c.word===d.key)[0].theme==="violence"?"#F2C5D3":"#ccc")
-						// .attr("fill", d => color(d.key))
-						.attr("stroke", "#FEFAF1")
-						.attr("stroke-width", "0.2px")
-						.attr("x", (d, i) => x(d.data.country))
-						.attr("height", "4px")
-						.attr("width", x.bandwidth())
-						.on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
-						.on("mouseleave", (event,d)=> unHighlightWords(d.key))
-						.transition().duration("5000")
-						// .attr("y", d => y(d[1]))
-						.attr("y", d => y(d.data[d.key]))
+			// 	var rect = rects.join("rect")
+			// 			.attr("class", d=>d.key)
+			// 			// .attr("id", "stackedRects")
+			// 			// .attr("fill", "#FEFAF1")
+			// 			.attr("fill", d=>themes.filter(c=>c.word===d.key)[0].theme==="female_bias"?"#0BBF99":
+			// 							 themes.filter(c=>c.word===d.key)[0].theme==="empowerement"?"#F7DC5B":
+			// 							 themes.filter(c=>c.word===d.key)[0].theme==="violence"?"#F2C5D3":"#ccc")
+			// 			// .attr("fill", d => color(d.key))
+			// 			.attr("stroke", "#FEFAF1")
+			// 			.attr("stroke-width", "0.2px")
+			// 			.attr("x", (d, i) => x(d.data.country))
+			// 			.attr("height", "4px")
+			// 			.attr("width", x.bandwidth())
+			// 			.on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
+			// 			.on("mouseleave", (event,d)=> unHighlightWords(d.key))
+			// 			.transition().duration("5000")
+			// 			// .attr("y", d => y(d[1]))
+			// 			.attr("y", d => y(d.data[d.key]))
 			
 					
-						// x axis
-						xAxis = svg.append("g")
-						.call(xAxis)
-						.attr("class", "stackedChartCountries")
+			// 			// x axis
+			// 			xAxis = svg.append("g")
+			// 			.call(xAxis)
+			// 			.attr("class", "stackedChartCountries")
 				
-						xAxis.selectAll(".tick text").remove()
-								// .call(wrap, x.bandwidth());
+			// 			xAxis.selectAll(".tick text").remove()
+			// 					// .call(wrap, x.bandwidth());
 			
-						// console.log(xAxis.selectAll(".tick")._groups[0][1].textContent)
+			// 			// console.log(xAxis.selectAll(".tick")._groups[0][1].textContent)
 			
-						// country names and flags
-						var flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
-						{country:"India", flag:"assets/images/flags/india.svg"}, {country:"UK", flag:"assets/images/flags/united-kingdom.svg"}, {country: 'All countries', flag:''}]
+			// 			// country names and flags
+			// 			var flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
+			// 			{country:"India", flag:"assets/images/flags/india.svg"}, {country:"UK", flag:"assets/images/flags/united-kingdom.svg"}, {country: 'All countries', flag:''}]
 		
 	
-						xAxis.selectAll(".tick")
-							.append("text")
-							.text(d=>d)
-							.attr("x", 0)             
-							.attr("y", 0)
-							.attr("class", "stackedChartTicks")
-							.call(wrap, x.bandwidth())
+			// 			xAxis.selectAll(".tick")
+			// 				.append("text")
+			// 				.text(d=>d)
+			// 				.attr("x", 0)             
+			// 				.attr("y", 0)
+			// 				.attr("class", "stackedChartTicks")
+			// 				.call(wrap, x.bandwidth())
 			
-						xAxis.selectAll(".tick")
-							.append("svg:image")
-								.attr('height', "35px")
-								.attr("x", 0)             
-								.attr("y", 0)
-								.attr("transform", "translate(-17, -50)")
-								.attr("xlink:href", d => console.log(d))
-								.attr("xlink:href", d => flags.filter(c=>c.country===d)[0].flag)
+			// 			xAxis.selectAll(".tick")
+			// 				.append("svg:image")
+			// 					.attr('height', "35px")
+			// 					.attr("x", 0)             
+			// 					.attr("y", 0)
+			// 					.attr("transform", "translate(-17, -50)")
+			// 					.attr("xlink:href", d => console.log(d))
+			// 					.attr("xlink:href", d => flags.filter(c=>c.country===d)[0].flag)
 			
 			
-					function highlightWords(word, hoverType, d) {
+			// 		function highlightWords(word, hoverType, d) {
 			
-						// console.log(themes.filter(c=>c.word===word)[0].theme)
-						// console.log(themes.filter(c=>c.word===word)[0].theme)
-						d3.selectAll("."+ word)
-						.attr("fill", "#E75C33")
-						//.attr("stroke-width", "0.1px")
+			// 			// console.log(themes.filter(c=>c.word===word)[0].theme)
+			// 			// console.log(themes.filter(c=>c.word===word)[0].theme)
+			// 			d3.selectAll("."+ word)
+			// 			.attr("fill", "#E75C33")
+			// 			//.attr("stroke-width", "0.1px")
 			
-						d3.selectAll(".stackedBars")
-						  .selectAll("rect:not(."+ word+")")
-						  .attr("opacity", "0.5")
+			// 			d3.selectAll(".stackedBars")
+			// 			  .selectAll("rect:not(."+ word+")")
+			// 			  .attr("opacity", "0.5")
 			
-						if (hoverType === "chartHover") {
+			// 			if (hoverType === "chartHover") {
 							
-							svg.append("text")
-								.attr("y", y(d.data[word]))
-								.text(word)
-								.attr("class", "stackedBarAnnotation")
+			// 				svg.append("text")
+			// 					.attr("y", y(d.data[word]))
+			// 					.text(word)
+			// 					.attr("class", "stackedBarAnnotation")
 			
-						}
+			// 			}
 					
-					}
+			// 		}
 			
-					function unHighlightWords(word) {
-						d3.selectAll("."+ word)
-						.attr("fill",   themes.filter(c=>c.word===word)[0].theme==="female_bias"?"#0BBF99":
-										themes.filter(c=>c.word===word)[0].theme==="empowerement"?"#F7DC5B":
-										themes.filter(c=>c.word===word)[0].theme==="violence"?"#F2C5D3":"#ccc")
-						// .attr("fill", "#FEFAF1")
-						d3.selectAll(".stackedBarAnnotation").remove()
+			// 		function unHighlightWords(word) {
+			// 			d3.selectAll("."+ word)
+			// 			.attr("fill",   themes.filter(c=>c.word===word)[0].theme==="female_bias"?"#0BBF99":
+			// 							themes.filter(c=>c.word===word)[0].theme==="empowerement"?"#F7DC5B":
+			// 							themes.filter(c=>c.word===word)[0].theme==="violence"?"#F2C5D3":"#ccc")
+			// 			// .attr("fill", "#FEFAF1")
+			// 			d3.selectAll(".stackedBarAnnotation").remove()
 			
-						d3.selectAll(".stackedBars")
-						  .selectAll("rect")
-						  .attr("opacity", "1")
-					}
+			// 			d3.selectAll(".stackedBars")
+			// 			  .selectAll("rect")
+			// 			  .attr("opacity", "1")
+			// 		}
 			
-					function highlightThemes(theme) {
+			// 		function highlightThemes(theme) {
 			
-						// console.log(themes.filter(c=>c.word===word)[0].theme)
-						// console.log(themes.filter(c=>c.word===word)[0].theme)
+			// 			// console.log(themes.filter(c=>c.word===word)[0].theme)
+			// 			// console.log(themes.filter(c=>c.word===word)[0].theme)
 			
-						// d3.selectAll(".stackedBars")
-						//         .style("opacity", d=>themes.filter(c=>c.word===word)[0].theme===theme?"1":"0.2")
+			// 			// d3.selectAll(".stackedBars")
+			// 			//         .style("opacity", d=>themes.filter(c=>c.word===word)[0].theme===theme?"1":"0.2")
 					
 			
-						// d3.selectAll(".stackedBars")
-						//   .allLogos.style("opacity", d=>d.site.toLowerCase() === selection.toLowerCase()?"1":
-						//   selection===""?"1":"0.2")
+			// 			// d3.selectAll(".stackedBars")
+			// 			//   .allLogos.style("opacity", d=>d.site.toLowerCase() === selection.toLowerCase()?"1":
+			// 			//   selection===""?"1":"0.2")
 					
-					}
+			// 		}
 			
-					// interaction with text
-					// words
-					$('.stackedBarTextAnnotation').on('mouseover', function () {
-						// var word = $(this)[0].innerText.toLowerCase()
-						var word = $(this)[0].attributes.value.value
-						console.log(word)
-						highlightWords(word, "inTextHover")
-						// d3.select("#rectsBlock").select("#barchart").select('svg rect[data-key='+key+']').style('fill', 'brown');
-					})
-					.on('mouseout', function () {
-						var word = $(this)[0].attributes.value.value
-						// console.log(word)
-						unHighlightWords(word)
-					})
+			// 		// interaction with text
+			// 		// words
+			// 		$('.stackedBarTextAnnotation').on('mouseover', function () {
+			// 			// var word = $(this)[0].innerText.toLowerCase()
+			// 			var word = $(this)[0].attributes.value.value
+			// 			console.log(word)
+			// 			highlightWords(word, "inTextHover")
+			// 			// d3.select("#rectsBlock").select("#barchart").select('svg rect[data-key='+key+']').style('fill', 'brown');
+			// 		})
+			// 		.on('mouseout', function () {
+			// 			var word = $(this)[0].attributes.value.value
+			// 			// console.log(word)
+			// 			unHighlightWords(word)
+			// 		})
 			
-					// themes
-					$('.stackedBarThemeAnnotation').on('mouseover', function () {
-						// var word = $(this)[0].innerText.toLowerCase()
-						var theme = $(this)[0].attributes.value.value
-						console.log(theme)
-						// highlightThemes(theme)
-						d3.selectAll(".stackedBars")
-								.selectAll("rect")//.attr("fill", d=>d.key==="man"?"red":"blue")
-								.style("opacity", d=>themes.filter(c=>c.word===d.key)[0].theme===theme?"1":"0.2")
+			// 		// themes
+			// 		$('.stackedBarThemeAnnotation').on('mouseover', function () {
+			// 			// var word = $(this)[0].innerText.toLowerCase()
+			// 			var theme = $(this)[0].attributes.value.value
+			// 			console.log(theme)
+			// 			// highlightThemes(theme)
+			// 			d3.selectAll(".stackedBars")
+			// 					.selectAll("rect")//.attr("fill", d=>d.key==="man"?"red":"blue")
+			// 					.style("opacity", d=>themes.filter(c=>c.word===d.key)[0].theme===theme?"1":"0.2")
 					
-						// d3.select("#rectsBlock").select("#barchart").select('svg rect[data-key='+key+']').style('fill', 'brown');
-					})
-					.on('mouseout', function () {
-						d3.selectAll(".stackedBars")
-								.selectAll("rect")
-								.style("opacity", "1")
-					})
+			// 			// d3.select("#rectsBlock").select("#barchart").select('svg rect[data-key='+key+']').style('fill', 'brown');
+			// 		})
+			// 		.on('mouseout', function () {
+			// 			d3.selectAll(".stackedBars")
+			// 					.selectAll("rect")
+			// 					.style("opacity", "1")
+			// 		})
 			
 			
 			
-			};
+			// };
+
+
 			
 	
 			// dropdown menu population
 			// line functions
+			
+			
 			function populateDropdown(data, div, attribute) {
 				var select = d3.select(div)
 	
