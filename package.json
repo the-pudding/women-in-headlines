@@ -57,7 +57,7 @@
 		"protect": "npm run deploy && npx staticrypt dist/index.html changethispassword -o dist/index.html",
 		"deploy": "cross-env NODE_ENV=dist run-s deploy:*",
 		"predeploy": "rm -rf .tmp .cache dist && mkdir .tmp .cache dist",
-		"deploy:assets": "cp -r src/assets dist && node ./scripts/image-min.js",
+		"deploy:assets": "cp -r src/assets dist",
 		"deploy:css": "stylus src/css/config.styl -u autoprefixer-stylus -o dist/bundle.css -c",
 		"deploy:js": "webpack --env='production' --mode='production' --config webpack.config.js",
 		"deploy:html": "node ./scripts/html.js",

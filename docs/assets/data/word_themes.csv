@@ -1,0 +1,407 @@
+,word,theme
+0,accident,No theme
+1,accuse,No theme
+2,act,No theme
+3,action,No theme
+4,admit,No theme
+5,african,No theme
+6,age,No theme
+7,album,No theme
+8,alight,No theme
+9,alive,No theme
+10,allow,No theme
+11,american,No theme
+12,anti,No theme
+13,apartment,No theme
+14,apologise,No theme
+15,apologize,No theme
+16,appeal,No theme
+17,army,No theme
+18,art,No theme
+19,asian,No theme
+20,athlete,No theme
+21,attempt,No theme
+22,bad,No theme
+23,ban,No theme
+24,basketball,No theme
+25,bear,No theme
+26,bed,No theme
+27,believe,No theme
+28,bid,No theme
+29,bill,No theme
+30,black,No theme
+31,blame,No theme
+32,board,No theme
+33,boy,No theme
+34,boyfriend,No theme
+35,brain,No theme
+36,brother,No theme
+37,brown,No theme
+38,build,No theme
+39,bully,No theme
+40,bury,No theme
+41,bust,No theme
+42,campaign,No theme
+43,cancer,No theme
+44,caster,No theme
+45,celebrate,No theme
+46,celebrity,No theme
+47,challenge,No theme
+48,change,No theme
+49,character,No theme
+50,chinese,No theme
+51,church,No theme
+52,claim,No theme
+53,coach,No theme
+54,college,No theme
+55,color,No theme
+56,comment,No theme
+57,commission,No theme
+58,community,No theme
+59,company,No theme
+60,cricket,No theme
+61,cup,No theme
+62,cut,No theme
+63,dad,No theme
+64,dance,No theme
+65,date,No theme
+66,debut,No theme
+67,deliver,No theme
+68,demand,No theme
+69,deny,No theme
+70,disabled,No theme
+71,discover,No theme
+72,drag,No theme
+73,drink,No theme
+74,driver,No theme
+75,dump,No theme
+76,elderly,No theme
+77,election,No theme
+78,empowerment,No theme
+79,experience,No theme
+80,explain,No theme
+81,fail,No theme
+82,fake,No theme
+83,farm,No theme
+84,fashion,No theme
+85,fat,No theme
+86,fatally,No theme
+87,father,No theme
+88,file,No theme
+89,food,No theme
+90,football,No theme
+91,force,No theme
+92,funeral,No theme
+93,future,No theme
+94,gender,No theme
+95,gold,No theme
+96,government,No theme
+97,great,No theme
+98,grow,No theme
+99,hair,No theme
+100,hang,No theme
+101,head,No theme
+102,health,No theme
+103,heart,No theme
+104,help,No theme
+105,hero,No theme
+106,hijacking,No theme
+107,hire,No theme
+108,history,No theme
+109,hiv,No theme
+110,home,No theme
+111,homeless,No theme
+112,honor,No theme
+113,honour,No theme
+114,hope,No theme
+115,hot,No theme
+116,human,No theme
+117,hunt,No theme
+118,husband,No theme
+119,incredible,No theme
+120,internet,No theme
+121,interview,No theme
+122,issue,No theme
+123,journalist,No theme
+124,journey,No theme
+125,king,No theme
+126,kiss,No theme
+127,lakh,No theme
+128,learn,No theme
+129,little,No theme
+130,lose,No theme
+131,loss,No theme
+132,male,No theme
+133,man,No theme
+134,march,No theme
+135,mean,No theme
+136,member,No theme
+137,metoo,No theme
+138,minor,No theme
+139,model,No theme
+140,molest,No theme
+141,money,No theme
+142,mourn,No theme
+143,movie,No theme
+144,music,No theme
+145,muslim,No theme
+146,mystery,No theme
+147,nab,No theme
+148,online,No theme
+149,opinion,No theme
+150,order,No theme
+151,pain,No theme
+152,partner,No theme
+153,party,No theme
+154,pastor,No theme
+155,perform,No theme
+156,pilot,No theme
+157,player,No theme
+158,positive,No theme
+159,pregnant,No theme
+160,president,No theme
+161,probe,No theme
+162,prosecutor,No theme
+163,protect,No theme
+164,prove,No theme
+165,pupil,No theme
+166,question,No theme
+167,quit,No theme
+168,race,No theme
+169,raise,No theme
+170,rare,No theme
+171,ready,No theme
+172,reason,No theme
+173,recall,No theme
+174,record,No theme
+175,release,No theme
+176,reporter,No theme
+177,rescue,No theme
+178,reveal,No theme
+179,ring,No theme
+180,river,No theme
+181,royal,No theme
+182,rule,No theme
+183,safe,No theme
+184,safety,No theme
+185,save,No theme
+186,school,No theme
+187,search,No theme
+188,secret,No theme
+189,service,No theme
+190,sexist,No theme
+191,sexy,No theme
+192,shock,No theme
+193,shocking,No theme
+194,shot,No theme
+195,silence,No theme
+196,singer,No theme
+197,slain,No theme
+198,slay,No theme
+199,soccer,No theme
+200,son,No theme
+201,space,No theme
+202,special,No theme
+203,sport,No theme
+204,stand,No theme
+205,strangle,No theme
+206,strike,No theme
+207,struggle,No theme
+208,student,No theme
+209,study,No theme
+210,style,No theme
+211,sue,No theme
+212,surgery,No theme
+213,suspend,No theme
+214,teacher,No theme
+215,tear,No theme
+216,teen,No theme
+217,teenage,No theme
+218,teenager,No theme
+219,temple,No theme
+220,term,No theme
+221,testify,No theme
+222,toddler,No theme
+223,toilet,No theme
+224,tongue,No theme
+225,trans,No theme
+226,transgender,No theme
+227,troll,No theme
+228,tweet,No theme
+229,twin,No theme
+230,twitter,No theme
+231,university,No theme
+232,vote,No theme
+233,walk,No theme
+234,warn,No theme
+235,wear,No theme
+236,white,No theme
+237,witness,No theme
+238,wonder,No theme
+239,write,No theme
+240,wrong,No theme
+241,young,No theme
+242,youth,No theme
+243,zulu,No theme
+244,abortion,empowerement
+245,activist,empowerement
+246,actor,empowerement
+247,appoint,empowerement
+248,artist,empowerement
+249,author,empowerement
+250,award,empowerement
+251,boss,empowerement
+252,business,empowerement
+253,career,empowerement
+254,chief,empowerement
+255,deputy,empowerement
+256,director,empowerement
+257,doctor,empowerement
+258,dream,empowerement
+259,empower,empowerement
+260,entrepreneur,empowerement
+261,founder,empowerement
+262,inspire,empowerement
+263,job,empowerement
+264,launch,empowerement
+265,lawyer,empowerement
+266,lead,empowerement
+267,leader,empowerement
+268,mayor,empowerement
+269,minister,empowerement
+270,officer,empowerement
+271,owner,empowerement
+272,parent,empowerement
+273,perfect,empowerement
+274,power,empowerement
+275,powerful,empowerement
+276,protest,empowerement
+277,rise,empowerement
+278,star,empowerement
+279,strong,empowerement
+280,success,empowerement
+281,survive,empowerement
+282,survivor,empowerement
+283,voice,empowerement
+284,win,empowerement
+285,work,empowerement
+286,worker,empowerement
+287,actress,female_bias
+288,baby,female_bias
+289,beautiful,female_bias
+290,beauty,female_bias
+291,birth,female_bias
+292,body,female_bias
+293,breast,female_bias
+294,care,female_bias
+295,child,female_bias
+296,commit,female_bias
+297,cry,female_bias
+298,daughter,female_bias
+299,divorce,female_bias
+300,dress,female_bias
+301,family,female_bias
+302,fear,female_bias
+303,feel,female_bias
+304,feminist,female_bias
+305,girlfriend,female_bias
+306,gossip,female_bias
+307,grace,female_bias
+308,kid,female_bias
+309,lie,female_bias
+310,loose,female_bias
+311,love,female_bias
+312,lover,female_bias
+313,marriage,female_bias
+314,marry,female_bias
+315,mom,female_bias
+316,mum,female_bias
+317,newborn,female_bias
+318,nurse,female_bias
+319,pregnancy,female_bias
+320,princess,female_bias
+321,queen,female_bias
+322,queens,female_bias
+323,relationship,female_bias
+324,sex,female_bias
+325,sexual,female_bias
+326,sexually,female_bias
+327,shop,female_bias
+328,single,female_bias
+329,support,female_bias
+330,victim,female_bias
+331,wedding,female_bias
+332,weight,female_bias
+333,wife,female_bias
+334,abuse,violence
+335,allege,violence
+336,alleged,violence
+337,allegedly,violence
+338,arrest,violence
+339,assault,violence
+340,attack,violence
+341,bail,violence
+342,battle,violence
+343,beat,violence
+344,burn,violence
+345,cop,violence
+346,court,violence
+347,crash,violence
+348,crime,violence
+349,dead,violence
+350,death,violence
+351,defend,violence
+352,die,violence
+353,drown,violence
+354,drug,violence
+355,escape,violence
+356,fall,violence
+357,fight,violence
+358,fire,violence
+359,gang,violence
+360,guilty,violence
+361,gun,violence
+362,harass,violence
+363,harassment,violence
+364,hate,violence
+365,hit,violence
+366,horror,violence
+367,hospital,violence
+368,injure,violence
+369,injury,violence
+370,jail,violence
+371,judge,violence
+372,justice,violence
+373,kidnap,violence
+374,kidnapping,violence
+375,kill,violence
+376,killer,violence
+377,killing,violence
+378,knife,violence
+379,law,violence
+380,lawsuit,violence
+381,murder,violence
+382,plead,violence
+383,police,violence
+384,prison,violence
+385,racist,violence
+386,rape,violence
+387,rapist,violence
+388,risk,violence
+389,rob,violence
+390,robbery,violence
+391,security,violence
+392,sentence,violence
+393,shoot,violence
+394,shooting,violence
+395,slam,violence
+396,stab,violence
+397,steal,violence
+398,suffer,violence
+399,suicide,violence
+400,suspect,violence
+401,threaten,violence
+402,trial,violence
+403,violence,violence
+404,war,violence
+405,wound,violence
