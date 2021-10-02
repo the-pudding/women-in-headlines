@@ -87,13 +87,13 @@ function init() {
 			d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			d3.csv("./assets/data/word_themes.csv", d3.autoType),
 	
-			d3.csv("./assets/data/country_freqtheme_pivoted_all.csv", d3.autoType),
+			d3.csv("./assets/data/country_freq_pivoted_all_100221.csv", d3.autoType),
 			// d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_all.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_all_100221.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
-			d3.csv("./assets/data/word_themes_rank.csv", d3.autoType),
-			d3.csv("./assets/data/words_theme_freq.csv", d3.autoType)
+			d3.csv("./assets/data/word_themes_rank_100221.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_freq_100221.csv", d3.autoType)
 
 		  ])
 			.then((datasets) => {

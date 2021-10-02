@@ -1,0 +1,410 @@
+,word,rank,country,theme
+224,man,1.0,All countries,No theme
+147,first,2.0,All countries,No theme
+204,kill,3.0,All countries,violence
+105,die,4.0,All countries,violence
+28,baby,5.0,All countries,female stereotypes
+96,death,6.0,All countries,violence
+266,police,7.0,All countries,violence
+68,child,8.0,All countries,female stereotypes
+94,daughter,9.0,All countries,female stereotypes
+241,murder,10.0,All countries,violence
+20,arrest,11.0,All countries,violence
+287,rape,12.0,All countries,violence
+370,time,13.0,All countries,No theme
+135,family,14.0,All countries,female stereotypes
+178,home,15.0,All countries,No theme
+299,reveal,16.0,All countries,No theme
+333,son,17.0,All countries,No theme
+41,black,18.0,All countries,No theme
+173,help,19.0,All countries,No theme
+221,love,20.0,All countries,female stereotypes
+2,accuse,21.0,All countries,No theme
+95,dead,22.0,All countries,violence
+186,husband,23.0,All countries,No theme
+408,young,24.0,All countries,No theme
+25,attack,25.0,All countries,violence
+342,star,26.0,All countries,empowerement
+317,sex,27.0,All countries,female stereotypes
+271,pregnant,28.0,All countries,No theme
+73,claim,29.0,All countries,No theme
+144,fight,30.0,All countries,violence
+400,win,31.0,All countries,empowerement
+403,work,32.0,All countries,empowerement
+46,body,33.0,All countries,female stereotypes
+219,lose,34.0,All countries,No theme
+323,shoot,35.0,All countries,violence
+310,school,36.0,All countries,No theme
+399,wife,37.0,All countries,female stereotypes
+238,mom,38.0,All countries,female stereotypes
+23,assault,39.0,All countries,violence
+82,court,40.0,All countries,violence
+177,hit,41.0,All countries,violence
+211,lead,42.0,All countries,empowerement
+309,save,43.0,All countries,No theme
+48,boy,44.0,All countries,No theme
+138,father,45.0,All countries,No theme
+0,abuse,46.0,All countries,violence
+49,boyfriend,47.0,All countries,No theme
+65,change,48.0,All countries,No theme
+40,birth,49.0,All countries,female stereotypes
+146,fire,50.0,All countries,violence
+365,teen,51.0,All countries,No theme
+197,jail,52.0,All countries,violence
+134,fall,53.0,All countries,violence
+217,little,54.0,All countries,No theme
+79,cop,55.0,All countries,violence
+35,beat,56.0,All countries,violence
+198,job,57.0,All countries,empowerement
+151,force,58.0,All countries,No theme
+181,hospital,59.0,All countries,violence
+318,sexual,60.0,All countries,female stereotypes
+170,head,61.0,All countries,No theme
+386,victim,62.0,All countries,female stereotypes
+209,law,63.0,All countries,violence
+142,feel,64.0,All countries,female stereotypes
+394,wear,65.0,All countries,No theme
+202,kid,66.0,All countries,female stereotypes
+348,student,67.0,All countries,No theme
+109,doctor,68.0,All countries,empowerement
+398,white,69.0,All countries,No theme
+281,queen,70.0,All countries,empowerement
+15,allegedly,71.0,All countries,violence
+166,hair,72.0,All countries,No theme
+339,stab,73.0,All countries,violence
+61,celebrate,74.0,All countries,No theme
+27,award,75.0,All countries,empowerement
+93,date,76.0,All countries,No theme
+395,wedding,77.0,All countries,female stereotypes
+157,gender,78.0,All countries,No theme
+335,south,79.0,All countries,No theme
+52,brother,80.0,All countries,No theme
+349,study,81.0,All countries,No theme
+229,marry,82.0,All countries,female stereotypes
+117,driver,83.0,All countries,No theme
+115,dress,84.0,All countries,female stereotypes
+248,officer,85.0,All countries,empowerement
+34,bear,86.0,All countries,No theme
+176,history,87.0,All countries,No theme
+172,heart,88.0,All countries,No theme
+255,parent,89.0,All countries,empowerement
+267,power,90.0,All countries,empowerement
+223,male,91.0,All countries,No theme
+272,president,92.0,All countries,No theme
+355,support,93.0,All countries,female stereotypes
+258,party,94.0,All countries,No theme
+119,drug,95.0,All countries,violence
+32,battle,96.0,All countries,violence
+90,dad,97.0,All countries,No theme
+388,violence,98.0,All countries,violence
+80,coronavirus,99.0,All countries,No theme
+208,launch,100.0,All countries,empowerement
+83,crash,101.0,All countries,violence
+343,steal,102.0,All countries,violence
+29,bad,103.0,All countries,No theme
+6,actress,104.0,All countries,female stereotypes
+171,health,105.0,All countries,No theme
+391,walk,106.0,All countries,No theme
+58,cancer,107.0,All countries,No theme
+313,secret,108.0,All countries,No theme
+296,rescue,109.0,All countries,No theme
+384,twitter,110.0,All countries,No theme
+242,music,111.0,All countries,No theme
+302,rise,112.0,All countries,empowerement
+331,slam,113.0,All countries,violence
+56,business,114.0,All countries,empowerement
+354,suicide,115.0,All countries,violence
+10,age,116.0,All countries,No theme
+295,release,117.0,All countries,No theme
+55,burn,118.0,All countries,violence
+359,suspect,119.0,All countries,violence
+352,sue,120.0,All countries,No theme
+397,west,121.0,All countries,No theme
+137,fashion,122.0,All countries,No theme
+293,record,123.0,All countries,No theme
+228,marriage,124.0,All countries,female stereotypes
+114,dream,125.0,All countries,empowerement
+101,deny,126.0,All countries,No theme
+278,protest,127.0,All countries,empowerement
+239,money,128.0,All countries,No theme
+329,single,129.0,All countries,female stereotypes
+14,allege,130.0,All countries,violence
+139,fear,131.0,All countries,female stereotypes
+161,great,132.0,All countries,No theme
+130,explain,133.0,All countries,No theme
+179,hope,134.0,All countries,No theme
+341,stand,135.0,All countries,No theme
+3,act,136.0,All countries,No theme
+205,killer,137.0,All countries,violence
+375,transgender,138.0,All countries,No theme
+275,prison,139.0,All countries,violence
+60,career,140.0,All countries,empowerement
+199,judge,141.0,All countries,violence
+89,cut,142.0,All countries,No theme
+7,admit,143.0,All countries,No theme
+286,raise,144.0,All countries,No theme
+338,sport,145.0,All countries,No theme
+212,leader,146.0,All countries,empowerement
+59,care,147.0,All countries,female stereotypes
+306,rule,148.0,All countries,No theme
+363,teacher,149.0,All countries,No theme
+314,sentence,150.0,All countries,violence
+37,beauty,151.0,All countries,female stereotypes
+311,search,152.0,All countries,No theme
+57,campaign,153.0,All countries,No theme
+240,movie,154.0,All countries,No theme
+31,ban,155.0,All countries,No theme
+392,war,156.0,All countries,violence
+404,worker,157.0,All countries,empowerement
+237,model,158.0,All countries,No theme
+22,artist,159.0,All countries,empowerement
+192,inspire,160.0,All countries,empowerement
+262,pic,161.0,All countries,No theme
+158,girlfriend,162.0,All countries,female stereotypes
+106,director,163.0,All countries,empowerement
+47,boss,164.0,All countries,empowerement
+334,song,165.0,All countries,No theme
+91,dance,166.0,All countries,No theme
+406,write,167.0,All countries,No theme
+200,justice,168.0,All countries,violence
+250,online,169.0,All countries,No theme
+133,fake,170.0,All countries,No theme
+98,defend,171.0,All countries,violence
+122,elderly,172.0,All countries,No theme
+156,gang,173.0,All countries,violence
+319,sexually,174.0,All countries,female stereotypes
+88,cup,175.0,All countries,No theme
+164,gun,176.0,All countries,violence
+347,struggle,177.0,All countries,No theme
+214,learn,178.0,All countries,No theme
+328,singer,179.0,All countries,No theme
+389,voice,180.0,All countries,empowerement
+162,grow,181.0,All countries,No theme
+132,fail,182.0,All countries,No theme
+39,believe,183.0,All countries,No theme
+203,kidnap,184.0,All countries,violence
+13,alive,185.0,All countries,No theme
+282,question,186.0,All countries,No theme
+149,food,187.0,All countries,No theme
+294,relationship,188.0,All countries,female stereotypes
+131,facebook,189.0,All countries,No theme
+26,attempt,190.0,All countries,No theme
+251,order,191.0,All countries,No theme
+190,injure,192.0,All countries,violence
+402,wonder,193.0,All countries,No theme
+97,debut,194.0,All countries,No theme
+193,instagram,195.0,All countries,No theme
+246,north,196.0,All countries,No theme
+63,challenge,197.0,All countries,No theme
+84,crime,198.0,All countries,violence
+75,comment,199.0,All countries,No theme
+195,interview,200.0,All countries,No theme
+273,prince,201.0,All countries,No theme
+357,survive,202.0,All countries,empowerement
+21,art,203.0,All countries,No theme
+356,surgery,204.0,All countries,No theme
+36,beautiful,205.0,All countries,female stereotypes
+368,threaten,206.0,All countries,violence
+353,suffer,207.0,All countries,violence
+86,cry,208.0,All countries,female stereotypes
+180,horror,209.0,All countries,violence
+215,lie,210.0,All countries,female stereotypes
+383,twin,211.0,All countries,No theme
+163,guilty,212.0,All countries,violence
+62,ceo,213.0,All countries,empowerement
+76,company,214.0,All countries,No theme
+218,london,215.0,All countries,No theme
+243,muslim,216.0,All countries,No theme
+168,harassment,217.0,All countries,violence
+74,coach,218.0,All countries,No theme
+390,vote,219.0,All countries,No theme
+366,teenage,220.0,All countries,No theme
+303,risk,221.0,All countries,violence
+16,allow,222.0,All countries,No theme
+169,hate,223.0,All countries,violence
+249,olympic,224.0,All countries,No theme
+291,reason,225.0,All countries,No theme
+378,trial,226.0,All countries,violence
+116,drink,227.0,All countries,No theme
+196,issue,228.0,All countries,No theme
+361,taylor,229.0,All countries,No theme
+232,mean,230.0,All countries,No theme
+307,safe,231.0,All countries,No theme
+252,oscar,232.0,All countries,No theme
+337,special,233.0,All countries,No theme
+270,pregnancy,234.0,All countries,female stereotypes
+155,future,235.0,All countries,No theme
+220,loss,236.0,All countries,No theme
+382,tweet,237.0,All countries,No theme
+396,weight,238.0,All countries,female stereotypes
+67,chief,239.0,All countries,empowerement
+108,divorce,240.0,All countries,female stereotypes
+407,wrong,241.0,All countries,No theme
+233,member,242.0,All countries,No theme
+227,mark,243.0,All countries,No theme
+274,princess,244.0,All countries,female stereotypes
+308,saudi,245.0,All countries,No theme
+1,accident,246.0,All countries,No theme
+264,player,247.0,All countries,No theme
+268,powerful,248.0,All countries,empowerement
+182,hot,249.0,All countries,No theme
+129,experience,250.0,All countries,No theme
+346,strong,251.0,All countries,empowerement
+50,breast,252.0,All countries,female stereotypes
+123,emotional,253.0,All countries,female stereotypes
+280,prove,254.0,All countries,No theme
+42,blame,255.0,All countries,No theme
+100,demand,256.0,All countries,No theme
+288,rare,257.0,All countries,No theme
+5,activist,258.0,All countries,empowerement
+345,strike,259.0,All countries,No theme
+127,escape,260.0,All countries,violence
+257,partner,261.0,All countries,No theme
+304,room,262.0,All countries,No theme
+316,service,263.0,All countries,No theme
+159,gold,264.0,All countries,No theme
+301,ring,265.0,All countries,No theme
+210,lawyer,266.0,All countries,empowerement
+283,quit,267.0,All countries,No theme
+167,hang,268.0,All countries,No theme
+364,tear,269.0,All countries,No theme
+284,race,270.0,All countries,No theme
+340,stage,271.0,All countries,No theme
+350,style,272.0,All countries,No theme
+174,hero,273.0,All countries,No theme
+393,warn,274.0,All countries,No theme
+277,protect,275.0,All countries,No theme
+53,build,276.0,All countries,No theme
+322,shock,277.0,All countries,No theme
+183,hotel,278.0,All countries,No theme
+110,domestic,279.0,All countries,female stereotypes
+289,ready,280.0,All countries,No theme
+150,football,281.0,All countries,No theme
+226,march,282.0,All countries,No theme
+19,anti,283.0,All countries,No theme
+184,human,284.0,All countries,No theme
+72,church,285.0,All countries,No theme
+206,kiss,286.0,All countries,No theme
+360,target,287.0,All countries,No theme
+81,couple,288.0,All countries,No theme
+113,drag,289.0,All countries,No theme
+376,treat,290.0,All countries,No theme
+244,mystery,291.0,All countries,No theme
+305,royal,292.0,All countries,No theme
+261,person,293.0,All countries,No theme
+66,cheat,294.0,All countries,female stereotypes
+372,toddler,295.0,All countries,No theme
+30,bag,296.0,All countries,No theme
+207,later,297.0,All countries,No theme
+189,include,298.0,All countries,No theme
+78,convict,299.0,All countries,violence
+362,teach,300.0,All countries,No theme
+54,bully,301.0,All countries,No theme
+12,album,302.0,All countries,No theme
+377,treatment,303.0,All countries,No theme
+71,christmas,304.0,All countries,No theme
+4,action,305.0,All countries,No theme
+285,racist,306.0,All countries,violence
+124,empower,307.0,All countries,empowerement
+128,event,308.0,All countries,No theme
+213,league,309.0,All countries,No theme
+260,perfect,310.0,All countries,empowerement
+247,nurse,311.0,All countries,female stereotypes
+292,recall,312.0,All countries,No theme
+326,silence,313.0,All countries,No theme
+254,pain,314.0,All countries,No theme
+18,answer,315.0,All countries,No theme
+374,track,316.0,All countries,No theme
+8,advice,317.0,All countries,No theme
+9,affair,318.0,All countries,female stereotypes
+45,board,319.0,All countries,No theme
+188,image,320.0,All countries,No theme
+216,light,321.0,All countries,No theme
+33,beach,322.0,All countries,No theme
+380,true,323.0,All countries,No theme
+263,pilot,324.0,All countries,No theme
+245,newborn,325.0,All countries,female stereotypes
+194,internet,326.0,All countries,No theme
+358,survivor,327.0,All countries,empowerement
+336,space,328.0,All countries,No theme
+320,sexy,329.0,All countries,female stereotypes
+321,shame,330.0,All countries,No theme
+11,ahead,331.0,All countries,No theme
+69,chinese,332.0,All countries,No theme
+298,reunite,333.0,All countries,No theme
+120,drunk,334.0,All countries,No theme
+160,golden,335.0,All countries,No theme
+230,mask,336.0,All countries,No theme
+269,praise,337.0,All countries,No theme
+118,drown,338.0,All countries,violence
+154,funeral,339.0,All countries,No theme
+24,athlete,340.0,All countries,No theme
+371,title,341.0,All countries,No theme
+351,success,342.0,All countries,empowerement
+112,double,343.0,All countries,No theme
+43,blood,344.0,All countries,violence
+259,past,345.0,All countries,No theme
+385,vaccine,346.0,All countries,No theme
+201,key,347.0,All countries,No theme
+300,rich,348.0,All countries,No theme
+70,choose,349.0,All countries,No theme
+107,discover,350.0,All countries,No theme
+276,promise,351.0,All countries,No theme
+330,skin,352.0,All countries,No theme
+324,shop,353.0,All countries,female stereotypes
+253,owner,354.0,All countries,empowerement
+85,crush,355.0,All countries,No theme
+256,paris,356.0,All countries,No theme
+121,earn,357.0,All countries,No theme
+165,guy,358.0,All countries,No theme
+152,forget,359.0,All countries,No theme
+379,trip,360.0,All countries,No theme
+234,mental,361.0,All countries,No theme
+191,injury,362.0,All countries,violence
+153,fund,363.0,All countries,No theme
+315,serve,364.0,All countries,No theme
+327,sing,365.0,All countries,No theme
+38,bed,366.0,All countries,No theme
+51,bride,367.0,All countries,female stereotypes
+175,hire,368.0,All countries,No theme
+44,blue,369.0,All countries,No theme
+387,view,370.0,All countries,No theme
+77,control,371.0,All countries,No theme
+367,threat,372.0,All countries,No theme
+99,deliver,373.0,All countries,No theme
+265,point,374.0,All countries,No theme
+92,dark,375.0,All countries,No theme
+141,feed,376.0,All countries,No theme
+140,feature,377.0,All countries,No theme
+279,proud,378.0,All countries,No theme
+344,store,379.0,All countries,No theme
+185,hurt,380.0,All countries,No theme
+405,worth,381.0,All countries,empowerement
+332,soldier,382.0,All countries,No theme
+17,angry,383.0,All countries,No theme
+222,major,384.0,All countries,No theme
+369,tie,385.0,All countries,No theme
+64,champion,386.0,All countries,No theme
+125,equal,387.0,All countries,empowerement
+126,equality,388.0,All countries,empowerement
+111,door,389.0,All countries,No theme
+104,designer,390.0,All countries,No theme
+401,winner,391.0,All countries,empowerement
+145,fighter,392.0,All countries,No theme
+236,minute,393.0,All countries,No theme
+231,matter,394.0,All countries,No theme
+312,seat,395.0,All countries,No theme
+373,touch,396.0,All countries,No theme
+290,reality,397.0,All countries,No theme
+297,response,398.0,All countries,No theme
+87,culture,399.0,All countries,No theme
+325,shut,400.0,All countries,No theme
+235,mind,401.0,All countries,No theme
+143,festival,402.0,All countries,No theme
+103,design,403.0,All countries,No theme
+225,manager,404.0,All countries,empowerement
+381,truth,405.0,All countries,No theme
+102,deserve,406.0,All countries,No theme
+136,far,407.0,All countries,No theme
+187,idea,408.0,All countries,No theme
+148,flee,409.0,All countries,No theme
