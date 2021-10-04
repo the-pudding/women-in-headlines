@@ -87,13 +87,13 @@ function init() {
 			d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			d3.csv("./assets/data/word_themes.csv", d3.autoType),
 	
-			d3.csv("./assets/data/country_freqtheme_pivoted_all.csv", d3.autoType),
+			d3.csv("./assets/data/country_freq_pivoted_all_100221.csv", d3.autoType),
 			// d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_all.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_all_100221.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
-			d3.csv("./assets/data/word_themes_rank.csv", d3.autoType),
-			d3.csv("./assets/data/words_theme_freq.csv", d3.autoType)
+			d3.csv("./assets/data/word_themes_rank_100221.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_freq_100221.csv", d3.autoType)
 
 		  ])
 			.then((datasets) => {
@@ -390,6 +390,8 @@ function init() {
 			
 				var height = 5000 - margin.top - margin.bottom
 				var width = 500 - margin.left - margin.right
+
+				d3.selectAll("#themeticks").remove()
 			
 				d3.selectAll(".stackedBars")
 					.selectAll("rect")
@@ -667,16 +669,17 @@ function init() {
 				// select bars and color them by theme
 				d3.selectAll(".stackedBars")
 				  .selectAll("rect")
-				.on("mouseover", (event, d) => highlightWords(themes, d.key.word, "chartHover", d, null, null, null, x, y))
+				.on("mouseover", (event, d) => highlightWords(themes, d.key.word, "chartHover", d, null, null, null, x, y, event))
 				.on("mouseleave", (event,d)=> unHighlightWords(themes, d.key.word))
 			
 			}
 			
-			function highlightWords(themes, word, hoverType, d, newScale, changeScale, transform, x, y) {
+			function highlightWords(themes, word, hoverType, d, newScale, changeScale, transform, x, y, event) {
 			
 				// console.log(themes.filter(c=>c.word===word)[0].theme)
 				// console.log(themes.filter(c=>c.word===word)[0].theme)
 				console.log(word)
+				// console.log(event.y)
 				// console.log(transform)
 				d3.selectAll("."+ word)
 				.attr("fill", "#E75C33")
@@ -700,11 +703,12 @@ function init() {
 				} 
 				
 				if (changeScale === "True") {
-					console.log(d, newScale(d[1]))
+					console.log(d, newScale(d[1])+transform, event.clientY)
 					d3.select("#stackedChart")
 						.append("text")
 						// .attr("y", y(d.data[word]))
 						.attr("y", newScale(d[1])+transform)
+						// .attr("y", (event.clientY)+"px")
 						.text(word)
 						.attr("class", "stackedBarAnnotation")
 						// .attr("transform", `translate(0, ${transform})`)
@@ -774,10 +778,12 @@ function init() {
 				console.log("stacked themes", stackedData)
 			
 				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
+
+				var themePad = 20
 			
 				var height = 750 - margin.top - margin.bottom
 				// var width = 600 - margin.left - margin.right
-				var width = 400 - margin.left - margin.right
+				var width = 400 + themePad - margin.left - margin.right
 			
 			
 				// heightChart = 5000 - margin.top - margin.bottom
@@ -869,6 +875,7 @@ function init() {
 				xAxis = svg.append("g")
 				.call(xAxis)
 				.attr("class", "stackedChartCountries")
+				.attr("id", "themeticks")
 				// .attr("transform", `translate(0,${heightChart-margin.top})`)
 			
 				xAxis.selectAll(".tick text").remove()
@@ -892,7 +899,7 @@ function init() {
 				var rectsThemes = d3.selectAll(".stackedBars")
 					.selectAll("rect")
 					.filter(d=>(d.key.theme!=="No theme")&&(d.data.country==="All countries"))
-					.on("mouseover", (event, d) => highlightWords(themes, d.key.word, "chartHover", d, yThemesStack, "True", heightChart-margin.top, x, yThemesStack))
+					.on("mouseover", (event, d) => highlightWords(themes, d.key.word, "chartHover", d, yThemesStack, "True", heightChart-margin.top, x, yThemesStack, event))
 					.on("mouseleave", (event,d)=> unHighlightWords(themes, d.key.word))
 			
 					// new
@@ -940,7 +947,7 @@ function init() {
 					.attr("y", d => yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
 					.attr("height", d => yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
 										 yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
-					.attr("width", xThemes.bandwidth())
+					.attr("width", xThemes.bandwidth()-(themePad/3))
 					.attr("transform", `translate(0,${heightChart-margin.top})`)
 					// console.log("test scale", stackedData.filter(c=>c.key === "kill")[0].filter(e=>e.data.theme==="violence")[0][1])
 			
