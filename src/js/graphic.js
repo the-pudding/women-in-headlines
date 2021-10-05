@@ -84,8 +84,8 @@ function init() {
 			d3.csv("./assets/data/headlines_cl_sent_sm_rapi.csv"),
 			d3.csv("./assets/data/country_time_freqrank_rapi_clean.csv", d3.autoType),
 			d3.csv("./assets/data/polarity_comparison.csv", d3.autoType),
-			d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes.csv", d3.autoType),
+			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
+			// d3.csv("./assets/data/word_themes.csv", d3.autoType),
 	
 			d3.csv("./assets/data/country_freq_pivoted_all_100221.csv", d3.autoType),
 			// d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
@@ -103,12 +103,12 @@ function init() {
 				let headlines = datasets[1]
 				let tempWords = datasets[2]
 				let polComparison = datasets[3]
-				let dataWordsOLD = datasets[4]
-				let themesOLD = datasets[5]
-				let data = datasets[6]
-				let themes = datasets[7]
-				let themesRank = datasets[8]
-				let themesFreq = datasets[9]
+				// let dataWordsOLD = datasets[4]
+				// let themesOLD = datasets[5]
+				let data = datasets[4]
+				let themes = datasets[5]
+				let themesRank = datasets[6]
+				let themesFreq = datasets[7]
 				// console.log(dataFreq)
 				// console.log(themes)
 				// console.log(themesRank)
@@ -174,6 +174,15 @@ function init() {
 					$('.bubbleFilters').css({'position': 'sticky', 'top': '0px'}); 
 				}
 			});
+
+			// sticky legend for stackedbars
+			// $(window).scroll(function() {
+			// 	if ($(this).scrollTop() - $('#themebars').position().top > -20){
+			// 		$('#freqLegend').css({'position': 'static', 'top': '0px'}); 
+			// 	}else{
+			// 		$('#freqLegend').css({'position': 'sticky', 'top': '0px'}); 
+			// 	}
+			// });
 	
 			// // sticky chart stacked bar
 			// $(window).scroll(function() {
@@ -585,13 +594,14 @@ function init() {
 				d3.select(".stackedChartyAxis")
 					.selectAll(".tick")
 					.append("text")
-					.text((d, i) => i == 8 ?"Frequency of use in headlines ⇢": "")
+					.text((d, i) => i == 7 ?"Frequency of use in headlines ⇢": "")
 					// .text((d, i)=>console.log("ytick"+i))
 					.attr("x", 0)             
 					.attr("y", 0)
 					.attr("class", "stackedChartyTicks")
 					.style("text-transform", "lowercase")
 					.style("transform", "rotate(-90deg)")
+					.attr("id", "freqLegend")
 					// .call(wrap, 10)
 			
 				  
@@ -623,7 +633,7 @@ function init() {
 	
 						// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
 						// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
-						.transition().duration("4000")
+						.transition().duration("2000")
 							.ease(d3.easeCubic)
 							.delay((d, i) => {
 								// console.log(d, i)
@@ -704,13 +714,23 @@ function init() {
 				
 				if (changeScale === "True") {
 					console.log(d, newScale(d[1])+transform, event.clientY)
+					// console.log(event.pageY+transform, event.clientY)
+					console.log("page " + event.pageY, "client " + event.clientY, "transform " + transform)
+
+					const wordAnnot = 
 					d3.select("#stackedChart")
 						.append("text")
 						// .attr("y", y(d.data[word]))
-						.attr("y", newScale(d[1])+transform)
+						// .attr("y", newScale(d[0])+transform)
+						// .attr("y", newScale(d[0]))
 						// .attr("y", (event.clientY)+"px")
+						// .attr("y", (event.pageY)+transform)
+						.attr("y", (event.clientY)+transform)
 						.text(word)
 						.attr("class", "stackedBarAnnotation")
+
+
+					// wordAnnot//.attr("transform", `translate(0, 5000)`)
 						// .attr("transform", `translate(0, ${transform})`)
 				}
 			
@@ -855,17 +875,19 @@ function init() {
 				// yAxis.selectAll(".tick text").remove()
 			
 				 // legend
-				d3.select("#themeAxis")
-				 .selectAll(".tick")
-				 .append("text")
-				 .text((d, i) => i == 8 ?"Frequency of use in headlines ⇢": "")
-				 // .text((d, i)=>console.log("ytick"+i))
-				 .attr("x", 0)             
-				 .attr("y", 0)
-				 .attr("class", "themesChartyTicks")
-				 .attr("dx", "250")
-				 .style("text-transform", "lowercase")
-				 .style("transform", "rotate(-90deg)")
+				// d3.select("#themeAxis")
+				//  .selectAll(".tick")
+				//  .append("text")
+				//  .text((d, i) => i == 7 ?"Frequency of use in headlines ⇢": 
+				//  				 i == 4? "Word is used more frequently ⇢":
+				// 				 i == 2? "⇠ Word is used less frequently": "")
+				//  // .text((d, i)=>console.log("ytick"+i))
+				//  .attr("x", 0)             
+				//  .attr("y", 0)
+				//  .attr("class", "themesChartyTicks")
+				//  .attr("dx", "250")
+				//  .style("text-transform", "lowercase")
+				//  .style("transform", "rotate(-90deg)")
 				 // .call(wrap, 10)
 			
 			
@@ -921,7 +943,7 @@ function init() {
 					// .attr("width", xThemes.bandwidth())
 					// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
 					// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
-					.transition().duration("3000")
+					.transition().duration("2000")
 					.ease(d3.easeLinear)
 					.delay((d, i) => {
 						// console.log(d, i)
@@ -959,18 +981,21 @@ function init() {
 			
 				// select bars with no theme AND not in ALL COUNTRIES and remove them
 			
-				var rectsNoThemes = d3.selectAll(".stackedBars")
-					.selectAll("rect")
-					.filter(d=>(d.key.theme==="No theme")||(d.data.country!=="All countries"))
-					// .transition().duration("3000")
-					// .ease(d3.easeCubic)
-					// .delay((d, i) => {
-					//     // console.log(d, i)
-					//     // return i * 10;
-					//     return i * Math.random() * 0.2;
+				// HIDE RECTS
+				// var rectsNoThemes = d3.selectAll(".stackedBars")
+				// 	.selectAll("rect")
+				// 	.filter(d=>(d.key.theme==="No theme")||(d.data.country!=="All countries"))
+				// 	// .transition().duration("3000")
+				// 	// .ease(d3.easeCubic)
+				// 	// .delay((d, i) => {
+				// 	//     // console.log(d, i)
+				// 	//     // return i * 10;
+				// 	//     return i * Math.random() * 0.2;
 						
-					//   })
-					.attr("visibility", "hidden")
+				// 	//   })
+				// 	.attr("visibility", "hidden")
+
+
 					// .attr("opacity", 0)
 					// .remove()
 				
@@ -1224,6 +1249,7 @@ function init() {
 					.attr("x", d=>x(d.polarity_women))
 					.attr("y", d=> y(d.site_clean))
 					.attr("class", "polarityDiffAnnotation")
+					// .text(d=>(d.polarity_women*100-d.polarity_base*100)/(d.polarity_base*100))
 					.text(d=>((d.polarity_women-d.polarity_base)/d.polarity_base)*100>0?
 								"+"+Math.round(((d.polarity_women-d.polarity_base)/d.polarity_base)*100)+"%":
 								Math.round(((d.polarity_women-d.polarity_base)/d.polarity_base)*100)+"%")
@@ -1874,7 +1900,7 @@ function init() {
 								.attr("fill", mainColor)
 								.attr("r", radius)
 								.attr("opacity", "0.5")
-								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg, col, minDate, maxDate, visHeight))
+								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg, col, minDate, maxDate, visHeight, x))
 								.on("mouseleave", (event, d) => {
 												d3.selectAll(".timeRuler").remove()
 												tooltip
@@ -1941,7 +1967,7 @@ function init() {
 	
 			}
 	
-			function timeRuler(event, d, g, svg, col, minDate, maxDate, visHeight) {
+			function timeRuler(event, d, g, svg, col, minDate, maxDate, visHeight, x) {
 
 				//console.log(data[0].rates[0].date, "data in temporal chart")
 
@@ -1955,15 +1981,16 @@ function init() {
 					.range([0, col.bandwidth()])
 		
 	
-				const rulerg = g.append("g")
+				const rulerg = g//.append("g")
 								.append("rect")
 								.attr("class", "timeRuler")
 								.attr('transform', `translate(${col(0)}, -${margin.top/3})`)
 								.attr("x", x(d.date)-9)
 								.attr("y", 0)
+								.attr("width", 20)
 								.attr("height", visHeight)
 	
-								console.log(new Date("2021"))
+								console.log(d.date)
 			
 				// rect dimensions
 				const boxWidth = 200

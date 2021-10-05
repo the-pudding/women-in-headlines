@@ -159,13 +159,15 @@
         </div>
         <div class='step' id="stepSpacer" task="exploreChart" data-index='15'>
         </div>
-        <div class='step' id="stepSpacer" task="exploreChart" data-index='16'>
+        {{!-- <div class='step' id="stepSpacer" task="exploreChart" data-index='16'> --}}
+        <div class='step' id="stepSpacer" task="themeBarsTransition" data-index='16'>
         </div>
         <!-- <div class='step' id="stepSpacer" task="exploreChart" data-index='11'>
         </div> -->
         <!-- <div class='step' class="spacer" data-index='6' task="none"></div>
         <div class='step' class="spacer" data-index='6' task="none"></div> -->
-        <div class='step' task="themeBarsTransition" data-index='17'>
+        {{!-- <div id="themebars" class='step' task="themeBarsTransition" data-index='17'> --}}
+        <div id="themebars" class='step' data-index='17'>
           But how much fewer are empowering words compared to violence and women stereotypes?
         </div>
        </article>
@@ -252,9 +254,9 @@
 </section>
 
 <!-- 2 TEMPORAL CHART -->
-<section class="temporal-chart-section">
+<section class="temporal-chart-section" id="waveChartSection">
   <div class="header">
-    <h2 style = "text-align: center" class="sectionHeader" id="waveChartSection">{{copy.wave-headline}}</h2>
+    <h2 style = "text-align: center" class="sectionHeader">{{copy.wave-headline}}</h2>
   </div>
   <div class="buttons">
     <p style="text-align: center" class="annotationButton">Filter by country</p>
