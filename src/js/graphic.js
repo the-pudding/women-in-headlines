@@ -1156,7 +1156,7 @@ function init() {
 				// set the dimensions and margins of the graph
 				var margin = {top: 130, right: 50, bottom: 30, left: 230},
 				width = 1000 - margin.left - margin.right,
-				height = 1630 - margin.top - margin.bottom;
+				height = 2230 - margin.top - margin.bottom;
 			
 				// append the svg object to the body of the page
 				var lollipopChart = d3.select("#lollipopChart")
@@ -1169,9 +1169,9 @@ function init() {
 			
 				// console.log(data)
 				//data = data.sort((a,b)=>d3.descending(+a.polarity_women, +b.polarity_women)) 
-				data = data.filter(d=>(d.popularity==1)&&(Math.abs(d.difference) > 0.05)
+				data = data.filter(d=>(d.popularity==1)&&(Math.abs(d.difference) > 0.01)
 													   &&((d.site_clean !== "dailysun.co.za")
-													   &&(d.site_clean !== "msnbc")))
+													   &&(d.site_clean !== "")))
 													   
 				data = data.sort((a,b)=> d3.descending(+a.polarity_women, +b.polarity_women))
 				// data = data.filter(d=> Math.abs(d.difference) > 0.05)
@@ -1333,7 +1333,9 @@ function init() {
 			d3.select("#sortLollipopDiff")
 				.on("click", function(){
 					// reorder site names
-					var dataSort = data.sort((a,b)=> d3.descending(+a.difference, +b.difference))
+					// var dataSort = data.sort((a,b)=> d3.descending(+a.difference, +b.difference))
+					var dataSort = data.sort((a,b)=> d3.descending(+((a.polarity_women-a.polarity_base)/a.polarity_base), +((b.polarity_women-b.polarity_base)/b.polarity_base)))
+
 					y.domain(dataSort.map(d=>d.site_clean))
 					// change axis
 					lollipopChart.select(".polarityCompyAxis").transition().duration("1000").call(d3.axisLeft(y)
@@ -1342,7 +1344,7 @@ function init() {
 					// sort the circles
 					lollipopChart.selectAll("circle")//.attr("r", 20)//the bars were added before
 								// .data(data.sort((a,b)=> d3.descending(+a.difference, +b.difference)))
-						.sort((a, b) => a !== undefined? d3.ascending(+a.difference, +b.difference):""
+						.sort((a, b) => a !== undefined? d3.descending(+((a.polarity_women-a.polarity_base)/a.polarity_base), +((b.polarity_women-b.polarity_base)/b.polarity_base)):""
 						).transition().duration("1000")
 						.attr("cy", (d, i)=>
 							
@@ -1352,13 +1354,13 @@ function init() {
 					// sort the annotations
 					lollipopChart.selectAll(".polarityDiffAnnotation")//.attr("r", 20)//the bars were added before
 								// .data(data.sort((a,b)=> d3.descending(+a.difference, +b.difference)))
-						.sort((a, b) => d3.ascending(+a.difference, +b.difference))
+						.sort((a, b) => d3.descending(+((a.polarity_women-a.polarity_base)/a.polarity_base), +((b.polarity_women-b.polarity_base)/b.polarity_base)))
 						.transition().duration("1000")
 						.attr("y", (d, i)=> y(d.site_clean))
 					// sort the lines
 					lollipopChart.selectAll(".polarityCompBubbleLine")//.attr("r", 20)//the bars were added before
 								// .data(data.sort((a,b)=> d3.descending(+a.difference, +b.difference)))
-						.sort((a, b) => d3.ascending(+a.difference, +b.difference))
+						.sort((a, b) => d3.descending(+((a.polarity_women-a.polarity_base)/a.polarity_base), +((b.polarity_women-b.polarity_base)/b.polarity_base)))
 						.transition().duration("1000")
 						.attr("x1", (d, i)=>x(d.polarity_base))
 						.attr("x2", (d, i)=>x(d.polarity_women))
@@ -2017,12 +2019,14 @@ function init() {
 					// .html(`<b>${d.title}</b><br>
 					// <b>${format(+d[metric_t])+"</b> "+legend_label_t.toLowerCase()}<br>
 					// <b>${format(+d[metric_p])+"</b> "+legend_label_p.toLowerCase()}`)
-					.html(`<b>${d3.timeFormat("%m/%Y")(d.date)}</b><br>
+					.html(`<span class="datettip">${d3.timeFormat("%b %Y")(d.date)}</span><br>
 					<i>${(d.name)}`)
 					.attr('transform', `translate(${-col(0)*3}, -${margin.top/3})`)
 					.style("left", x(new Date("01-01-2025")))
 					.style("top", event.pageY + "px")
-					.attr("class", "tooltipTL")
+					.attr("class", "tooltipTemp")
+
+				
 			
 				// const textBox = g.append("g")
 				//                   .append("rect")
@@ -2185,11 +2189,11 @@ function init() {
 					.attr("id", "tooltipText")
 					.attr("y", ttipHeight/4)
 					.attr("x", 0)
-					.attr("font-size", "11px")
-					.attr("font-weight", "bold")
-					.style("text-transform", "uppercase")
+					// .attr("font-size", "11px")
+					.attr("font-weight", "900")
+					// .style("text-transform", "uppercase")
 					.attr("fill", "#E75C33")
-					.html("<b>" + d3.timeFormat("%b %Y")(new Date(data[randHeadline].time)) + " | " + data[randHeadline].site)
+					.html("<span class='datettip'>"+d3.timeFormat("%b %Y")(new Date(data[randHeadline].time)) + " | " + data[randHeadline].site+"</span>")
 					// .html('"' + data[randHeadline].subtitle + '..."')
 					.call(wrap, 300)
 	
@@ -2208,7 +2212,7 @@ function init() {
 					.attr("y", ttipHeight/1.2)
 					.attr("x", 0)
 					// .attr("font-weight", "bold")
-					.attr("font-size", "12px")
+					.attr("font-size", "14px")
 					.style("text-transform", "uppercase")
 					// .attr("fill", party==="red" ? '#DD1F26':'#0076C0')
 					.attr("fill", "#282828")

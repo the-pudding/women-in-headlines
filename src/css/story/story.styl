@@ -71,8 +71,10 @@ body {
   }
   
 #tooltipText {
-    font-family: $national;
+    font-family: $barlow;
     display: block;
+    text-transform: uppercase;
+    
 }
 
 .tooltipTL {
@@ -85,6 +87,27 @@ body {
     padding: 1rem;
     width: 25%;
     max-height: 15rem;
+}
+
+.tooltipTemp {
+    font-family: $barlow;
+    color: $off-black;
+    background-color: $bg;
+    border: 1px $off-black solid;
+    border-top: 2px $off-black solid;
+    margin: 1rem;
+    padding: 1rem;
+    width: 16%;
+    // max-height: 15rem;
+    margin-left: 82%
+}
+
+.datettip {
+    color:$red;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: $barlow;
+    font-weight: 900
 }
 
 .tooltipTL:nth-child(2), .tooltipTL:nth-child(4) {
@@ -352,6 +375,16 @@ ul {
   align-items: center;
   display: flex;
   margin-top: 50px;
+  // max-width: 65rem;
+  width: 70%;
+  margin-left: 10%;
+  // margin-right:15vw
+   // // text-align: right;
+  // background-color: $tan;
+  // // z-index: 1;
+  // // display: flex;
+  // flex-direction: row;
+  // width: 70%;
 }
 
 button {
@@ -396,7 +429,8 @@ select::selection{
 .flag {
     height:35px;
     text-anchor: middle;
-    padding-right: 10px;
+    padding-right: 0px;
+    max-width: 30%;
 }
 
 .country {
