@@ -354,8 +354,11 @@ function init() {
 					} else if (task === "drawbars") {
 						renderStackedBars(data, words)
 						sel.attr('task', 'none')
-					} else if (task === "highlightthemes") {
-						colorThemes()
+					} else if (task === "highlightthemesVS") {
+						colorThemes("VS")
+						sel.attr('task', 'none')
+					} else if (task === "highlightthemesE") {
+						colorThemes("E")
 						sel.attr('task', 'none')
 					} else if (task === "tooltip") {
 						activateTooltip(themes, x, y)
@@ -650,11 +653,12 @@ function init() {
 			
 			};
 			
-			function colorThemes() {
+			function colorThemes(theme) {
 			
 				// select bars and color them by theme
-				d3.selectAll(".stackedBars")
-				  .selectAll("rect")
+				if (theme === "VS") {
+					d3.selectAll(".stackedBars")
+				  	  .selectAll("rect")
 				//   .attr("fill", d=>themes.filter(c=>c.word===d.key)[0].theme==="female_bias"?"#0BBF99":
 				//                     themes.filter(c=>c.word===d.key)[0].theme==="empowerement"?"#F7DC5B":
 				//                     themes.filter(c=>c.word===d.key)[0].theme==="violence"?"#F2C5D3":"lightgrey")
@@ -666,12 +670,18 @@ function init() {
 				//         return i * Math.random() * 0.02;
 						
 				//       })
-				.attr("fill", d=>d.key.theme==="female stereotypes"?"#0BBF99":
-								d.key.theme==="empowerement"?"#F7DC5B":
+						.attr("fill", d=>d.key.theme==="female stereotypes"?"#0BBF99":
 								d.key.theme==="violence"?"#F2C5D3":"lightgrey")
 				// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
 				// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
-			
+				} else if (theme === "E") {
+					d3.selectAll(".stackedBars")
+				  	  .selectAll("rect")
+					  .attr("fill", d=>d.key.theme==="female stereotypes"?"#0BBF99":
+								d.key.theme==="empowerement"?"#F7DC5B":
+								d.key.theme==="violence"?"#F2C5D3":"lightgrey")
+				}
+					
 			}
 			
 			function activateTooltip (themes, x, y) {
