@@ -87,13 +87,13 @@ function init() {
 			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("./assets/data/word_themes.csv", d3.autoType),
 	
-			d3.csv("./assets/data/country_freq_pivoted_all_100221.csv", d3.autoType),
+			d3.csv("./assets/data/country_freq_pivoted_all_101221.csv", d3.autoType),
 			// d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_all_100221.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_all_101221.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
-			d3.csv("./assets/data/word_themes_rank_100221.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_freq_100221.csv", d3.autoType)
+			d3.csv("./assets/data/word_themes_rank_101221.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType)
 
 		  ])
 			.then((datasets) => {
@@ -670,16 +670,18 @@ function init() {
 				//         return i * Math.random() * 0.02;
 						
 				//       })
-						.attr("fill", d=>d.key.theme==="female stereotypes"?"#0BBF99":
-								d.key.theme==="violence"?"#F2C5D3":"lightgrey")
+						.attr("fill", d=>d.key.theme==="female stereotypes"?"#F2C5D3":
+								d.key.theme==="crime and violence"?"#E75C33":"lightgrey")
 				// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
 				// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
 				} else if (theme === "E") {
 					d3.selectAll(".stackedBars")
 				  	  .selectAll("rect")
-					  .attr("fill", d=>d.key.theme==="female stereotypes"?"#0BBF99":
-								d.key.theme==="empowerement"?"#F7DC5B":
-								d.key.theme==="violence"?"#F2C5D3":"lightgrey")
+					  .attr("fill", d=>d.key.theme==="female stereotypes"?"#F2C5D3":
+									d.key.theme==="empowerment"?"#F7DC5B":
+									d.key.theme==="crime and violence"?"#E75C33":
+									d.key.theme==="race, ethnicity and identity"?"#53B67C":
+									d.key.theme==="people and places"?"#5787f2": "lightgrey")
 				}
 					
 			}
@@ -760,9 +762,11 @@ function init() {
 			
 				} else {
 					d3.selectAll("."+ word)
-					  .attr("fill",   themes.filter(c=>c.word===word)[0].theme==="female stereotypes"?"#0BBF99":
-								themes.filter(c=>c.word===word)[0].theme==="empowerement"?"#F7DC5B":
-								themes.filter(c=>c.word===word)[0].theme==="violence"?"#F2C5D3":"lightgrey")
+					  .attr("fill",   d=>d.key.theme==="female stereotypes"?"#F2C5D3":
+										d.key.theme==="empowerment"?"#F7DC5B":
+										d.key.theme==="crime and violence"?"#E75C33":
+										d.key.theme==="race, ethnicity and identity"?"#53B67C":
+										d.key.theme==="people and places"?"#5787f2": "lightgrey")
 				}
 				
 				// .attr("fill", "#FEFAF1")
@@ -811,9 +815,9 @@ function init() {
 
 				var themePad = 20
 			
-				var height = 750 - margin.top - margin.bottom
+				var height = 800 - margin.top - margin.bottom
 				// var width = 600 - margin.left - margin.right
-				var width = 400 + themePad - margin.left - margin.right
+				var width = 550 + themePad - margin.left - margin.right
 			
 			
 				// heightChart = 5000 - margin.top - margin.bottom
@@ -831,7 +835,7 @@ function init() {
 				// console.log(data)
 				var xThemes = d3.scaleBand()
 				// .domain(data.map(d => d.theme))
-				.domain(["violence","female stereotypes", "empowerement"])
+				.domain(["crime and violence","female stereotypes", "empowerment", "people and places", "race, ethnicity and identity"])
 				.range([margin.left, width - margin.right])
 				.padding(0.1)
 				
