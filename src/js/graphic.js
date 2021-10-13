@@ -82,7 +82,7 @@ function init() {
 		Promise.all([
 			d3.csv("./assets/data/headlines_site_rapi.csv"),
 			d3.csv("./assets/data/headlines_cl_sent_sm_rapi.csv"),
-			d3.csv("./assets/data/country_time_freqrank_rapi_clean.csv", d3.autoType),
+			d3.csv("./assets/data/country_time_freqrank_rapi_clean_101221.csv", d3.autoType),
 			d3.csv("./assets/data/polarity_comparison.csv", d3.autoType),
 			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("./assets/data/word_themes.csv", d3.autoType),
@@ -136,9 +136,9 @@ function init() {
 				
 				// 2) temporal chart
 				var filter_years = [2009, 2022]
-				var country = "USA"
+				var country = "all countries"
 				var variable = "freq_prop_headlines" //freq_prop_headlines // frequency
-				// console.log("temp", tempWords)
+				console.log("temp", tempWords)
 				renderTempChart(tempWords, filter_years, country, variable)
 				// update chart when country is changed
 				d3.selectAll("button.country").on("click", function() {
