@@ -122,7 +122,7 @@
         <div class='step' theme="violence" task="highlightthemesVS" data-index='6'>
           Introduce themes. In fact, it turns out that most words
               used in headlines about women can be categorized into distinct categories: 
-              <span class="stackedBarThemeAnnotation" id="inTextViolence" value="violence"><b>violence</b></span> and 
+              <span class="stackedBarThemeAnnotation" id="inTextViolence" value="violence"><b>crime and violence</b></span> and 
               <span class="stackedBarThemeAnnotation" id="inTextBias" value="female_bias"><b>women stereotypes</b></span>
         </div>
         <div class='step' word="kill" task="highlightwords" hovertype="inTextHoverThemes" data-index='7'>
@@ -145,13 +145,18 @@
           For example talk about the word 
               <span class="stackedBarTextAnnotation" id="inTextKill" value="success" hovertype="inTextHover"><b>success</b></span>
         </div>
+        <div class='step' theme="people and places" task="highlightthemesPR" data-index='11'>
+          Transition into the explore chart part by telling the reader that there are other main themes that words fall into:
+           <span class="stackedBarThemeAnnotation" id="inTextPeople" value="people and places"><b>people and places</b></span> and finally
+           <span class="stackedBarThemeAnnotation" id="inTextRace" value="race, ethnicity and identity"><b>race, ethnicity and identity</b></span>.
+          Say something about those themes.
+        </div>
         <!-- <div class='step' word="boss" task="highlightwords" data-index='4'>
           Talk about another word, for example <span class="stackedBarTextAnnotation" id="inTextBoss" value="boss" hovertype="normalHover"><b>boss</b></span>.
         </div> -->
-        <div class='step' task="tooltip" data-index='11'>
-          Explore and interact with the chart on your own!
-        </div>
-        <div class='step' id="stepSpacer" task="exploreChart" data-index='12'>
+        <div class='step' task="tooltip" data-index='12'>
+          Scroll or use the search bar below to explore and interact with the chart on your own!<br>
+          <input type="text" placeholder="Search for a word..." id="wordSearch">
         </div>
         <div class='step' id="stepSpacer" task="exploreChart" data-index='13'>
         </div>
@@ -159,15 +164,17 @@
         </div>
         <div class='step' id="stepSpacer" task="exploreChart" data-index='15'>
         </div>
+        <div class='step' id="stepSpacer" task="exploreChart" data-index='16'>
+        </div>
         {{!-- <div class='step' id="stepSpacer" task="exploreChart" data-index='16'> --}}
-        <div class='step' id="stepSpacer" task="themeBarsTransition" data-index='16'>
+        <div class='step' id="stepSpacer" task="themeBarsTransition" data-index='17'>
         </div>
         <!-- <div class='step' id="stepSpacer" task="exploreChart" data-index='11'>
         </div> -->
         <!-- <div class='step' class="spacer" data-index='6' task="none"></div>
         <div class='step' class="spacer" data-index='6' task="none"></div> -->
         {{!-- <div id="themebars" class='step' task="themeBarsTransition" data-index='17'> --}}
-        <div id="themebars" class='step' data-index='17'>
+        <div id="themebars" class='step' data-index='18'>
           But how much fewer are empowering words compared to violence and women stereotypes?
         </div>
        </article>
@@ -260,6 +267,9 @@
   </div>
   <div class="buttons">
     <p style="text-align: center" class="annotationButton">Filter by country</p>
+    <button class="country" value="all countries">
+      <p>All Countries</p>
+    </button>
     <button class="country" value="USA">
       <img inline src='flags/united-states.svg' class="flag">
       <p>United States</p>

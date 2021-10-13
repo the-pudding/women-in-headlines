@@ -138,6 +138,7 @@ function init() {
 				var filter_years = [2009, 2022]
 				var country = "USA"
 				var variable = "freq_prop_headlines" //freq_prop_headlines // frequency
+				// console.log("temp", tempWords)
 				renderTempChart(tempWords, filter_years, country, variable)
 				// update chart when country is changed
 				d3.selectAll("button.country").on("click", function() {
@@ -360,6 +361,9 @@ function init() {
 					} else if (task === "highlightthemesE") {
 						colorThemes("E")
 						sel.attr('task', 'none')
+					} else if (task === "highlightthemesPR") {
+						colorThemes("PR")
+						sel.attr('task', 'none')
 					} else if (task === "tooltip") {
 						activateTooltip(themes, x, y)
 					} else if (task === "exploreChart") {
@@ -393,6 +397,7 @@ function init() {
 				}
 			
 				init()
+				highlightSearchedWords(y)
 			
 			}
 			
@@ -670,17 +675,24 @@ function init() {
 				//         return i * Math.random() * 0.02;
 						
 				//       })
-						.attr("fill", d=>d.key.theme==="female stereotypes"?"#F2C5D3":
-								d.key.theme==="crime and violence"?"#E75C33":"lightgrey")
+						.attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
+								d.key.theme==="crime and violence"?"#f76e45":"lightgrey")
 				// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
 				// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
 				} else if (theme === "E") {
 					d3.selectAll(".stackedBars")
 				  	  .selectAll("rect")
-					  .attr("fill", d=>d.key.theme==="female stereotypes"?"#F2C5D3":
+					  .attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
 									d.key.theme==="empowerment"?"#F7DC5B":
-									d.key.theme==="crime and violence"?"#E75C33":
-									d.key.theme==="race, ethnicity and identity"?"#53B67C":
+									d.key.theme==="crime and violence"?"#f76e45": "lightgrey")
+
+				} else if (theme === "PR") {
+					d3.selectAll(".stackedBars")
+				  	  .selectAll("rect")
+					  .attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
+									d.key.theme==="empowerment"?"#F7DC5B":
+									d.key.theme==="crime and violence"?"#f76e45":
+									d.key.theme==="race, ethnicity and identity"?"#F2C5D3":
 									d.key.theme==="people and places"?"#5787f2": "lightgrey")
 				}
 					
@@ -700,7 +712,7 @@ function init() {
 			
 				// console.log(themes.filter(c=>c.word===word)[0].theme)
 				// console.log(themes.filter(c=>c.word===word)[0].theme)
-				console.log(word)
+				// console.log(word)
 				// console.log(event.y)
 				// console.log(transform)
 				d3.selectAll("."+ word)
@@ -709,7 +721,7 @@ function init() {
 			
 				d3.selectAll(".stackedBars")
 				  .selectAll("rect:not(."+ word+")")
-				  .attr("opacity", "0.5")
+				  .attr("opacity", "0.3")
 			
 				d3.selectAll(".stackedChartyTicks").style("opacity", "0")
 			
@@ -717,8 +729,8 @@ function init() {
 					
 					d3.select("#stackedChart")
 						.append("text")
-						// .attr("y", y(d.data[word]))
 						.attr("y", y(d.data[word]))
+						// .attr("y", console.log("word", d.data[word]))
 						.text(word)
 						.attr("class", "stackedBarAnnotation")
 			
@@ -762,10 +774,10 @@ function init() {
 			
 				} else {
 					d3.selectAll("."+ word)
-					  .attr("fill",   d=>d.key.theme==="female stereotypes"?"#F2C5D3":
+					  .attr("fill",   d=>d.key.theme==="female stereotypes"?"#53B67C":
 										d.key.theme==="empowerment"?"#F7DC5B":
-										d.key.theme==="crime and violence"?"#E75C33":
-										d.key.theme==="race, ethnicity and identity"?"#53B67C":
+										d.key.theme==="crime and violence"?"#f76e45":
+										d.key.theme==="race, ethnicity and identity"?"#F2C5D3":
 										d.key.theme==="people and places"?"#5787f2": "lightgrey")
 				}
 				
@@ -1031,6 +1043,60 @@ function init() {
 				// if ATTRIBUTE hoverType === inTextHover do this, otherwise normal hover with themes!
 				unHighlightWords(word, hoverType)
 			})
+
+			// interaction with search bar
+			function highlightSearchedWords(scale) {
+				
+				d3.select("#wordSearch").on("input", function() {
+
+					var selectedWord = event.target.value;
+					console.log(selectedWord.toLowerCase())
+
+					if (selectedWord==="") {
+						d3.selectAll(".stackedBars")
+							.selectAll("rect")
+							.attr("opacity", "1")
+
+					console.log("reset")
+					d3.selectAll(".stackedChartyTicks").style("opacity", "1")
+
+					} else {
+					
+						// d3.selectAll(("."+ selectedWord).toLowerCase())//.match(selectedWord.toLowerCase()))
+						d3.selectAll(("[class*='"+ selectedWord.toLowerCase() +"']"))//.match(selectedWord.toLowerCase()))
+						// .attr("fill", "#E75C33")
+						.attr("opacity", "1")
+						//.attr("stroke-width", "0.1px")
+					
+						d3.selectAll(".stackedBars")
+						//   .selectAll("rect:not(."+ selectedWord.toLowerCase()+")")
+						.selectAll("rect:not([class*='"+ selectedWord.toLowerCase() +"']")
+						.attr("opacity", "0.3")
+
+						d3.selectAll(".stackedBars")
+							.selectAll(("[class*='"+ selectedWord.toLowerCase() +"']"))
+							// .filter(d=> (d!==undefined) && (d.data[d.key.word]!==undefined))
+							.append("text")
+							// .attr("y", y(d.data[word]))
+							// .attr("y", d=> d!==undefined? console.log(scale(d.key.word)):"")
+							// .attr("y", d=>console.log(scale(d.data[d.key.word])))
+							.attr("y", d=> d.data.country==="All countries"? scale(d.data[d.key.word]):null)
+							// .attr("y",100)
+							// .text(d=> d.key.word)
+							.text("check")
+							.attr("class", "stackedBarAnnotation")
+						
+						d3.selectAll(".stackedChartyTicks").style("opacity", "0")
+
+				}
+
+				// console.log(circles._groups[0].filter(d=>d.__data__.county === selected_city))
+				// console.log(circles._groups[0].filter(d=>d.__data__.county.toLowerCase().match(selected_city)))
+				// circles.attr("opacity", d=>d.county.toLowerCase().match(selected_city.toLowerCase())?"0.8":"0.2")
+			
+			
+			})
+		}
 
 	
 			// BAR CHARTS (OLD)
