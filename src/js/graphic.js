@@ -82,7 +82,7 @@ function init() {
 		Promise.all([
 			d3.csv("./assets/data/headlines_site_rapi.csv"),
 			d3.csv("./assets/data/headlines_cl_sent_sm_rapi.csv"),
-			d3.csv("./assets/data/country_time_freqrank_rapi_clean_101221.csv", d3.autoType),
+			d3.csv("./assets/data/country_time_freqrank_rapi_clean_101421.csv", d3.autoType),
 			d3.csv("./assets/data/polarity_comparison.csv", d3.autoType),
 			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("./assets/data/word_themes.csv", d3.autoType),
@@ -1493,6 +1493,19 @@ function init() {
 				var stickyAxisHeight = 200;
 				// colors
 				var mainColor = "#3569DC"; //"red" //"cyan"
+				var fColor = "#53B67C"
+				var eColor = "#F7DC5B"
+				var vColor = "#f76e45"
+				var rColor = "#F2C5D3"
+				var pColor = "#5787f2"
+				var ntColor = "lightgrey"
+
+				// d=>d.key.theme==="female stereotypes"?"#53B67C":
+				// 	d.key.theme==="empowerment"?"#F7DC5B":
+				// 	d.key.theme==="crime and violence"?"#f76e45":
+				// 	d.key.theme==="race, ethnicity and identity"?"#F2C5D3":
+				// 	d.key.theme==="people and places"?"#5787f2": "lightgrey")
+
 				var lineThickness = 1.5; //2.5
 				// structure of plots
 				var cols = 1;
@@ -1760,7 +1773,9 @@ function init() {
 			  
 			 ]
 			 
-				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country))
+				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places"))
+				words = words.sort((a, b) => d3.descending(a.theme, b.theme))
+
 				console.log("words")
 				console.log(words)
 				words = words.map(d=> {
@@ -1768,14 +1783,17 @@ function init() {
 						year: d.year,
 						frequency: d[variable],
 						word: d.word,
-						word_type: d.word_type
+						word_type: d.word_type,
+						theme: d.theme
 					}
 				})
+
+				console.log("words map", words)
 	
 				var freqByWord = d3.rollup(
 					words,
 					g => g.map(({ year, frequency}) => ({date: new Date(year, 0, 1), frequency})),
-					d => d.word
+					d => d.word,
 					// e => e.frequency//words.filter(c=>(c.word>d.word)&&(c.year==filter[1]))['frequency'],
 	
 				)
@@ -1791,8 +1809,8 @@ function init() {
 					col,
 					})
 				)
-				console.log("test")
-				console.log(data)
+				// console.log("test")
+				// console.log(data)
 	
 				// same x-scale for all charts
 				var minDate = data[0].rates[0].date
@@ -1855,28 +1873,67 @@ function init() {
 				//         </linearGradient>`)
 	
 				var defs = svg.append("defs");
-				var linearGradient = defs.append("linearGradient").attr("id", "linear-gradient");
-					
-				linearGradient
-					.attr("x1", "0%")
-					.attr("y1", "0%")
-					.attr("x2", "0%")
-					.attr("y2", "100%");
-					
-				linearGradient.append("stop")
-					.attr("offset", "0%")
+				// female stereotypes
+				var linearGradientF = defs.append("linearGradient").attr("id", "linear-gradient-F");
+				linearGradientF
+					.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+				linearGradientF.append("stop").attr("offset", "0%").attr("stop-color", fColor);
 					// .attr("stop-color", "hsl(10, 100%, 50%)");
-					.attr("stop-color", mainColor);
-	
-				
-				linearGradient.append("stop")
-					.attr("offset", "90%")
-					.attr("stop-color", "#FEFAF1");//#202020
-	
-				linearGradient.append("stop")
-					.attr("offset", "100%")
-					.attr("stop-color", "#FEFAF1") //#161616
+				linearGradientF.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");//#202020
+				linearGradientF.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1") //#161616
 					// .attr("opacity", 0.1);
+				
+				// violence
+				var linearGradientV = defs.append("linearGradient").attr("id", "linear-gradient-V");
+				linearGradientV
+					.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+				linearGradientV.append("stop").attr("offset", "0%").attr("stop-color", vColor);
+					// .attr("stop-color", "hsl(10, 100%, 50%)");
+				linearGradientV.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");//#202020
+				linearGradientV.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1") //#161616
+
+				// empowerment
+				var linearGradientE = defs.append("linearGradient").attr("id", "linear-gradient-E");
+				linearGradientE
+					.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+				linearGradientE.append("stop").attr("offset", "0%").attr("stop-color", eColor);
+					// .attr("stop-color", "hsl(10, 100%, 50%)");
+				linearGradientE.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");//#202020
+				linearGradientE.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1") //#161616
+
+				// race
+				var linearGradientR = defs.append("linearGradient").attr("id", "linear-gradient-R");
+				linearGradientR
+					.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+				linearGradientR.append("stop").attr("offset", "0%").attr("stop-color", rColor);
+					// .attr("stop-color", "hsl(10, 100%, 50%)");
+				linearGradientR.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");//#202020
+				linearGradientR.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1") //#161616
+
+				// people and places
+				var linearGradientP = defs.append("linearGradient").attr("id", "linear-gradient-P");
+				linearGradientP
+					.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+				linearGradientP.append("stop").attr("offset", "0%").attr("stop-color", pColor);
+					// .attr("stop-color", "hsl(10, 100%, 50%)");
+				linearGradientP.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");//#202020
+				linearGradientP.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1") //#161616
+
+				// no theme
+				var linearGradientNT = defs.append("linearGradient").attr("id", "linear-gradient-NT");
+				linearGradientNT
+					.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+				linearGradientNT.append("stop").attr("offset", "0%").attr("stop-color", ntColor);
+					// .attr("stop-color", "hsl(10, 100%, 50%)");
+				linearGradientNT.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");//#202020
+				linearGradientNT.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1") //#161616
+
+				// d=>d.key.theme==="female stereotypes"?"#53B67C":
+				// 	d.key.theme==="empowerment"?"#F7DC5B":
+				// 	d.key.theme==="crime and violence"?"#f76e45":
+				// 	d.key.theme==="race, ethnicity and identity"?"#F2C5D3":
+				// 	d.key.theme==="people and places"?"#5787f2": "lightgrey")
+				
 	
 				// append a group element and move it left and down to create space
 				// for the left and top margins
@@ -1890,13 +1947,19 @@ function init() {
 					.join('g')
 					.attr('class', 'cell')
 					.attr('transform', d => `translate(${col(d.col)}, ${row(d.row)})`);
+
+				console.log("word temp data", data)
 	
 				// add the area to each cell
 				cells.append('path')
 					// access the area generator for this word
 					.attr('d', d => wordToScaleAndArea[d.word].area(d.rates))
 					// .attr('fill', "url(#Gradient2)")
-					.attr('fill', "url(#linear-gradient)")
+					.attr('fill', d=>words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"url(#linear-gradient-F)":
+									words.filter(c=>c.word===d.word)[0].theme==="empowerment"?"url(#linear-gradient-E)":
+									words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"url(#linear-gradient-V)":
+									words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"url(#linear-gradient-R)":
+									words.filter(c=>c.word===d.word)[0].theme==="important people"?"url(#linear-gradient-P)": "url(#linear-gradient-NT)")
 					// .attr('fill', mainColor)
 					.attr('opacity', 0.5)
 					.attr("class", "wordArea")
@@ -1907,7 +1970,11 @@ function init() {
 	
 				cells.append('path')
 					// .attr('stroke', 'black')
-					.style("stroke", "url(#linear-gradient)")
+					.style("stroke", d=>words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"url(#linear-gradient-F)":
+										words.filter(c=>c.word===d.word)[0].theme==="empowerment"?"url(#linear-gradient-E)":
+										words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"url(#linear-gradient-V)":
+										words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"url(#linear-gradient-R)":
+										words.filter(c=>c.word===d.word)[0].theme==="important people"?"url(#linear-gradient-P)": "url(#linear-gradient-NT)")
 					// .style("stroke", mainColor) // .style("stroke", "url(#linear-gradient)")
 					.attr('stroke-width', lineThickness)
 					.attr('fill', 'none')
@@ -1979,7 +2046,10 @@ function init() {
 								.join("circle")
 								.attr("cx", d => d.x)
 								.attr("cy", d =>  d.y)
-								.attr("fill", mainColor)
+								// .attr("fill", mainColor)
+								.attr("fill", "lightgrey")
+								.attr("stroke", "grey")
+								.attr("stroke-width", "1.2")
 								.attr("r", radius)
 								.attr("opacity", "0.5")
 								.on("mouseover", (event, d) => timeRuler(event, d.data, g, svg, col, minDate, maxDate, visHeight, x))
