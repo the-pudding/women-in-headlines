@@ -1489,7 +1489,7 @@ function init() {
 				// dimensions
 				var margin = ({top: 150, bottom: 20, left: 40, right: 40});
 				var visWidth = 1200 - margin.left - margin.right;
-				var visHeight = 10000 - margin.top - margin.bottom;
+				var visHeight = 22000 - margin.top - margin.bottom;
 				var stickyAxisHeight = 200;
 				// colors
 				var mainColor = "#3569DC"; //"red" //"cyan"
@@ -1500,16 +1500,25 @@ function init() {
 				var pColor = "#5787f2"
 				var ntColor = "lightgrey"
 
+				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places"))
+				words = words.sort((a, b) => d3.descending(a.theme, b.theme))
+
+				var numUniqueWords = d3.map(words, d=>d.word).filter(onlyUnique).length
+				// console.log("unique words", numUniqueWords)
+				// console.log("words")
+				// console.log(words.filter(d=>d.theme==="No theme"))
+
 				// d=>d.key.theme==="female stereotypes"?"#53B67C":
 				// 	d.key.theme==="empowerment"?"#F7DC5B":
 				// 	d.key.theme==="crime and violence"?"#f76e45":
 				// 	d.key.theme==="race, ethnicity and identity"?"#F2C5D3":
 				// 	d.key.theme==="people and places"?"#5787f2": "lightgrey")
 
+				
 				var lineThickness = 1.5; //2.5
 				// structure of plots
 				var cols = 1;
-				var rows = 200/cols;
+				var rows = numUniqueWords/cols;
 				// grid data
 				var grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }))
 	
@@ -1773,11 +1782,6 @@ function init() {
 			  
 			 ]
 			 
-				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places"))
-				words = words.sort((a, b) => d3.descending(a.theme, b.theme))
-
-				console.log("words")
-				console.log(words)
 				words = words.map(d=> {
 					return {
 						year: d.year,
@@ -1788,7 +1792,7 @@ function init() {
 					}
 				})
 
-				console.log("words map", words)
+				// console.log("words map", words.filter(d=>d.theme==="No theme"))
 	
 				var freqByWord = d3.rollup(
 					words,
@@ -1809,8 +1813,8 @@ function init() {
 					col,
 					})
 				)
-				// console.log("test")
-				// console.log(data)
+				console.log("final word temp data")
+				console.log(data)
 	
 				// same x-scale for all charts
 				var minDate = data[0].rates[0].date
@@ -1948,7 +1952,7 @@ function init() {
 					.attr('class', 'cell')
 					.attr('transform', d => `translate(${col(d.col)}, ${row(d.row)})`);
 
-				console.log("word temp data", data)
+				// console.log("word temp data", data)
 	
 				// add the area to each cell
 				cells.append('path')
