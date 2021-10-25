@@ -176,7 +176,14 @@
         {{!-- <div id="themebars" class='step' task="themeBarsTransition" data-index='17'> --}}
         <div id="themebars" class='step' data-index='18'>
           But how much fewer are empowering words compared to violence and women stereotypes?
-        </div>
+          <div id="stackedLegend">
+            <svg width="58" height="30" id="stackedLegendsvg">
+              <rect width="58" height="30" id="stackedLegendrect"/>
+            </svg>
+            <span id="stackedLegendArrow">&#8597</span>
+            <span id="stackedLegendText">Frequency of occurence</span>
+          </div>
+        </div> 
        </article>
        <!-- <div id="themesStackedChart">
         <svg id="themesChart"></svg>
@@ -185,7 +192,7 @@
      </div>
 </section>
 <section>
-   <div class="spacer"></div>
+   {{!-- <div class="spacer"></div> --}}
    <div id="endStackedbarSection"></div>
     {{#each copy.stacked-bar-outro}}
       <p class="description">{{{value}}}</p>

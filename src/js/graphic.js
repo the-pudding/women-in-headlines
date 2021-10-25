@@ -33,8 +33,8 @@ function init() {
 	
 		// create constant for tooltip of first chart and define attributes
 		let tooltipHeadline = d3.select("#tooltipHeadline")
-		tooltipHeadline.attr("height",height5/4)
-		tooltipHeadline.attr("width", width5/5)
+		// tooltipHeadline.attr("height",height5/4)
+		// tooltipHeadline.attr("width", width5/5)
 	
 		// create dataset to for logos of the first chart
 		let logoData = [{site:"nytimes.com", link:"https://www.vectorlogo.zone/logos/nytimes/nytimes-icon.svg"},
@@ -175,6 +175,17 @@ function init() {
 					$('.bubbleFilters').css({'position': 'sticky', 'top': '0px'}); 
 				}
 			});
+
+			// sticky legend for stacked themes
+			// $(window).scroll(function() {
+			// 	if ($(this).scrollTop() - $('.exampleheadlines').position().top > -700){
+			// 		$('#stackedLegend').css({'position': 'static', 'top': '0px'}); 
+			// 	}else{
+			// 		$('#stackedLegend').css({'position': 'sticky', 'top': '0px'}); 
+			// 	}
+			// });
+
+
 
 			// sticky legend for stackedbars
 			// $(window).scroll(function() {
@@ -737,9 +748,9 @@ function init() {
 				} 
 				
 				if (changeScale === "True") {
-					console.log(d, newScale(d[1])+transform, event.clientY)
+					// console.log(d, newScale(d[1])+transform, event.clientY)
 					// console.log(event.pageY+transform, event.clientY)
-					console.log("page " + event.pageY, "client " + event.clientY, "transform " + transform)
+					// console.log("page " + event.pageY, "client " + event.clientY, "transform " + transform)
 
 					const wordAnnot = 
 					d3.select("#stackedChart")
@@ -749,7 +760,7 @@ function init() {
 						// .attr("y", newScale(d[0]))
 						// .attr("y", (event.clientY)+"px")
 						// .attr("y", (event.pageY)+transform)
-						.attr("y", (event.clientY)+transform)
+						.attr("y", (event.clientY)+transform+60)
 						.text(word)
 						.attr("class", "stackedBarAnnotation")
 
@@ -2299,14 +2310,18 @@ function init() {
 				// console.log(c)
 				// console.log(data)
 				// remove previous text: 
-				tooltipHeadline.selectAll("#tooltipText").remove()
+				// tooltipHeadline.selectAll("#tooltipText").remove()
+				tooltipHeadline.selectAll(".deets").remove()
+				tooltipHeadline.selectAll(".headline").remove()
+
 				// create box
 				tooltipHeadline
 					.style("display", "block")
 					.style("visibility", "visible")
 					.style("top", y + "px")
 					.style("left", x + "px")
-					.style("border", "solid 1px #282828")
+					// .attr("class", ".tooltipTL")
+					// .style("border", "solid 1px #282828")
 	
 				// remove hoverGuide
 				d3.select("#hoverGuide").remove()
@@ -2330,7 +2345,8 @@ function init() {
 		
 				// below we define the tooltip appearance and contents
 				tooltipHeadline.append("text")
-					.attr("id", "tooltipText")
+					// .attr("id", "tooltipText")
+					.attr("class", "deets")
 					.attr("y", ttipHeight/4)
 					.attr("x", 0)
 					// .attr("font-size", "11px")
@@ -2352,7 +2368,9 @@ function init() {
 				//     .call(wrap, 300)
 	
 				tooltipHeadline.append("text")
-					.attr("id", "tooltipText")
+					// .attr("id", "tooltipText")
+					.attr("class", "headline")
+
 					.attr("y", ttipHeight/1.2)
 					.attr("x", 0)
 					// .attr("font-weight", "bold")
@@ -2667,7 +2685,7 @@ function init() {
 	
 				// allCircs = Array.from(d3.selectAll(".forceCircles")._groups[0])
 				let allCircs = d3.selectAll(".forceCircles")
-				let allLogos = d3.selectAll(".forceLogos")
+				let allLogos = d3.selectAll(".forceLogo")
 				
 				// console.log(allCircs.filter(d=>d.__data__.country_of_pub.toLowerCase() === selection))
 				// console.log("up",circles)
@@ -2695,7 +2713,7 @@ function init() {
 				// console.log(circles._groups[0].filter(d=>d.__data__.site.toLowerCase().match(selection.toLowerCase())))
 	
 				let allCircs = d3.selectAll(".forceCircles")
-				let allLogos = d3.selectAll(".forceLogos")
+				let allLogos = d3.selectAll(".forceLogo")
 	
 				// console.log(filterData.map(d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()))
 	
@@ -2964,14 +2982,14 @@ function init() {
 				var select = d3.select(div)
 	
 				const unique_countries = d3.map(data, d=>d[attribute]).filter(onlyUnique);
-				attribute==="country_of_pub"?unique_countries.unshift("Country..."):unique_countries.unshift("Newsroom...")
+				attribute==="country_of_pub"?unique_countries.unshift("Country"):unique_countries.unshift("Newsroom")
 				// unique_countries.unshift("")
 				// console.log("unique",unique_countries)
 	
 				select.selectAll("option")
 				.data(unique_countries)
 				.join("option")
-					.attr("value", d=>d==="Country..."||d==="Newsroom..."?"":d)
+					.attr("value", d=>d==="Country"||d==="Newsroom"?"":d)
 					.text(d=>d);
 			}
 	

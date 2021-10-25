@@ -125,9 +125,13 @@ body {
     top: 10px;
     left: 0px;
     padding: 5px;
+    color: $off-black;
+    background-color: $bg;
+    border: 1px $off-black solid;
+    border-top: 2px $off-black solid;
     position:fixed;
     visibility: hidden;
-    background-color: $bg;
+    z-index:10
 }
 
 
@@ -306,9 +310,18 @@ ul {
   font-size: 14px;
   font-weight: 900;
   margin: 0;
+  text-transform: uppercase
 }
 
-.exampleheadlines .headline {
+// .exampleheadlines .headline {
+//   font-family: $barlow;
+//   font-weight: 300;
+//   font-size: 18px;
+//   font-style: italic;
+//   text-transform: uppercase;
+// }
+
+.headline {
   font-family: $barlow;
   font-weight: 300;
   font-size: 18px;
@@ -319,6 +332,39 @@ ul {
 #stackedChartLegend {
     transform: translateY(100);
 }
+
+#stackedLegend {
+  display:flex;
+  flex-direction: columns;
+  max-width: 210px;
+  max-height: 30px;
+  margin-top:20px;
+  align-items: center
+  }
+
+#stackedLegendText {
+  // font-size:10px;
+  max-width: 200px;
+  font-family: $barlow;
+  font-size: 14px;
+  font-weight: 700
+  }
+
+#stackedLegendArrow {
+  font-size:20px;
+  max-width: 10px;
+  margin-left:0.2rem;
+  margin-right:0.5rem
+  }
+
+#stackedLegendrect {
+  fill:#ccc;
+  }
+
+#stackedLegendsvg {
+  max-width: 58px
+  }
+   
 
 .subtitle {
   margin-top: 0;
@@ -337,12 +383,13 @@ ul {
   display: flex;
   flex-direction: row;
   margin-top: 2rem;
-  height: 90vh;
+  height: 88.2vh;
   margin-bottom: 5rem
 }
 
 .titlewords {
   width: 70%;
+  // height: 90vh;
   border-right: 1px solid $off-black;
 }
 
@@ -959,11 +1006,11 @@ span{
   /* background-color: cornsilk; */
   border: 1px;
   padding: 1rem;
-  height: 1120vh;
+  height: 1570vh;
   /* height:590vh */
 }
 #scrolly-side {
-  height: 1520vh;
+  height: 2030vh;
   /* height: 750vh; */
   /* background-color: grey; */
   border: 1px
@@ -980,13 +1027,14 @@ article {
 }
   
 .step {
-  min-height: 67vh;
+  min-height: 100vh;
+    // min-height: 67vh;
   margin-bottom: 1rem;
   background-color: #FEFAF1;
   transition: background-color 250ms ease-in-out;
-  max-width: 20vw;
+  max-width: 25vw;
   
-  text-align: left;
+  text-align: justify;
   /* text-anchor: middle; */
   color: #282828;
   /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
@@ -998,10 +1046,12 @@ article {
 
 .step:last-of-type {
   margin-bottom: 0;
+  min-height:10vh
 }
 .step.is-active {
-  background-color: #ffe5a7;
+  // background-color: #ffe5a7;
 }
+
 
 /* article > p {
   margin: 0;
@@ -1093,7 +1143,7 @@ article {
 .stackedChartCountries {
   margin-bottom:20px;
   margin-top:30px;
-  font-weight: 900;
+  font-weight: 700;
   font-family: $barlow;
   transform: translate(10px, 80px);
   max-width: 13px;
@@ -1104,7 +1154,7 @@ article {
 }
 
 .stackedChartTicks {
-  font-weight:900px;
+  font-weight:700;
   font-size:12px;
   // font-family: Arial, Helvetica, sans-serif;
   /* font-style: bold; */
