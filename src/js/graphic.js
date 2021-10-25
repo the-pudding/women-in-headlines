@@ -1497,6 +1497,9 @@ function init() {
 			// TEMPORAL CHART
 			// temporal multiples chart functions
 			function renderTempChart(dataset, filter, country, variable) {
+
+				// remove legend
+				d3.selectAll(".axisThemeLegend").remove()
 				// dimensions
 				var margin = ({top: 150, bottom: 20, left: 40, right: 40});
 				var visWidth = 1200 - margin.left - margin.right;
@@ -1979,6 +1982,11 @@ function init() {
 					.attr('opacity', 0.5)
 					.attr("class", "wordArea")
 					.attr("id", d=> 'area'+ d.word)
+					.attr("theme", d=> words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"biasCells":
+										words.filter(c=>c.word===d.word)[0].theme==="empowerment"?"empCells":
+										words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"crimeCells":
+										words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"raceCells":
+										words.filter(c=>c.word===d.word)[0].theme==="important people"?"peopleCells": "ntCells")
 					.on("mouseover", (event, d) => showTooltip(event, d))
 					.on("mouseleave", (event, d) => hideTooltip(event, d))
 					// .attr('fill', 'red');
@@ -2010,6 +2018,34 @@ function init() {
 											"");
 											
 											//.tickFormat(d3.format(".0s"))
+
+				const axisThemeLegend = d3.select("div#stickyXaxis")
+					.append("div")
+					// .attr("width", "100")
+					// .attr("height", "10")
+					.attr("class", "axisThemeLegend")
+
+					
+				const themesNames = [{name:"Crime and Violence", id:"inTextViolence", width:"150px"}, 
+									 {name:"Female Stereotypes", id:"inTextBias", width:"150px"}, 
+									 {name:"Empowerment", id:"inTextEmpowerment", width:"110px"}, 
+									 {name:"People and Places", id:"inTextPeople", width:"140px"}, 
+									 {name:"Race, Ethnicity and Identity", id:"inTextRace", width:"200px"}]
+
+				themesNames.map(d=>axisThemeLegend
+									.append("text")
+									.text(d.name)
+									.attr("class", "stackedBarThemeAnnotation")
+									.style("max-width", d.width)
+									.style("margin", "5px")
+									.attr("id", d.id)
+									// .call(wrap, 100)
+									)
+				// axisThemeLegend
+				// 	.append("text")
+				// 	.text("some text")
+
+				
 	
 				const stickyAxis = d3.select("div#stickyXaxis").append("svg")
 					// .attr('transform', `translate(${margin.left}, ${margin.top})`)
@@ -2019,6 +2055,7 @@ function init() {
 					// .attr("preserveAspectRatio", "xMinYMin meet")
 					// .attr("viewBox", "0 0 "+ (visWidth + margin.left + margin.right) +"," + (stickyAxisHeight) +"")
 					.attr("class", "stickyAxis");
+
 	
 				// g.append("g")
 				stickyAxis.append("g")
