@@ -81,7 +81,8 @@ function init() {
 		// Load data and run functions to render charts
 		Promise.all([
 			d3.csv("./assets/data/headlines_site_rapi.csv"),
-			d3.csv("./assets/data/headlines_cl_sent_sm_rapi.csv"),
+			// d3.csv("./assets/data/headlines_cl_sent_sm_rapi.csv"),
+			d3.csv("./assets/data/headlines_cl_sent_rapi_reduced_102621.csv"),
 			d3.csv("./assets/data/country_time_freqrank_rapi_clean_101421.csv", d3.autoType),
 			d3.csv("./assets/data/polarity_comparison.csv", d3.autoType),
 			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
@@ -2365,8 +2366,14 @@ function init() {
 				d3.select("#hoverGuideLine").remove()
 	
 				// filter data depending on where the user is along x-scale
-				data = c.bias>0.5?data.filter(d=>(d.site === text1)&(d.bias > 0.5)):
-						 data.filter(d=>(d.site === text1)&(d.bias < 0.5))
+				// data = c.bias>0.5?data.filter(d=>(d.site === text1)&(d.bias > 0.5)):
+				// 		 data.filter(d=>(d.site === text1)&(d.bias < 0.5))
+
+				data = (c.bias>0.5)&&(data.filter(d=>(d.site === text1)&(d.bias > 0.5)).length>10)?
+						 data.filter(d=>(d.site === text1)&(d.bias > 0.5)):
+					   (c.bias<0.5)&&(data.filter(d=>(d.site === text1)&(d.bias < 0.5)).length>10)?
+						 data.filter(d=>(d.site === text1)&(d.bias < 0.5)):
+						 data
 	
 				// console.log(data)
 	
