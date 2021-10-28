@@ -505,15 +505,20 @@ function init() {
 					} else if (task === "drawbars") {
 						renderStackedBars(data, words)
 						sel.attr('task', 'none')
-					} else if (task === "highlightthemesVS") {
-						colorThemes("VS")
-						sel.attr('task', 'none')
-					} else if (task === "highlightthemesE") {
-						colorThemes("E")
-						sel.attr('task', 'none')
-					} else if (task === "highlightthemesPR") {
-						colorThemes("PR")
-						sel.attr('task', 'none')
+					} else if (task === "highlightthemes") {
+						const themeToColor = sel.attr('theme');
+						const color = sel.attr("color");
+						colorThemes(themeToColor, color)
+						sel.attr('task', 'none')						
+					// } else if (task === "highlightthemesVS") {
+					// 	colorThemes("VS")
+					// 	sel.attr('task', 'none')
+					// } else if (task === "highlightthemesE") {
+					// 	colorThemes("E")
+					// 	sel.attr('task', 'none')
+					// } else if (task === "highlightthemesPR") {
+					// 	colorThemes("PR")
+					// 	sel.attr('task', 'none')
 					} else if (task === "tooltip") {
 						activateTooltip(themes, x, y)
 					} else if (task === "exploreChart") {
@@ -576,7 +581,7 @@ function init() {
 				var rectsThemes = d3.selectAll(".stackedBars")
 					 .selectAll("rect")
 					 .filter(d=>(d.key.theme!=="No theme")&&(d.data.country==="All countries"))
-					 .transition().duration("2500")
+					 .transition().duration("500")
 					 .ease(d3.easeLinear)
 					 .delay((d, i) => {
 						// console.log(d, i)
@@ -598,7 +603,7 @@ function init() {
 			
 				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
 			
-				var height = 5000 - margin.top - margin.bottom
+				var height = 4000 - margin.top - margin.bottom
 				var width = 500 - margin.left - margin.right
 				// var height = 600 - margin.top - margin.bottom
 				// var width = 200 - margin.left - margin.right
@@ -807,36 +812,25 @@ function init() {
 			// return {x, y}
 			
 			};
-			
-			function colorThemes(theme) {
+
+			function colorThemes(theme, color) {
 			
 				// select bars and color them by theme
-				if (theme === "VS") {
+				if (theme === "crime and violence") {
 					d3.selectAll(".stackedBars")
 				  	  .selectAll("rect")
-				//   .attr("fill", d=>themes.filter(c=>c.word===d.key)[0].theme==="female_bias"?"#0BBF99":
-				//                     themes.filter(c=>c.word===d.key)[0].theme==="empowerement"?"#F7DC5B":
-				//                     themes.filter(c=>c.word===d.key)[0].theme==="violence"?"#F2C5D3":"lightgrey")
-				// .transition().duration("3000")
-				//     .ease(d3.easeLinear)
-				//     .delay((d, i) => {
-				//         // console.log(d, i)
-				//         // return i * 10;
-				//         return i * Math.random() * 0.02;
-						
-				//       })
-						.attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
-								d.key.theme==="crime and violence"?"#f76e45":"lightgrey")
-				// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
-				// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
-				} else if (theme === "E") {
-					d3.selectAll(".stackedBars")
-				  	  .selectAll("rect")
-					  .attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
-									d.key.theme==="empowerment"?"#F7DC5B":
-									d.key.theme==="crime and violence"?"#f76e45": "lightgrey")
+						// .transition().duration("500")
+						.attr("fill", d=> (d.key.theme===theme)? color:"lightgrey")
 
-				} else if (theme === "PR") {
+						// .attr("fill", d=> { if (d.key.theme===theme) {color }})
+				} else if (theme === "female stereotypes") {
+					d3.selectAll(".stackedBars")
+				  	  .selectAll("rect")
+						// .transition().duration("500")
+						.attr("fill", d=> (d.key.theme===theme)? color:
+										   d.key.theme==="crime and violence"?"#f76e45":"lightgrey")
+					
+				} else if (theme === "EPR") {
 					d3.selectAll(".stackedBars")
 				  	  .selectAll("rect")
 					  .attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
@@ -847,6 +841,46 @@ function init() {
 				}
 					
 			}
+			
+			// function colorThemes(theme) {
+			
+			// 	// select bars and color them by theme
+			// 	if (theme === "VS") {
+			// 		d3.selectAll(".stackedBars")
+			// 	  	  .selectAll("rect")
+			// 	//   .attr("fill", d=>themes.filter(c=>c.word===d.key)[0].theme==="female_bias"?"#0BBF99":
+			// 	//                     themes.filter(c=>c.word===d.key)[0].theme==="empowerement"?"#F7DC5B":
+			// 	//                     themes.filter(c=>c.word===d.key)[0].theme==="violence"?"#F2C5D3":"lightgrey")
+			// 	// .transition().duration("3000")
+			// 	//     .ease(d3.easeLinear)
+			// 	//     .delay((d, i) => {
+			// 	//         // console.log(d, i)
+			// 	//         // return i * 10;
+			// 	//         return i * Math.random() * 0.02;
+						
+			// 	//       })
+			// 			.attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
+			// 					d.key.theme==="crime and violence"?"#f76e45":"lightgrey")
+			// 	// .on("mouseover", (event, d) => highlightWords(d.key, "chartHover", d))
+			// 	// .on("mouseleave", (event,d)=> unHighlightWords(d.key))
+			// 	} else if (theme === "E") {
+			// 		d3.selectAll(".stackedBars")
+			// 	  	  .selectAll("rect")
+			// 		  .attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
+			// 						d.key.theme==="empowerment"?"#F7DC5B":
+			// 						d.key.theme==="crime and violence"?"#f76e45": "lightgrey")
+
+			// 	} else if (theme === "PR") {
+			// 		d3.selectAll(".stackedBars")
+			// 	  	  .selectAll("rect")
+			// 		  .attr("fill", d=>d.key.theme==="female stereotypes"?"#53B67C":
+			// 						d.key.theme==="empowerment"?"#F7DC5B":
+			// 						d.key.theme==="crime and violence"?"#f76e45":
+			// 						d.key.theme==="race, ethnicity and identity"?"#F2C5D3":
+			// 						d.key.theme==="people and places"?"#5787f2": "lightgrey")
+			// 	}
+					
+			// }
 			
 			function activateTooltip (themes, x, y) {
 			
@@ -962,7 +996,7 @@ function init() {
 				// dataFreq = dataFreq.filter(d=>d.theme!=="No theme")
 				// console.log("themes, long", dataFreq.columns.slice(2))
 			
-				console.log("original datafreq", dataFreq)
+				// console.log("original datafreq", dataFreq)
 				// stack data
 				var stackedData = d3.stack()
 					.keys(dataFreq.columns.slice(2))
@@ -971,7 +1005,7 @@ function init() {
 				(dataFreq.filter(d=>d.theme!=="No theme"))
 					.map(d => (d.forEach(v => v.key = d.key), d))
 			
-				console.log("stacked themes", stackedData)
+				// console.log("stacked themes", stackedData)
 			
 				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
 
@@ -1084,7 +1118,7 @@ function init() {
 					.append("text")
 					// .transition().duration("2000")
 					// .ease(d3.easeBounce)
-					.text(d=>d)
+					.text(d=>d==="female stereotypes"?"gendered language":d)
 					.attr("x", 0)             
 					.attr("y", 0)
 					.attr("class", "stackedChartTicks")
@@ -2184,7 +2218,7 @@ function init() {
 
 					
 				const themesNames = [{name:"Crime and Violence", id:"inTextViolence", width:"150px"}, 
-									 {name:"Female Stereotypes", id:"inTextBias", width:"150px"}, 
+									 {name:"Gendered Language", id:"inTextBias", width:"150px"}, 
 									 {name:"Empowerment", id:"inTextEmpowerment", width:"110px"}, 
 									 {name:"People and Places", id:"inTextPeople", width:"140px"}, 
 									 {name:"Race, Ethnicity and Identity", id:"inTextRace", width:"200px"}, 
@@ -2532,7 +2566,7 @@ function init() {
 						 data.filter(d=>(d.site === text1)&(d.bias > 0.5)):
 					   (c.bias<0.5)&&(data.filter(d=>(d.site === text1)&(d.bias < 0.5)).length>10)?
 						 data.filter(d=>(d.site === text1)&(d.bias < 0.5)):
-						 data
+						 data.filter(d=>(d.site === text1))
 	
 				// console.log(data)
 	

@@ -156,43 +156,49 @@
         The word man appears more than 30,000 times and looking at the other words in the top 5 words for every country, shows that men make headlines along 
         with women significantly more during horrific events than in historic ones.  
         </div>
-        <div class='step' theme="violence" task="highlightthemesVS" data-index='7'>
+        {{!-- <div class='step' theme="violence" task="highlightthemesVS" data-index='7'> --}}
+        <div class='step' theme="crime and violence" task="highlightthemes" color="#f76e45" data-index='7'>
           We categorized the words used to report women-centered news into different themes. The most common headlines about women revolve around 
-              <span class="stackedBarThemeAnnotation" id="inTextViolence" value="violence"><b>crime and violence</b></span> and 
-              <span class="stackedBarThemeAnnotation" id="inTextBias" value="female_bias"><b>women stereotypes</b></span>
+              <span class="stackedBarThemeAnnotation" id="inTextViolence" value="violence"><b>crime and violence</b></span> 
+              {{!-- and 
+              <span class="stackedBarThemeAnnotation" id="inTextBias" value="female_bias"><b>women stereotypes</b></span> --}}
         </div>
-        <div class='step' word="kill" task="highlightwords" hovertype="inTextHoverThemes" data-index='8'>
-          Talk about how there are many stories of violence with words such as  
-              <span class="stackedBarTextAnnotation" id="inTextKill" value="kill" hovertype="inTextHover"><b>kill</b></span>, 
-              <span class="stackedBarTextAnnotation" id="inTextDie" value="die" hovertype="inTextHover"><b>die</b></span>,
-              and <span class="stackedBarTextAnnotation" id="inTextPolice" value="police" hovertype="inTextHover"><b>police</b></span>. 
+        <div class='step' word="rape" task="highlightwords" hovertype="inTextHoverThemes" data-index='8'>
+          There are nearly <b>4000</b> stories of <span class="stackedBarTextAnnotation" value="death" hovertype="inTextHover"><b>death</b></span>, <b>6000</b> stories of <span class="stackedBarTextAnnotation" value="rape" hovertype="inTextHover"><b>rape</b></span> and more than <b>10000</b> stories of <span class="stackedBarTextAnnotation" value="kill" hovertype="inTextHover"><b>killing</b></span>. Although there are stories where women were causing the crime, most of the stories are about women who were at the receiving end of the violence.<br><br>
+          These headlines disproportionately focus on the victim compared to the perpetrator. There are far fewer stories like that about <a href="https://www.latimes.com/local/lanow/la-me-ln-man-charged-in-killing-robbery-of-transgender-woman-20150302-story.html" target="_blank" class="intextLink">a man who was charged for the rape of 11 year old girl</a>, and a lot more about <a href="https://www.dnaindia.com/india/report-muzaffarnagar-woman-gang-raped-in-front-of-her-husband-at-gunpoint-2551004" target="_blank" class="intextLink">women who were gang raped in front of their husbands</a>, <a href="https://www.mirror.co.uk/news/uk-news/it-not-rape-woman-drunk-5119029" target="_blank" class="intextLink">drunk women who cannot file for assault</a>, <a href="https://indianexpress.com/article/india/after-alwar-married-woman-in-bikaner-allegedly-gangraped-5736023/" target="_blank" class="intextLink">married women who were gangraped</a>, <a href="https://www.thenewsminute.com/article/gangraped-and-burned-acid-transgender-woman-hyderabad-needs-your-help-62453" target="_blank" class="intextLink">transgender women burned with acid</a>, and <a href="https://ewn.co.za/2020/08/26/sa-s-war-on-women-5-women-killed-in-gauteng-in-the-past-48-hours#:~:text=JOHANNESBURG%20%E2%80%93%20Gauteng%20police%20have%20confirmed,and%20her%20mother%20on%20Tuesday." target="_blank" class="intextLink">war on women where 5 were killed</a>.<br><br>
+          By omitting the cause of the violence and choosing to focus on the victim’s circumstances, choices and character, the issue becomes about the ‘protection of women’ rather than the perversion of the perpetrator. When talking about the issue of protection of women, the narrative is often framed, not  around protecting every <b>womxn*</b>, but protecting the rights of a country’s <a href="https://www.salon.com/2013/02/13/stop_calling_us_wives_and_moms/" target="_blank" class="intextLink">‘daughters, mothers and wives’</a>. 
+
         </div>
-        <div class='step' word="pregnant" task="highlightwords" hovertype="inTextHoverThemes" data-index='9'>
+        {{!-- <div class='step' word="pregnant" task="highlightwords" hovertype="inTextHoverThemes" data-index='9'>
           Talk about how there are many stories where women embody gender stereotypes such as  
               <span class="stackedBarTextAnnotation" id="inTextKill" value="mother" hovertype="inTextHover"><b>mother</b></span>, 
               <span class="stackedBarTextAnnotation" id="inTextDie" value="wife" hovertype="inTextHover"><b>wife</b></span>,
               and <span class="stackedBarTextAnnotation" id="inTextPolice" value="pregnant" hovertype="inTextHover"><b>pregnant</b></span>. 
+        </div> --}}
+        {{!-- <div class='step' theme="empowerement" task="highlightthemesE" data-index='10'> --}}
+        <div class='step' theme="female stereotypes" task="highlightthemes" color="#53B67C" data-index='9'>
+          This brings us to the second most prevalent theme in the set of words: <span class="stackedBarThemeAnnotation" id="inTextBias" value="female_bias"><b>gendered language</b></span>. The English language necessitates the use of gendered words and labels to define certain roles in society. In doing so, it unites those who choose to accept the label while othering the rest. Daughter, mother and wife rarely invoke the image of a transgender or non-binary person in a reader’s mind. While these labels are explicitly gendered, some other words merely become associated with a gender because of underlying stereotypes. 
         </div>
-        <div class='step' theme="empowerement" task="highlightthemesE" data-index='10'>
-          Talk about lack of empowerment. But what about language that is <span class="stackedBarThemeAnnotation" id="inTextEmpowerment" value="empowerement"><b>empowering</b></span> towards women?
-          Those words rank much lower in the frequency chart...
+        <div class='step' word="marry" task="highlightwords" hovertype="inTextHoverThemes" data-index='10'>
+          We found words like <span class="stackedBarTextAnnotation" id="inTextKill" value="body" hovertype="inTextHover"><b>body</b></span>, <span class="stackedBarTextAnnotation" id="inTextKill" value="child" hovertype="inTextHover"><b>child</b></span> and <span class="stackedBarTextAnnotation" id="inTextKill" value="marry" hovertype="inTextHover"><b>marry</b></span> repeatedly becoming the topics of conversation in women-centred headlines. When women break out of these stereotypes and make headlines, the stories are told of a <a href="https://www.dailymail.co.uk/news/article-1114409/Drunken-woman-judge-suspended-forcibly-kissing-solicitor-swearing-prosecutor.html" target="_blank" class="intextLink">‘woman’ judge</a>, a <a href="https://www.dnaindia.com/india/report-uttar-pradesh-woman-police-officer-who-clashed-with-bjp-workers-transferred-2490067" target="_blank" class="intextLink">‘woman’ police officer</a>, or a <a href="https://www.thenewsminute.com/article/kerala-womens-commission-file-case-against-pc-george-comments-woman-actor-66685" target="_blank" class="intextLink">‘woman’ actor</a>, lest the reader turn to the default, <a href="https://plato.stanford.edu/entries/feminism-language/" target="_blank" class="intextLink">implicit male worldview</a> encoded in the English language. 
         </div>
-        <div class='step' word="success" task="highlightwords" hovertype="inTextHoverThemes" data-index='11'>
-          For example talk about the word 
-              <span class="stackedBarTextAnnotation" id="inTextKill" value="success" hovertype="inTextHover"><b>success</b></span>
-        </div>
-        <div class='step' theme="people and places" task="highlightthemesPR" data-index='12'>
-          Transition into the explore chart part by telling the reader that there are other main themes that words fall into:
+        {{!-- <div class='step' theme="people and places" task="highlightthemesPR" data-index='12'> --}}
+        <div class='step' theme="EPR" task="highlightthemes" color="" data-index='11'>
+          The lifeboat that kept us wading through these words to identify themes, are women reclaiming their positions within titles of stories and refusing to remain in the margins. Stories of women, from Black, Dalit or, transgender communities, leading this reclamation in Parliaments, Congresses, High Courts, cities and capitals pushed us to identify three more themes:  
+           <span class="stackedBarThemeAnnotation" id="inTextEmpowerment" value="empowerment"><b>empowerment</b></span>
            <span class="stackedBarThemeAnnotation" id="inTextPeople" value="people and places"><b>people and places</b></span> and finally
-           <span class="stackedBarThemeAnnotation" id="inTextRace" value="race, ethnicity and identity"><b>race, ethnicity and identity</b></span>.
-          Say something about those themes.
+           <span class="stackedBarThemeAnnotation" id="inTextRace" value="race, ethnicity and identity"><b>race, ethnicity and identity</b></span>
         </div>
         <!-- <div class='step' word="boss" task="highlightwords" data-index='4'>
           Talk about another word, for example <span class="stackedBarTextAnnotation" id="inTextBoss" value="boss" hovertype="normalHover"><b>boss</b></span>.
         </div> -->
-        <div class='step' task="tooltip" data-index='13'>
-          Scroll or use the search bar below to explore and interact with the chart on your own!<br>
+        <div class='step' task="tooltip" data-index='12'>
+          This process of reclaiming space also led to reclaiming some words that once belonged in a certain theme but do not anymore.<br><br>
+          <span class="stackedBarTextAnnotation" id="inTextKill" value="body" hovertype="inTextHover"><b>Slay</b></span>, for instance, started off as a purely violent word. Over time, it started to refer to ‘slay queens’, a term used to describe women who were ‘gold diggers’. Today, women and the LGBTQIA+ community have reclaimed the word to mean someone who is just very good at what they do. Within these headlines, we see both the stories of women <a href="https://www.timeslive.co.za/news/2017-06-22-protesters-gather-outside-soweto-court-as-taxi-drivers-appear-for-slaying-women/" target="_blank" class="intextLink">slayed by a man</a> and women <a href="https://www.iol.co.za/lifestyle/style-beauty/womensday-9-phenomenal-women-slaying-in-fashion-and-beauty-13658182" target="_blank" class="intextLink">slaying a look</a>, a <a href="https://www.sowetanlive.co.za/s-mag/2019-05-22-nomzamo-mbatha-is-slaying-the-game-as-she-bags-another-award/" target="_blank" class="intextLink">game</a> or <a href="https://www.sowetanlive.co.za/entertainment/2018-02-16-creating-her-own-beauty-standards-thickleeyonce-is-here-to-slay-and-stay/" target="_blank" class="intextLink">outdated standards of beauty</a>. <br><br>
+          Many such words fought off attempts to be boxed into themes and chose to remain in the grey area. Feel free to explore them on your own and drop us a note if you think you found another theme.
           <input type="text" placeholder="Search for a word..." id="wordSearch">
+        </div>
+        <div class='step' id="stepSpacer" task="exploreChart" data-index='13'>
         </div>
         <div class='step' id="stepSpacer" task="exploreChart" data-index='14'>
         </div>
@@ -200,17 +206,15 @@
         </div>
         <div class='step' id="stepSpacer" task="exploreChart" data-index='16'>
         </div>
-        <div class='step' id="stepSpacer" task="exploreChart" data-index='17'>
-        </div>
         {{!-- <div class='step' id="stepSpacer" task="exploreChart" data-index='16'> --}}
-        <div class='step' id="stepSpacer" task="themeBarsTransition" data-index='18'>
+        <div class='step' id="stepSpacer" task="themeBarsTransition" data-index='17'>
         </div>
         <!-- <div class='step' id="stepSpacer" task="exploreChart" data-index='11'>
         </div> -->
         <!-- <div class='step' class="spacer" data-index='6' task="none"></div>
         <div class='step' class="spacer" data-index='6' task="none"></div> -->
         {{!-- <div id="themebars" class='step' task="themeBarsTransition" data-index='17'> --}}
-        <div id="themebars" class='step' data-index='19'>
+        <div id="themebars" class='step' data-index='18'>
           Finally, we compared the frequency of words across themes. It turns out, for every empowering story, we read nearly two stories of crime and violence. 
           <div id="stackedLegend">
             <svg width="58" height="30" id="stackedLegendsvg">
