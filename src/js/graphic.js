@@ -504,6 +504,7 @@ function init() {
 			
 					} else if (task === "drawbars") {
 						renderStackedBars(data, words)
+						// activateTooltip(themes, x, y, "inTextHover")
 						sel.attr('task', 'none')
 					} else if (task === "highlightthemes") {
 						const themeToColor = sel.attr('theme');
@@ -520,7 +521,7 @@ function init() {
 					// 	colorThemes("PR")
 					// 	sel.attr('task', 'none')
 					} else if (task === "tooltip") {
-						activateTooltip(themes, x, y)
+						activateTooltip(themes, x, y, "themeHover")
 					} else if (task === "exploreChart") {
 						revertOriginal(x, y, words)
 					} else if (task === "themeBarsTransition") {
@@ -750,7 +751,7 @@ function init() {
 				// .range(d3.schemeSpectral[series.length])
 				// .unknown("#ccc")
 			
-				console.log([series.length, 0])
+				// console.log([series.length, 0])
 				// console.log(d3.max(series, d => d3.max(d, d => d[1])))
 			
 				// legend
@@ -759,12 +760,16 @@ function init() {
 					.append("text")
 					.text((d, i) => i == 7 ?"Frequency of use in headlines ⇢": "")
 					// .text((d, i)=>console.log("ytick"+i))
-					.attr("x", 0)             
-					.attr("y", 0)
+					// .attr("x", 0) 
+					// .attr("y", 0)            
 					.attr("class", "stackedChartyTicks")
-					.style("text-transform", "lowercase")
+					// .attr("class", "stackedChartyTicks")
+					// .style("text-transform", "lowercase")
+					.style("font-weight", "700")
 					.style("transform", "rotate(-90deg)")
-					.attr("id", "freqLegend")
+					.attr("dx", 50)
+					// .attr("id", "freqLegend")
+					
 					// .call(wrap, 10)
 			
 				  
@@ -882,13 +887,13 @@ function init() {
 					
 			// }
 			
-			function activateTooltip (themes, x, y) {
+			function activateTooltip (themes, x, y, hoverType) {
 			
 				// select bars and color them by theme
 				d3.selectAll(".stackedBars")
 				  .selectAll("rect")
 				.on("mouseover", (event, d) => highlightWords(themes, d.key.word, "chartHover", d, null, null, null, x, y, event))
-				.on("mouseleave", (event,d)=> unHighlightWords(themes, d.key.word))
+				.on("mouseleave", (event,d)=> unHighlightWords(themes, d.key.word, hoverType))
 			
 			}
 			
@@ -907,9 +912,9 @@ function init() {
 				  .selectAll("rect:not(."+ word+")")
 				  .attr("opacity", "0.3")
 			
-				d3.selectAll(".stackedChartyTicks").style("opacity", "0")
-			
 				if (hoverType === "chartHover") {
+
+					d3.selectAll(".stackedChartyTicks").style("opacity", "0")
 					
 					d3.select("#stackedChart")
 						.append("text")
