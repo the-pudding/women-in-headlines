@@ -96,7 +96,7 @@ function init() {
   
   
   //console.log("-----",typewriter)
-  typewriter(params);
+  // typewriter(params);
 }
 
 init();

@@ -71,8 +71,10 @@ body {
   }
   
 #tooltipText {
-    font-family: $national;
+    font-family: $barlow;
     display: block;
+    text-transform: uppercase;
+    
 }
 
 .tooltipTL {
@@ -85,6 +87,27 @@ body {
     padding: 1rem;
     width: 25%;
     max-height: 15rem;
+}
+
+.tooltipTemp {
+    font-family: $barlow;
+    color: $off-black;
+    background-color: $bg;
+    border: 1px $off-black solid;
+    border-top: 2px $off-black solid;
+    margin: 1rem;
+    padding: 1rem;
+    width: 16%;
+    // max-height: 15rem;
+    margin-left: 82%
+}
+
+.datettip {
+    color:$red;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: $barlow;
+    font-weight: 900
 }
 
 .tooltipTL:nth-child(2), .tooltipTL:nth-child(4) {
@@ -102,9 +125,13 @@ body {
     top: 10px;
     left: 0px;
     padding: 5px;
+    color: $off-black;
+    background-color: $bg;
+    border: 1px $off-black solid;
+    border-top: 2px $off-black solid;
     position:fixed;
     visibility: hidden;
-    background-color: $bg;
+    z-index:10
 }
 
 
@@ -249,7 +276,7 @@ h5 {
   font-family: $tiempos;
   margin: 0 auto;
   padding: 1rem 0;
-  text-align: left;
+  text-align: justify;
 }
 
 ul {
@@ -283,9 +310,18 @@ ul {
   font-size: 14px;
   font-weight: 900;
   margin: 0;
+  text-transform: uppercase
 }
 
-.exampleheadlines .headline {
+// .exampleheadlines .headline {
+//   font-family: $barlow;
+//   font-weight: 300;
+//   font-size: 18px;
+//   font-style: italic;
+//   text-transform: uppercase;
+// }
+
+.headline {
   font-family: $barlow;
   font-weight: 300;
   font-size: 18px;
@@ -296,6 +332,39 @@ ul {
 #stackedChartLegend {
     transform: translateY(100);
 }
+
+#stackedLegend {
+  display:flex;
+  flex-direction: columns;
+  max-width: 210px;
+  max-height: 30px;
+  margin-top:20px;
+  align-items: center
+  }
+
+#stackedLegendText {
+  // font-size:10px;
+  max-width: 200px;
+  font-family: $barlow;
+  font-size: 14px;
+  font-weight: 700
+  }
+
+#stackedLegendArrow {
+  font-size:20px;
+  max-width: 10px;
+  margin-left:0.2rem;
+  margin-right:0.5rem
+  }
+
+#stackedLegendrect {
+  fill:#ccc;
+  }
+
+#stackedLegendsvg {
+  max-width: 58px
+  }
+   
 
 .subtitle {
   margin-top: 0;
@@ -314,12 +383,13 @@ ul {
   display: flex;
   flex-direction: row;
   margin-top: 2rem;
-  height: 90vh;
+  height: 88.2vh;
   margin-bottom: 5rem
 }
 
 .titlewords {
   width: 70%;
+  // height: 90vh;
   border-right: 1px solid $off-black;
 }
 
@@ -352,6 +422,16 @@ ul {
   align-items: center;
   display: flex;
   margin-top: 50px;
+  // max-width: 65rem;
+  width: 80%;
+  margin-left: 5%;
+  // margin-right:15vw
+   // // text-align: right;
+  // background-color: $tan;
+  // // z-index: 1;
+  // // display: flex;
+  // flex-direction: row;
+  // width: 70%;
 }
 
 button {
@@ -383,20 +463,25 @@ button:hover {
 button:focus {
   background-color: #F7DC5B    ;
   color: $off-black;
-  font-weight: 900px;
+  font-weight: 900;
 
+  }
+
+.country:focus {
+  font-weight: 700;
   }
 
 select::selection{
     background-color: #F7DC5B    ;
     color: $off-black;
-    font-weight: 900px;
+    font-weight: 900;
 }
 
 .flag {
     height:35px;
     text-anchor: middle;
-    padding-right: 10px;
+    padding-right: 0px;
+    max-width: 30%;
 }
 
 .country {
@@ -415,8 +500,8 @@ select::selection{
   margin: 0;
   padding: 0;
   font-family: $barlow;
-  font-size: 20px;
-  font-weight: 400;
+  font-size: 18px;
+  // font-weight: 400;
 }
 
 .search {
@@ -539,6 +624,17 @@ select::selection{
   font-size: 12
 }
 
+.axisThemeLegend {
+  transform: translate(-25px, 85px);
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  // max-width: 100px;
+  // margin-left: 5%;
+  // width: 500px
+}
+
 .wordText {
   text-anchor: end;
   fill: $off-black;
@@ -632,7 +728,7 @@ span{
 
 .intextLink{
   color: $red;
-  font-weight:600;
+  // font-weight:600;
 }
 
 /* Polarity Comparison bubble chart styling */
@@ -715,7 +811,7 @@ span{
 .dropdownOptions {
   background-color: $tan;
   border: 1px solid $off-black;
-  font-size: 20px;
+  font-size: 18px;
   text-transform: uppercase;
   padding: 0.25rem;
   margin: 1rem 0.25rem;
@@ -725,17 +821,21 @@ span{
   cursor: pointer;
 }
 
-.dropdownOptions.active {
-  background-color: $red;
-}
+// .dropdownOptions:focus {
+//   background-color: $yellow;
+// }
+
+// select:active {
+//   background-color: $yellow;
+// }
 
 .bubbleFilters {
-  text-align: center;
+  text-align: right;
   background-color: $tan;
   z-index: 1;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 70%;
   justify-content: center;
   align-items: center;
 }
@@ -808,9 +908,22 @@ span{
 //   cursor: pointer;
 // }
 
+#wordSearch {
+
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;  
+  border: 1px solid;
+  background-color: $bg;
+  }
+
 #inTextViolence {
-  color: $pink;
-  border: 1px solid $pink;
+  color: $red;
+  border: 1px solid $red;
 }
 #inTextBias {
   color: $green;
@@ -819,6 +932,20 @@ span{
 #inTextEmpowerment {
   color: $yellow;
   border: 1px solid $yellow;
+}
+#inTextPeople {
+  color: $blue;
+  border: 1px solid $blue;
+}
+
+#inTextRace {
+  color: $pink;
+  border: 1px solid $pink;
+}
+
+#inTextNT {
+  color: grey;
+  border: 1px solid grey;
 }
 
 .stackedBarTextAnnotation:hover {
@@ -837,19 +964,82 @@ span{
   font-weight: 900px;
 }
 
-#inTextViolence:hover {
-  background-color: $pink;
-  color: $bg
+#inTextViolence:hover, #inTextViolence.hovered {
+  background-color: $red;
+  color: $bg;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
-#inTextBias:hover {
+#inTextBias:hover, #inTextBias.hovered {
   background-color: $green;
-  color: $bg
+  color: $bg;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
-#inTextEmpowerment:hover {
+#inTextEmpowerment:hover, #inTextEmpowerment.hovered {
   background-color: $yellow;
   color: $bg;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#inTextPeople:hover, #inTextPeople.hovered {
+  background-color: $blue;
+  color: $bg;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#inTextRace:hover, #inTextRace.hovered {
+  background-color: $pink;
+  color: $bg;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#inTextNT:hover, #inTextNT.hovered {
+  background-color: grey;
+  color: $bg;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
 // .stackedBars {
@@ -898,11 +1088,11 @@ span{
   /* background-color: cornsilk; */
   border: 1px;
   padding: 1rem;
-  height: 1050vh;
+  height: 1750vh;
   /* height:590vh */
 }
 #scrolly-side {
-  height: 1450vh;
+  height: 2210vh;
   /* height: 750vh; */
   /* background-color: grey; */
   border: 1px
@@ -919,13 +1109,14 @@ article {
 }
   
 .step {
-  min-height: 67vh;
+  min-height: 110vh;
+    // min-height: 67vh;
   margin-bottom: 1rem;
   background-color: #FEFAF1;
   transition: background-color 250ms ease-in-out;
-  max-width: 20vw;
+  max-width: 30vw;
   
-  text-align: left;
+  text-align: justify;
   /* text-anchor: middle; */
   color: #282828;
   /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
@@ -937,10 +1128,12 @@ article {
 
 .step:last-of-type {
   margin-bottom: 0;
+  min-height:10vh
 }
 .step.is-active {
-  background-color: #ffe5a7;
+  // background-color: #ffe5a7;
 }
+
 
 /* article > p {
   margin: 0;
@@ -1032,7 +1225,7 @@ article {
 .stackedChartCountries {
   margin-bottom:20px;
   margin-top:30px;
-  font-weight: 900;
+  font-weight: 700;
   font-family: $barlow;
   transform: translate(10px, 80px);
   max-width: 13px;
@@ -1043,7 +1236,7 @@ article {
 }
 
 .stackedChartTicks {
-  font-weight:900px;
+  font-weight:700;
   font-size:12px;
   // font-family: Arial, Helvetica, sans-serif;
   /* font-style: bold; */
