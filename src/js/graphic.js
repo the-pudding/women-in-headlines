@@ -1,6 +1,8 @@
 /* global d3 */
-import loadData from './load-data'
-import './pudding-chart/stackedBar'
+import loadData from './load-data';
+import './pudding-chart/stackedBar';
+import 'intersection-observer';
+import scrollama from 'scrollama';
 
 /* data */
 let dataFiles = ["headlines_site_rapi.csv", 
@@ -32,7 +34,31 @@ let stackedBarData;
 let chartStackedBar = null;
 
 /* dom */
-const $stackedBar = d3.select('#stickyStackedChart')
+const $stackedBar = d3.select('#stickyStackedChart');
+const $step = d3.selectAll('#stackedChartLegend .step');
+
+/* SCROLLAMA */
+const stackedBarScroller = scrollama();
+
+function setupScroller() {
+	stackedBarScroller
+		.setup({
+		  step: '#stackedChartLegend .step',
+			offset: 0.7
+		})
+		.onStepEnter(handleStepEnter);
+}
+
+function handleStepEnter(response) {
+	// response = { element, direction, index }
+	$step.classed('is-active', (d, i) => i === response.index);
+
+	renderStep(response.index, response.direction);
+}
+
+function renderStep(index, direction) {
+	chartStackedBar.updateChart(index, direction);
+}
 
 /* STACKED BAR */
 function setupStackedBar(data) {
@@ -41,7 +67,21 @@ function setupStackedBar(data) {
 		.puddingStackedBar()
 }
 
-function resize() { }
+function resize() { 
+	// 1. update height of step elements
+	const stepHeight = Math.floor(window.innerHeight * 0.75);
+	$step.style('height', stepHeight + 'px');
+
+	// 2. update width/height of graphic element
+	// bodyWidth = d3.select('body').node().offsetWidth;
+
+	// const chartMargin = 32;
+	// const textWidth = $scrollText.node().offsetWidth;
+	// const chartWidth = $beeswarmChart.node().offsetWidth - textWidth - chartMargin;
+
+	// 3. tell scrollama to update new element dimensions
+	stackedBarScroller.resize();
+}
 
 function init() {
 	loadData(dataFiles).then(result => {
@@ -59,6 +99,9 @@ function init() {
 		stackedBarData = [data, themes, themesRank, themesFreq];
 
 		setupStackedBar(stackedBarData)
+		resize()
+		setupScroller()
+
 	}).catch(console.error)
 }
 

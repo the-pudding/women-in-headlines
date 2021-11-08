@@ -41,9 +41,11 @@
               {{#if hovertype}} hovertype="{{hovertype}}" {{/if}}
               data-index="{{data-index}}">
               {{#if text}}
-                {{#each text}}
-                  <p class="stackedChartDescription">{{{value}}}</p>
-                {{/each}}
+                <div class="step-inner">
+                  {{#each text}}
+                    <p class="stackedChartDescription">{{{value}}}</p>
+                  {{/each}}
+                </div>
               {{/if}}
             </div>
           {{/each}}

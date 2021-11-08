@@ -22,6 +22,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let $yAxis = null;
     let $rects = null;
     let $rect = null;
+    const $container = d3.select('#scrolly-side');
+    const $article = $container.select('article');
+    const $stepSel = $article.selectAll('.step');
 
     // data
     let data = $chart.datum();
@@ -36,18 +39,41 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // dimensions
     let width = 0;
     let height = 0;
-    const MARGIN_TOP = 100;
+    const MARGIN_TOP = 50;
+    const FLAG_TOP = 80;
     const MARGIN_BOTTOM = 0;
-    const MARGIN_LEFT = 100;
+    const MARGIN_LEFT = 0;
     const MARGIN_RIGHT = 0;
 
     // scales
     let x = null;
     let y = null;
-    let xAxis = null;
-    let yAxis = null;
 
     // helper functions
+    function highlightWords(index, direction, task, word) {
+      $stepSel.classed('is-active', (d, i) => i === index);
+            console.log(task, direction)
+            
+            d3.selectAll(`.${word}`)
+				      .attr("fill", "#E75C33")
+            
+            d3.selectAll(".stackedBars")
+              .selectAll(`rect:not(.${word})`)
+              .attr("opacity", "0.5")
+
+            d3.selectAll(".stackedChartyTicks").style("opacity", "0")
+    }
+
+    function unHighlightWords() {
+      d3.selectAll(".stackedBarAnnotation").remove()
+			
+      d3.selectAll(".stackedBars")
+        .selectAll("rect")
+        .attr("opacity", "1")
+			
+      d3.selectAll(".stackedChartyTicks").style("opacity", "1")
+    }
+
     function prepareWordData(dataLocal, themes) {
       series = d3.stack()
         .keys(dataLocal.columns.slice(2))
@@ -102,13 +128,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         // create axis
         $axis = $svg.append('g').attr('class', 'g-axis');
 
-        $xAxisGroup = $axis.append('g')
-					.attr('class', 'x axis')
-					.attr('transform', `translate(${MARGIN_RIGHT},${height})`)
+        $xAxisGroup = $axis.append('g').attr('class', 'x axis')
         
-        $yAxisGroup = $axis.append('g')
-					.attr('class', 'y axis')
-					.attr('transform', `translate(${MARGIN_LEFT},${height})`)
+        $yAxisGroup = $axis.append('g').attr('class', 'y axis')
 
         // setup viz group
         $vis = $svg.append('g').attr('class', 'g-vis');
@@ -126,26 +148,60 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("fill", "lightgrey")
           .attr("stroke", "#FEFAF1")
           .attr("stroke-width", "0.2px")
-          .transition().duration("4000")
-            .ease(d3.easeCubic)
-            .delay((d, i) => { return i * 200; })
+          //.transition().duration("4000")
+            //.ease(d3.easeCubic)
+            //.delay((d, i) => { return i * 200; })
 
         Chart.resize();
+        Chart.render();
+      },
+      updateChart(index, direction) {
+        console.log(index, direction)
+
+        const sel = $container.select(`[data-index='${index}']`);
+				const task = sel.attr('task');
+				const hovertype = sel.attr('hovertype');
+
+        if (task==="highlightwords") {
+          const word = sel.attr('word');
+          if (direction==="down") {
+            highlightWords(index, direction, task, word)
+          } else {
+            console.log(task, direction)
+          }  
+    
+        } else if (task === "drawbars") {
+          console.log(task, direction)
+        } else if (task === "highlightthemes") {
+          console.log(task, direction)
+        } else if (task === "tooltip") {
+          console.log(task, direction)
+        } else if (task === "exploreChart") {
+          console.log(task, direction)
+        } else if (task === "themeBarsTransition") {
+          console.log(task, direction)
+        }
+
+        return Chart;
       },
       // on resize, update new dimensions
       resize() {
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-        height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
+        height = ($chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM)*2;
         $svg
           .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
           .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
         
-        // responsive xAxis  
+        // responsive xAxis 
+        $xAxisGroup.attr('transform', `translate(${MARGIN_RIGHT},${FLAG_TOP})`)
+
         x = d3.scaleBand()
 				      .domain(dataLocal.map(d => d.country))
-				      .range([MARGIN_LEFT, width - MARGIN_RIGHT])
+				      .range([0, width + MARGIN_RIGHT])
 				      .padding(0.1);
+        
+        xPad = x.padding();
         
         $xAxis = g => g
             .call(d3.axisTop(x).tickSizeOuter(0).tickSizeInner(0))
@@ -160,7 +216,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         $xAxis.selectAll(".tick")
               .append("text")
               .text(d=>d)
-              .attr("x", 0)             
+              .attr("x", xPad*100)             
               .attr("y", 0)
               .attr("class", "stackedChartTicks")
               .call(wrap, x.bandwidth())
@@ -168,18 +224,21 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         $xAxis.selectAll(".tick")
               .append("svg:image")
               .attr('height', "35px")
-              .attr("x", 0)             
+              .attr("x", xPad*100)          
               .attr("y", 0)
               .attr("transform", "translate(-17, -50)")
               .attr("xlink:href", d => flags.filter(c=>c.country===d)[0].flag)
         
         // responsive yAxis 
+        $yAxisGroup.attr('transform', `translate(${MARGIN_LEFT},0)`)
+
         y = d3.scaleLinear()
               .domain([series.length, 0])
               .range([height - MARGIN_BOTTOM, MARGIN_TOP]);
         
         $yAxis = g => g
           .call(d3.axisRight(y).tickSizeOuter(0).tickSizeInner(0))
+          .call(g => g.selectAll(".tick").remove())
           .call(g => g.selectAll(".domain").remove())
         
         $yAxis = $yAxisGroup.append("g")
