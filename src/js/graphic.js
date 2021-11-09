@@ -43,8 +43,7 @@ let chartBubble = null;
 const $stackedBar = d3.select('#stickyStackedChart');
 const $step = d3.selectAll('#stackedChartLegend .step');
 const $lollipop = d3.select('#lollipopChart');
-const $polBubble = d3.select('#chartP')
-const $biasBubble = d3.select('#chartB');
+let $bubble = null;
 
 /* SCROLLAMA */
 const stackedBarScroller = scrollama();
@@ -84,10 +83,11 @@ function setupLollipop(data) {
 }
 
 /* BUBBLE */
-function setupBubble(data, div) {
-	chartBubble = div
-		.datum(data)
-		.puddingBubble()
+function setupBubble(data, options) {
+	$bubble = d3.select(`#chart${options}`)
+		chartBubble = $bubble
+			.datum(data)
+			.puddingBubble(options)
 }
 
 function resize() { 
@@ -123,12 +123,14 @@ function init() {
 		biasBubbleData = [headlinesSite, headlines, "bias"];
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 
+		//console.log($biasBubble)
+
 		resize()
-		setupStackedBar(stackedBarData)
-		setupLollipop(polComparison)
-		setupBubble(biasBubbleData, $biasBubble)
-		setupBubble(polBubbleData, $polBubble)
-		setupScroller()
+		//setupStackedBar(stackedBarData)
+		//setupLollipop(polComparison)
+		setupBubble(biasBubbleData, "B")
+		setupBubble(polBubbleData, "P")
+		//setupScroller()
 
 	}).catch(console.error)
 }

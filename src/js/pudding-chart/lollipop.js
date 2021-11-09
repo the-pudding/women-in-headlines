@@ -176,7 +176,6 @@ d3.selection.prototype.puddingLollipop = function init(options) {
           // defaults to grabbing dimensions from container element
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
           height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
-          console.log(width, height)
 
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
