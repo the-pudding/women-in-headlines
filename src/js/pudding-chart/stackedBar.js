@@ -121,7 +121,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       // called once at start
       init() {
         prepareWordData(dataLocal, themes)
-        console.log(series);
         
         $svg = $chart.append('svg').attr('class', 'stackedChart');
 

@@ -1,6 +1,8 @@
 /* global d3 */
 import loadData from './load-data';
 import './pudding-chart/stackedBar';
+import './pudding-chart/lollipop';
+import './pudding-chart/bubble';
 import 'intersection-observer';
 import scrollama from 'scrollama';
 
@@ -26,16 +28,23 @@ let themes;
 let themesRank;
 let themesFreq;
 let stackedBarData;
+let biasBubbleData;
+let polBubbleData;
 
 /* data functions */
 
 
 /* charts */
 let chartStackedBar = null;
+let chartLollipop = null;
+let chartBubble = null;
 
 /* dom */
 const $stackedBar = d3.select('#stickyStackedChart');
 const $step = d3.selectAll('#stackedChartLegend .step');
+const $lollipop = d3.select('#lollipopChart');
+const $polBubble = d3.select('#chartP')
+const $biasBubble = d3.select('#chartB');
 
 /* SCROLLAMA */
 const stackedBarScroller = scrollama();
@@ -65,6 +74,20 @@ function setupStackedBar(data) {
 	chartStackedBar = $stackedBar
 		.datum(data)
 		.puddingStackedBar()
+}
+
+/* BARBELL */
+function setupLollipop(data) {
+	chartLollipop = $lollipop
+		.datum(data)
+		.puddingLollipop()
+}
+
+/* BUBBLE */
+function setupBubble(data, div) {
+	chartBubble = div
+		.datum(data)
+		.puddingBubble()
 }
 
 function resize() { 
@@ -97,9 +120,14 @@ function init() {
 		themesFreq = result[9];
 
 		stackedBarData = [data, themes, themesRank, themesFreq];
+		biasBubbleData = [headlinesSite, headlines, "bias"];
+		polBubbleData = [headlinesSite, headlines, "polarity"];
 
-		setupStackedBar(stackedBarData)
 		resize()
+		setupStackedBar(stackedBarData)
+		setupLollipop(polComparison)
+		setupBubble(biasBubbleData, $biasBubble)
+		setupBubble(polBubbleData, $polBubble)
 		setupScroller()
 
 	}).catch(console.error)
