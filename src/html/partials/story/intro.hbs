@@ -23,214 +23,36 @@
 </section>
 
 <!-- STACKED BAR SECTION -->
-{{!-- <section class="stacked-bar-section">
-  <div class="stackedBarSection" >
-    <div id="stickyStackedChart">
-      <svg id="stackedChart"></svg>
-    </div>
-    <div id="stackedChartLegend">
-      {{#each copy.stacked-bar}}
-        <p class="stackedChartDescription">{{{value}}}</p>
-      {{/each}}
-    </div>
-  </div>
-  <div id="endStackedbarSection"></div>
-    {{#each copy.stacked-bar-outro}}
-      <p class="description">{{{value}}}</p>
-    {{/each}}
-
-  <div class="exampleheadlines">
-    {{#each copy.example-headlines}}
-      <div class="tooltipTL" id="{{tooltip}}">
-        <p class="deets">{{date}}  |  {{org}}</p>
-        <p class="headline">{{headline}}</p>
-      </div>
-    {{/each}}
-  </div>
-</section> --}}
-
 <section id='scrolly-side'>
       <div class='scrolly'>
   
-       <!-- <figure class='sticky'>
-           <div class='bar-outer'>
-             <div class='bar-inner'></div>
-           </div>
-         </figure> -->
-         <div id="stickyStackedChart" class='sticky'>
-          <svg id="stackedChart"></svg>
-        </div>
+         <figure>
+            <div id="stickyStackedChart" class='sticky'></div>
+         </figure>
   
-       <article id="stackedChartLegend" class="stackedChartDescription">
-         <div class='step' task="drawbars" data-index='0'>
-           Since 2005, a total of <b>1231 unique words</b> have been used by Indian, South African, English, and American publishers in 
-          headlines that report about <b>women</b>. These words are arranged here in a decreasing order of their frequency. 
-         </div>
-
-         <div class='step' word="marry" task="highlightwords" hovertype="inTextHover" data-index='1'>
-          The same word appears at different ranks in different countries, like   
-              <span class="stackedBarTextAnnotation" id="inTextMan" value="change" hovertype="inTextHover"><b>change</b></span>,
-              <span class="stackedBarTextAnnotation" id="inTextMan" value="wear" hovertype="inTextHover"><b>wear</b></span>, or
-              <span class="stackedBarTextAnnotation" id="inTextMan" value="force" hovertype="inTextHover"><b>force</b></span>. 
-        </div>
-
-        <div class='step' word="sue" task="highlightwords" hovertype="inTextHover" data-index='2'>
-          These countries, although former British colonies, are culturally different. The United States has more stories around the word 
-          <span class="stackedBarTextAnnotation" id="inTextMan" value="sue" hovertype="inTextHover"><b>sue</b></span>. 
-          It could be because the act is not as common in a country like India or South Africa. Apart from domestic reporting of women 
-          involved in suing, the news of American and British residents ‘suing’ also gained international fame from time to time, like when 
-          <a href="https://www.reuters.com/article/us-people-jeffrey-epstein-lawsuits-idUSKCN1V61BK" target="_blank" class="intextLink">Two women sued Jeffrey Epstein's estate for $100 million over alleged sex abuse</a> 
-          and when <a href="https://www.iol.co.za/entertainment/celebrity-news/international/rihanna-is-suing-her-father-for-exploiting-her-name-18835017" target="_blank" class="intextLink">Rihanna sued her father for exploiting her name</a>.<br><br> 
-
-          Women, especially those as famous as Rihanna, make the news in their multiple identities, as a celebrity, and from time to time, 
-          as one of those <a href="https://www.standard.co.uk/insider/fashion/rihanna-beyonce-zendaya-black-women-september-issues-a3905816.html" target="_blank" class="intextLink">rare Black women dominating the fashion industry</a>.<br><br><br><br> 
-        </div>
-
-        <div class='step' word="black" task="highlightwords" hovertype="inTextHover" data-index='3'>
-          <span class="stackedBarTextAnnotation" id="inTextMan" value="black" hovertype="inTextHover"><b>Black</b></span> 
-          women, a marginalized group in the USA, UK and South Africa dominate the news in these countries. Most references to 
-          black women in India are from the international news coverage. The most recently independent country of South Africa, 
-          still recovering from the impact of apartheid, is proudly reporting about 
-          <a href="https://www.iol.co.za/lifestyle/style-beauty/beauty/meet-one-of-sas-most-prominent-black-female-doctors-19730305" target="_blank" class="intextLink">their prominent black female doctors</a>, 
-          <a href="https://www.iol.co.za/pretoria-news/sas-pioneering-black-female-philosophy-phd-14875371" target="_blank" class="intextLink">pioneering black female philosophy PhD candidates</a>, 
-          while also reporting the events that continue to affect this community.<br><br>
-
-          On the other hand, in a country like India, the racial divide is not as contentious as the religious one.
-        </div>
-
-        <div class='step' word="muslim" task="highlightwords" hovertype="inTextHover" data-index='4'>
-          There are more Indian stories around the word <span class="stackedBarTextAnnotation" id="inTextMan" value="muslim" hovertype="inTextHover"><b>Muslim</b></span>
-           compared to the UK, USA and South Africa. This is because along with international news being reported in India, the local 
-           news is also reported with specific mention to the religion of the story’s subject. Like Black women, Muslim women also are 
-           affected by <a href="https://www.vox.com/the-highlight/2019/5/20/18542843/intersectionality-conservatism-law-race-gender-discrimination" target="_blank" class="intextLink">intersectionality</a>, 
-           that is, they are at a greater disadvantage within society because of gender and racial or 
-           religious biases. So any event that hurts the community, like acts of violence, or helps a community, like Rashida Tlaib ad Ilhan Omar 
-           becoming the first Mulsim women in Congress, makes the headlines. 
-
-        </div>
-         <!-- <div class='step' word="man" task="highlightwords" hovertype="inTextHover" data-index='1'>
-          Across 4 continents, the words most frequently used in headlines about women are strikingly similar. 
-              <span class="stackedBarTextAnnotation" id="inTextMan" value="man" hovertype="inTextHover"><b>man</b></span> tops the charts in all 4 countries, followed by
-              <span class="stackedBarTextAnnotation" id="inTextKill" value="kill" hovertype="inTextHover"><b>kill</b></span>, 
-              <span class="stackedBarTextAnnotation" id="inTextDie" value="die" hovertype="inTextHover"><b>die</b></span>,
-              and <span class="stackedBarTextAnnotation" id="inTextPolice" value="police" hovertype="inTextHover"><b>police</b></span>. You get the idea... 
-        </div> -->
-        <div class='step' word="first" task="highlightwords" hovertype="inTextHover" data-index='5'>
-          Speaking of firsts, the first similarity we noticed between all the countries is the high frequency of the word <span class="stackedBarTextAnnotation" id="inTextMarry" value="first" hovertype="inTextHover"><b>first</b></span>. 
-          If one were to categorize words in the English language, ‘first’ would be in the pile of words that are so commonly used that they carry very little information, 
-          much like: ‘a’, ‘the’, ‘is’ and ‘are’. In fact, most algorithms used to analyze data, categorize ‘first’ as a 
-          <a href="https://en.wikipedia.org/wiki/Stop_word" target="_blank" class="intextLink">‘stop word’</a> and remove it from the ‘interesting’ 
-          word pile without a second thought.<br><br>
-
-          Except, with women-centred headlines, for every story told about a first <a href="https://www.iol.co.za/lifestyle/style-beauty/fashion/south-africa-and-chinas-first-ladies-fashion-moments-16224660" target="_blank" class="intextLink">lady</a>, 
-          first <a href="https://www.dailymail.co.uk/news/article-2077283/US-Navy-women-share-gay-kiss-Lesbian-couples-homecoming-kiss-ship-returns.html" target="_blank" class="intextLink">kiss</a> 
-          or first <a href="https://www.news24.com/news24/SouthAfrica/News/hi-im-pepper-first-humanoid-robot-in-sa-gently-introduces-herself-20180604" target="_blank" class="intextLink">humanoid</a>, 
-          there are thousands of stories, nearly 8000 to be precise, 
-          about trailblazing women that shattered glass ceilings. In the recent past, outside Kamala Harris’ widely covered ascension to 
-          <a href="https://www.nytimes.com/2020/11/07/us/politics/kamala-harris.html" target="_blank" class="intextLink">Vice-Presidency</a>,  Zuzana Caputova became 
-          Slovakia’s first female <a href="https://www.theguardian.com/world/2019/mar/31/slovakia-elects-zuzana-caputova-first-female-president" target="_blank" class="intextLink">President</a>, Carrie Lam was named Hong Kong’s first 
-          female <a href="https://www.businessinsider.com/r-hong-kongs-first-female-leader-a-tilted-bridge-over-troubled-water-2017-7?r=US&IR=T" target="_blank" class="intextLink">leader</a> and Sahle-Work Zewde was chosen to be Ethiopia’s first female 
-          <a href="https://www.bbc.co.uk/news/world-africa-45976620" target="_blank" class="intextLink">defence minister</a>.<br><br>
-
-          Flip a page or scroll a little more and you will see women from different races, ethnicities, and identities, becoming the first to 
-          <a href="https://www.businessinsider.com/meet-the-first-woman-to-lead-a-marine-corps-tank-platoon-2017-4?r=US&IR=Thttps://www.bbc.co.uk/news/world-africa-45976620" target="_blank" class="intextLink">lead troops</a>, 
-          <a href="https://abcnews.go.com/Sports/simone-manuel-female-african-american-swimmer-win-individual/story?id=41320577" target="_blank" class="intextLink">win medals</a>, 
-          <a href="https://www.businessinsider.com/r-lockheed-f-35-gets-first-female-pilot-air-force-2015-5?r=US&IR=T" target="_blank" class="intextLink">fly fighter jets</a>, 
-          <a href="https://www.businessinsider.in/women-in-saudi-arabia-will-be-allowed-to-drive-for-the-first-time--heres-what-they-still-cant-do/articleshow/60862745.cms" target="_blank" class="intextLink">drive cars</a>, and most of all, 
-          <a href="https://www.google.com/search?q=Interview%3A+Priya+Ramani+and+her+lawyer+Rebecca+John+on+%23MeToo+movement%C3%A2%E2%82%AC%E2%84%A2s+first+big+win+in+India&rlz=1C1UEAD_enIN932IN932&oq=Interview%3A+Priya+Ramani+and+her+lawyer+Rebecca+John+on+%23MeToo+movement%C3%A2%E2%82%AC%E2%84%A2s+first+big+win+in+India&aqs=chrome..69i57j69i58.227j0j7&sourceid=chrome&ie=UTF-8" target="_blank" class="intextLink">raise their voices</a>. 
-       </div>
-
-       <div class='step' word="man" task="highlightwords" hovertype="inTextHover" data-index='6'>
-        These small steps for women did not always lead to leaps for womankind. The first women to come into power had to work with men who could not 
-        recall ever <a href="https://www.bbc.co.uk/news/world-africa-45976620" target="_blank" class="intextLink">reporting to a woman</a>, the ones who 
-        were appointed to lead were up against an <a href="https://www.bbc.co.uk/news/world-africa-45976620" target="_blank" class="intextLink">800-year old history</a> 
-        of the chair belonging to men and, the ones who raised their voices, calling out for safer spaces, had to take on the task of 
-        <a href="https://www.bbc.co.uk/news/world-africa-45976620" target="_blank" class="intextLink">educating men</a>. <br><br>
-
-        These pieces serve as a reminder of another one of Audre Lorde’s <a href="https://www.bbc.co.uk/news/world-africa-45976620" target="_blank" class="intextLink">meditations</a> - 
-        “The oppressed, objectified groups are expected to stretch out and bridge the gap between the actualities of their lives and the consciousness of the oppressor”. <br><br>
-
-        An angry Audre Lorde may have written this way back in the 1980s, but this leads us perfectly to the biggest similarity between the four countries, 
-        and the most used word among all headlines, <span class="stackedBarTextAnnotation" id="inTextMarry" value="first" hovertype="inTextHover"><b>man</b></span>.<br><br>
-
-        The word man appears more than 30,000 times and looking at the other words in the top 5 words for every country, shows that men make headlines along 
-        with women significantly more during horrific events than in historic ones.  
-        </div>
-        {{!-- <div class='step' theme="violence" task="highlightthemesVS" data-index='7'> --}}
-        <div class='step' theme="crime and violence" task="highlightthemes" color="#f76e45" data-index='7'>
-          We categorized the words used to report women-centered news into different themes. The most common headlines about women revolve around 
-              <span class="stackedBarThemeAnnotation" id="inTextViolence" value="violence"><b>crime and violence</b></span> 
-              {{!-- and 
-              <span class="stackedBarThemeAnnotation" id="inTextBias" value="female_bias"><b>women stereotypes</b></span> --}}
-        </div>
-        <div class='step' word="rape" task="highlightwords" hovertype="inTextHoverThemes" data-index='8'>
-          There are nearly <b>4000</b> stories of <span class="stackedBarTextAnnotation" value="death" hovertype="inTextHover"><b>death</b></span>, <b>6000</b> stories of <span class="stackedBarTextAnnotation" value="rape" hovertype="inTextHover"><b>rape</b></span> and more than <b>10000</b> stories of <span class="stackedBarTextAnnotation" value="kill" hovertype="inTextHover"><b>killing</b></span>. Although there are stories where women were causing the crime, most of the stories are about women who were at the receiving end of the violence.<br><br>
-          These headlines disproportionately focus on the victim compared to the perpetrator. There are far fewer stories like that about <a href="https://www.latimes.com/local/lanow/la-me-ln-man-charged-in-killing-robbery-of-transgender-woman-20150302-story.html" target="_blank" class="intextLink">a man who was charged for the rape of 11 year old girl</a>, and a lot more about <a href="https://www.dnaindia.com/india/report-muzaffarnagar-woman-gang-raped-in-front-of-her-husband-at-gunpoint-2551004" target="_blank" class="intextLink">women who were gang raped in front of their husbands</a>, <a href="https://www.mirror.co.uk/news/uk-news/it-not-rape-woman-drunk-5119029" target="_blank" class="intextLink">drunk women who cannot file for assault</a>, <a href="https://indianexpress.com/article/india/after-alwar-married-woman-in-bikaner-allegedly-gangraped-5736023/" target="_blank" class="intextLink">married women who were gangraped</a>, <a href="https://www.thenewsminute.com/article/gangraped-and-burned-acid-transgender-woman-hyderabad-needs-your-help-62453" target="_blank" class="intextLink">transgender women burned with acid</a>, and <a href="https://ewn.co.za/2020/08/26/sa-s-war-on-women-5-women-killed-in-gauteng-in-the-past-48-hours#:~:text=JOHANNESBURG%20%E2%80%93%20Gauteng%20police%20have%20confirmed,and%20her%20mother%20on%20Tuesday." target="_blank" class="intextLink">war on women where 5 were killed</a>.<br><br>
-          By omitting the cause of the violence and choosing to focus on the victim’s circumstances, choices and character, the issue becomes about the ‘protection of women’ rather than the perversion of the perpetrator. When talking about the issue of protection of women, the narrative is often framed, not  around protecting every <b>womxn*</b>, but protecting the rights of a country’s <a href="https://www.salon.com/2013/02/13/stop_calling_us_wives_and_moms/" target="_blank" class="intextLink">‘daughters, mothers and wives’</a>. 
-
-        </div>
-        {{!-- <div class='step' word="pregnant" task="highlightwords" hovertype="inTextHoverThemes" data-index='9'>
-          Talk about how there are many stories where women embody gender stereotypes such as  
-              <span class="stackedBarTextAnnotation" id="inTextKill" value="mother" hovertype="inTextHover"><b>mother</b></span>, 
-              <span class="stackedBarTextAnnotation" id="inTextDie" value="wife" hovertype="inTextHover"><b>wife</b></span>,
-              and <span class="stackedBarTextAnnotation" id="inTextPolice" value="pregnant" hovertype="inTextHover"><b>pregnant</b></span>. 
-        </div> --}}
-        {{!-- <div class='step' theme="empowerement" task="highlightthemesE" data-index='10'> --}}
-        <div class='step' theme="female stereotypes" task="highlightthemes" color="#53B67C" data-index='9'>
-          This brings us to the second most prevalent theme in the set of words: <span class="stackedBarThemeAnnotation" id="inTextBias" value="female_bias"><b>gendered language</b></span>. The English language necessitates the use of gendered words and labels to define certain roles in society. In doing so, it unites those who choose to accept the label while othering the rest. Daughter, mother and wife rarely invoke the image of a transgender or non-binary person in a reader’s mind. While these labels are explicitly gendered, some other words merely become associated with a gender because of underlying stereotypes. 
-        </div>
-        <div class='step' word="marry" task="highlightwords" hovertype="inTextHoverThemes" data-index='10'>
-          We found words like <span class="stackedBarTextAnnotation" id="inTextKill" value="body" hovertype="inTextHover"><b>body</b></span>, <span class="stackedBarTextAnnotation" id="inTextKill" value="child" hovertype="inTextHover"><b>child</b></span> and <span class="stackedBarTextAnnotation" id="inTextKill" value="marry" hovertype="inTextHover"><b>marry</b></span> repeatedly becoming the topics of conversation in women-centred headlines. When women break out of these stereotypes and make headlines, the stories are told of a <a href="https://www.dailymail.co.uk/news/article-1114409/Drunken-woman-judge-suspended-forcibly-kissing-solicitor-swearing-prosecutor.html" target="_blank" class="intextLink">‘woman’ judge</a>, a <a href="https://www.dnaindia.com/india/report-uttar-pradesh-woman-police-officer-who-clashed-with-bjp-workers-transferred-2490067" target="_blank" class="intextLink">‘woman’ police officer</a>, or a <a href="https://www.thenewsminute.com/article/kerala-womens-commission-file-case-against-pc-george-comments-woman-actor-66685" target="_blank" class="intextLink">‘woman’ actor</a>, lest the reader turn to the default, <a href="https://plato.stanford.edu/entries/feminism-language/" target="_blank" class="intextLink">implicit male worldview</a> encoded in the English language. 
-        </div>
-        {{!-- <div class='step' theme="people and places" task="highlightthemesPR" data-index='12'> --}}
-        <div class='step' theme="EPR" task="highlightthemes" color="" data-index='11'>
-          The lifeboat that kept us wading through these words to identify themes, are women reclaiming their positions within titles of stories and refusing to remain in the margins. Stories of women, from Black, Dalit or, transgender communities, leading this reclamation in Parliaments, Congresses, High Courts, cities and capitals pushed us to identify three more themes:  
-           <span class="stackedBarThemeAnnotation" id="inTextEmpowerment" value="empowerment"><b>empowerment</b></span>
-           <span class="stackedBarThemeAnnotation" id="inTextPeople" value="people and places"><b>people and places</b></span> and finally
-           <span class="stackedBarThemeAnnotation" id="inTextRace" value="race, ethnicity and identity"><b>race, ethnicity and identity</b></span>
-        </div>
-        <!-- <div class='step' word="boss" task="highlightwords" data-index='4'>
-          Talk about another word, for example <span class="stackedBarTextAnnotation" id="inTextBoss" value="boss" hovertype="normalHover"><b>boss</b></span>.
-        </div> -->
-        <div class='step' task="tooltip" data-index='12'>
-          This process of reclaiming space also led to reclaiming some words that once belonged in a certain theme but do not anymore.<br><br>
-          <span class="stackedBarTextAnnotation" id="inTextKill" value="body" hovertype="inTextHover"><b>Slay</b></span>, for instance, started off as a purely violent word. Over time, it started to refer to ‘slay queens’, a term used to describe women who were ‘gold diggers’. Today, women and the LGBTQIA+ community have reclaimed the word to mean someone who is just very good at what they do. Within these headlines, we see both the stories of women <a href="https://www.timeslive.co.za/news/2017-06-22-protesters-gather-outside-soweto-court-as-taxi-drivers-appear-for-slaying-women/" target="_blank" class="intextLink">slayed by a man</a> and women <a href="https://www.iol.co.za/lifestyle/style-beauty/womensday-9-phenomenal-women-slaying-in-fashion-and-beauty-13658182" target="_blank" class="intextLink">slaying a look</a>, a <a href="https://www.sowetanlive.co.za/s-mag/2019-05-22-nomzamo-mbatha-is-slaying-the-game-as-she-bags-another-award/" target="_blank" class="intextLink">game</a> or <a href="https://www.sowetanlive.co.za/entertainment/2018-02-16-creating-her-own-beauty-standards-thickleeyonce-is-here-to-slay-and-stay/" target="_blank" class="intextLink">outdated standards of beauty</a>. <br><br>
-          Many such words fought off attempts to be boxed into themes and chose to remain in the grey area. Feel free to explore them on your own and drop us a note if you think you found another theme.
-          <input type="text" placeholder="Search for a word..." id="wordSearch">
-        </div>
-        <div class='step' id="stepSpacer" task="exploreChart" data-index='13'>
-        </div>
-        <div class='step' id="stepSpacer" task="exploreChart" data-index='14'>
-        </div>
-        <div class='step' id="stepSpacer" task="exploreChart" data-index='15'>
-        </div>
-        <div class='step' id="stepSpacer" task="exploreChart" data-index='16'>
-        </div>
-        {{!-- <div class='step' id="stepSpacer" task="exploreChart" data-index='16'> --}}
-        <div class='step' id="stepSpacer" task="themeBarsTransition" data-index='17'>
-        </div>
-        <!-- <div class='step' id="stepSpacer" task="exploreChart" data-index='11'>
-        </div> -->
-        <!-- <div class='step' class="spacer" data-index='6' task="none"></div>
-        <div class='step' class="spacer" data-index='6' task="none"></div> -->
-        {{!-- <div id="themebars" class='step' task="themeBarsTransition" data-index='17'> --}}
-        <div id="themebars" class='step' data-index='18'>
-          Finally, we compared the frequency of words across themes. It turns out, for every empowering story, we read nearly two stories of crime and violence. 
-          <div id="stackedLegend">
-            <svg width="58" height="30" id="stackedLegendsvg">
-              <rect width="58" height="30" id="stackedLegendrect"/>
-            </svg>
-            <span id="stackedLegendArrow">&#8597</span>
-            <span id="stackedLegendText">Frequency of occurence</span>
-          </div>
-        </div> 
-       </article>
-       <!-- <div id="themesStackedChart">
-        <svg id="themesChart"></svg>
-      </div> -->
-       
+        <article id="stackedChartLegend" class="stackedChartDescription">
+          {{#each copy.stacked-bar}}
+            <div class="step" 
+              {{#if id}} id="{{id}}" {{/if}} 
+              {{#if word}} word="{{word}}" {{/if}}  
+              {{#if theme}} theme="{{theme}}" {{/if}} 
+              {{#if color}} color="{{color}}" {{/if}}   
+              {{#if task}} task="{{task}}" {{/if}}
+              {{#if hovertype}} hovertype="{{hovertype}}" {{/if}}
+              data-index="{{data-index}}">
+              {{#if text}}
+                <div class="step-inner">
+                  {{#each text}}
+                    <p class="scrolltext">{{{value}}}</p>
+                  {{/each}}
+                </div>
+              {{/if}}
+            </div>
+          {{/each}}
+        </article>
      </div>
 </section>
+
 <section>
    {{!-- <div class="spacer"></div> --}}
    <div id="endStackedbarSection"></div>
@@ -278,13 +100,7 @@
     </div>
   </div>
 <section class="headline-polarity-section">
-  <div id="chartP" class="svg-container" style="text-align: center;">
-    <svg id="bubblechartPolarity">
-        <g class="xAxispolarity" />
-        <g class="yAxispolarity" />
-        <g id="bodypolarity" />
-    </svg>
-  </div>
+  <div id="chartP" class="svg-container" style="text-align: center;"></div>
   {{#each copy.polarity-outro}}
     <p class="description">{{{value}}}</p>
   {{/each}}
@@ -295,13 +111,7 @@
   <div class="header" id="biasSection">
     <h2 class="sectionHeader">{{copy.bias-headline}}</h2>
   </div>
-  <div id="chartB" class="svg-container" style="text-align: center;">
-    <svg id="bubblechartBias">
-        <g class="xAxisbias" />
-        <g class="yAxisbias" />
-        <g id="bodybias" />
-    </svg>
-  </div>
+  <div id="chartB" class="svg-container" style="text-align: center;"></div>
   {{#each copy.bias-outro}}
     <p class="description">{{{value}}}</p>
   {{/each}}

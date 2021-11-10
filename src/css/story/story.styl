@@ -276,7 +276,7 @@ h5 {
   font-family: $tiempos;
   margin: 0 auto;
   padding: 1rem 0;
-  text-align: justify;
+  text-align: left;
 }
 
 ul {
@@ -294,14 +294,21 @@ ul {
 }
 
 .stackedChartDescription {
-    max-width: 20rem;
+    max-width: 24rem;
     text-align: left;
     color: $off-black;
     font-family: $barlow;
     font-size: 18px;
-    margin-bottom: 0;
+    margin: 0;
     line-height: 1.75;
-    transform:translateY(150px)
+}
+
+.scrolltext {
+  padding: 1rem 1rem 0 1rem;
+  font-family: 'Tiempos Text Web';
+  font-size: 18px;
+  line-height: 1.75;
+  text-align: left;
 }
 
 .deets {
@@ -329,18 +336,14 @@ ul {
   text-transform: uppercase;
 }
 
-#stackedChartLegend {
-    transform: translateY(100);
-}
-
 #stackedLegend {
   display:flex;
-  flex-direction: columns;
+  flex-direction: column;
   max-width: 210px;
   max-height: 30px;
   margin-top:20px;
   align-items: center
-  }
+}
 
 #stackedLegendText {
   // font-size:10px;
@@ -491,7 +494,7 @@ select::selection{
     justify-content: center;
     border: 1px solid $off-black;
     border-radius: 0.25rem;
-    width: 12rem;
+    width: 14rem;
     margin: 0 0.5rem;
     padding: 0;
 }
@@ -526,25 +529,10 @@ select::selection{
 }
 
 .svg-container {
-  display: inline-block;
-  position: relative;
-  width: 95%;
-  padding-bottom: 40%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-  vertical-align: top;
-  overflow: hidden;
-}
-
-.svg-container2 {
-  display: inline-block;
-  position: relative;
-  width: 95%;
-  padding-bottom: 50%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-  vertical-align: top;
-  overflow: hidden;
+  width: 100%;
+  max-width: 60rem;
+  padding: 0 1rem;
+  height: 60vh;
 }
 
 .svg-content {
@@ -803,7 +791,15 @@ span{
 } 
 
 .lollipop {
-    transform: translate(-90px, 0);
+    width: 100%;
+    max-width: 60rem;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+#lollipopChart {
+  width: 100%;
+  height: 200vh;
 }
 
 /* dropdown */
@@ -1081,38 +1077,38 @@ span{
 // }
 
 /* STACKED CHART SCROLLY*/
-#scrolly-side .scrolly {
-  display: flex;
+#scrolly-side{
+  width: 100%;
   max-width: 60rem;
   margin: 3rem auto;
-  /* background-color: cornsilk; */
-  border: 1px;
   padding: 1rem;
-  height: 1750vh;
-  /* height:590vh */
-}
-#scrolly-side {
   height: 2210vh;
-  /* height: 750vh; */
-  /* background-color: grey; */
-  border: 1px
-
 }
 
-* {
-   flex: 1;
+.scrolly {
+  width: 100%;
+  position: relative;
+}
+
+.scrolly figure {
+  position: sticky;
+  top: 0;
+  padding: 0 1rem;
+  max-width: 40rem;
+  margin-left: 24rem;
 }
 
 article {
-  padding-right: 1rem;
-  max-width: 30rem;
+  padding:0 1rem;
+  max-width: 24rem;
+  position: relative;
+  margin: 0 auto;
 }
   
 .step {
   min-height: 110vh;
     // min-height: 67vh;
   margin-bottom: 1rem;
-  background-color: #FEFAF1;
   transition: background-color 250ms ease-in-out;
   max-width: 30vw;
   
@@ -1126,11 +1122,16 @@ article {
   transform:translateY(100vh)
 }
 
+.step-inner {
+  background-color: #FEFAF1;
+  padding-bottom: 1rem;
+}
+
 .step:last-of-type {
   margin-bottom: 0;
   min-height:10vh
 }
-.step.is-active {
+.step.is-active p {
   // background-color: #ffe5a7;
 }
 
@@ -1145,12 +1146,8 @@ article {
 
 #stickyStackedChart.sticky {
   position: sticky;
-  width: 100%;
-  height: 100vh;
-  /* background: silver; */
+  height: 200vh;
   margin: 0;
-  top: 5vh;
-  left: 0;
 }
 
 .stackedBarAnnotation {
@@ -1273,4 +1270,22 @@ article {
 
 .spacer {
   height:55vh
+}
+
+#chartP svg, #chartB svg {
+  width: 100%;
+  height: 100%;
+}
+
+#smChart {
+  width: 100%;
+  height: 400vh;
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 60rem;
+}
+
+.pudding-chart {
+  width: 100%;
+  height: 100%;
 }
