@@ -434,39 +434,38 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           $axis = $svg.append('g').attr('class', 'g-axis');
 
           $row = d3.scaleBand()
-                .domain(d3.range(rows))
-                .paddingInner(-1);
+            .domain(d3.range(rows))
+            .paddingInner(-1);
         
           $col = d3.scaleBand()
-                .domain(d3.range(cols))
-                .paddingInner(0.2);
+            .domain(d3.range(cols))
+            .paddingInner(0.2);
             
-           x = d3.scaleTime()
-                .domain([minDate, maxDate])
-                .range([0, $col.bandwidth()])
+          x = d3.scaleTime()
+            .domain([minDate, maxDate])
+            .range([0, $col.bandwidth()])
         
-           xaxis = d3.axisBottom(x)
-                    .ticks(10)
-                    .tickSizeOuter(0)
-                    .tickSizeInner(0)
-                    .tickPadding(30)
-                    .tickFormat((d, i) => i == 0 || i == 3 || i == 6 || i == 9 || i == 11 ? d3.timeFormat('%Y')(new Date(d)):                                
-                                       "");
+          xaxis = d3.axisBottom(x)
+            .ticks(10)
+            .tickSizeOuter(0)
+            .tickSizeInner(0)
+            .tickPadding(30)
+            .tickFormat((d, i) => i == 0 || i == 3 || i == 6 || i == 9 || i == 11 ? d3.timeFormat('%Y')(new Date(d)):"");
         
-            $stickyAxisGroup = d3.select("#stickyXaxis").append("svg")
-                .attr("class", "stickyAxis");
+          $stickyAxisGroup = d3.select("#stickyXaxis").append("svg")
+            .attr("class", "stickyAxis");
             
-            $stickyAxis = $stickyAxisGroup.append("g")
+          $stickyAxis = $stickyAxisGroup.append("g")
 
-            $cirlceEvents = $stickyAxisGroup.append("g")
-                .selectAll("circle")
-                .data(dodge(eventsWorld.filter(d=>d.date<=maxDate), {radius: radius * 2 + padding, x: d => x(d.date)}));
+          $cirlceEvents = $stickyAxisGroup.append("g")
+            .selectAll("circle")
+            .data(dodge(eventsWorld.filter(d=>d.date<=maxDate), {radius: radius * 2 + padding, x: d => x(d.date)}));
             
-            $circles = $circleEvents
-                .join("circle")
-                .attr("fill", mainColor)
-                .attr("r", radius)
-                .attr("opacity", "0.5");
+        //   $circles = $circleEvents
+        //     .join("circle")
+        //     .attr("fill", mainColor)
+        //     .attr("r", radius)
+        //     .attr("opacity", "0.5");
 
           // data work
           combineData();
@@ -527,20 +526,20 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             // .attr('stroke-width', 2)
             // .attr("color", "#282828"));
 
-            $stickyAxisAnno = $stickyAxisGroup.append("g")
-                .attr('transform', `translate(${$col(0)}, ${MARGIN_TOP})`)
-                .append("text")
-                .text("News Events")
-                .attr("class", "annotation")
-                .attr("font-weight", "400")
-                .attr("x", -20)
-                .attr("y", -4)
+          $stickyAxisAnno = $stickyAxisGroup.append("g")
+            .attr('transform', `translate(${$col(0)}, ${MARGIN_TOP})`)
+            .append("text")
+            .text("News Events")
+            .attr("class", "annotation")
+            .attr("font-weight", "400")
+            .attr("x", -20)
+            .attr("y", -4)
             
-            $cirlceEvents.attr('transform', `translate(${$col(0)}, ${MARGIN_TOP})`)
+          $cirlceEvents.attr('transform', `translate(${$col(0)}, ${MARGIN_TOP})`)
 
-            $circles
-                .attr("cx", d => d.x)
-                .attr("cy", d =>  d.y)
+          $circles
+            .attr("cx", d => d.x)
+            .attr("cy", d =>  d.y)
 
           return Chart;
         },

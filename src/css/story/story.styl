@@ -294,13 +294,21 @@ ul {
 }
 
 .stackedChartDescription {
-    max-width: 20rem;
+    max-width: 24rem;
     text-align: left;
     color: $off-black;
     font-family: $barlow;
     font-size: 18px;
-    margin-bottom: 0;
+    margin: 0;
     line-height: 1.75;
+}
+
+.scrolltext {
+  padding: 1rem 1rem 0 1rem;
+  font-family: 'Tiempos Text Web';
+  font-size: 18px;
+  line-height: 1.75;
+  text-align: left;
 }
 
 .deets {
@@ -328,18 +336,14 @@ ul {
   text-transform: uppercase;
 }
 
-#stackedChartLegend {
-    transform: translateY(100);
-}
-
 #stackedLegend {
   display:flex;
-  flex-direction: columns;
+  flex-direction: column;
   max-width: 210px;
   max-height: 30px;
   margin-top:20px;
   align-items: center
-  }
+}
 
 #stackedLegendText {
   // font-size:10px;
@@ -1073,37 +1077,32 @@ span{
 // }
 
 /* STACKED CHART SCROLLY*/
-#scrolly-side .scrolly {
+#scrolly-side{
   width: 100%;
   max-width: 60rem;
   margin: 3rem auto;
-  display: flex;
-  border: 1px;
   padding: 1rem;
-}
-#scrolly-side {
   height: 2210vh;
-  /* height: 750vh; */
-  /* background-color: grey; */
-  border: 1px
-
 }
 
-* {
-   flex: 1;
+.scrolly {
+  width: 100%;
+  position: relative;
 }
 
 .scrolly figure {
   position: sticky;
   top: 0;
   padding: 0 1rem;
+  max-width: 40rem;
+  margin-left: 24rem;
 }
 
 article {
   padding:0 1rem;
-  max-width: 30rem;
+  max-width: 24rem;
   position: relative;
-  right: 0;
+  margin: 0 auto;
 }
   
 .step {
@@ -1125,7 +1124,7 @@ article {
 
 .step-inner {
   background-color: #FEFAF1;
-  padding: 0 1rem 1rem 1rem;
+  padding-bottom: 1rem;
 }
 
 .step:last-of-type {
@@ -1148,10 +1147,7 @@ article {
 #stickyStackedChart.sticky {
   position: sticky;
   height: 200vh;
-  /* background: silver; */
   margin: 0;
-  top: 5vh;
-  left: 0;
 }
 
 .stackedBarAnnotation {

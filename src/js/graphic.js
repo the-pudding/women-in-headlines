@@ -121,6 +121,7 @@ function resize() {
 	//chartStackedBar.resize();
 	//chartLollipop.resize();
 	//chartBubble.resize();
+	//chartTemporalLine.resize();
 }
 
 function init() {
@@ -146,13 +147,13 @@ function init() {
 
 		//console.log($biasBubble)
 
-		resize()
-		setupStackedBar(stackedBarData)
-		setupLollipop(polComparison)
+		resize();
+		setupStackedBar(stackedBarData);
+		setupScroller();
+		setupLollipop(polComparison);
 		setupBubble(biasBubbleData, "B");
-		setupTemporalLine(temporalData);
 		setupBubble(polBubbleData, "P");
-		//setupScroller()
+		setupTemporalLine(temporalData);
 
 	}).catch(console.error)
 }
