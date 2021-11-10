@@ -105,6 +105,7 @@ function setupTemporalLine(data) {
 }
 
 function resize() { 
+
 	// 1. update height of step elements
 	const stepHeight = Math.floor(window.innerHeight * 0.75);
 	$step.style('height', stepHeight + 'px');
@@ -118,10 +119,17 @@ function resize() {
 
 	// 3. tell scrollama to update new element dimensions
 	stackedBarScroller.resize();
-	//chartStackedBar.resize();
 	//chartLollipop.resize();
 	//chartBubble.resize();
 	//chartTemporalLine.resize();
+
+	const $body = d3.select('body');
+	let previousWidth = 0;
+	const width = $body.node().offsetWidth;
+	if (previousWidth !== width) {
+		previousWidth = width;
+		chartStackedBar.resize();
+	}
 }
 
 function init() {
@@ -147,13 +155,13 @@ function init() {
 
 		//console.log($biasBubble)
 
-		resize();
 		setupStackedBar(stackedBarData);
 		setupScroller();
 		setupLollipop(polComparison);
 		setupBubble(biasBubbleData, "B");
 		setupBubble(polBubbleData, "P");
-		setupTemporalLine(temporalData);
+		resize();
+		//setupTemporalLine(temporalData);
 
 	}).catch(console.error)
 }

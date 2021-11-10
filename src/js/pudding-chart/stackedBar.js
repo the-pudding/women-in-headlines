@@ -20,6 +20,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let $yAxisGroup = null;
     let $xAxis = null;
     let $yAxis = null;
+    let $xAxisText = null;
+    let $xAxisFlags = null;
     let $rects = null;
     let $rect = null;
     const $container = d3.select('#scrolly-side');
@@ -127,7 +129,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         // create axis
         $axis = $svg.append('g').attr('class', 'g-axis');
 
-        $xAxisGroup = $axis.append('g').attr('class', 'x axis')
+        $xAxisGroup = $axis.append('g').attr('class', 'x axis');
+
+        $xAxis = $xAxisGroup.append("g");
         
         $yAxisGroup = $axis.append('g').attr('class', 'y axis')
 
@@ -151,8 +155,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
             //.ease(d3.easeCubic)
             //.delay((d, i) => { return i * 200; })
 
-        Chart.resize();
         Chart.render();
+        Chart.resize();
       },
       updateChart(index, direction) {
         console.log(index, direction)
@@ -185,6 +189,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       },
       // on resize, update new dimensions
       resize() {
+        console.log("chart")
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
         height = ($chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM)*2;
@@ -202,15 +207,18 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         
         xPad = x.padding();
         
-        $xAxis = g => g
-            .call(d3.axisTop(x).tickSizeOuter(0).tickSizeInner(0))
-				    .call(g => g.selectAll(".domain").remove())
+        $xAxis
+          .call(d3.axisBottom(x))
+          .call(g => g.selectAll(".tick line").remove())
+          .call(g => g.selectAll(".tick text").remove())
+          .call(g => g.selectAll(".domain").remove())
         
-        $xAxis = $xAxisGroup.append("g")
-            .call($xAxis)
+        // $xAxis = $xAxisGroup.append("g")
+        //     .call($xAxis)
         
         // xAxis flags
         $xAxis.selectAll(".tick text").remove();
+        $xAxis.selectAll(".tick tickFlag").remove();
 
         $xAxis.selectAll(".tick")
               .append("text")
@@ -222,6 +230,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           
         $xAxis.selectAll(".tick")
               .append("svg:image")
+              .attr("class", "tickFlag")
               .attr('height', "35px")
               .attr("x", xPad*100)          
               .attr("y", 0)

@@ -85,7 +85,7 @@ body {
     border-top: 2px $off-black solid;
     margin: 1rem;
     padding: 1rem;
-    width: 25%;
+    width: 16%;
     max-height: 15rem;
 }
 
@@ -116,9 +116,12 @@ body {
 
 .exampleheadlines {
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 50;
+    padding: 0 1rem;
+    margin 0 auto;
 }
 
 #tooltipHeadline {
@@ -207,15 +210,18 @@ h1 {
     font-weight:900;
     border-bottom: 1px solid $off-black;
     display: block;
-    padding: 2rem 2rem 0 2rem;
+    padding: 1rem 2rem 0 2rem;
     font-style: italic;
     line-height: 0.8;
 }
 
+.title span:last-of-type {
+    border-bottom: none;
+}
+
 .subTitleArt {
     font-weight:300;
-    font-size:36px;
-    opacity: 0.9;
+    font-size: 28px;
     font-family: $barlow;
     max-width: 20rem;
     text-transform: uppercase;
@@ -386,8 +392,9 @@ ul {
   display: flex;
   flex-direction: row;
   margin-top: 2rem;
-  height: 88.2vh;
-  margin-bottom: 5rem
+  height: 572px;
+  margin-bottom: 5rem;
+  border-bottom: 1px solid $off-black;
 }
 
 .titlewords {
@@ -411,7 +418,6 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-bottom: 1px solid $off-black;
 }
 
 .dropOptions {
@@ -709,7 +715,8 @@ span{
 }
 
 .methodSep {
-  width: $column-width;
+  width: 100%;
+  max-width: $column-width;
   border: 1px solid $off-black;
   margin: 4rem auto 1rem auto;
 }
@@ -1099,7 +1106,7 @@ span{
 }
 
 article {
-  width: 24rem;
+  width: 100%;
   max-width: 24rem;
   position: relative;
   margin: 0
