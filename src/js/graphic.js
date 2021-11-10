@@ -3,6 +3,7 @@ import loadData from './load-data';
 import './pudding-chart/stackedBar';
 import './pudding-chart/lollipop';
 import './pudding-chart/bubble';
+import './pudding-chart/temporalLine';
 import 'intersection-observer';
 import scrollama from 'scrollama';
 
@@ -30,6 +31,10 @@ let themesFreq;
 let stackedBarData;
 let biasBubbleData;
 let polBubbleData;
+let filter_years;
+let country;
+let temporalVar;
+let temporalData;
 
 /* data functions */
 
@@ -38,12 +43,14 @@ let polBubbleData;
 let chartStackedBar = null;
 let chartLollipop = null;
 let chartBubble = null;
+let chartTemporalLine = null;
 
 /* dom */
 const $stackedBar = d3.select('#stickyStackedChart');
 const $step = d3.selectAll('#stackedChartLegend .step');
 const $lollipop = d3.select('#lollipopChart');
 let $bubble = null;
+let $temporalLine = d3.select('#smChart');
 
 /* SCROLLAMA */
 const stackedBarScroller = scrollama();
@@ -90,6 +97,13 @@ function setupBubble(data, options) {
 			.puddingBubble(options)
 }
 
+/* TEMPORAL LINE */
+function setupTemporalLine(data) {
+	chartTemporalLine = $temporalLine
+		.datum(data)
+		.puddingTemporalLine()
+}
+
 function resize() { 
 	// 1. update height of step elements
 	const stepHeight = Math.floor(window.innerHeight * 0.75);
@@ -104,6 +118,9 @@ function resize() {
 
 	// 3. tell scrollama to update new element dimensions
 	stackedBarScroller.resize();
+	//chartStackedBar.resize();
+	//chartLollipop.resize();
+	//chartBubble.resize();
 }
 
 function init() {
@@ -118,18 +135,23 @@ function init() {
 		themes = result[7];
 		themesRank = result[8];
 		themesFreq = result[9];
+		filter_years = [2009, 2022];
+		country = "USA";
+		temporalVar = "freq_prop_headlines";
 
 		stackedBarData = [data, themes, themesRank, themesFreq];
 		biasBubbleData = [headlinesSite, headlines, "bias"];
 		polBubbleData = [headlinesSite, headlines, "polarity"];
+		temporalData = [tempWords, filter_years, country, temporalVar];
 
 		//console.log($biasBubble)
 
 		resize()
-		//setupStackedBar(stackedBarData)
-		//setupLollipop(polComparison)
-		setupBubble(biasBubbleData, "B")
-		setupBubble(polBubbleData, "P")
+		setupStackedBar(stackedBarData)
+		setupLollipop(polComparison)
+		setupBubble(biasBubbleData, "B");
+		setupTemporalLine(temporalData);
+		setupBubble(polBubbleData, "P");
 		//setupScroller()
 
 	}).catch(console.error)

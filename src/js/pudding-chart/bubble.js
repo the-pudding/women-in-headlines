@@ -21,14 +21,14 @@ d3.selection.prototype.puddingBubble = function init(options) {
       let $newCircles = null;
       let $newLogos = null;
 
-      console.log($chart)
+      //console.log($chart)
   
       // data
       let data = $chart.datum();
       let chartData = data[0]
       let headlines = data[1]
       let variable = data[2]
-      console.log(chartData, headlines, variable);
+      //console.log(chartData, headlines, variable);
       chartData  = chartData.filter(d=>(+d.monthly_visits !== 0)&(+d[variable] !== 0)&
                   (d.site !== "msn.com")&(d.site !== "sports.yahoo.com")&
                   (d.site !== "finance.yahoo.com")&(d.site !== "news.google.com")&
@@ -112,7 +112,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
           height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
-          console.log(width, height)
+          //console.log(width, height)
 
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
