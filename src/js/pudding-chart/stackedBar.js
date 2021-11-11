@@ -189,7 +189,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       },
       // on resize, update new dimensions
       resize() {
-        console.log("chart")
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
         height = ($chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM)*2;

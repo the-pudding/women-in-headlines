@@ -1342,7 +1342,7 @@ function init() {
 				.on("click", function(){
 					// reorder site names
 					var dataSort = data.sort((a,b)=> d3.descending(+a.polarity_women, +b.polarity_women))
-					y.domain(dataSort.map(d=>d.site_clean))
+					//y.domain(dataSort.map(d=>d.site_clean))
 					// change axis
 					lollipopChart.select(".polarityCompyAxis").transition().duration("1000").call(d3.axisLeft(y)
 									.tickSize(0))

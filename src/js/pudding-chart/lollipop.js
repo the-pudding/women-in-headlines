@@ -26,6 +26,8 @@ d3.selection.prototype.puddingLollipop = function init(options) {
       let $legCircle2 = null;
       let $axisTextLeft = null;
       let $axisTextRight = null;
+      let $sortLollipopDiff = d3.select("#sortLollipopDiff");
+      let $sortLollipopPol = d3.select("#sortLollipopPol");
   
       // data
       let data = $chart.datum();
@@ -45,6 +47,8 @@ d3.selection.prototype.puddingLollipop = function init(options) {
       // scales
       let x = null;
       let y = null;
+      let $xAxis = null;
+      let $yAxis = null;
   
       // helper functions
       function wrap(text, width) {
@@ -79,6 +83,45 @@ d3.selection.prototype.puddingLollipop = function init(options) {
           }
         });
       }
+
+      // click functions
+      function sortChart() {
+        const buttonID = this.id;
+        const sortType = (buttonID === "sortLollipopDiff") ? "difference" : "polarity_women";
+        const dataSort = data.sort((a,b)=> d3.descending(+a[sortType], +b[sortType]));
+        console.log(dataSort);
+
+        d3.selectAll(".lollipopTextbutton").attr("class", "lollipopTextbutton-active")
+        d3.selectAll(".lollipopTextbutton-active").attr("class", "lollipopTextbutton")
+
+        y.domain(dataSort.map(d=>d.site_clean))
+
+        $axis.select(".polarityCompyAxis")
+          .transition()
+          .duration("1000")
+          .call(d3.axisLeft(y).tickSize(0))
+
+        $vis.selectAll(".polarityCompBubble")
+          .sort((a, b) => a !== undefined? d3.ascending(+a[sortType], +b[sortType]):"")
+          .transition().duration("1000")
+          .attr("cy", (d, i)=>
+            d !== undefined?
+            y(d.site_clean):"-60"//xScale is defined earlier
+          )
+
+        $vis.selectAll(".polarityDiffAnnotation")
+          .sort((a, b) => d3.ascending(+a[sortType], +b[sortType]))
+          .transition().duration("1000")
+          .attr("y", (d, i)=> y(d.site_clean))
+
+        $vis.selectAll(".polarityCompBubbleLine")
+          .sort((a, b) => d3.ascending(+a[sortType], +b[sortType]))
+          .transition().duration("1000")
+          .attr("x1", (d, i)=>x(d.polarity_base))
+          .attr("x2", (d, i)=>x(d.polarity_women))
+          .attr("y1", (d, i)=>y(d.site_clean))
+          .attr("y2", (d, i)=>y(d.site_clean))
+        }
   
       const Chart = {
         // called once at start
@@ -87,6 +130,9 @@ d3.selection.prototype.puddingLollipop = function init(options) {
   
           // create axis
           $axis = $svg.append('g').attr('class', 'g-axis');
+
+          $xAxis = $axis.append("g").attr("class", "polarityCompxAxis")
+          $yAxis = $axis.append("g").attr("class", "polarityCompyAxis")
   
           // setup viz group
           $vis = $svg.append('g').attr('class', 'g-vis');
@@ -107,12 +153,12 @@ d3.selection.prototype.puddingLollipop = function init(options) {
               .data(data)
               .join("circle")
               .attr("r", "4")
-              .attr("class", "polarityCompBubbleLeft")
+              .attr("class", "polarityCompBubble polarityCompBubbleLeft")
           
           $circle2 = $vis.selectAll("mycircle")
               .data(data)
               .join("circle")
-              .attr("class", "polarityCompBubbleRight")
+              .attr("class", "polarityCompBubble polarityCompBubbleRight")
               .attr("r", "11")
           
           $polText = $vis.selectAll("mycircle")
@@ -166,7 +212,9 @@ d3.selection.prototype.puddingLollipop = function init(options) {
               .attr("y", -15)
               .attr("dy", "1em")
               .style("text-anchor", "end")
-              .text("More polarizing language →")
+              .text("More polarizing language →");
+          
+          $sortLollipopPol.attr("class", "lollipopTextbutton-active"); 
 
           Chart.resize();
           Chart.render();
@@ -175,7 +223,7 @@ d3.selection.prototype.puddingLollipop = function init(options) {
         resize() {
           // defaults to grabbing dimensions from container element
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-          height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
+          height = 1630 - MARGIN_TOP - MARGIN_BOTTOM;
 
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
@@ -185,21 +233,19 @@ d3.selection.prototype.puddingLollipop = function init(options) {
                 .domain(d3.extent(data, d => d.polarity_women))
                 .range([ MARGIN_LEFT + MARGIN_RIGHT, width]);
 
-          $axis.append("g")
+          $xAxis
                 .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x))
-                .attr("class", "polarityCompxAxis")
+                .call(d3.axisBottom(x));
           
           y = d3.scaleBand()
                 .range([0, height])
                 .domain(data.map(d => d.site_clean))
                 .padding(1);
 
-          $axis.append("g")
+          $yAxis
                 .attr("transform", `translate(${MARGIN_LEFT},${MARGIN_TOP})`)
                 .call(d3.axisLeft(y)
-                .tickSize(0))
-                .attr("class", "polarityCompyAxis");
+                .tickSize(0));
           
           $gridline
               .attr("x1", 10)
@@ -239,14 +285,16 @@ d3.selection.prototype.puddingLollipop = function init(options) {
           $axisTextRight
               .attr("x",width)
 
-
           return Chart;
         },
         // update scales and render chart
         render() {
           // offset chart for margins
           $vis.attr('transform', `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
-  
+          
+          $sortLollipopDiff.on("click", sortChart)
+          $sortLollipopPol.on("click", sortChart)
+
           return Chart;
         },
         // get / set data
