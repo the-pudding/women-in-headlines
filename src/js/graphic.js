@@ -128,7 +128,7 @@ function resize() {
 	const width = $body.node().offsetWidth;
 	if (previousWidth !== width) {
 		previousWidth = width;
-		//chartStackedBar.resize();
+		chartStackedBar.resize();
 		chartLollipop.resize();
 	}
 }
@@ -154,13 +154,11 @@ function init() {
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
-		//console.log($biasBubble)
-
-		//setupStackedBar(stackedBarData);
-		//setupScroller();
+		setupStackedBar(stackedBarData);
+		setupScroller();
 		setupLollipop(polComparison);
-		//setupBubble(biasBubbleData, "B");
-		//setupBubble(polBubbleData, "P");
+		setupBubble(biasBubbleData, "B");
+		setupBubble(polBubbleData, "P");
 		resize();
 		//setupTemporalLine(temporalData);
 
