@@ -154,8 +154,8 @@ function init() {
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
-		setupStackedBar(stackedBarData);
 		setupScroller();
+		setupStackedBar(stackedBarData);
 		setupLollipop(polComparison);
 		setupBubble(biasBubbleData, "B");
 		setupBubble(polBubbleData, "P");
