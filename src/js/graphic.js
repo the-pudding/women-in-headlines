@@ -130,6 +130,7 @@ function resize() {
 		previousWidth = width;
 		chartStackedBar.resize();
 		chartLollipop.resize();
+		chartBubble.resize();
 	}
 }
 
