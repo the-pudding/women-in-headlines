@@ -133,26 +133,28 @@
     <h2 style = "text-align: center" class="sectionHeader">{{copy.wave-headline}}</h2>
   </div>
   <div class="buttons">
-    <p style="text-align: center" class="annotationButton">Filter by country</p>
-    <button class="country" value="all countries">
-      <p>All Countries</p>
-    </button>
-    <button class="country" value="USA">
-      <img inline src='flags/united-states.svg' class="flag">
-      <p>United States</p>
-    </button>
-    <button class="country" value="South Africa">
-      <img inline src='flags/south-africa.svg' class="flag">
-      <p>South Africa</p>
-    </button>
-    <button class="country" value="UK">
-      <img inline src='flags/united-kingdom.svg' class="flag">
-      <p>United Kingdom</p>
-    </button>
-    <button class="country" value="India">
-      <img inline src='flags/india.svg' class="flag">
-      <p>India</p>
-    </button>
+    <p class="annotationButton">Filter by country</p>
+    <div class="button-wrapper">
+      <button class="country" value="all countries">
+        <p>All Countries</p>
+      </button>
+      <button class="country" value="USA">
+        <img inline src='flags/united-states.svg' class="flag">
+        <p>United States</p>
+      </button>
+      <button class="country" value="South Africa">
+        <img inline src='flags/south-africa.svg' class="flag">
+        <p>South Africa</p>
+      </button>
+      <button class="country" value="UK">
+        <img inline src='flags/united-kingdom.svg' class="flag">
+        <p>United Kingdom</p>
+      </button>
+      <button class="country" value="India">
+        <img inline src='flags/india.svg' class="flag">
+        <p>India</p>
+      </button>
+    </div>
   </div>
   <div id = "stickyXaxis" style="text-align: center;"></div>
   <div id="smChart" class="svg-container3" style="text-align: center;"></div>
@@ -161,7 +163,7 @@
 <!-- CONCLUSION -->
 <section class="conclusion-section">
   <div class="header" id="conclusionSection">
-    <h2 style = "text-align: center" class="sectionHeader">{{copy.conclusion-headline}}</h2>
+    <h2 class="sectionHeader">{{copy.conclusion-headline}}</h2>
   </div>
   {{#each copy.conclusion}}
     <p class="description">{{{value}}}</p>

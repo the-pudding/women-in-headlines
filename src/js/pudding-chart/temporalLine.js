@@ -23,6 +23,11 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let $areas = null;
       let $circleEvents = null;
       let $circles = null;
+
+      // plot structure
+      const cols = 1;
+      const rows = 200/cols;
+      let grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }));
   
       // data
       let data = $chart.datum();
@@ -44,9 +49,19 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         g => g.map(({ year, frequency}) => ({date: new Date(year, 0, 1), frequency})),
         d => d.word
       )
-      let fullData;
-      let minDate;
-      let maxDate;
+
+      let fullData = d3.zip(Array.from(freqByWord), grid).map(
+        ([[word, rates], { row, col }]) => ({
+            word,
+            rates,
+            row,
+            col,
+        })
+      )
+
+      let minDate = fullData[0].rates[0].date;
+      let maxDate = fullData[0].rates[fullData[0].rates.length - 1].date;
+
       let wordToScaleAndArea;
       let maxRate;
       let curve;
@@ -304,8 +319,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let height = 0;
       const MARGIN_TOP = 150;
       const MARGIN_BOTTOM = 20;
-      const MARGIN_LEFT = 40;
-      const MARGIN_RIGHT = 40;
+      const MARGIN_LEFT = 80;
+      const MARGIN_RIGHT = 0;
       const stickyAxisHeight = 200;
       const mainColor = "#3569DC";
   
@@ -317,25 +332,22 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let $stickyAxis = null;
       let $stickyAxisAnno = null;
 
-      // plot structure
-      const cols = 1;
-      const rows = 200/cols;
-      let grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }));
-  
-      // helper functions
-      function combineData() {
-        fullData = d3.zip(Array.from(freqByWord), grid).map(
-            ([[word, rates], { row, col }]) => ({
-                word,
-                rates,
-                row,
-                col,
-            })
-          )
-          console.log(fullData)
 
-          minDate = fullData[0].rates[0].date;
-          maxDate = fullData[0].rates[fullData[0].rates.length - 1].date;
+      // helper functions
+      function showTooltip(event, d) {
+        $areas.attr("opacity", 0.25)
+				$lines.attr("opacity", 0.4)
+				d3.selectAll(".wordText").attr("opacity", 0.25)
+
+        d3.select('#area'+ d.word).attr("opacity", 0.85)
+				d3.select('#line'+ d.word).attr("opacity", 1)
+				d3.select('#text'+ d.word).attr("opacity", 1)
+      }
+
+      function hideTooltip() {
+        $areas.attr("opacity", 0.5)
+				$lines.attr("opacity", 1)
+				d3.selectAll(".wordText").attr("opacity", 1)
       }
 
       function calcScale() {
@@ -366,8 +378,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       function dodge(data, {radius = 1, x = d => d} = {}) {
         const radius2 = radius ** 2;
         const circles = data.map((d, i) => ({x: +x(d, i, data), data: d})).sort((a, b) => a.x - b.x);
-		const epsilon = 1e-3;
-		let head = null, tail = null;
+		    const epsilon = 1e-3;
+		    let head = null, tail = null;
 
         function intersects(x, y) {
             let a = head;
@@ -423,12 +435,12 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .attr("stop-color", mainColor);
 
           linearGradient.append("stop")
-			.attr("offset", "90%")
-			.attr("stop-color", "#FEFAF1");
+			      .attr("offset", "90%")
+			      .attr("stop-color", "#FEFAF1");
         
           linearGradient.append("stop")
-			.attr("offset", "100%")
-			.attr("stop-color", "#FEFAF1");
+			      .attr("offset", "100%")
+			      .attr("stop-color", "#FEFAF1");
   
           // create axis
           $axis = $svg.append('g').attr('class', 'g-axis');
@@ -440,63 +452,33 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           $col = d3.scaleBand()
             .domain(d3.range(cols))
             .paddingInner(0.2);
-            
-          x = d3.scaleTime()
-            .domain([minDate, maxDate])
-            .range([0, $col.bandwidth()])
-        
-          xaxis = d3.axisBottom(x)
-            .ticks(10)
-            .tickSizeOuter(0)
-            .tickSizeInner(0)
-            .tickPadding(30)
-            .tickFormat((d, i) => i == 0 || i == 3 || i == 6 || i == 9 || i == 11 ? d3.timeFormat('%Y')(new Date(d)):"");
-        
-          $stickyAxisGroup = d3.select("#stickyXaxis").append("svg")
-            .attr("class", "stickyAxis");
-            
-          $stickyAxis = $stickyAxisGroup.append("g")
 
-          $cirlceEvents = $stickyAxisGroup.append("g")
-            .selectAll("circle")
-            .data(dodge(eventsWorld.filter(d=>d.date<=maxDate), {radius: radius * 2 + padding, x: d => x(d.date)}));
-            
-        //   $circles = $circleEvents
-        //     .join("circle")
-        //     .attr("fill", mainColor)
-        //     .attr("r", radius)
-        //     .attr("opacity", "0.5");
-
-          // data work
-          combineData();
-          calcScale();
-          console.log(wordToScaleAndArea)
-  
-          // setup viz group
           $vis = $svg.append('g').attr('class', 'g-vis');
 
-          $cells = $vis.append("g")
+          $cells = $vis.append('g')
             .selectAll('g')
             .data(fullData)
             .join('g')
             .attr('class', 'cell')
-            .attr('transform', d => `translate(${$col(d.col)}, ${$row(d.row)})`);
+          
+          $areas =  $cells.append('path')
+            .attr('fill', "url(#linear-gradient)")
+            .attr('opacity', 0.5)
+            .attr("class", "wordArea")
+            .attr("id", d=> 'area'+ d.word)
+            .on("mouseover", (event, d) => showTooltip(event, d))
+					  .on("mouseleave", (event, d) => hideTooltip(event, d));
+          
+          $lines = $cells.append("path")
+            .style("stroke", "url(#linear-gradient)")
+            .attr('stroke-width', 1)
+            .attr('fill', 'none')
+            .attr("class", "wordLine")
+            .attr("id", d=> 'line'+ d.word)
+            .on("mouseover", (event, d) => showTooltip(event, d))
+					  .on("mouseleave", (event, d) => hideTooltip(event, d));
 
         
-        //   $area = $cells.append("path")
-        //     .attr('d', d => wordToScaleAndArea[d.word].area(d.rates))
-        //     .attr('fill', "url(#linear-gradient)")
-        //     .attr('opacity', 0.5)
-        //     .attr("class", "wordArea")
-        //     .attr("id", d => 'area'+ d.word)
-        
-        //   $lines = $cells.append("path")
-        //     .style("stroke", "url(#linear-gradient)")
-        //     .attr('stroke-width', 2)
-        //     .attr('fill', 'none')
-        //     .attr("class", "wordLine")
-        //     .attr("id", d => 'line'+ d.word)  
-        //     .attr('d', d => wordToScaleAndArea[d.word].line(d.rates)) 
             
             Chart.resize();
             Chart.render();
@@ -513,33 +495,42 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           $row.range([0, height])
           $col.range([0, width])
 
-          $stickyAxisGroup
-            .attr('transform', `translate(${MARGIN_LEFT}, 0)`)
-            .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
-            .attr('height', stickyAxisHeight);
-        
-          $stickyAxis
-            .attr('transform', `translate(${$col(0)}, ${MARGIN_TOP})`)
-            .call(xaxis)
-            // .call(g => g.selectAll(".tick")
-            // .call(g => g.select('.domain')
-            // .attr('stroke-width', 2)
-            // .attr("color", "#282828"));
+          x = d3.scaleTime()
+            .domain([minDate, maxDate])
+            .range([0, $col.bandwidth()])
+          
+          xaxis = d3.axisBottom(x)
+            .ticks(10)
+            .tickSizeOuter(0)
+            .tickSizeInner(0)
+            .tickPadding(30)
+            .tickFormat((d, i) => i == 0 || i == 3 || i == 6 || i == 9 || i == 11 ? d3.timeFormat('%Y')(new Date(d)):"");
+          
+          calcScale();
 
-          $stickyAxisAnno = $stickyAxisGroup.append("g")
-            .attr('transform', `translate(${$col(0)}, ${MARGIN_TOP})`)
-            .append("text")
-            .text("News Events")
-            .attr("class", "annotation")
-            .attr("font-weight", "400")
-            .attr("x", -20)
-            .attr("y", -4)
-            
-          $cirlceEvents.attr('transform', `translate(${$col(0)}, ${MARGIN_TOP})`)
+          $cells
+            .attr('transform', d => `translate(${$col(d.col)}, ${$row(d.row)})`);
+          
+          $areas.attr('d', d => wordToScaleAndArea[d.word].area(d.rates))
+          $lines.attr('d', d => wordToScaleAndArea[d.word].line(d.rates)) 
 
-          $circles
-            .attr("cx", d => d.x)
-            .attr("cy", d =>  d.y)
+          $cells.each(function(d) {
+            const group = d3.select(this).attr("class", "SMCell").attr("id", d=>"cell"+d.word);
+
+            const yaxis = d3.axisLeft(wordToScaleAndArea[d.word].y)
+              .ticks(2)
+              .tickSizeOuter(0)
+
+            group.append("g").attr("class", "catLabel").append("text")
+                .attr("x", -10)
+                .attr("y", $row.bandwidth())
+                .attr("class", "wordText")
+                .attr("id", d=> 'text'+ d.word) 
+                .text(d.word)
+                .on("mouseover", (event, d) => showTooltip(event, d))
+					      .on("mouseleave", (event, d) => hideTooltip(event, d));
+          })
+
 
           return Chart;
         },

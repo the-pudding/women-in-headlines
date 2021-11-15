@@ -32,13 +32,20 @@ body {
     transform: translate(-45px, 6px)
 }
 
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .annotationButton {
     fill: $off-black;
     font-family: $barlow;
     font-weight: 400;
     font-size: 16px;
     margin: 0 1rem 0 0;
-    width: 3rem;
+    width: 6rem;
+    text-align: left;
 }
 .padded-dropcap {
     padding: 1rem 1.25rem 1rem 1rem;
@@ -139,10 +146,12 @@ body {
     z-index:1000;
     transition: opacity 0.25s ease-in;
     width: 15rem;
+    visibility: hidden;
 }
 
 .is-visible {
   opacity: 1;
+  visibility: visible;
 }
 
 .forceLogo {
@@ -463,16 +472,10 @@ ul {
   align-items: center;
   display: flex;
   margin-top: 50px;
-  // max-width: 65rem;
-  width: 80%;
-  margin-left: 5%;
-  // margin-right:15vw
-   // // text-align: right;
-  // background-color: $tan;
-  // // z-index: 1;
-  // // display: flex;
-  // flex-direction: row;
-  // width: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0 1rem;
 }
 
 button {
@@ -519,9 +522,9 @@ select::selection{
 }
 
 .flag {
-    height:35px;
+    height:30px;
     text-anchor: middle;
-    padding-right: 0px;
+    padding-right: 0.5rem;
     max-width: 30%;
 }
 
@@ -532,8 +535,8 @@ select::selection{
     justify-content: center;
     border: 1px solid $off-black;
     border-radius: 0.25rem;
-    width: 14rem;
-    margin: 0 0.5rem;
+    width: 10rem;
+    margin: 0.5rem;
     padding: 0;
 }
 
@@ -1343,7 +1346,7 @@ article {
 
 #smChart {
   width: 100%;
-  height: 400vh;
+  height: 10000px;
   padding: 0 1rem;
   margin: 0 auto;
   max-width: 60rem;

@@ -305,7 +305,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
                 .style("opacity", "1")
                 .attr('r', d=>radius(+d.monthly_visits))
                 .on("mouseenter", (event, d) => { showTooltip() })
-                //.on("mouseleave", (event, d) => { hideTooltip() });
+                .on("mouseleave", (event, d) => { hideTooltip() });
 
               $circles.merge($newCircles)
                   .attr('cx', function(d) { return d.x; })
