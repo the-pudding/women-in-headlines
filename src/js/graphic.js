@@ -118,18 +118,15 @@ function resize() {
 	// const chartWidth = $beeswarmChart.node().offsetWidth - textWidth - chartMargin;
 
 	// 3. tell scrollama to update new element dimensions
-	stackedBarScroller.resize();
-	//chartLollipop.resize();
-	//chartBubble.resize();
-	//chartTemporalLine.resize();
+	//stackedBarScroller.resize();
 
 	const $body = d3.select('body');
 	let previousWidth = 0;
 	const width = $body.node().offsetWidth;
 	if (previousWidth !== width) {
 		previousWidth = width;
-		chartStackedBar.resize();
-		chartLollipop.resize();
+		//chartStackedBar.resize();
+		//chartLollipop.resize();
 		chartBubble.resize();
 	}
 }
@@ -155,9 +152,9 @@ function init() {
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
-		setupScroller();
-		setupStackedBar(stackedBarData);
-		setupLollipop(polComparison);
+		//setupScroller();
+		//setupStackedBar(stackedBarData);
+		//setupLollipop(polComparison);
 		setupBubble(biasBubbleData, "B");
 		setupBubble(polBubbleData, "P");
 		resize();

@@ -20,6 +20,7 @@
 /* ---------------------- */
 body {
     background-color: $bg;
+    overflow-x: hidden;
 }
 
 .annotation {
@@ -37,6 +38,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     margin: 0 1rem 0 0;
+    width: 3rem;
 }
 .padded-dropcap {
     padding: 1rem 1.25rem 1rem 1rem;
@@ -124,19 +126,49 @@ body {
     margin 0 auto;
 }
 
-#tooltipHeadline {
+.tooltip {
     top: 10px;
     left: 0px;
-    padding: 5px;
+    padding: 1rem;
     color: $off-black;
     background-color: $bg;
     border: 1px $off-black solid;
     border-top: 2px $off-black solid;
     position:fixed;
-    visibility: hidden;
-    z-index:10
+    opacity: 0;
+    z-index:1000;
+    transition: opacity 0.25s ease-in;
+    width: 15rem;
 }
 
+.is-visible {
+  opacity: 1;
+}
+
+.forceLogo {
+  pointer-events: none;
+}
+
+.tt-date, .tt-site, .tt-hed {
+  margin: 0;
+}
+
+.tt-date, .tt-site {
+    font-family: 'Barlow Condensed';
+    color: #e75c33;
+    font-size: 14px;
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.tt-hed {
+    font-family: 'Barlow Condensed';
+    font-weight: 300;
+    font-size: 18px;
+    font-style: italic;
+    text-transform: uppercase;
+}
 
 #tooltipHeadline path {
     fill: none;
@@ -281,7 +313,7 @@ h5 {
   color: $off-black;
   font-family: $tiempos;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   text-align: left;
 }
 
@@ -702,6 +734,7 @@ span{
   font-weight: 600;
   color: $off-black;
   text-transform: uppercase;
+  padding: 0 1rem;
 }
 
 .methodDescription {
@@ -709,7 +742,7 @@ span{
   font-family: $national;
   font-size: 14px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   line-height: 1.65;
   text-align: left;
 }
@@ -810,6 +843,10 @@ span{
 
 /* dropdown */
 
+.sectionHeader, .bubbleFilters {
+  padding: 0 1rem;
+}
+
 .dropdownOptions {
   background-color: $tan;
   border: 1px solid $off-black;
@@ -821,6 +858,7 @@ span{
   font-weight: 400;
   border-radius: 0.25rem;
   cursor: pointer;
+  width: 8rem;
 }
 
 // .dropdownOptions:focus {
@@ -837,9 +875,12 @@ span{
   z-index: 1;
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: -5px;
+  border-bottom: 1px solid $off-black;
 }
 
 .scoreChartBar {
@@ -1311,6 +1352,13 @@ article {
 .pudding-chart {
   width: 100%;
   height: 100%;
+}
+
+.chartLabels {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 800px) {

@@ -89,32 +89,42 @@
 </section>
 
 <!-- HEADLINE POLARITY SECTION -->
-<div class="header">
-    <h2 class="sectionHeader">{{copy.polarity-headline}}</h2>
-  </div>
-  <div class="bubbleFilters">
-    <p class="annotationButton">Filter by</p>
-    <div>
-      <select id="countrydropdown" class="dropdownOptions"></select>
-      <select id="pubdropdown" class="dropdownOptions"></select>
+<section class="bubble-section">
+  <div class="header">
+      <h2 class="sectionHeader">{{copy.polarity-headline}}</h2>
     </div>
-  </div>
-<section class="headline-polarity-section">
-  <div id="chartP" class="svg-container" style="text-align: center;"></div>
-  {{#each copy.polarity-outro}}
-    <p class="description">{{{value}}}</p>
-  {{/each}}
-</section>
+    <div class="bubbleFilters">
+      <p class="annotationButton">Filter by</p>
+      <div>
+        <select id="countrydropdown" class="dropdownOptions"></select>
+        <select id="pubdropdown" class="dropdownOptions"></select>
+      </div>
+    </div>
+  <section class="headline-polarity-section">
+    <div id="chartP" class="svg-container" style="text-align: center;"></div>
+    <div class="chartLabels">
+      <p id="xAxisLabel">← Less Polarizing Language</p>
+      <p id="xAxisLabel">More Polarizing Language →</p>
+    </div>
+    {{#each copy.polarity-outro}}
+      <p class="description">{{{value}}}</p>
+    {{/each}}
+  </section>
 
-<!-- HEADLINE BIAS SECTION -->
-<section class="headline-bias-section">
-  <div class="header" id="biasSection">
-    <h2 class="sectionHeader">{{copy.bias-headline}}</h2>
-  </div>
-  <div id="chartB" class="svg-container" style="text-align: center;"></div>
-  {{#each copy.bias-outro}}
-    <p class="description">{{{value}}}</p>
-  {{/each}}
+  <!-- HEADLINE BIAS SECTION -->
+  <section class="headline-bias-section">
+    <div class="header" id="biasSection">
+      <h2 class="sectionHeader">{{copy.bias-headline}}</h2>
+    </div>
+    <div id="chartB" class="svg-container" style="text-align: center;"></div>
+    <div class="chartLabels">
+      <p id="xAxisLabel">← Less Biased Language</p>
+      <p id="xAxisLabel">More Biased Language →</p>
+    </div>
+    {{#each copy.bias-outro}}
+      <p class="description">{{{value}}}</p>
+    {{/each}}
+  </section>
 </section>
 
 <!-- 2 TEMPORAL CHART -->
@@ -165,5 +175,4 @@
 </section>  
 
 <!-- TOOLTIPS -->
-<svg id="tooltipHeadline"></svg>
-<div id="tooltipInfo"></div>
+<div class="tooltip"></div>

@@ -20,11 +20,12 @@ d3.selection.prototype.puddingBubble = function init(options) {
       let $logos = null;
       let $newCircles = null;
       let $newLogos = null;
-      let $xAxisLabel1 = null;
-      let $xAxisLabel2 = null;
       let $legend = null;
       let $legendCircle = null;
       let $legendText = null;
+      let $countryDropdown = d3.select("#countrydropdown");
+      let $pubDropdown = d3.select("#pubdropdown");
+      let $tooltip = d3.selectAll(".tooltip");
   
       // data
       let data = $chart.datum();
@@ -89,9 +90,9 @@ d3.selection.prototype.puddingBubble = function init(options) {
       let width = 0;
       let height = 0;
       const MARGIN_TOP = 110;
-      const MARGIN_BOTTOM = 20;
-      const MARGIN_LEFT = 50;
-      const MARGIN_RIGHT = 100;
+      const MARGIN_BOTTOM = 0;
+      const MARGIN_LEFT = 0;
+      const MARGIN_RIGHT = 0;
   
       // scales
       let xScale = null;
@@ -99,10 +100,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
       let extentVisits = d3.extent(filterData, d=>+d.monthly_visits)
       let radius = d3.scaleSqrt()
                     .domain(extentVisits)
-                    .range([3, 70])
       let logoScale = d3.scaleLinear()
                     .domain(extentVisits)
-                    .range([18, 100])
       let simulation = null;
 
       const legendData = [{level: "", radius: radius(10000000), y: height+75, x: width/2.2, anchor:"end", xtext: width/2.235, ytext: height+53,id: ""}, 
@@ -111,6 +110,86 @@ d3.selection.prototype.puddingBubble = function init(options) {
 			{level: "?", radius: radius(30000000), y: height*1.08+11, x: width+15, anchor:"middle", xtext: width+15, ytext: height*1.08+16,id: "info"}]
   
       // helper functions
+      function populateDropdown(data, div, attribute) {
+        const select = d3.select(div)
+	
+				const unique_countries = d3.map(data, d=>d[attribute]).filter(onlyUnique);
+				attribute==="country_of_pub"?unique_countries.unshift("Country"):unique_countries.unshift("Newsroom")
+        
+				select.selectAll("option")
+				.data(unique_countries)
+				.join("option")
+					.attr("value", d=>d==="Country"||d==="Newsroom"?"":d)
+					.text(d=>d);
+      }
+
+      function changeDropdown() {
+        const selection = d3.select(this).property("value");
+        const dropdownType = d3.select(this).property("id");
+
+        let allCircs = d3.selectAll(".forceCircles");
+				let allLogos = d3.selectAll(".forceLogos");
+
+        if (dropdownType === "countrydropdown") {
+          $pubDropdown.node().options[0].selected = true;
+
+          allCircs.style("fill", d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()?"#F7DC5B":"#FEFAF1")
+				  allCircs.style("opacity", d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()?"1":
+										 selection===""?"1":"0.2")
+				  allLogos.style("opacity", d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()?"1":
+										 selection===""?"1":"0.2")
+        }
+
+        if (dropdownType === "pubdropdown") {
+          $countryDropdown.node().options[0].selected = true;
+
+          allCircs.style("fill", d=>d.site.toLowerCase() === selection.toLowerCase()?"#F7DC5B":"#FEFAF1")
+				  allCircs.style("opacity", d=>d.site.toLowerCase() === selection.toLowerCase()?"1":
+											selection===""?"1":"0.2")
+				  allLogos.style("opacity", d=>d.site.toLowerCase() === selection.toLowerCase()?"1":
+										 selection===""?"1":"0.2")
+        }
+      }
+
+      function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+      }
+
+      function showTooltip() {
+        let [x, y] = d3.pointer(event);
+        let right = x > window.innerWidth / 2;
+        let offset = right ? $tooltip.node().offsetWidth + 5 : 0;
+
+        $tooltip
+          .classed("is-visible", true)
+          .style("top", y + "px")
+					.style("left", (x - offset) + "px");
+
+        let dataSubset = data[1];
+        let randomHeadline = Math.floor(Math.random() * dataSubset.length);
+
+        $tooltip.html(`<p class="tt-date">${d3.timeFormat("%b %Y")(new Date(dataSubset[randomHeadline].time))} | ${dataSubset[randomHeadline].site}</p>
+                      <p class="tt-hed">${dataSubset[randomHeadline].headline_no_site}</p>`);
+
+        let selection = d3.select(this);
+        let allCircs = d3.selectAll(".forceCircles");
+				let allLogos = d3.selectAll(".forceLogos");
+
+        console.log(selection)
+
+        //allCircs.style("fill", "#FEFAF1")
+        selection.style("fill", "#F7DC5B")
+			  // allCircs.style("opacity", d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()?"1":
+				// 						 selection===""?"1":"0.2")
+				//   allLogos.style("opacity", d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()?"1":
+				// 						 selection===""?"1":"0.2")
+        
+      }
+
+      function hideTooltip() {
+        $tooltip.classed("is-visible", false);
+      }
+
       function wrap(text, width) {
         text.each(function () {
           var text = d3.select(this),
@@ -151,21 +230,11 @@ d3.selection.prototype.puddingBubble = function init(options) {
   
           // create axis
           $axis = $svg.append('g').attr('class', 'g-axis');
-
-          $xAxisLabel1 = $axis.append("text")
-            .attr("id", "xAxisLabel")
-            .attr("dy", "1em")
-            .style("text-anchor", "start")
-            .text(variable==="bias"?"← Less Biased Language":"← Less Polarizing Language")
-          
-          $xAxisLabel2 = $axis.append("text")
-            .attr("id", "xAxisLabel")
-            .attr("dy", "1em")
-            .style("text-anchor", "end")
-            .text(variable==="bias"?"More Biased Language →":"More Polarizing Language →")
           
           // setup legend group
-          $legend = $svg.append('g').attr('class', 'g-legend');
+          $legend = $svg.append('g')
+            .attr('class', 'g-legend')
+            .attr('transform', `translate(50, 50)`);
 
           $legendCircle = $legend.append("g")
             .selectAll("circle")
@@ -200,6 +269,9 @@ d3.selection.prototype.puddingBubble = function init(options) {
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
           height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
+          radius.range([3, width/12])
+          logoScale.range([18, width/12])
+
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
             .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
@@ -212,14 +284,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
             .range([MARGIN_LEFT*2+MARGIN_RIGHT, width])
             .domain(variable==="polarity"?[0, d3.max(filterData, d => +d[variable])]:
                             d3.extent(filterData, d => +d[variable]))
-          
-          $xAxisLabel1            
-            .attr("y", height*1.08)
-            .attr("x",MARGIN_LEFT)     
-          
-          $xAxisLabel2            
-            .attr("y", height*1.08)
-            .attr("x",width+MARGIN_RIGHT) 
           
           //console.log(xScale.range(), xScale.domain())
 
@@ -240,6 +304,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
                 .attr("class", "forceCircles")
                 .style("opacity", "1")
                 .attr('r', d=>radius(+d.monthly_visits))
+                .on("mouseenter", (event, d) => { showTooltip() })
+                //.on("mouseleave", (event, d) => { hideTooltip() });
 
               $circles.merge($newCircles)
                   .attr('cx', function(d) { return d.x; })
@@ -261,7 +327,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
 														: d.site=="businessinsider.com" ? "translate(-14,-13)"
 														: "translate(-15,-15)")
 									.attr('width', d=>logoScale(+d.monthly_visits))
-									.attr("xlink:href", d=>+d.monthly_visits>150000000 ? logoData.filter(x=>x.site==d.site)[0]["link"]:'')
+									.attr("xlink:href", d=>+d.monthly_visits>150000000 ? logoData.filter(x=>x.site==d.site)[0]["link"]:'');
               
               $logos.merge($newLogos)
                   .attr('x', function(d) { return d.x; })
@@ -274,6 +340,12 @@ d3.selection.prototype.puddingBubble = function init(options) {
         render() {
           // offset chart for margins
           $vis.attr('transform', `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
+
+          populateDropdown(chartData, "#countrydropdown", "country_of_pub")
+          populateDropdown(chartData, "#pubdropdown", "site")
+
+          $countryDropdown.on("change", changeDropdown);
+          $pubDropdown.on("change", changeDropdown);
   
           return Chart;
         },
