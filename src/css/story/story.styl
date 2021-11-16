@@ -20,6 +20,7 @@
 /* ---------------------- */
 body {
     background-color: $bg;
+    overflow-x: hidden;
 }
 
 .annotation {
@@ -31,12 +32,20 @@ body {
     transform: translate(-45px, 6px)
 }
 
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .annotationButton {
     fill: $off-black;
     font-family: $barlow;
     font-weight: 400;
     font-size: 16px;
     margin: 0 1rem 0 0;
+    width: 6rem;
+    text-align: left;
 }
 .padded-dropcap {
     padding: 1rem 1.25rem 1rem 1rem;
@@ -85,7 +94,7 @@ body {
     border-top: 2px $off-black solid;
     margin: 1rem;
     padding: 1rem;
-    width: 25%;
+    width: 16%;
     max-height: 15rem;
 }
 
@@ -116,24 +125,59 @@ body {
 
 .exampleheadlines {
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
     flex-direction: row;
     justify-content: center;
-    margin-bottom: 50;
+    padding: 0 1rem;
+    margin 0 auto;
 }
 
-#tooltipHeadline {
+.tooltip {
     top: 10px;
     left: 0px;
-    padding: 5px;
+    padding: 1rem;
     color: $off-black;
     background-color: $bg;
     border: 1px $off-black solid;
     border-top: 2px $off-black solid;
     position:fixed;
+    opacity: 0;
+    z-index:1000;
+    transition: opacity 0.25s ease-in;
+    width: 15rem;
     visibility: hidden;
-    z-index:10
 }
 
+.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.forceLogo {
+  pointer-events: none;
+}
+
+.tt-date, .tt-site, .tt-hed {
+  margin: 0;
+}
+
+.tt-date, .tt-site {
+    font-family: 'Barlow Condensed';
+    color: #e75c33;
+    font-size: 14px;
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.tt-hed {
+    font-family: 'Barlow Condensed';
+    font-weight: 300;
+    font-size: 18px;
+    font-style: italic;
+    text-transform: uppercase;
+}
 
 #tooltipHeadline path {
     fill: none;
@@ -207,15 +251,18 @@ h1 {
     font-weight:900;
     border-bottom: 1px solid $off-black;
     display: block;
-    padding: 2rem 2rem 0 2rem;
+    padding: 1rem 2rem 0 2rem;
     font-style: italic;
     line-height: 0.8;
 }
 
+.title span:last-of-type {
+    border-bottom: none;
+}
+
 .subTitleArt {
     font-weight:300;
-    font-size:36px;
-    opacity: 0.9;
+    font-size: 28px;
     font-family: $barlow;
     max-width: 20rem;
     text-transform: uppercase;
@@ -275,8 +322,8 @@ h5 {
   color: $off-black;
   font-family: $tiempos;
   margin: 0 auto;
-  padding: 1rem 0;
-  text-align: justify;
+  padding: 1rem 1rem;
+  text-align: left;
 }
 
 ul {
@@ -294,14 +341,21 @@ ul {
 }
 
 .stackedChartDescription {
-    max-width: 20rem;
+    max-width: 24rem;
     text-align: left;
     color: $off-black;
     font-family: $barlow;
     font-size: 18px;
-    margin-bottom: 0;
     line-height: 1.75;
-    transform:translateY(150px)
+}
+
+.scrolltext {
+  padding: 1rem 1rem 0 1rem;
+  font-family: 'Tiempos Text Web';
+  font-size: 18px;
+  line-height: 1.75;
+  text-align: left;
+  margin-bottom: 0;
 }
 
 .deets {
@@ -329,18 +383,14 @@ ul {
   text-transform: uppercase;
 }
 
-#stackedChartLegend {
-    transform: translateY(100);
-}
-
 #stackedLegend {
   display:flex;
-  flex-direction: columns;
+  flex-direction: column;
   max-width: 210px;
   max-height: 30px;
   margin-top:20px;
   align-items: center
-  }
+}
 
 #stackedLegendText {
   // font-size:10px;
@@ -383,8 +433,9 @@ ul {
   display: flex;
   flex-direction: row;
   margin-top: 2rem;
-  height: 88.2vh;
-  margin-bottom: 5rem
+  height: 572px;
+  margin-bottom: 5rem;
+  border-bottom: 1px solid $off-black;
 }
 
 .titlewords {
@@ -408,7 +459,6 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-bottom: 1px solid $off-black;
 }
 
 .dropOptions {
@@ -422,16 +472,10 @@ ul {
   align-items: center;
   display: flex;
   margin-top: 50px;
-  // max-width: 65rem;
-  width: 80%;
-  margin-left: 5%;
-  // margin-right:15vw
-   // // text-align: right;
-  // background-color: $tan;
-  // // z-index: 1;
-  // // display: flex;
-  // flex-direction: row;
-  // width: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 0 1rem;
 }
 
 button {
@@ -478,9 +522,9 @@ select::selection{
 }
 
 .flag {
-    height:35px;
+    height:30px;
     text-anchor: middle;
-    padding-right: 0px;
+    padding-right: 0.5rem;
     max-width: 30%;
 }
 
@@ -491,8 +535,8 @@ select::selection{
     justify-content: center;
     border: 1px solid $off-black;
     border-radius: 0.25rem;
-    width: 12rem;
-    margin: 0 0.5rem;
+    width: 10rem;
+    margin: 0.5rem;
     padding: 0;
 }
 
@@ -526,25 +570,10 @@ select::selection{
 }
 
 .svg-container {
-  display: inline-block;
-  position: relative;
-  width: 95%;
-  padding-bottom: 40%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-  vertical-align: top;
-  overflow: hidden;
-}
-
-.svg-container2 {
-  display: inline-block;
-  position: relative;
-  width: 95%;
-  padding-bottom: 50%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-  vertical-align: top;
-  overflow: hidden;
+  width: 100%;
+  max-width: 60rem;
+  padding: 0 1rem;
+  height: 60vh;
 }
 
 .svg-content {
@@ -708,6 +737,7 @@ span{
   font-weight: 600;
   color: $off-black;
   text-transform: uppercase;
+  padding: 0 1rem;
 }
 
 .methodDescription {
@@ -715,13 +745,14 @@ span{
   font-family: $national;
   font-size: 14px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 1rem 1rem;
   line-height: 1.65;
   text-align: left;
 }
 
 .methodSep {
-  width: $column-width;
+  width: 100%;
+  max-width: $column-width;
   border: 1px solid $off-black;
   margin: 4rem auto 1rem auto;
 }
@@ -803,10 +834,21 @@ span{
 } 
 
 .lollipop {
-    transform: translate(-90px, 0);
+    width: 100%;
+    max-width: 60rem;
+    padding: 0 1rem;
+    margin: 0 auto;
+}
+
+#lollipopChart {
+  width: 100%;
 }
 
 /* dropdown */
+
+.sectionHeader, .bubbleFilters {
+  padding: 0 1rem;
+}
 
 .dropdownOptions {
   background-color: $tan;
@@ -819,6 +861,7 @@ span{
   font-weight: 400;
   border-radius: 0.25rem;
   cursor: pointer;
+  width: 8rem;
 }
 
 // .dropdownOptions:focus {
@@ -835,9 +878,12 @@ span{
   z-index: 1;
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  position: sticky;
+  top: -5px;
+  border-bottom: 1px solid $off-black;
 }
 
 .scoreChartBar {
@@ -890,11 +936,25 @@ span{
   color: $green;
   font-weight: 600;
   font-family: $barlow;
-  font-size: 18px;    
+  font-size: 18px;  
+  background-color: $tan;  
   text-transform: uppercase;
   white-space: nowrap;
   border-radius: 0.25rem;
   border 1px solid $green;
+}
+
+.lollipopTextbutton-active {
+  color: $tan;
+  font-weight: 600;
+  font-family: $barlow;
+  font-size: 18px;  
+  background-color: $green;
+  border 1px solid $green;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  pointer-events: none;
 }
 
 // .stackedBarThemeAnnotation {
@@ -1081,56 +1141,59 @@ span{
 // }
 
 /* STACKED CHART SCROLLY*/
-#scrolly-side .scrolly {
-  display: flex;
+#scrolly-side{
+  width: 100%;
   max-width: 60rem;
   margin: 3rem auto;
-  /* background-color: cornsilk; */
-  border: 1px;
   padding: 1rem;
-  height: 1750vh;
-  /* height:590vh */
-}
-#scrolly-side {
   height: 2210vh;
-  /* height: 750vh; */
-  /* background-color: grey; */
-  border: 1px
-
 }
 
-* {
-   flex: 1;
+.scrolly {
+  width: 100%;
+  position: relative;
+}
+
+.scrolly figure {
+  position: sticky;
+  top: 0;
+  padding: 0 1rem;
+  max-width: 40rem;
+  margin-left: 24rem;
 }
 
 article {
-  padding-right: 1rem;
-  max-width: 30rem;
+  width: 100%;
+  max-width: 24rem;
+  position: relative;
+  margin: 0
 }
   
 .step {
   min-height: 110vh;
-    // min-height: 67vh;
   margin-bottom: 1rem;
-  background-color: #FEFAF1;
   transition: background-color 250ms ease-in-out;
-  max-width: 30vw;
-  
   text-align: justify;
-  /* text-anchor: middle; */
   color: #282828;
-  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
   font-family: $barlow;
   font-size: 16px;
   margin-bottom: 0;
-  transform:translateY(100vh)
+  opacity: 0.6;
 }
 
+.step.is-active {
+  opacity: 1;
+}
+
+.step-inner {
+  background-color: #FEFAF1;
+  padding-bottom: 1rem;
+}3
 .step:last-of-type {
   margin-bottom: 0;
   min-height:10vh
 }
-.step.is-active {
+.step.is-active p {
   // background-color: #ffe5a7;
 }
 
@@ -1145,12 +1208,8 @@ article {
 
 #stickyStackedChart.sticky {
   position: sticky;
-  width: 100%;
-  height: 100vh;
-  /* background: silver; */
+  height: 200vh;
   margin: 0;
-  top: 5vh;
-  left: 0;
 }
 
 .stackedBarAnnotation {
@@ -1284,4 +1343,44 @@ article {
 
 .spacer {
   height:55vh
+}
+
+#chartP, #chartB {
+  width: 100%;
+  height: 540px;
+}
+
+#chartP svg, #chartB svg {
+  width: 100%;
+  height: 100%;
+}
+
+#smChart {
+  width: 100%;
+  height: 10000px;
+  padding: 0 1rem;
+  margin: 0 auto;
+  max-width: 60rem;
+}
+
+.pudding-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.chartLabels {
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 800px) {
+  article {
+    margin: 0 auto;
+  }
+
+  .scrolly figure {
+    margin: 0 auto;
+  }  
 }
