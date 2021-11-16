@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import isMobile from './utils/is-mobile';
 import linkFix from './utils/link-fix';
 import modalSetup from './utils/modal-a11y';
-import graphic from './graphic';
+import graphic from './graphicX';
 import footer from './footer';
 
 const $body = d3.select('body');
