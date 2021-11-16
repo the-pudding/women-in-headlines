@@ -33,6 +33,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
       let headlines = data[1];
       let variable = data[2];
       let filterData = null;
+      let legendData = null;
 
       chartData  = chartData.filter(d=>(+d.monthly_visits !== 0)&(+d[variable] !== 0)&
                   (d.site !== "msn.com")&(d.site !== "sports.yahoo.com")&
@@ -89,10 +90,10 @@ d3.selection.prototype.puddingBubble = function init(options) {
       // dimensions
       let width = 0;
       let height = 0;
-      const MARGIN_TOP = 50;
-      const MARGIN_BOTTOM = 50;
-      const MARGIN_LEFT =50;
-      const MARGIN_RIGHT = 50;
+      const MARGIN_TOP = 0;
+      const MARGIN_BOTTOM = 0;
+      const MARGIN_LEFT =80;
+      const MARGIN_RIGHT = 80;
   
       // scales
       let xScale = null;
@@ -103,11 +104,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
       let logoScale = d3.scaleLinear()
                     .domain(extentVisits)
       let simulation = null;
-
-      const legendData = [{level: "", radius: radius(10000000), y: height+75, x: width/2.2, anchor:"end", xtext: width/2.235, ytext: height+53,id: ""}, 
-			{level: "", radius: radius(100000000), y: height+75, x: width/2.05,id: ""}, 
-			{level: "1B Monthly Viewers", radius: radius(1000000000), y: height+75, x: width/1.85, anchor:"middle", xtext: width/1.85, ytext: height+46,id: ""},
-			{level: "?", radius: radius(30000000), y: height*1.08+11, x: width+15, anchor:"middle", xtext: width+15, ytext: height*1.08+16,id: "info"}]
   
       // helper functions
       function populateDropdown(data, div, attribute) {
@@ -233,28 +229,9 @@ d3.selection.prototype.puddingBubble = function init(options) {
           
           // setup legend group
           $legend = $svg.append('g')
-            .attr('class', 'g-legend')
-            .attr('transform', `translate(50, 50)`);
-
-          $legendCircle = $legend.append("g")
-            .selectAll("circle")
-            .data(legendData)
-            .join('circle')
-            .attr("cx", d => d.x)
-            .attr("cy", d => d.y)
-            .attr("r", d => d.radius)
-            .attr("class","legendBubble")
+            .attr('class', 'g-legend');
           
-          $legendText = $legend.selectAll("text")
-            .data(legendData)
-            .join("text")
-            .text(d=>d.level)
-            .attr("x", d => d.xtext)
-            .attr("y", d => d.ytext)
-            .attr("class", "themesText")
-            .style("text-anchor", d=>d.anchor)
-            .attr("id", "info") 
-            .call(wrap, 10)
+          $legendCircle = $legend.append("g");
 
           // setup viz group
           $vis = $svg.append('g').attr('class', 'g-vis');
@@ -285,7 +262,30 @@ d3.selection.prototype.puddingBubble = function init(options) {
             .domain(variable==="polarity"?[0, d3.max(filterData, d => +d[variable])]:
                             d3.extent(filterData, d => +d[variable]))
           
-          //console.log(xScale.range(), xScale.domain())
+          legendData = [{level: "", radius: radius(10000000), y: height+75, x: width/2.2, anchor:"end", xtext: width/2.235, ytext: height+53,id: ""}, 
+          {level: "", radius: radius(100000000), y: height+75, x: width/2.05,id: ""}, 
+          {level: "1B Monthly Viewers", radius: radius(1000000000), y: height+75, x: width/1.85, anchor:"middle", xtext: width/1.85, ytext: height+width/6.5,id: ""}]
+          
+          $legend.attr('transform', `translate(-${width/2 - MARGIN_LEFT}, -${height})`);
+
+          $legendCircle
+            .selectAll("circle")
+            .data(legendData)
+            .join('circle')
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y)
+            .attr("r", d => d.radius)
+            .attr("class","legendBubble");
+          
+          $legendText = $legend.selectAll("text")
+            .data(legendData)
+            .join("text")
+            .text(d=>d.level)
+            .attr("x", d => d.xtext)
+            .attr("y", d => d.ytext)
+            .attr("class", "themesText")
+            .style("text-anchor", d=>d.anchor)
+            .call(wrap, 10);
 
           simulation = d3.forceSimulation()
             .nodes(filterData)
@@ -303,13 +303,13 @@ d3.selection.prototype.puddingBubble = function init(options) {
               $newCircles = $circles.join("circle")
                 .attr("class", "forceCircles")
                 .style("opacity", "1")
-                .attr('r', d=>radius(+d.monthly_visits))
-                .on("mouseenter", (event, d) => { showTooltip() })
-                .on("mouseleave", (event, d) => { hideTooltip() });
+                .attr('r', d=>radius(+d.monthly_visits));
 
               $circles.merge($newCircles)
                   .attr('cx', function(d) { return d.x; })
                   .attr('cy', function(d) { return d.y; })
+                  .on("mouseenter", (event, d) => { showTooltip() })
+                  .on("mouseleave", (event, d) => { hideTooltip() });
               
               $newLogos = $logos.join("svg:image")
 									.attr("class", "forceLogo")

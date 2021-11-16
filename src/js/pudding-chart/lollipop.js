@@ -39,8 +39,8 @@ d3.selection.prototype.puddingLollipop = function init(options) {
       // dimensions
       let width = 0;
       let height = 0;
-      const MARGIN_TOP = 130;
-      const MARGIN_BOTTOM = 30;
+      const MARGIN_TOP = 0;
+      const MARGIN_BOTTOM = 0;
       const MARGIN_LEFT = 160;
       const MARGIN_RIGHT = 50;
   
@@ -171,48 +171,7 @@ d3.selection.prototype.puddingLollipop = function init(options) {
           
           $horizLine = $vis.append("line")
             .attr("stroke", "black")
-            .attr("stroke-width", "2.5px")
-          
-          $legCircle1 = $vis.append("circle")
-            .attr("cx", 0)
-            .attr("cy", -60)
-            .attr("r", "4")
-            .attr("class", "polarityCompBubbleLeft")
-          
-          $legCircle2 = $vis.append("circle")
-            .attr("cx", 200)
-            .attr("cy", -60)
-            .attr("class", "polarityCompBubbleRight")
-            .attr("r", "11")
-          
-          $vis.append("text")
-              .attr("class", "xAxisLabel")
-              .attr("x", 0)
-              .attr("y", -60)
-              .text("All headlines")
-              .attr("class", "polarityCompAllText")
-          
-          $vis.append("text")
-              .attr("class", "xAxisLabel")
-              .attr("x", 200)
-              .attr("y", -60)
-              .text("Headlines about women")
-              .attr("class", "polarityCompFemText")
-              .call(wrap, 100)
-          
-          $axisTextLeft = $vis.append("text")
-              .attr("class", "polarityCompxAxisLabel")
-              .attr("y", -15)
-              .attr("dy", "1em")
-              .style("text-anchor", "start")
-              .text("← Less polarizing language")
-          
-          $axisTextRight = $vis.append("text")
-              .attr("class", "polarityCompxAxisLabel")
-              .attr("y", -15)
-              .attr("dy", "1em")
-              .style("text-anchor", "end")
-              .text("More polarizing language →");
+            .attr("stroke-width", "2.5px");
           
           $sortLollipopPol.attr("class", "lollipopTextbutton-active"); 
 
@@ -272,18 +231,6 @@ d3.selection.prototype.puddingLollipop = function init(options) {
           $polText
               .attr("x", d=>x(d.polarity_women) - 8)
               .attr("y", d=> y(d.site_clean) + 4)
-
-          $horizLine
-              .attr("x1", 0)
-              .attr("x2", 200)
-              .attr("y1", -60)
-              .attr("y2", -60);
-          
-          $axisTextLeft
-              .attr("x", 0)
-          
-          $axisTextRight
-              .attr("x",width)
 
           return Chart;
         },

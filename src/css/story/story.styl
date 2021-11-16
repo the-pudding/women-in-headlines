@@ -223,6 +223,7 @@ body {
     fill: $off-black;
     font-family: $barlow;
     font-weight: 600;
+    margin: 1rem 0 0 0;
 }
 
 .axisLabel {
@@ -678,7 +679,7 @@ select::selection{
   text-anchor: end;
   fill: $off-black;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   font-family: $barlow;
   text-transform: uppercase;
   cursor: pointer;
@@ -739,6 +740,29 @@ span{
   font-family: sans-serif
 }
 
+details {
+  max-width: 38rem;
+  margin: 0 auto 2rem auto;
+  padding: 0 1rem;
+}
+
+summary {
+  font-family: $national;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: -0.75rem;
+}
+
+.bubble-notes {
+  max-width: $column-width;
+  font-family: $national;
+  font-size: 14px;
+  margin: 0 auto;
+  padding: 1rem 1rem 0 1rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
 /* method section */
 
 .inputTitle {
@@ -756,7 +780,7 @@ span{
   font-size: 14px;
   margin: 0 auto;
   padding: 1rem 1rem;
-  line-height: 1.65;
+  line-height: 1.45;
   text-align: left;
 }
 
@@ -1384,6 +1408,76 @@ article {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0 0 2rem 0;
+}
+
+.barbellLabels {
+  padding: 0 3.5rem 0 11.5rem;
+  margin: 0;
+}
+
+
+.barbellLegend {
+  width: 100%;
+  padding: 0 3.5rem 0 11.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.leg1 {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  width: 16.5rem;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.all-hed {
+  color: $off-black;
+  font-family: $barlow;
+  font-size: 14px;
+  text-align: center;
+  margin: 0 0 0 -1.25rem;
+}
+
+.women-hed {
+  color: $green;
+  font-family: $barlow;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  max-width: 6rem;
+  line-height: 1;
+  margin: 0;
+}
+
+.leg2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.smDot {
+  border-radius: 50%;
+  width: 0.65rem;
+  height: 0.65rem;
+  background: $off-black;
+}
+
+.line {
+  border-top: 3px solid $off-black;
+  width: 12rem;
+}
+
+.lgDot {
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: $green;
+  border: 3px solid $off-black;
 }
 
 .temporal-chart-section {

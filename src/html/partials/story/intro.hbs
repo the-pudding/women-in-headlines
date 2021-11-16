@@ -80,6 +80,21 @@
       <p class="description">{{{value}}}</p>
     {{/each}}
   </div>
+  <div class="barbellLegend">
+    <div class="leg1">
+      <p class="all-hed">All headlines</p>
+      <p class="women-hed">Headlines about women</p>
+    </div>
+    <div class="leg2">
+      <div class="smDot"></div>
+      <div class="line"></div>
+      <div class="lgDot"></div>
+    </div>
+  </div>
+  <div class="chartLabels barbellLabels">
+      <p id="xAxisLabel">← Less Polarizing Language</p>
+      <p id="xAxisLabel">More Polarizing Language →</p>
+  </div>
   <div class="lollipop" class="svg-container" style="text-align: center;">
     <div id="lollipopChart"></div>
   </div>
@@ -106,6 +121,14 @@
       <p id="xAxisLabel">← Less Polarizing Language</p>
       <p id="xAxisLabel">More Polarizing Language →</p>
     </div>
+    <details>
+      <summary>{{copy.notes-headline}}</summary>
+      <div class="inner">
+        {{#each copy.bubble-notes}}
+          <p class="bubble-notes">{{{value}}}</p>
+        {{/each}}
+      </div>
+    </details>
     {{#each copy.polarity-outro}}
       <p class="description">{{{value}}}</p>
     {{/each}}
