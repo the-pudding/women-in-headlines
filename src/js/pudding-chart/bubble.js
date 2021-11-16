@@ -89,10 +89,10 @@ d3.selection.prototype.puddingBubble = function init(options) {
       // dimensions
       let width = 0;
       let height = 0;
-      const MARGIN_TOP = 110;
-      const MARGIN_BOTTOM = 0;
-      const MARGIN_LEFT = 0;
-      const MARGIN_RIGHT = 0;
+      const MARGIN_TOP = 50;
+      const MARGIN_BOTTOM = 50;
+      const MARGIN_LEFT =50;
+      const MARGIN_RIGHT = 50;
   
       // scales
       let xScale = null;

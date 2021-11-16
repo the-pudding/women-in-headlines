@@ -94,8 +94,8 @@ body {
     border-top: 2px $off-black solid;
     margin: 1rem;
     padding: 1rem;
-    width: 16%;
-    max-height: 15rem;
+    width: 15rem;
+    max-height: 12rem;
 }
 
 .tooltipTemp {
@@ -238,7 +238,7 @@ h1 {
 
 .title {
     font-weight:900;
-    font-size:150px;
+    font-size:130px;
     text-align: left;
     font-family: $barlow;
     text-transform: uppercase;
@@ -251,7 +251,7 @@ h1 {
     font-weight:900;
     border-bottom: 1px solid $off-black;
     display: block;
-    padding: 1rem 2rem 0 2rem;
+    padding: 1rem 2rem 0rem 2rem;
     font-style: italic;
     line-height: 0.8;
 }
@@ -262,9 +262,8 @@ h1 {
 
 .subTitleArt {
     font-weight:300;
-    font-size: 28px;
+    font-size: 24px;
     font-family: $barlow;
-    max-width: 20rem;
     text-transform: uppercase;
 }
 
@@ -276,9 +275,10 @@ h1 {
 
 .credits {
     font-weight:300;
-    font-size:16;
+    font-size:16px;
     font-family: $barlow;
     color: $off-black;
+    max-width: 10rem;
 }
 
 .sectionHeader {
@@ -381,6 +381,7 @@ ul {
   font-size: 18px;
   font-style: italic;
   text-transform: uppercase;
+  margin: 1rem 0 0.5rem 0;
 }
 
 #stackedLegend {
@@ -433,14 +434,13 @@ ul {
   display: flex;
   flex-direction: row;
   margin-top: 2rem;
-  height: 572px;
+  height: 508px;
   margin-bottom: 5rem;
   border-bottom: 1px solid $off-black;
 }
 
 .titlewords {
   width: 70%;
-  // height: 90vh;
   border-right: 1px solid $off-black;
 }
 
@@ -454,11 +454,12 @@ ul {
 }
 
 .titleCredits {
-  width: 30%;
-  padding: 10rem 2rem;
+  width: calc(30% - 3rem);
+  padding: 10rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 18rem;
 }
 
 .dropOptions {
@@ -1375,6 +1376,20 @@ article {
   justify-content: space-between;
 }
 
+@media only screen and (max-width: 960px) {
+  .title {
+    font-size:120px;
+  } 
+
+  .titleArt {
+    height: 476px;
+  }
+
+  .title span {
+    padding: 1rem 2rem 0rem 1rem;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   article {
     margin: 0 auto;
@@ -1382,5 +1397,58 @@ article {
 
   .scrolly figure {
     margin: 0 auto;
-  }  
+  } 
+
+  .titleArt {
+    height: auto;
+    flex-direction: column;
+    border-bottom: none;
+  }
+
+  .titlewords {
+    width: 100%;
+    border-right: none;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .title span:last-of-type {
+    border-bottom: 1px solid $off-black;
+  }
+
+  .titleCredits {
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .subTitleArt {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  .credits {
+    max-width: 40rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .title {
+    font-size:80px;
+  } 
+
+  .tooltipTL {
+    width: 100%;
+    max-width: 25rem;
+    margin: 1rem 0;
+  }
+
+  .tooltipTL:nth-child(2), .tooltipTL:nth-child(4) {
+    margin-top: 1rem;
+  }
 }
