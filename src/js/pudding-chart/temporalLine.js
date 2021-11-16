@@ -460,6 +460,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .data(fullData)
             .join('g')
             .attr('class', 'cell')
+            .on("mouseover", (event, d) => showTooltip(event, d))
+					  .on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $areas =  $cells.append('path')
             .attr('fill', "url(#linear-gradient)")
@@ -487,7 +489,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         resize() {
           // defaults to grabbing dimensions from container element
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-          height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
+          height = ($chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM)*4;
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
             .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);

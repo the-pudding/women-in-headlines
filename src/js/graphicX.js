@@ -35,6 +35,7 @@ let filter_years;
 let country;
 let temporalVar;
 let temporalData;
+let chartOpen = false;
 
 /* data functions */
 
@@ -51,6 +52,10 @@ const $step = d3.selectAll('#stackedChartLegend .step');
 const $lollipop = d3.select('#lollipopChart');
 let $bubble = null;
 let $temporalLine = d3.select('#smChart');
+let $countryButtons = d3.selectAll("button.country");
+let $seeMoreButton = d3.selectAll(".see-more");
+let $tempChartDiv = d3.selectAll("#smChart");
+let $fade = d3.selectAll(".fade");
 
 /* SCROLLAMA */
 const stackedBarScroller = scrollama();
@@ -104,6 +109,33 @@ function setupTemporalLine(data) {
 		.puddingTemporalLine()
 }
 
+function countryButtonChange() {
+
+	$countryButtons.classed("country-active", false);
+	let $currButton = d3.select(this);
+	$currButton.classed("country-active", true);
+	country = $currButton.property("value");
+
+	d3.select("#smChart svg").remove()
+
+	temporalData = [tempWords, filter_years, country, temporalVar];
+	setupTemporalLine(temporalData);			
+}
+
+function seeMoreChange() {
+	chartOpen = !chartOpen;
+
+	if (chartOpen) {
+		$seeMoreButton.select("p").text("See fewer words")
+		$tempChartDiv.transition().duration("1000").style("height", `${9500}px`);
+		$fade.style("opacity", 0);
+	} else {
+		$seeMoreButton.select("p").text("See more words")
+		$tempChartDiv.transition().duration("1000").style("height", `${2500}px`);
+		$fade.style("opacity", 1);
+	}
+}
+
 function resize() { 
 
 	// 1. update height of step elements
@@ -118,14 +150,14 @@ function resize() {
 	// const chartWidth = $beeswarmChart.node().offsetWidth - textWidth - chartMargin;
 
 	// 3. tell scrollama to update new element dimensions
-	stackedBarScroller.resize();
+	//stackedBarScroller.resize();
 
 	const $body = d3.select('body');
 	let previousWidth = 0;
 	const width = $body.node().offsetWidth;
 	if (previousWidth !== width) {
 		previousWidth = width;
-		chartStackedBar.resize();
+		//chartStackedBar.resize();
 		chartLollipop.resize();
 		chartBubble.resize();
 		chartTemporalLine.resize();
@@ -153,14 +185,16 @@ function init() {
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
-		setupScroller();
-		setupStackedBar(stackedBarData);
+		//setupScroller();
+		//setupStackedBar(stackedBarData);
 		setupLollipop(polComparison);
 		setupBubble(biasBubbleData, "B");
 		setupBubble(polBubbleData, "P");
 		setupTemporalLine(temporalData);
 		resize();
 		
+		$countryButtons.on("click", countryButtonChange)
+		$seeMoreButton.on("click", seeMoreChange);
 
 	}).catch(console.error)
 }
