@@ -92,7 +92,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
       let height = 0;
       const MARGIN_TOP = 0;
       const MARGIN_BOTTOM = 0;
-      const MARGIN_LEFT =80;
+      const MARGIN_LEFT = 80;
       const MARGIN_RIGHT = 80;
   
       // scales
@@ -154,36 +154,34 @@ d3.selection.prototype.puddingBubble = function init(options) {
       function showTooltip() {
         let [x, y] = d3.pointer(event);
         let right = x > window.innerWidth / 2;
-        let offset = right ? $tooltip.node().offsetWidth + 5 : 0;
+        let offset = right ? $tooltip.node().offsetWidth + -50 : 50;
+
+        let siteMatch = d3.select(this).attr('id'); 
+        siteMatch = siteMatch.split("-");
+        siteMatch = siteMatch[0];
+
+        let dataSubset = headlines.filter(d => d.site === siteMatch);
+        let randomHeadline = Math.floor(Math.random() * dataSubset.length);
 
         $tooltip
           .classed("is-visible", true)
           .style("top", y + "px")
 					.style("left", (x - offset) + "px");
 
-        let dataSubset = data[1];
-        let randomHeadline = Math.floor(Math.random() * dataSubset.length);
-
         $tooltip.html(`<p class="tt-date">${d3.timeFormat("%b %Y")(new Date(dataSubset[randomHeadline].time))} | ${dataSubset[randomHeadline].site}</p>
                       <p class="tt-hed">${dataSubset[randomHeadline].headline_no_site}</p>`);
-
-        let selection = d3.select(this);
-        let allCircs = d3.selectAll(".forceCircles");
-				let allLogos = d3.selectAll(".forceLogos");
-
-        console.log(selection)
-
-        //allCircs.style("fill", "#FEFAF1")
-        selection.style("fill", "#F7DC5B")
-			  // allCircs.style("opacity", d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()?"1":
-				// 						 selection===""?"1":"0.2")
-				//   allLogos.style("opacity", d=>d.country_of_pub.toLowerCase() === selection.toLowerCase()?"1":
-				// 						 selection===""?"1":"0.2")
         
       }
 
       function hideTooltip() {
         $tooltip.classed("is-visible", false);
+
+        // let allCircs = d3.selectAll(".forceCircles");
+				// let allLogos = d3.selectAll(".forceLogos");
+
+        // allCircs.style("fill", "#FEFAF1")
+        // allCircs.style("opacity", "1")
+				// allLogos.style("opacity", "1")
       }
 
       function wrap(text, width) {
@@ -256,17 +254,20 @@ d3.selection.prototype.puddingBubble = function init(options) {
           $vis
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
             .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
-
+            
           xScale = d3.scaleSymlog()
-            .range([MARGIN_LEFT*2+MARGIN_RIGHT, width])
-            .domain(variable==="polarity"?[0, d3.max(filterData, d => +d[variable])]:
-                            d3.extent(filterData, d => +d[variable]))
-          
+            .range([MARGIN_LEFT+MARGIN_RIGHT, width])
+            .domain(d3.extent(filterData, d => +d[variable]))
+            //.domain([0, Max]);
+            //.domain(variable==="polarity"?[0, d3.max(filterData, d => +d[variable])]:
+                            //d3.extent(filterData, d => +d[variable]))
+        
+                            
           legendData = [{level: "", radius: radius(10000000), y: height+75, x: width/2.2, anchor:"end", xtext: width/2.235, ytext: height+53,id: ""}, 
           {level: "", radius: radius(100000000), y: height+75, x: width/2.05,id: ""}, 
           {level: "1B Monthly Viewers", radius: radius(1000000000), y: height+75, x: width/1.85, anchor:"middle", xtext: width/1.85, ytext: height+width/6.5,id: ""}]
           
-          $legend.attr('transform', `translate(-${width/2 - MARGIN_LEFT}, -${height})`);
+          $legend.attr('transform', `translate(-${width/2 - MARGIN_LEFT/2}, -${height})`);
 
           $legendCircle
             .selectAll("circle")
@@ -296,20 +297,26 @@ d3.selection.prototype.puddingBubble = function init(options) {
             .force("y", d3.forceY(height / 2))
             .force('collide', d3.forceCollide((d)=>{ 
               return radius(+d.monthly_visits)}))
+            .alphaDecay(0.05)
             .on("tick", function() {
               $circles = $vis.selectAll('circle').data(filterData);
               $logos = $vis.selectAll('image').data(filterData);
         
               $newCircles = $circles.join("circle")
                 .attr("class", "forceCircles")
+                .attr("id", d => `${d.site}-circle`)
                 .style("opacity", "1")
-                .attr('r', d=>radius(+d.monthly_visits));
+                .attr('r', d=>radius(+d.monthly_visits))
+                .attr('cx', function(d) { return d.x; })
+                .attr('cy', function(d) { return d.y; })
+                .on("mouseenter", showTooltip)
+					      .on("mouseleave", hideTooltip);
 
-              $circles.merge($newCircles)
-                  .attr('cx', function(d) { return d.x; })
-                  .attr('cy', function(d) { return d.y; })
-                  .on("mouseenter", (event, d) => { showTooltip() })
-                  .on("mouseleave", (event, d) => { hideTooltip() });
+              //$circles.merge($newCircles)
+                  // .attr('cx', function(d) { return d.x; })
+                  // .attr('cy', function(d) { return d.y; })
+                  // .on("mouseenter", (event, d) => { showTooltip() })
+                  // .on("mouseleave", (event, d) => { hideTooltip() });
               
               $newLogos = $logos.join("svg:image")
 									.attr("class", "forceLogo")
@@ -327,12 +334,15 @@ d3.selection.prototype.puddingBubble = function init(options) {
 														: d.site=="businessinsider.com" ? "translate(-14,-13)"
 														: "translate(-15,-15)")
 									.attr('width', d=>logoScale(+d.monthly_visits))
-									.attr("xlink:href", d=>+d.monthly_visits>150000000 ? logoData.filter(x=>x.site==d.site)[0]["link"]:'');
-              
-              $logos.merge($newLogos)
+									.attr("xlink:href", d=>+d.monthly_visits>150000000 ? logoData.filter(x=>x.site==d.site)[0]["link"]:'')
                   .attr('x', function(d) { return d.x; })
-                  .attr('y', function(d) { return d.y; })
-            })  
+                  .attr('y', function(d) { return d.y; });
+              
+              // $logos.merge($newLogos)
+              //     .attr('x', function(d) { return d.x; })
+              //     .attr('y', function(d) { return d.y; })
+            })
+            //.stop();  
 
           return Chart;
         },
