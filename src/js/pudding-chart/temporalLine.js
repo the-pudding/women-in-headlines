@@ -35,6 +35,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let filter = data[1];
       let country = data[2];
       let variable = data[3];
+      let dataDodge = null;
       let words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country));
       words = words.map(d=> {
         return {
@@ -69,8 +70,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let line;
 
       // world events data
-      let radius = 6;
-      let padding = 1.5;
+      let radius = 5;
+      let padding = 1;
       let numberOfCategories = 5;
       let categories = ["0", "1", "2", "3", "4"];
       let dateRange = [new Date(2010, 0).getTime(), new Date(2021, 0).getTime()];
@@ -321,7 +322,11 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       const MARGIN_BOTTOM = 20;
       const MARGIN_LEFT = 80;
       const MARGIN_RIGHT = 0;
-      const stickyAxisHeight = 200;
+      const stickyAxisHeight = 300;
+      const MS_TOP = 50;
+      const MS_BOTTOM = 50;
+      const MS_LEFT = 80;
+      const MS_RIGHT = 0;
       const mainColor = "#3569DC";
   
       // scales
@@ -330,7 +335,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let xAxis = null;
       let $stickyAxisGroup = null;
       let $stickyAxis = null;
-      let $stickyAxisAnno = null;
 
 
       // helper functions
@@ -376,6 +380,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       }
 
       function dodge(data, {radius = 1, x = d => d} = {}) {
+        //console.log("dodge", data)
         const radius2 = radius ** 2;
         const circles = data.map((d, i) => ({x: +x(d, i, data), data: d})).sort((a, b) => a.x - b.x);
 		    const epsilon = 1e-3;
@@ -412,7 +417,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             if (head === null) head = tail = b;
             else tail = tail.next = b;
           }
-          return circles;
+
+          dataDodge = circles;
+          console.log(dataDodge)
       }
 
       const Chart = {
@@ -480,8 +487,14 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .on("mouseover", (event, d) => showTooltip(event, d))
 					  .on("mouseleave", (event, d) => hideTooltip(event, d));
 
-        
-            
+          // sticky axis
+          $stickyAxis = d3.select("div#stickyXaxis").append("svg")
+            .attr("class", "stickyAxis");
+          
+          $stickyAxisGroup = $stickyAxis.append("g");
+          
+          $circleEvents = $stickyAxis.append("g");
+
             Chart.resize();
             Chart.render();
         },
@@ -533,6 +546,26 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 					      .on("mouseleave", (event, d) => hideTooltip(event, d));
           })
 
+          $stickyAxis.attr('transform', `translate(${MS_LEFT}, 0)`)
+            .attr('width', width + MS_LEFT + MS_RIGHT)
+            .attr('height', stickyAxisHeight - MS_TOP - MS_BOTTOM);
+          
+          $stickyAxisGroup
+            .attr('transform', `translate(${$col(0)}, ${MS_TOP + MS_TOP/2})`)
+            .call(xaxis);
+          
+          dodge(eventsWorld.filter(d=>d.date<=maxDate), {radius: radius * 2 + padding, x: d => x(d.date)})
+          console.log(dataDodge)
+          
+          $circleEvents
+            .attr('transform', `translate(${$col(0)}, ${MS_TOP + MS_TOP/2})`)
+            .selectAll("circle")
+            .data(dataDodge)
+            .join('circle')
+            .attr("class", "event-circle")
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y)
+            .attr("r", radius);
 
           return Chart;
         },

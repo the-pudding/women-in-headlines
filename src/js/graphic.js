@@ -1869,6 +1869,7 @@ function init() {
 						// g.append("g")
 						stickyAxis.append("g")
 								.attr('transform', `translate(${col(0)}, ${margin.top})`)
+								.attr("class", "event-circles")
 								.selectAll("circle")
 								.data(dodge(eventsWorld.filter(d=>d.date<=maxDate), {radius: radius * 2 + padding, x: d => x(d.date)}))
 	
