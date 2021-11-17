@@ -530,6 +530,7 @@ select::selection{
     background-color: #F7DC5B;
     color: $off-black;
     font-weight: 700;
+    pointer-events: none;
 }
 
 .flag {
@@ -549,6 +550,7 @@ select::selection{
     width: 10rem;
     margin: 0.5rem;
     padding: 0;
+    height: 2rem;
 }
 
 .country p {
@@ -896,6 +898,7 @@ summary {
   border-radius: 0.25rem;
   cursor: pointer;
   width: 8rem;
+  height: 2rem;
 }
 
 // .dropdownOptions:focus {
@@ -968,7 +971,7 @@ summary {
 
 .lollipopTextbutton {
   color: $green;
-  font-weight: 600;
+  font-weight: 400;
   font-family: $barlow;
   font-size: 18px;  
   background-color: $tan;  
@@ -976,6 +979,8 @@ summary {
   white-space: nowrap;
   border-radius: 0.25rem;
   border 1px solid $green;
+  height: 1.9rem;
+  margin: 0.025rem 0;
 }
 
 .lollipopTextbutton-active {
@@ -989,6 +994,8 @@ summary {
   white-space: nowrap;
   border-radius: 0.25rem;
   pointer-events: none;
+  height: 1.9rem;
+  margin: 0.025rem 0;
 }
 
 // .stackedBarThemeAnnotation {
@@ -1050,12 +1057,13 @@ summary {
 .lollipopTextbutton:hover {
   background-color: $green;
   color: $bg;
+  font-weight: 700;
 }
 
 .lollipopTextbutton:focus {
   background-color: $green;
   color: $bg;
-  font-weight: 900px;
+  font-weight: 700;
 }
 
 #inTextViolence:hover, #inTextViolence.hovered {
@@ -1500,6 +1508,7 @@ article {
     margin: 2rem auto;
     padding: 0;
     display: block;
+    height: 2rem;
 }
 
 .see-more p {
@@ -1583,5 +1592,13 @@ article {
 
   .tooltipTL:nth-child(2), .tooltipTL:nth-child(4) {
     margin-top: 1rem;
+  }
+
+  .barbellLabels {
+    padding: 0 3.5rem 0 3.5rem;
+  }
+
+  .barbellLegend {
+    padding: 0 3.5rem 0 3.5rem;
   }
 }

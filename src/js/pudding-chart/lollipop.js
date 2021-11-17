@@ -35,13 +35,16 @@ d3.selection.prototype.puddingLollipop = function init(options) {
 													   &&((d.site_clean !== "dailysun.co.za")
 													   &&(d.site_clean !== "msnbc")))
       data = data.sort((a,b)=> d3.descending(+a.polarity_women, +b.polarity_women))
-  
+      
+      let $xMin = d3.max(data, d => d.polarity_women);
+      let $xMax = d3.min(data, d => d.polarity_women);
+
       // dimensions
       let width = 0;
       let height = 0;
       const MARGIN_TOP = 0;
       const MARGIN_BOTTOM = 0;
-      const MARGIN_LEFT = 160;
+      let MARGIN_LEFT = null;
       const MARGIN_RIGHT = 50;
   
       // scales
@@ -133,6 +136,9 @@ d3.selection.prototype.puddingLollipop = function init(options) {
 
           $xAxis = $axis.append("g").attr("class", "polarityCompxAxis")
           $yAxis = $axis.append("g").attr("class", "polarityCompyAxis")
+
+          x = d3.scaleLinear()
+                .domain([$xMax, $xMin])
   
           // setup viz group
           $vis = $svg.append('g').attr('class', 'g-vis');
@@ -181,20 +187,42 @@ d3.selection.prototype.puddingLollipop = function init(options) {
         // on resize, update new dimensions
         resize() {
           // defaults to grabbing dimensions from container element
+          width = $chart.node().offsetWidth;
+          if (width >= 600) {
+            MARGIN_LEFT = 160;
+
+            $vis.attr('transform', `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
+
+            d3.selectAll('.polarityCompyAxis .tick text')
+              .attr("transform", "translate(0,0)")
+              .style("text-anchor", "end");
+            
+            //x.range([MARGIN_LEFT + MARGIN_RIGHT, width]);
+            $gridline.attr("x1", 10);
+
+          } else {
+            MARGIN_LEFT = 40;
+
+            $vis.attr('transform', `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
+
+            d3.selectAll('.polarityCompyAxis .tick text')
+              .attr("transform", "translate(3,-25)")
+              .style("text-anchor", "start");
+            
+            //x.range([MARGIN_LEFT + MARGIN_RIGHT, width]);
+            $gridline.attr("x1", 0);
+          }
+
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-          height = 1630 - MARGIN_TOP - MARGIN_BOTTOM;
+          height = 1700 - MARGIN_TOP - MARGIN_BOTTOM;
 
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
             .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
 
-          x = d3.scaleLinear()
-                .domain(d3.extent(data, d => d.polarity_women))
-                .range([ MARGIN_LEFT + MARGIN_RIGHT, width]);
-
           $xAxis
                 .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x));
+                .call(d3.axisBottom(x))
           
           y = d3.scaleBand()
                 .range([0, height])
@@ -206,8 +234,9 @@ d3.selection.prototype.puddingLollipop = function init(options) {
                 .call(d3.axisLeft(y)
                 .tickSize(0));
           
+          x.range([MARGIN_LEFT + MARGIN_RIGHT, width]);
+
           $gridline
-              .attr("x1", 10)
               .attr("x2", width)
               .attr("y1", function(d) { return y(d.site_clean); })
               .attr("y2", function(d) { return y(d.site_clean); })
@@ -230,14 +259,13 @@ d3.selection.prototype.puddingLollipop = function init(options) {
 
           $polText
               .attr("x", d=>x(d.polarity_women) - 8)
-              .attr("y", d=> y(d.site_clean) + 4)
+              .attr("y", d=> y(d.site_clean) + 6)
 
           return Chart;
         },
         // update scales and render chart
         render() {
           // offset chart for margins
-          $vis.attr('transform', `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
           
           $sortLollipopDiff.on("click", sortChart)
           $sortLollipopPol.on("click", sortChart)
