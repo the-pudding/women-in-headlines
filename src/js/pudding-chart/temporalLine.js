@@ -22,7 +22,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let $lines = null;
       let $areas = null;
       let $circleEvents = null;
-      let $circles = null;
+      let $rulerG = null;
+      let $tooltip = d3.selectAll(".tooltip");
 
       // plot structure
       const cols = 1;
@@ -354,6 +355,49 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 				d3.selectAll(".wordText").attr("opacity", 1)
       }
 
+      function showTimeRuler(event, d) {
+        let selection = d3.select(event.currentTarget);
+
+        d3.selectAll(".event-circle").style("opacity", "0.5")
+        selection.style("opacity", "1")
+
+        $rulerG
+          .attr('transform', `translate(${$col(0)}, -${MARGIN_TOP/3})`)
+          .attr("x", x(d.date)-9)
+          .attr("y", 0)
+          .attr("height", height)
+          .attr("width", 20)
+          .style("opacity", 1);
+        
+        let [xPos, yPos] = d3.pointer(event);
+        let right = xPos > window.innerWidth / 2;
+        let offset = right ? $tooltip.node().offsetWidth + -50 : 50;
+
+        $tooltip.classed("is-visible", true);
+
+        if (width >= 600) {
+          $tooltip
+            .style("top", (0 + 10) + "px")
+					  .style("left", (xPos - offset) + "px")
+            .style("bottom", "auto");
+        } else {
+          $tooltip
+            .style("bottom", 0 + "px")
+					  .style("left", 0 + "px")
+            .style("top", "auto");
+        }
+
+        $tooltip.html(`<p class="tt-date">${d3.timeFormat("%m/%Y")(d.date)}</p><p class="tt-hed">${(d.name)}</p>`)
+      }
+
+      function hideTimeRuler() {
+        $rulerG.style("opacity", 0)
+
+        d3.selectAll(".event-circle").style("opacity", "1")
+
+        $tooltip.classed("is-visible", false)
+      }
+
       function calcScale() {
         wordToScaleAndArea = Object.fromEntries(
             fullData.map(d => {
@@ -380,7 +424,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       }
 
       function dodge(data, {radius = 1, x = d => d} = {}) {
-        //console.log("dodge", data)
         const radius2 = radius ** 2;
         const circles = data.map((d, i) => ({x: +x(d, i, data), data: d})).sort((a, b) => a.x - b.x);
 		    const epsilon = 1e-3;
@@ -419,7 +462,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           }
 
           dataDodge = circles;
-          console.log(dataDodge)
       }
 
       const Chart = {
@@ -486,6 +528,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .attr("id", d=> 'line'+ d.word)
             .on("mouseover", (event, d) => showTooltip(event, d))
 					  .on("mouseleave", (event, d) => hideTooltip(event, d));
+          
+          $rulerG = $vis.append("rect")
+            .attr("class", "timeRuler");
 
           // sticky axis
           $stickyAxis = d3.select("div#stickyXaxis").append("svg")
@@ -555,7 +600,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .call(xaxis);
           
           dodge(eventsWorld.filter(d=>d.date<=maxDate), {radius: radius * 2 + padding, x: d => x(d.date)})
-          console.log(dataDodge)
           
           $circleEvents
             .attr('transform', `translate(${$col(0)}, ${MS_TOP + MS_TOP/2})`)
@@ -565,7 +609,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .attr("class", "event-circle")
             .attr("cx", d => d.x)
             .attr("cy", d => d.y)
-            .attr("r", radius);
+            .attr("r", radius)
+            .on("mouseover", (event, d) => showTimeRuler(event, d.data))
+            .on("mouseleave", (event, d) => hideTimeRuler(event, d.data));
 
           return Chart;
         },

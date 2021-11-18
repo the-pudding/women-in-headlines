@@ -43,7 +43,8 @@ let chartOpen = false;
 /* charts */
 let chartStackedBar = null;
 let chartLollipop = null;
-let chartBubble = null;
+let chartBubbleB = null;
+let chartBubbleP = null;
 let chartTemporalLine = null;
 
 /* dom */
@@ -95,11 +96,18 @@ function setupLollipop(data) {
 }
 
 /* BUBBLE */
-function setupBubble(data, options) {
-	$bubble = d3.select(`#chart${options}`)
-		chartBubble = $bubble
+function setupBubbleP(data) {
+	$bubble = d3.select(`#chartP`)
+		chartBubbleP = $bubble
 			.datum(data)
-			.puddingBubble(options)
+			.puddingBubble()
+}
+
+function setupBubbleB(data) {
+	$bubble = d3.select(`#chartB`)
+		chartBubbleB = $bubble
+			.datum(data)
+			.puddingBubble()
 }
 
 /* TEMPORAL LINE */
@@ -109,6 +117,14 @@ function setupTemporalLine(data) {
 		.puddingTemporalLine()
 }
 
+function scrollTo(element) {
+	window.scroll({
+		behavior: 'smooth',
+		left: 0,
+		top: element.offsetTop - 60
+	});
+}
+
 function countryButtonChange() {
 
 	$countryButtons.classed("country-active", false);
@@ -116,7 +132,8 @@ function countryButtonChange() {
 	$currButton.classed("country-active", true);
 	country = $currButton.property("value");
 
-	d3.select("#smChart svg").remove()
+	d3.select("#smChart svg").remove();
+	d3.select("#stickyXaxis svg").remove();
 
 	temporalData = [tempWords, filter_years, country, temporalVar];
 	setupTemporalLine(temporalData);			
@@ -129,10 +146,13 @@ function seeMoreChange() {
 		$seeMoreButton.select("p").text("See fewer words")
 		$tempChartDiv.transition().duration("1000").style("height", `${9500}px`);
 		$fade.style("opacity", 0);
+
 	} else {
 		$seeMoreButton.select("p").text("See more words")
 		$tempChartDiv.transition().duration("1000").style("height", `${2500}px`);
 		$fade.style("opacity", 1);
+
+		scrollTo($tempChartDiv.node());
 	}
 }
 
@@ -159,7 +179,8 @@ function resize() {
 		previousWidth = width;
 		chartStackedBar.resize();
 		chartLollipop.resize();
-		chartBubble.resize();
+		chartBubbleB.resize();
+		chartBubbleP.resize();
 		chartTemporalLine.resize();
 	}
 }
@@ -188,8 +209,8 @@ function init() {
 		setupScroller();
 		setupStackedBar(stackedBarData);
 		setupLollipop(polComparison);
-		setupBubble(biasBubbleData, "B");
-		setupBubble(polBubbleData, "P");
+		setupBubbleB(biasBubbleData);
+		setupBubbleP(polBubbleData);
 		setupTemporalLine(temporalData);
 		resize();
 		

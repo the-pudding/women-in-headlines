@@ -163,10 +163,19 @@ d3.selection.prototype.puddingBubble = function init(options) {
         let dataSubset = headlines.filter(d => d.site === siteMatch);
         let randomHeadline = Math.floor(Math.random() * dataSubset.length);
 
-        $tooltip
-          .classed("is-visible", true)
-          .style("top", y + "px")
-					.style("left", (x - offset) + "px");
+        $tooltip.classed("is-visible", true)
+
+          if (width >= 600) {
+            $tooltip
+              .style("top", y + "px")
+              .style("left", (x - offset) + "px")
+              .style("bottom", "auto");
+          } else {
+            $tooltip
+              .style("bottom", 0 + "px")
+              .style("left", 0 + "px")
+              .style("top", "auto");
+          }
 
         $tooltip.html(`<p class="tt-date">${d3.timeFormat("%b %Y")(new Date(dataSubset[randomHeadline].time))} | ${dataSubset[randomHeadline].site}</p>
                       <p class="tt-hed">${dataSubset[randomHeadline].headline_no_site}</p>`);

@@ -3,7 +3,7 @@
 
 .txtscroll {
     height: 3rem;  
-    background-color:$red;
+    background-color:$pink;
     display: flex;
     align-items: center;
 }
@@ -62,7 +62,7 @@ body {
     font-family: $barlow;
     color: $off-black;
     font-weight: 900;
-    background-color: $pink;
+    background-color: $green;
     border 1px solid $off-black;
     transform: skew(-10deg, 0deg);
     line-height: 0.8;
@@ -179,9 +179,8 @@ body {
 .tt-hed {
     font-family: 'Barlow Condensed';
     font-weight: 300;
-    font-size: 18px;
+    font-size: 16px;
     font-style: italic;
-    text-transform: uppercase;
 }
 
 #tooltipHeadline path {
@@ -384,9 +383,8 @@ ul {
 .headline {
   font-family: $barlow;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 16px;
   font-style: italic;
-  text-transform: uppercase;
   margin: 1rem 0 0.5rem 0;
 }
 
@@ -513,17 +511,6 @@ button:hover {
   background-color: $bg;
   color: $off-black;
 }
-
-button:focus {
-  background-color: #F7DC5B    ;
-  color: $off-black;
-  font-weight: 900;
-
-  }
-
-.country:focus {
-  font-weight: 700;
-  }
 
 select::selection{
     background-color: #F7DC5B;
@@ -818,9 +805,8 @@ summary {
   margin: 4rem auto 1rem auto;
 }
 
-.intextLink{
-  color: $red;
-  // font-weight:600;
+.intextLink:hover {
+  border-bottom: 1px solid $red;
 }
 
 /* Polarity Comparison bubble chart styling */
@@ -859,7 +845,7 @@ summary {
 }
   
 .polarityCompFemText {
-  fill: $green;
+  fill: $blue;
   font-family: $barlow;
   font-weight: 600;
   font-size: 14px;
@@ -995,7 +981,7 @@ summary {
 // }
 
 .lollipopTextbutton {
-  color: $green;
+  color: $blue;
   font-weight: 400;
   font-family: $barlow;
   font-size: 18px;  
@@ -1003,7 +989,7 @@ summary {
   text-transform: uppercase;
   white-space: nowrap;
   border-radius: 0.25rem;
-  border 1px solid $green;
+  border 1px solid $blue;
   height: 1.9rem;
   margin: 0.025rem 0;
 }
@@ -1013,8 +999,8 @@ summary {
   font-weight: 600;
   font-family: $barlow;
   font-size: 18px;  
-  background-color: $green;
-  border 1px solid $green;
+  background-color: $blue;
+  border 1px solid $blue;
   text-transform: uppercase;
   white-space: nowrap;
   border-radius: 0.25rem;
@@ -1080,14 +1066,8 @@ summary {
 }
 
 .lollipopTextbutton:hover {
-  background-color: $green;
-  color: $bg;
-  font-weight: 700;
-}
-
-.lollipopTextbutton:focus {
-  background-color: $green;
-  color: $bg;
+  background-color: $blue;
+  color: $tan;
   font-weight: 700;
 }
 
@@ -1629,5 +1609,12 @@ article {
 
   .barbellLegend {
     padding: 0 3.5rem 0 3.5rem;
+  }
+
+  .tooltip {
+    bottom: 0;
+    left: 0;
+    top: auto;
+    width: 100%;
   }
 }

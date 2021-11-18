@@ -92,10 +92,9 @@ d3.selection.prototype.puddingLollipop = function init(options) {
         const buttonID = this.id;
         const sortType = (buttonID === "sortLollipopDiff") ? "difference" : "polarity_women";
         const dataSort = data.sort((a,b)=> d3.descending(+a[sortType], +b[sortType]));
-        console.log(dataSort);
 
-        d3.selectAll(".lollipopTextbutton").attr("class", "lollipopTextbutton-active")
-        d3.selectAll(".lollipopTextbutton-active").attr("class", "lollipopTextbutton")
+        d3.selectAll(".lollipopTextbutton-active").classed("lollipopTextbutton-active", false).classed("lollipopTextbutton", true)
+        d3.select(this).classed("lollipopTextbutton-active", true)
 
         y.domain(dataSort.map(d=>d.site_clean))
 
