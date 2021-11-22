@@ -524,8 +524,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .style("stroke", "url(#linear-gradient)")
             .attr('stroke-width', 1)
             .attr('fill', 'none')
-            .attr("class", "wordLine")
-            .attr("id", d=> 'line'+ d.word)
+            .attr("class", d => "wordLine" + d.theme)
+            .attr("id", d => `line-${d.word}`)
             .on("mouseover", (event, d) => showTooltip(event, d))
 					  .on("mouseleave", (event, d) => hideTooltip(event, d));
           
