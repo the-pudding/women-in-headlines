@@ -1,3 +1,4 @@
+import Autocomplete from 'accessible-autocomplete'
 /* global d3 */
 
 /*
@@ -27,6 +28,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     const $container = d3.select('#scrolly-side');
     const $article = $container.select('article');
     const $stepSel = $article.selectAll('.step');
+    const $wordSearch = d3.select("#wordSearch");
 
     // data
     let data = $chart.datum();
@@ -46,22 +48,47 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     const MARGIN_BOTTOM = 0;
     const MARGIN_LEFT = 0;
     const MARGIN_RIGHT = 0;
+    let xPad = null;
 
     // scales
     let x = null;
     let y = null;
 
     // helper functions
+    function searchWords() {
+      let onlyWords = dataLocal.columns;
+      console.log(onlyWords);
+
+      Autocomplete({
+        element: document.querySelector('#wordSearch'),
+        id: 'my-autocomplete',
+        source: onlyWords,
+        displayMenu: 'overlay',
+        confirmOnBlur: false,
+        onConfirm(word) {
+          console.log(word);
+
+          highlightWords(null, null, null, word)
+        },
+      });
+    }
+
     function highlightWords(index, direction, task, word) {
       $stepSel.classed('is-active', (d, i) => i === index);
             console.log(task, direction)
+
+            let notWordRects = d3.selectAll(".stackedBars")
+            .selectAll(`rect`)
+            .attr("fill", "#ccc")
+            .attr("opacity", "0.5")
             
-            d3.selectAll(`.${word}`)
+            let wordRects = d3.selectAll(`.${word}`)
 				      .attr("fill", "#E75C33")
-            
-            d3.selectAll(".stackedBars")
-              .selectAll(`rect:not(.${word})`)
               .attr("opacity", "0.5")
+
+              console.log(wordRects)
+
+              console.log(notWordRects)
 
             d3.selectAll(".stackedChartyTicks").style("opacity", "0")
     }
@@ -122,7 +149,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     const Chart = {
       // called once at start
       init() {
-        prepareWordData(dataLocal, themes)
+        prepareWordData(dataLocal, themes);
+        searchWords();
         
         $svg = $chart.append('svg').attr('class', 'stackedChart');
 
