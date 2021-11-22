@@ -57,7 +57,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // helper functions
     function searchWords() {
       let onlyWords = dataLocal.columns;
-      console.log(onlyWords);
 
       Autocomplete({
         element: document.querySelector('#wordSearch'),
@@ -66,7 +65,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         displayMenu: 'overlay',
         confirmOnBlur: false,
         onConfirm(word) {
-          console.log(word);
 
           highlightWords(null, null, null, word)
         },

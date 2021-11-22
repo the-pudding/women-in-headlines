@@ -61,6 +61,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
         }
       })
 
+      console.log(filterData);
+
       const logoData = [{site:"nytimes.com", link:"https://www.vectorlogo.zone/logos/nytimes/nytimes-icon.svg"},
 					{site:"dailymail.co.uk", link:"https://seeklogo.com/images/D/Daily_Mail-logo-EBD7A83A1F-seeklogo.com.png"},
 					{site:"cnn.com", link:"https://www.vectorlogo.zone/logos/cnn/cnn-icon.svg"},//https://www.vectorlogo.zone/logos/cnn/cnn-wordmark.svg
@@ -90,20 +92,21 @@ d3.selection.prototype.puddingBubble = function init(options) {
       // dimensions
       let width = 0;
       let height = 0;
-      const MARGIN_TOP = 0;
-      const MARGIN_BOTTOM = 0;
-      const MARGIN_LEFT = 80;
-      const MARGIN_RIGHT = 80;
+      const MARGIN_TOP = 110;
+      const MARGIN_BOTTOM = 20;
+      const MARGIN_LEFT = 50;
+      const MARGIN_RIGHT = 30;
   
       // scales
       let xScale = null;
       let yScale = null;
       let extentVisits = d3.extent(filterData, d=>+d.monthly_visits)
       let radius = d3.scaleSqrt()
-                    .domain(extentVisits)
+        .domain(extentVisits)
       let logoScale = d3.scaleLinear()
                     .domain(extentVisits)
       let simulation = null;
+      let maxR = null;
   
       // helper functions
       function populateDropdown(data, div, attribute) {
@@ -160,6 +163,9 @@ d3.selection.prototype.puddingBubble = function init(options) {
         siteMatch = siteMatch.split("-");
         siteMatch = siteMatch[0];
 
+        let circ = d3.select(this);
+        circ.style("stroke-width", 3).style("stroke", "#E75C33")
+
         let dataSubset = headlines.filter(d => d.site === siteMatch);
         let randomHeadline = Math.floor(Math.random() * dataSubset.length);
 
@@ -185,11 +191,12 @@ d3.selection.prototype.puddingBubble = function init(options) {
       function hideTooltip() {
         $tooltip.classed("is-visible", false);
 
-        // let allCircs = d3.selectAll(".forceCircles");
+        let allCircs = d3.selectAll(".forceCircles");
 				// let allLogos = d3.selectAll(".forceLogos");
 
-        // allCircs.style("fill", "#FEFAF1")
-        // allCircs.style("opacity", "1")
+        allCircs.style("stroke-width", "1")
+        allCircs.style("stroke", "#282828")
+        //allCircs.style("opacity", "1")
 				// allLogos.style("opacity", "1")
       }
 
@@ -253,8 +260,11 @@ d3.selection.prototype.puddingBubble = function init(options) {
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
           height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
-          radius.range([3, width/12])
-          logoScale.range([18, width/12])
+          radius.range([3, width/15])
+          logoScale.range([18, width/15])
+
+          maxR = d3.max(filterData, d => +d.monthly_visits)
+          maxR = radius(maxR);
 
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
@@ -265,18 +275,15 @@ d3.selection.prototype.puddingBubble = function init(options) {
             .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
             
           xScale = d3.scaleSymlog()
-            .range([MARGIN_LEFT+MARGIN_RIGHT, width])
-            .domain(d3.extent(filterData, d => +d[variable]))
-            //.domain([0, Max]);
-            //.domain(variable==="polarity"?[0, d3.max(filterData, d => +d[variable])]:
-                            //d3.extent(filterData, d => +d[variable]))
-        
+            .range([MARGIN_LEFT*2+MARGIN_RIGHT, width - maxR])
+            .domain(variable==="polarity"?[0, d3.max(filterData, d => +d[variable])]:
+                            d3.extent(filterData, d => +d[variable]))
                             
           legendData = [{level: "", radius: radius(10000000), y: height+75, x: width/2.2, anchor:"end", xtext: width/2.235, ytext: height+53,id: ""}, 
           {level: "", radius: radius(100000000), y: height+75, x: width/2.05,id: ""}, 
           {level: "1B Monthly Viewers", radius: radius(1000000000), y: height+75, x: width/1.85, anchor:"middle", xtext: width/1.85, ytext: height+width/6.5,id: ""}]
           
-          $legend.attr('transform', `translate(-${width/2 - MARGIN_LEFT/2}, -${height})`);
+          $legend.attr('transform', `translate(-${width/2 - MARGIN_LEFT/2 - maxR/2}, -${height})`);
 
           $legendCircle
             .selectAll("circle")
