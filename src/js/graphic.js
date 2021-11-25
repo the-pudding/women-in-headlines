@@ -94,7 +94,8 @@ function init() {
 			d3.csv("./assets/data/word_themes_all_101221.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
 			d3.csv("./assets/data/word_themes_rank_101221.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType)
+			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType),
+			d3.csv("./assets/data/sentiment_comparison.csv", d3.autoType)
 
 		  ])
 			.then((datasets) => {
@@ -110,6 +111,7 @@ function init() {
 				let themes = datasets[5]
 				let themesRank = datasets[6]
 				let themesFreq = datasets[7]
+				let sentComp = datasets[8]
 				// console.log(dataFreq)
 				// console.log(themes)
 				// console.log(themesRank)
@@ -128,6 +130,7 @@ function init() {
 				// renderStackedBars(dataWords, themes)
 				// 1) lollipop chart
 				renderLollipop(polComparison)
+				renderTimeSeries(sentComp)
 				// 1) bar charts
 				// drawBar(countries_data, "#chart0", "All", 8)   
 				// drawBar(countries_data, "#chart1", "India", 5)    
@@ -1670,6 +1673,148 @@ function init() {
 						// )
 					})
 	
+			}
+
+			// polarity Line Chart
+			function renderTimeSeries(data){
+				// console.log("sent comp", data)
+				data = mapToArray(d3.rollup(data, v => [d3.median(v, d=>d.women_polarity_median), d3.median(v, d=>d.all_polarity_median)], d => d.year)).filter(d=>(d.year!==2021)&&(d.year!==2016))
+				console.log("sent comp", data)
+
+				// set the dimensions and margins of the graph
+				var margin = {top: 130, right: 50, bottom: 30, left: 100},
+				width = 1000 - margin.left - margin.right,
+				height = 800 - margin.top - margin.bottom;
+			
+				// append the svg object to the body of the page
+				var linechart = d3.select("#polarityLineChart")
+				.append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+				.append("g")
+				.attr("transform",
+					  "translate(" + margin.left + "," + margin.top + ")");
+
+				// x scale
+				const x = d3.scaleTime()
+					.domain(d3.extent(data, d => d.year))
+					.range([margin.left, width - margin.right])
+
+				const y = d3.scaleLinear()
+					.domain([0, d3.max(data, d=> d.womenPolarityMed)]).nice()
+					.range([height - margin.bottom, margin.top])
+
+				const xAxis = g => g
+					.attr("transform", `translate(0,${height - margin.bottom})`)
+					.call(d3.axisBottom(x).ticks(6).tickSizeOuter(0).tickSizeInner(0).tickFormat(d3.format("d")))
+					.attr("class", "stackedChartyTicks")
+
+				const yAxis = g => g
+					.attr("transform", `translate(${margin.left},0)`).attr("class", "lineChartyAxis")
+					.call(d3.axisLeft(y).tickSize(0).tickValues([0.1, 0.2, 0.3, 0.4, 0.45]))//.tickValues([0.35])
+					.call(g => g.select(".domain").remove())
+					// .call(g=>g.select(".tick").text(""))
+					// .call(g => g.select(".tick:first-of-type text")
+					.call(g => g.select(".tick:last-of-type text")//.clone()
+						.attr("x", 50)
+						// .attr("text-anchor", "start")
+						// .attr("font-weight", "bold")
+						.attr("transform", "translate(-50, 200) rotate(-90)")
+						
+						// .style("transform", "rotate(-90deg)")
+						.text("Average polarity of news headlines ⇢"))
+						.attr("class", "stackedChartyTicks")
+					// .call(g => g.select(".tick:last-of-type text")
+						// .style("transform", "translate(-15px, 0)"))
+
+				const lineW = d3.line()
+						.defined(d => !isNaN(d.womenPolarityMed))
+						.x(d => x(d.year))
+						.y(d => y(d.womenPolarityMed))
+						.curve(d3.curveBasis)
+				
+				const lineA = d3.line()
+						.defined(d => !isNaN(d.allPolarityMed))
+						.x(d => x(d.year))
+						.y(d => y(d.allPolarityMed))
+						.curve(d3.curveBasis)
+
+				function tweenDash() {
+					const l = this.getTotalLength(),
+						i = d3.interpolateString("0," + l, l + "," + l);
+					return function(t) { return i(t) };
+					}
+
+				function transition(path) {
+					path.transition()
+						.duration(7500)
+						.attrTween("stroke-dasharray", tweenDash)
+						.on("end", () => { d3.select(this).call(transition); });
+					}
+
+				linechart.append("g")
+				.call(xAxis);
+			  
+				linechart.append("g")
+					.call(yAxis);
+
+				// d3.select(".lineChartyAxis")
+				// 	.selectAll(".tick")
+				// 	.append("text")
+				// 	.text((d, i) => i == 9 ?"Average polarity of news headlines ⇢": "")
+				// 	// .text((d, i)=>console.log("ytick"+i))
+				// 	// .attr("x", 0) 
+				// 	// .attr("y", 0)            
+				// 	.attr("class", "stackedChartyTicks")
+				// 	// .attr("class", "stackedChartyTicks")
+				// 	// .style("text-transform", "lowercase")
+				// 	.style("font-weight", "700")
+				// 	.style("transform", "rotate(-90deg)")
+				// 	// .attr("dx", 50)
+				
+				const womenLine = linechart.append("path")
+					.datum(data)
+					.attr("fill", "none")
+					.attr("stroke", "#53B67C")
+					.attr("stroke-width", 4)
+					.attr("d", lineW)
+					// .call(transition);
+				
+				const womenCircle = linechart.append("circle")
+					.attr("cx", x(d3.max(data, d=>d.year)))
+					.attr("cy", y(d3.max(data, d=>d.womenPolarityMed)))
+					.attr("r", "11")
+					.attr("class", "polarityCompBubbleRight")
+
+				const womenAnnot = linechart.append("text")
+					.attr("x", x(d3.max(data, d=>d.year)))
+					.attr("y", y(d3.max(data, d=>d.womenPolarityMed)))
+					.text("Headlines about women")
+					.attr("class", "polarityCompFemText")
+					.call(wrap, 100)
+
+				const allLine = linechart.append("path")
+					.datum(data)
+					.attr("fill", "none")
+					.attr("stroke", "black")
+					.attr("stroke-width", 2)
+					.attr("d", lineA)
+					// .call(transition);
+
+				const allCircle = linechart.append("circle")
+					.attr("cx", x(d3.max(data, d=>d.year)))
+					.attr("cy", y(d3.max(data, d=>d.allPolarityMed))+8)
+					.attr("r", "4")
+					.attr("class", "polarityCompBubbleLeft")
+
+				const allAnnot = linechart.append("text")
+					.attr("x", x(d3.max(data, d=>d.year)))
+					.attr("y", y(d3.max(data, d=>d.allPolarityMed)))
+					.text("All headlines")
+					.attr("class", "polarityCompAllText")
+
+						  
+						  
 			}
 	
 			// TEMPORAL CHART
@@ -3238,6 +3383,14 @@ function init() {
 			// unique values from array
 			function onlyUnique(value, index, self) {
 				return self.indexOf(value) === index;
+			  }
+
+			function mapToArray(map) {
+				var res = [];
+				map.forEach(function(val, key) {
+					res.push({year: key, womenPolarityMed: val[0], allPolarityMed: val[1]});
+			  });
+				return res
 			  }
 	
 	
