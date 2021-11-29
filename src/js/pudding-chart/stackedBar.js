@@ -25,6 +25,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let $xAxisFlags = null;
     let $rects = null;
     let $rect = null;
+    let $rectLabels = null;
     const $container = d3.select('#scrolly-side');
     const $article = $container.select('article');
     const $stepSel = $article.selectAll('.step');
@@ -55,6 +56,14 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let y = null;
 
     // helper functions
+    function stripSpaces(string) {
+      let stripped = string.trim();
+      stripped = stripped.replace(" ", "");
+      stripped = stripped.replace(",", "");
+      stripped = stripped.toLowerCase();
+      return stripped;
+    }
+
     function searchWords() {
       let onlyWords = dataLocal.columns;
 
@@ -71,34 +80,96 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       });
     }
 
+    function showWord() {
+      let theme = d3.select(this).attr("class");
+      let word = d3.select(this).attr("id");
+      //console.log(word, theme);
+
+      $rectLabels = d3.selectAll(".stackedBars").select("rect #word").append("text") 
+        .text("check")
+        .attr("x", 0)
+        .attr("y", 0)
+          //.attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
+    }
+
+    function hideWord() {
+      //console.log("hide word")
+    }
+
+    function revealChart() {
+      let allRects = d3.selectAll(".stackedBars")
+        .selectAll(`rect`)
+        .transition().duration("1000")
+            .ease(d3.easeCubic)
+            //.delay((d, i) => { return i * 1; })
+            .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
+    }
+
     function highlightWords(index, direction, task, word) {
       $stepSel.classed('is-active', (d, i) => i === index);
-            console.log(task, direction)
+            let IDs = word.split(" ")
 
             let notWordRects = d3.selectAll(".stackedBars")
-            .selectAll(`rect`)
-            .attr("fill", "#ccc")
-            .attr("opacity", "0.5")
-            
-            let wordRects = d3.selectAll(`.${word}`)
-				      .attr("fill", "#E75C33")
+              .selectAll(`rect`)
+              .attr("fill", "#ccc")
               .attr("opacity", "0.5")
 
-              console.log(wordRects)
-
-              console.log(notWordRects)
+            IDs.forEach(ID => {
+              let wordRects = d3.selectAll(`#${ID}`)
+                .attr("fill", "#E75C33")
+                .attr("opacity", "1")
+            })
 
             d3.selectAll(".stackedChartyTicks").style("opacity", "0")
     }
 
-    function unHighlightWords() {
-      d3.selectAll(".stackedBarAnnotation").remove()
-			
-      d3.selectAll(".stackedBars")
-        .selectAll("rect")
-        .attr("opacity", "1")
-			
-      d3.selectAll(".stackedChartyTicks").style("opacity", "1")
+    function highlightThemes(index, direction, task, theme) {
+      $stepSel.classed('is-active', (d, i) => i === index);
+
+      console.log(theme)
+      let notThemeRects = d3.selectAll(".stackedBars")
+          .selectAll(`rect`)
+          .attr("fill", "#ccc")
+          .attr("opacity", "0.5")
+
+      let violenceRects = d3.selectAll(".stackedBars").selectAll(".violence")
+      let stereotypeRects = d3.selectAll(".stackedBars").selectAll(".femalestereotypes")
+      let empowermentRects = d3.selectAll(".stackedBars").selectAll(".empowerment")
+      let peopleRects = d3.selectAll(".stackedBars").selectAll(".peopleandplaces")
+      let raceRects = d3.selectAll(".stackedBars").selectAll(".raceethnicityandidentity")
+      
+      if (theme === "crimeandviolence") {
+        violenceRects
+          .attr("fill", "#E75C33")
+          .attr("opacity", "1")
+      } 
+
+      if (theme === "femalestereotypes") {
+        violenceRects
+          .attr("fill", "#E75C33")
+          .attr("opacity", "1")
+        stereotypeRects
+          .attr("fill", "#53B67C")
+          .attr("opacity", "1")
+      }
+
+      if (theme === "EPR") {
+        violenceRects
+          .attr("fill", "#E75C33")
+          .attr("opacity", "1")
+        stereotypeRects
+          .attr("fill", "#53B67C")
+          .attr("opacity", "1")
+        empowermentRects
+          .attr("fill", "#F7DC5B")
+          .attr("opacity", "1")
+        peopleRects
+          .attr("fill", "#3569DC")
+          .attr("opacity", "1")
+        raceRects
+          .attr("fill", "#F2C5D3")
+          .attr("opacity", "1")
+      }
     }
 
     function prepareWordData(dataLocal, themes) {
@@ -148,7 +219,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       // called once at start
       init() {
         prepareWordData(dataLocal, themes);
-        searchWords();
+        //searchWords();
         
         $svg = $chart.append('svg').attr('class', 'stackedChart');
 
@@ -173,26 +244,35 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .data(d => d)
          
         $rect = $rects.join("rect")
-          .attr("class", d=>d.key.word)
+          .attr("id", d=>d.key.word)
+          .attr("class", d=> {
+            console.log(d.key.theme)
+            stripSpaces(d.key.theme)
+          })
           .attr("fill", "lightgrey")
           .attr("stroke", "#FEFAF1")
           .attr("stroke-width", "0.2px")
-          //.transition().duration("4000")
-            //.ease(d3.easeCubic)
-            //.delay((d, i) => { return i * 200; })
+          .on("mouseenter", showWord)
+					.on("mouseleave", hideWord);
+        
+        // $rectLabels = $rects.join("text")
+        //   .text(d=>d.key.word)
+        //   .attr("id", d =>`${d.key.word}_label`)
+        //   .attr("class", d => `stackedBarAnnotation ${d.key.theme}_label`)
 
         Chart.render();
         Chart.resize();
       },
       updateChart(index, direction) {
-        console.log(index, direction)
+        //console.log(index, direction)
 
         const sel = $container.select(`[data-index='${index}']`);
 				const task = sel.attr('task');
 				const hovertype = sel.attr('hovertype');
+        const word = sel.attr('word');
+        const theme = sel.attr('theme');
 
         if (task==="highlightwords") {
-          const word = sel.attr('word');
           if (direction==="down") {
             highlightWords(index, direction, task, word)
           } else {
@@ -201,8 +281,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     
         } else if (task === "drawbars") {
           console.log(task, direction)
+          //revealChart();
         } else if (task === "highlightthemes") {
-          console.log(task, direction)
+          highlightThemes(index, direction, task, theme)
         } else if (task === "tooltip") {
           console.log(task, direction)
         } else if (task === "exploreChart") {
@@ -217,7 +298,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       resize() {
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-        height = ($chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM)*2;
+        height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
         $svg
           .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
           .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
@@ -281,7 +362,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("x", (d, i) => x(d.data.country))
           .attr("height", d => d.data[d.key.word]===0 || d.data[d.key.word]===null? 0:height/series.length)
           .attr("width", x.bandwidth())
-          .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
+          .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null));
+        
+        // $rectLabels 
+        //   .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
           
         return Chart;
       },

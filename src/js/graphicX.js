@@ -159,7 +159,7 @@ function seeMoreChange() {
 function resize() { 
 
 	// 1. update height of step elements
-	const stepHeight = Math.floor(window.innerHeight * 0.75);
+	const stepHeight = Math.floor(window.innerHeight * 0.75)/2;
 	$step.style('height', stepHeight + 'px');
 
 	// 2. update width/height of graphic element
@@ -178,10 +178,10 @@ function resize() {
 	if (previousWidth !== width) {
 		previousWidth = width;
 		chartStackedBar.resize();
-		chartLollipop.resize();
-		chartBubbleB.resize();
-		chartBubbleP.resize();
-		chartTemporalLine.resize();
+		//chartLollipop.resize();
+		//chartBubbleB.resize();
+		//chartBubbleP.resize();
+		//chartTemporalLine.resize();
 	}
 }
 
@@ -208,10 +208,10 @@ function init() {
 
 		setupScroller();
 		setupStackedBar(stackedBarData);
-		setupLollipop(polComparison);
-		setupBubbleB(biasBubbleData);
-		setupBubbleP(polBubbleData);
-		setupTemporalLine(temporalData);
+		//setupLollipop(polComparison);
+		//setupBubbleB(biasBubbleData);
+		//setupBubbleP(polBubbleData);
+		//setupTemporalLine(temporalData);
 		resize();
 		
 		$countryButtons.on("click", countryButtonChange)
