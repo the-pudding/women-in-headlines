@@ -188,8 +188,8 @@ function resize() {
 		chartStackedBar.resize();
 		chartTimeSeriesLine.resize();
 		chartLollipop.resize();
-		//chartBubbleB.resize();
-		//chartBubbleP.resize();
+		chartBubbleB.resize();
+		chartBubbleP.resize();
 		//chartTemporalLine.resize();
 	}
 }
@@ -218,8 +218,8 @@ function init() {
 		setupStackedBar(stackedBarData);
 		setupTimeSeriesLine(sentComp)
 		setupLollipop(polComparison);
-		//setupBubbleB(biasBubbleData);
-		//setupBubbleP(polBubbleData);
+		setupBubbleB(biasBubbleData);
+		setupBubbleP(polBubbleData);
 		//setupTemporalLine(temporalData);
 		resize();
 		

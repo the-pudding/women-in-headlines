@@ -1,3 +1,4 @@
+import { wrap } from '../utils/wrap';
 /* global d3 */
 
 /*
@@ -61,32 +62,29 @@ d3.selection.prototype.puddingBubble = function init(options) {
         }
       })
 
-      console.log(filterData);
-
-      const logoData = [{site:"nytimes.com", link:"https://www.vectorlogo.zone/logos/nytimes/nytimes-icon.svg"},
-					{site:"dailymail.co.uk", link:"https://seeklogo.com/images/D/Daily_Mail-logo-EBD7A83A1F-seeklogo.com.png"},
-					{site:"cnn.com", link:"https://www.vectorlogo.zone/logos/cnn/cnn-icon.svg"},//https://www.vectorlogo.zone/logos/cnn/cnn-wordmark.svg
-					{site:"bbc.co.uk", link:"https://www.vectorlogo.zone/logos/bbc/bbc-icon.svg"},
-					{site:"telegraph.co.uk", link:"https://upload.wikimedia.org/wikipedia/commons/4/48/The_Telegraph_logo.svg"},
-					{site:"washingtonpost.com", link:"https://www.vectorlogo.zone/logos/washingtonpost/washingtonpost-icon.svg"},
-					{site:"forbes.com", link:"https://www.vectorlogo.zone/logos/forbes/forbes-icon.svg"},
-					{site:"abcnews.go.com", link:"https://www.vectorlogo.zone/logos/abcgo/abcgo-icon.svg"},
-					{site:"foxnews.com", link:"https://www.vectorlogo.zone/logos/fox/fox-icon.svg"},
-					{site:"ksl.com", link:"https://logodix.com/logo/2090138.png"},
-					{site:"bloomberg.com", link: "https://www.vectorlogo.zone/logos/bloomberg/bloomberg-icon.svg"},
-					{site:"breitbart.com", link:"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Breitbart_News.svg/1280px-Breitbart_News.svg.png"},
-					{site:"popsugar.com", link:"https://all-4-one.com/wp-content/uploads/2015/07/PopSugar-Logo-logo.png"},
-					{site:"nbcnews.com", link:"https://www.vectorlogo.zone/logos/nbc/nbc-icon.svg"},
-					{site:"buzzfeed.com", link:"https://www.vectorlogo.zone/logos/buzzfeed/buzzfeed-icon.svg"},
-					{site:"cnet.com", link:"https://www.vectorlogo.zone/logos/cnet/cnet-icon.svg"},
-					{site:"politico.com", link:"https://www.vectorlogo.zone/logos/politico/politico-icon.svg"},
-					{site:"usatoday.com", link:"https://www.vectorlogo.zone/logos/usatoday/usatoday-icon.svg"},
-					{site:"nydailynews.com", link:"https://cdn6.myket.ir/icons/large/b0f31373-17ec-46d5-b6ef-66135cc1b242_.png"},
-					{site:"businessinsider.com", link:"https://i.insider.com/596e4e7a552be51d008b50fd?width=600&format=jpeg"},
-					{site:"aajtak.in", link:"https://static.wikia.nocookie.net/logopedia/images/d/db/Aaj_tak.png"},
-					// {site:"ft.com", link:"https://www.ft.com/__origami/service/image/v2/images/raw/ftlogo-v1:brand-ft-logo-square-coloured-dot?source=origami-registry&width=200"},
-					{site:"espn.go.com", link:"https://cdn.worldvectorlogo.com/logos/espn.svg"},
-					{site:"huffingtonpost.com", link:"https://www.vectorlogo.zone/logos/huffingtonpost/huffingtonpost-icon.svg"}
+      const logoData = [{site:"nytimes.com", link:"nytimes.png"},
+					{site:"dailymail.co.uk", link:"dailyMail.png"},
+					{site:"cnn.com", link:"cnn.png"},
+					{site:"bbc.co.uk", link:"bbc.png"},
+					{site:"telegraph.co.uk", link:"telegraph.png"},
+					{site:"washingtonpost.com", link:"washingtonPost.png"},
+					{site:"forbes.com", link:"forbes.png"},
+					{site:"abcnews.go.com", link:"abc.png"},
+					{site:"foxnews.com", link:"foxNews.png"},
+					{site:"ksl.com", link:"ksl.png"},
+					{site:"bloomberg.com", link: "bloomberg.png"},
+					{site:"breitbart.com", link:"breitbart.png"},
+					{site:"popsugar.com", link:"popSugar.png"},
+					{site:"nbcnews.com", link:"nbc.png"},
+					{site:"buzzfeed.com", link:"buzzfeed.png"},
+					{site:"cnet.com", link:"cnet.png"},
+					{site:"politico.com", link:"politico.png"},
+					{site:"usatoday.com", link:"usaToday.png"},
+					{site:"nydailynews.com", link:"nyDailyNews.png"},
+					{site:"businessinsider.com", link:"businessInsider.png"},
+					{site:"aajtak.in", link:"aajtak.png"},
+					{site:"espn.go.com", link:"espn.png"},
+					{site:"huffingtonpost.com", link:"huffingtonPost.png"}
 				]
   
       // dimensions
@@ -192,45 +190,9 @@ d3.selection.prototype.puddingBubble = function init(options) {
         $tooltip.classed("is-visible", false);
 
         let allCircs = d3.selectAll(".forceCircles");
-				// let allLogos = d3.selectAll(".forceLogos");
 
         allCircs.style("stroke-width", "1")
         allCircs.style("stroke", "#282828")
-        //allCircs.style("opacity", "1")
-				// allLogos.style("opacity", "1")
-      }
-
-      function wrap(text, width) {
-        text.each(function () {
-          var text = d3.select(this),
-            words = text.text().split(/\s+/).reverse(),
-            word,
-            line = [],
-            lineNumber = 0,
-            lineHeight = 1.1, // ems
-            x = text.attr("x"),
-            y = text.attr("y"),
-            dy = 0, //parseFloat(text.attr("dy")),
-            tspan = text.text(null)
-                  .append("tspan")
-                  .attr("x", x)
-                  .attr("y", y)
-                  .attr("dy", dy + "em");
-          while (word = words.pop()) {
-            line.push(word);
-            tspan.text(line.join(" "));
-            if (tspan.node().getComputedTextLength() > width) {
-              line.pop();
-              tspan.text(line.join(" "));
-              line = [word];
-              tspan = text.append("tspan")
-                    .attr("x", x)
-                    .attr("y", y)
-                    .attr("dy", ++lineNumber * lineHeight + dy + "em")
-                    .text(word);
-            }
-          }
-        });
       }
   
       const Chart = {
@@ -313,7 +275,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
             .force("y", d3.forceY(height / 2))
             .force('collide', d3.forceCollide((d)=>{ 
               return radius(+d.monthly_visits)}))
-            .alphaDecay(0.05)
+            .alphaDecay(0.1)
+            //.alpha(0.3)
             .on("tick", function() {
               $circles = $vis.selectAll('circle').data(filterData);
               $logos = $vis.selectAll('image').data(filterData);
@@ -336,29 +299,41 @@ d3.selection.prototype.puddingBubble = function init(options) {
               
               $newLogos = $logos.join("svg:image")
 									.attr("class", "forceLogo")
+                  .attr("transform", function(d) {
+                    let logoR = radius(+d.monthly_visits)
+                    return `translate(-${logoR/2}, -${logoR/2})`
+                  })
 									// each logo needs to be centered in the bubble (couldnt find better way of doing this)
-									.attr("transform", d=>d.site=="bbc.co.uk" ? "translate(-50,-50)"
-														: d.site=="cnn.com" | d.site=="foxnews.com" ? "translate(-30,-30)"
-														: d.site=="espn.go.com" ? "translate(-34,-10)"
-														: d.site=="nytimes.com" | d.site=="buzzfeed.com" ? "translate(-25,-25)"
-														: d.site=="washingtonpost.com" | d.site=="huffingtonpost.com" | d.site== "usatoday.com" ? "translate(-20,-20)"
-														: d.site=="dailymail.co.uk" ? "translate(-22,-18)"
-														: d.site=="politico.com" | d.site=="ksl.com" | d.site=="abcnews.go.com" | d.site=="nydailynews.com" ? "translate(-12.5,-12.5)"
-														: d.site=="telegraph.co.uk" ? "translate(-15,-3)"
-														: d.site=="breitbart.com" ? "translate(-14,-10)"
-														: d.site=="aajtak.in" ? "translate(-25,-20)"
-														: d.site=="businessinsider.com" ? "translate(-14,-13)"
-														: "translate(-15,-15)")
+                  //.attr("transform", "translate(-50%, -50%)")
+									// .attr("transform", d=>d.site=="bbc.co.uk" ? "translate(-50,-50)"
+									// 					: d.site=="cnn.com" | d.site=="foxnews.com" ? "translate(-30,-30)"
+									// 					: d.site=="espn.go.com" ? "translate(-34,-10)"
+									// 					: d.site=="nytimes.com" | d.site=="buzzfeed.com" ? "translate(-25,-25)"
+									// 					: d.site=="washingtonpost.com" | d.site=="huffingtonpost.com" | d.site== "usatoday.com" ? "translate(-20,-20)"
+									// 					: d.site=="dailymail.co.uk" ? "translate(-22,-18)"
+									// 					: d.site=="politico.com" | d.site=="ksl.com" | d.site=="abcnews.go.com" | d.site=="nydailynews.com" ? "translate(-12.5,-12.5)"
+									// 					: d.site=="telegraph.co.uk" ? "translate(-15,-3)"
+									// 					: d.site=="breitbart.com" ? "translate(-14,-10)"
+									// 					: d.site=="aajtak.in" ? "translate(-25,-20)"
+									// 					: d.site=="businessinsider.com" ? "translate(-14,-13)"
+									// 					: "translate(-15,-15)")
 									.attr('width', d=>logoScale(+d.monthly_visits))
-									.attr("xlink:href", d=>+d.monthly_visits>150000000 ? logoData.filter(x=>x.site==d.site)[0]["link"]:'')
+                  .attr('height', d=>logoScale(+d.monthly_visits))
+                  .attr('xlink:href', function(d) { 
+                    if (+d.monthly_visits>150000000) {
+                      let logo = logoData.filter(x=>x.site==d.site)[0]["link"]
+                      return `assets/images/logos/${logo}`
+                    } else {
+                      return ""
+                    }
+                  })
                   .attr('x', function(d) { return d.x; })
-                  .attr('y', function(d) { return d.y; });
+                  .attr('y', function(d) { return d.y; })
               
               // $logos.merge($newLogos)
               //     .attr('x', function(d) { return d.x; })
               //     .attr('y', function(d) { return d.y; })
-            })
-            //.stop();  
+            }); 
 
           return Chart;
         },
