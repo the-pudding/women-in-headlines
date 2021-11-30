@@ -209,6 +209,11 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         
         $yAxisGroup = $axis.append('g').attr('class', 'y axis')
 
+        $xAxisText = $axis.append("text")
+          .attr("class", "stackedChartyTicks")
+          .attr("transform", "rotate(-90)")
+          .text("Frequency of use of headlines ⇢");
+
         // setup viz group
         $vis = $svg.append('g').attr('class', 'g-vis');
 
@@ -335,6 +340,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         
         $yAxis = $yAxisGroup.append("g")
           .call($yAxis)
+        
+        $xAxisText
+          .attr("x", -275)
+          .attr("y", 10)
         
         $rect
           .attr("x", (d, i) => x(d.data.country))

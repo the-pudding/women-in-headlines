@@ -992,6 +992,7 @@ summary {
   border 1px solid $green;
   height: 1.9rem;
   margin: 0.025rem 0;
+  padding: 0.125rem 0.5rem;
 }
 
 .lollipopTextbutton-active {
@@ -1007,6 +1008,7 @@ summary {
   pointer-events: none;
   height: 1.9rem;
   margin: 0.025rem 0;
+  padding: 0.125rem 0.5rem;
 }
 
 // .stackedBarThemeAnnotation {
@@ -1292,6 +1294,33 @@ article {
   white-space: nowrap;
   border-radius: 0.25rem;
   cursor: pointer;
+}
+
+.word-legend, .freq-legend {
+  font-family: $tiempos;
+  font-weight: 700;
+}
+
+.word-legend::after {
+  display: inline-block;
+  content: '';
+  width: 3rem;
+	height: 0.25rem;
+  background-color: $gray-light;
+  margin: 0 0.25rem 0.125rem 0.25rem;
+}
+
+.freq-legend::after {
+  display: inline-block;
+  content: '↕';
+  line-height: 1;
+  padding: 0.25rem;
+  width: 3rem;
+	height: 1rem;
+  top: 1px;
+  position: relative;
+  background-color: $gray-light;
+  margin: 0 0.25rem 0 0.25rem;
 }
 
 // #inTextViolence {
