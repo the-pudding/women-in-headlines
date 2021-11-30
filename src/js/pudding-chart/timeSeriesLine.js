@@ -157,6 +157,7 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
                     let point = data[dataLength].womenPolarityMed;
                     return y(point)
                 })
+                .attr("r", d => width >= 600 ? 11 : 8)
             
             $allCircle
                 .attr("cx", x(d3.max(data, d=>d.year)))
@@ -165,6 +166,7 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
                     let point = data[dataLength].allPolarityMed;
                     return y(point)
                 })
+                .attr("r", d => width >= 600 ? 4 : 3)
             
             $womenAnno
                 .text("Headlines about women")

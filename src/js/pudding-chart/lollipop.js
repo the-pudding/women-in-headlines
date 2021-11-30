@@ -126,7 +126,6 @@ d3.selection.prototype.puddingLollipop = function init(options) {
           $circle1 = $vis.selectAll("mycircle")
               .data(data)
               .join("circle")
-              .attr("r", "4")
               .attr("class", "polarityCompBubble polarityCompBubbleLeft")
           
           $circle2 = $vis.selectAll("mycircle")
@@ -168,6 +167,9 @@ d3.selection.prototype.puddingLollipop = function init(options) {
             //x.range([MARGIN_LEFT + MARGIN_RIGHT, width]);
             $gridline.attr("x1", 10);
 
+            $circle1.attr("r", "4");
+            $circle2.attr("r", "11");
+
           } else {
             MARGIN_LEFT = 40;
 
@@ -179,6 +181,9 @@ d3.selection.prototype.puddingLollipop = function init(options) {
             
             //x.range([MARGIN_LEFT + MARGIN_RIGHT, width]);
             $gridline.attr("x1", 0);
+
+            $circle1.attr("r", "3");
+            $circle2.attr("r", "8");
           }
 
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
