@@ -70,8 +70,14 @@
   <div class="header">
     <h2 class="sectionHeader">{{copy.barbell-headline}}</h2>
   </div>
-  <div id="sortLollipop" style="text-align: center;">
-    {{#each copy.barbell}}
+  <div id="sortLollipop">
+    {{#each copy.barbell1}}
+      <p class="description">{{{value}}}</p>
+    {{/each}}
+  </div>
+  <div id="timeSeriesChart"></div>
+  <div id="sortLollipop">
+    {{#each copy.barbell2}}
       <p class="description">{{{value}}}</p>
     {{/each}}
   </div>

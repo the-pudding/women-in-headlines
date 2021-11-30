@@ -1,6 +1,7 @@
 /* global d3 */
 import loadData from './load-data';
 import './pudding-chart/stackedBar';
+import './pudding-chart/timeSeriesLine';
 import './pudding-chart/lollipop';
 import './pudding-chart/bubble';
 import './pudding-chart/temporalLine';
@@ -9,28 +10,26 @@ import scrollama from 'scrollama';
 
 /* data */
 let dataFiles = ["headlines_site_rapi.csv", 
-				"headlines_cl_sent_sm_rapi.csv", 
-				"country_time_freqrank_rapi_clean.csv",
+				"headlines_cl_sent_rapi_reduced_102621.csv", 
+				"country_time_freqrank_rapi_clean_101421.csv",
 				"polarity_comparison.csv",
-				"country_freqtheme_pivoted.csv",
-				"word_themes.csv",
-				"country_freq_pivoted_all_100221.csv",
-				"word_themes_all_100221.csv",
-				"word_themes_rank_100221.csv",
-				"word_themes_freq_100221.csv"];
+				"country_freq_pivoted_all_101221.csv",
+				"word_themes_all_101221.csv",
+				"word_themes_rank_101221.csv",
+				"word_themes_freq_101221.csv",
+				"sentiment_comparison.csv"];
 let headlinesSite;
 let headlines;
 let tempWords;
 let polComparison;
-let dataWordsOLD;
-let themesOLD;
 let data;
 let themes;
 let themesRank;
 let themesFreq;
-let stackedBarData;
+let sentComp;
 let biasBubbleData;
 let polBubbleData;
+let stackedBarData;
 let filter_years;
 let country;
 let temporalVar;
@@ -42,6 +41,7 @@ let chartOpen = false;
 
 /* charts */
 let chartStackedBar = null;
+let chartTimeSeriesLine = null;
 let chartLollipop = null;
 let chartBubbleB = null;
 let chartBubbleP = null;
@@ -50,6 +50,7 @@ let chartTemporalLine = null;
 /* dom */
 const $stackedBar = d3.select('#stickyStackedChart');
 const $step = d3.selectAll('#stackedChartLegend .step');
+const $timeSeries = d3.selectAll("#timeSeriesChart");
 const $lollipop = d3.select('#lollipopChart');
 let $bubble = null;
 let $temporalLine = d3.select('#smChart');
@@ -86,6 +87,13 @@ function setupStackedBar(data) {
 	chartStackedBar = $stackedBar
 		.datum(data)
 		.puddingStackedBar()
+}
+
+/* TIME SERIES LINE */
+function setupTimeSeriesLine(data) {
+	chartTimeSeriesLine = $timeSeries
+		.datum(data)
+		.puddingTimeSeriesLine()
 }
 
 /* BARBELL */
@@ -170,7 +178,7 @@ function resize() {
 	// const chartWidth = $beeswarmChart.node().offsetWidth - textWidth - chartMargin;
 
 	// 3. tell scrollama to update new element dimensions
-	stackedBarScroller.resize();
+	//stackedBarScroller.resize();
 
 	const $body = d3.select('body');
 	let previousWidth = 0;
@@ -178,7 +186,8 @@ function resize() {
 	if (previousWidth !== width) {
 		previousWidth = width;
 		chartStackedBar.resize();
-		//chartLollipop.resize();
+		chartTimeSeriesLine.resize();
+		chartLollipop.resize();
 		//chartBubbleB.resize();
 		//chartBubbleP.resize();
 		//chartTemporalLine.resize();
@@ -191,12 +200,11 @@ function init() {
 		headlines = result[1];
 		tempWords = result[2];
 		polComparison = result[3];
-		dataWordsOLD = result[4];
-		themesOLD = result[5];
-		data = result[6];
-		themes = result[7];
-		themesRank = result[8];
-		themesFreq = result[9];
+		data = result[4];
+		themes = result[5];
+		themesRank = result[6];
+		themesFreq = result[7];
+		sentComp = result[8];
 		filter_years = [2009, 2022];
 		country = "USA";
 		temporalVar = "freq_prop_headlines";
@@ -206,9 +214,10 @@ function init() {
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
-		setupScroller();
+		//setupScroller();
 		setupStackedBar(stackedBarData);
-		//setupLollipop(polComparison);
+		setupTimeSeriesLine(sentComp)
+		setupLollipop(polComparison);
 		//setupBubbleB(biasBubbleData);
 		//setupBubbleP(polBubbleData);
 		//setupTemporalLine(temporalData);

@@ -81,15 +81,24 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     }
 
     function showWord() {
-      let theme = d3.select(this).attr("class");
-      let word = d3.select(this).attr("id");
-      //console.log(word, theme);
+      let wordGroup = d3.select(this);
+      let wordText = wordGroup.attr("class");
+      wordText = wordText.split("_")[0];
 
-      $rectLabels = d3.selectAll(".stackedBars").select("rect #word").append("text") 
-        .text("check")
+      let wordRects = wordGroup.selectAll("rect")
+          .attr("fill", "#282828")
+          .attr("opacity", "1");
+      
+      let lastRect = wordRects._groups[0][4];
+      //lastRect = 
+
+      console.log(lastRect)
+
+      $rectLabels = wordGroup.append("text")
+        .text(wordText)
+        .attr("class", "stackedBarThemeAnnotation")
         .attr("x", 0)
         .attr("y", 0)
-          //.attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
     }
 
     function hideWord() {
@@ -115,7 +124,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
               .attr("opacity", "0.5")
 
             IDs.forEach(ID => {
-              let wordRects = d3.selectAll(`#${ID}`)
+              let wordRects = d3.selectAll(`.${ID}_class`)
                 .attr("fill", "#E75C33")
                 .attr("opacity", "1")
             })
@@ -240,20 +249,21 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .selectAll("g")
           .data(series)
           .join("g")
+          .attr("class", d => `${d.key}_group`)
+          .on("mouseenter", showWord)
+					.on("mouseleave", hideWord)
           .selectAll("rect")
           .data(d => d)
          
         $rect = $rects.join("rect")
-          .attr("id", d=>d.key.word)
-          .attr("class", d=> {
-            console.log(d.key.theme)
-            stripSpaces(d.key.theme)
+          .attr("class", function(d) {
+            let themeClass = `${stripSpaces(d.key.theme)}_class`
+            let wordClass = `${d.key.word}_class`
+            return `${wordClass} ${themeClass}`
           })
           .attr("fill", "lightgrey")
           .attr("stroke", "#FEFAF1")
-          .attr("stroke-width", "0.2px")
-          .on("mouseenter", showWord)
-					.on("mouseleave", hideWord);
+          .attr("stroke-width", "0.2px");
         
         // $rectLabels = $rects.join("text")
         //   .text(d=>d.key.word)
