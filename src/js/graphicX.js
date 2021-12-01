@@ -185,12 +185,12 @@ function resize() {
 	const width = $body.node().offsetWidth;
 	if (previousWidth !== width) {
 		previousWidth = width;
-		chartStackedBar.resize();
-		chartTimeSeriesLine.resize();
-		chartLollipop.resize();
-		chartBubbleB.resize();
-		chartBubbleP.resize();
-		//chartTemporalLine.resize();
+		//chartStackedBar.resize();
+		//chartTimeSeriesLine.resize();
+		//chartLollipop.resize();
+		//chartBubbleB.resize();
+		//chartBubbleP.resize();
+		chartTemporalLine.resize();
 	}
 }
 
@@ -215,16 +215,16 @@ function init() {
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
 		//setupScroller();
-		setupStackedBar(stackedBarData);
-		setupTimeSeriesLine(sentComp)
-		setupLollipop(polComparison);
-		setupBubbleB(biasBubbleData);
-		setupBubbleP(polBubbleData);
-		//setupTemporalLine(temporalData);
+		//setupStackedBar(stackedBarData);
+		//setupTimeSeriesLine(sentComp)
+		//setupLollipop(polComparison);
+		//setupBubbleB(biasBubbleData);
+		//setupBubbleP(polBubbleData);
+		setupTemporalLine(temporalData);
 		resize();
 		
 		$countryButtons.on("click", countryButtonChange)
-		$seeMoreButton.on("click", seeMoreChange);
+		//$seeMoreButton.on("click", seeMoreChange);
 
 	}).catch(console.error)
 }

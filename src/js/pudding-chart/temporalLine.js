@@ -25,10 +25,14 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let $rulerG = null;
       let $tooltip = d3.selectAll(".tooltip");
 
-      // plot structure
-      const cols = 1;
-      const rows = 200/cols;
-      let grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }));
+      // colors
+      const mainColor = "#3569DC";
+      const fColor = "#53B67C";
+      const eColor = "#F7DC5B";
+      const vColor = "#f76e45";
+      const rColor = "#F2C5D3";
+      const pColor = "#5787f2";
+      const ntColor = "lightgrey";
   
       // data
       let data = $chart.datum();
@@ -37,13 +41,36 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let country = data[2];
       let variable = data[3];
       let dataDodge = null;
-      let words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country));
+      let words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places"));
+
+      const sortBy = ['crime and violence', 'female stereotypes', "empowerment", 'important people', 'race, ethnicity and identity', 'No theme'];
+
+      const customSort = ({data, sortBy, sortField}) => {
+        const sortByObject = sortBy.reduce((obj, item, index) => {
+          return {
+          ...obj,
+          [item]: index
+          }
+        }, {})
+        return data.sort((a, b) => sortByObject[a[sortField]] - sortByObject[b[sortField]])
+      }
+
+      words = customSort({data:words, sortBy, sortField: 'theme'})
+
+      let numUniqueWords = d3.map(words, d=>d.word).filter(onlyUnique).length;
+
+      // plot structure
+      const cols = 1;
+      const rows = numUniqueWords/cols;
+      let grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }));
+
       words = words.map(d=> {
         return {
             year: d.year,
             frequency: d[variable],
             word: d.word,
-            word_type: d.word_type
+            word_type: d.word_type,
+            theme: d.theme
         }
       })
       let freqByWord = d3.rollup(
@@ -72,7 +99,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
       // world events data
       let radius = 5;
-      let padding = 1;
+      let padding = 1.5;
       let numberOfCategories = 5;
       let categories = ["0", "1", "2", "3", "4"];
       let dateRange = [new Date(2010, 0).getTime(), new Date(2021, 0).getTime()];
@@ -328,7 +355,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       const MS_BOTTOM = 50;
       const MS_LEFT = 80;
       const MS_RIGHT = 0;
-      const mainColor = "#3569DC";
   
       // scales
       let x = null;
@@ -339,6 +365,10 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
 
       // helper functions
+      function onlyUnique(value, index, self) {
+				return self.indexOf(value) === index;
+			}
+
       function showTooltip(event, d) {
         $areas.attr("opacity", 0.25)
 				$lines.attr("opacity", 0.4)
@@ -471,25 +501,42 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
           // gradient
           let $defs = $svg.append("defs");
-          let linearGradient = $defs.append("linearGradient").attr("id", "linear-gradient");
+          let linearGradientF = $defs.append("linearGradient").attr("id", "linear-gradient-F");
+            linearGradientF.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+            linearGradientF.append("stop").attr("offset", "0%").attr("stop-color", fColor);
+            linearGradientF.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
+            linearGradientF.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
+          
+          let linearGradientV = $defs.append("linearGradient").attr("id", "linear-gradient-V");
+            linearGradientV.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+            linearGradientV.append("stop").attr("offset", "0%").attr("stop-color", vColor);
+            linearGradientV.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
+            linearGradientV.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
+          
+          let linearGradientE = $defs.append("linearGradient").attr("id", "linear-gradient-E");
+            linearGradientE.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+            linearGradientE.append("stop").attr("offset", "0%").attr("stop-color", eColor);
+            linearGradientE.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
+            linearGradientE.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
 
-          linearGradient
-            .attr("x1", "0%")
-            .attr("y1", "0%")
-            .attr("x2", "0%")
-            .attr("y2", "100%");
-    
-          linearGradient.append("stop")
-            .attr("offset", "0%")
-            .attr("stop-color", mainColor);
+          let linearGradientR = $defs.append("linearGradient").attr("id", "linear-gradient-R");
+            linearGradientR.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+            linearGradientR.append("stop").attr("offset", "0%").attr("stop-color", rColor);
+            linearGradientR.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
+            linearGradientR.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
 
-          linearGradient.append("stop")
-			      .attr("offset", "90%")
-			      .attr("stop-color", "#FEFAF1");
-        
-          linearGradient.append("stop")
-			      .attr("offset", "100%")
-			      .attr("stop-color", "#FEFAF1");
+          let linearGradientP = $defs.append("linearGradient").attr("id", "linear-gradient-P");
+            linearGradientP.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+            linearGradientP.append("stop").attr("offset", "0%").attr("stop-color", pColor);
+            linearGradientP.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
+            linearGradientP.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
+
+          let linearGradientNT = $defs.append("linearGradient").attr("id", "linear-gradient-NT");
+            linearGradientNT.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
+            linearGradientNT.append("stop").attr("offset", "0%").attr("stop-color", ntColor);
+            linearGradientNT.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
+            linearGradientNT.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
+
   
           // create axis
           $axis = $svg.append('g').attr('class', 'g-axis');
@@ -508,12 +555,20 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .selectAll('g')
             .data(fullData)
             .join('g')
-            .attr('class', 'cell')
+            .attr("class", d=> words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"biasCells":
+										words.filter(c=>c.word===d.word)[0].theme==="empowerment"?"empCells":
+										words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"crimeCells":
+										words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"raceCells":
+										words.filter(c=>c.word===d.word)[0].theme==="important people"?"peopleCells": "ntCells")
             .on("mouseover", (event, d) => showTooltip(event, d))
 					  .on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $areas =  $cells.append('path')
-            .attr('fill', "url(#linear-gradient)")
+            .attr('fill', d=>words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"url(#linear-gradient-F)":
+                    words.filter(c=>c.word===d.word)[0].theme==="empowerment"?"url(#linear-gradient-E)":
+                    words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"url(#linear-gradient-V)":
+                    words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"url(#linear-gradient-R)":
+                    words.filter(c=>c.word===d.word)[0].theme==="important people"?"url(#linear-gradient-P)": "url(#linear-gradient-NT)")
             .attr('opacity', 0.5)
             .attr("class", "wordArea")
             .attr("id", d=> 'area'+ d.word)
@@ -521,7 +576,11 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 					  .on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $lines = $cells.append("path")
-            .style("stroke", "url(#linear-gradient)")
+            .style("stroke", d=>words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"url(#linear-gradient-F)":
+                    words.filter(c=>c.word===d.word)[0].theme==="empowerment"?"url(#linear-gradient-E)":
+                    words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"url(#linear-gradient-V)":
+                    words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"url(#linear-gradient-R)":
+                    words.filter(c=>c.word===d.word)[0].theme==="important people"?"url(#linear-gradient-P)": "url(#linear-gradient-NT)")
             .attr('stroke-width', 1)
             .attr('fill', 'none')
             .attr("class", d => "wordLine" + d.theme)
@@ -547,7 +606,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         resize() {
           // defaults to grabbing dimensions from container element
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-          height = ($chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM)*4;
+          height = 22000 - MARGIN_TOP - MARGIN_BOTTOM;
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
             .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
