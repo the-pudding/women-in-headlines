@@ -129,9 +129,9 @@
       <p id="xAxisLabel">More Polarizing →</p>
     </div>
     <details>
-      <summary>{{copy.notes-headline}}</summary>
+      <summary>{{copy.notes-headline-pol}}</summary>
       <div class="inner">
-        {{#each copy.bubble-notes}}
+        {{#each copy.bubble-notes-pol}}
           <p class="bubble-notes">{{{value}}}</p>
         {{/each}}
       </div>
@@ -151,6 +151,14 @@
       <p id="xAxisLabel">← Less Biased</p>
       <p id="xAxisLabel">More Biased →</p>
     </div>
+    <details>
+      <summary>{{copy.notes-headline-bias}}</summary>
+      <div class="inner">
+        {{#each copy.bubble-notes-bias}}
+          <p class="bubble-notes">{{{value}}}</p>
+        {{/each}}
+      </div>
+    </details>
     {{#each copy.bias-outro}}
       <p class="description">{{{value}}}</p>
     {{/each}}

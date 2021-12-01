@@ -67,7 +67,10 @@ const stackedBarScroller = scrollama();
 function setupScroller() {
 	stackedBarScroller
 		.setup({
-		  step: '#stackedChartLegend .step',
+			container: ".scrolly",
+			graphic: ".scrolly figure",
+			text: ".scrolly article",
+		  	step: '#stackedChartLegend .step',
 			offset: 0.7
 		})
 		.onStepEnter(handleStepEnter);
@@ -214,18 +217,15 @@ function spanLeave() {
 
 function resize() { 
 
-	// const figure = d3.select('#stickyStackedChart');
-
-	// figure
-	// 	.style('height', '4000px')
-	// 	.style('top', '0px');
-
 	// 1. update height of step elements
 	const stepHeight = Math.floor(window.innerHeight * 0.75)/2;
 	$step.style('height', stepHeight + 'px');
 
 	// 2. update width/height of graphic element
-	// bodyWidth = d3.select('body').node().offsetWidth;
+	const $graphic = d3.select('.scrolly figure');
+	const bodyWidth = d3.select('body').node().offsetWidth;
+
+	$graphic.style('height', window.innerHeight + 'px');
 
 
 	// //3. tell scrollama to update new element dimensions
