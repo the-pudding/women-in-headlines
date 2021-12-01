@@ -59,7 +59,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // helper functions
     function stripSpaces(string) {
       let stripped = string.trim();
-      stripped = stripped.replace(" ", "");
+      stripped = stripped.replace(/ /g, "");
       stripped = stripped.replace(",", "");
       stripped = stripped.toLowerCase();
       return stripped;
@@ -130,7 +130,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
                 .attr("opacity", "1")
             })
 
-            d3.selectAll(".stackedChartyTicks").style("opacity", "0")
+            //d3.selectAll(".stackedChartyTicks").style("opacity", "0")
     }
 
     function highlightThemes(index, direction, task, theme) {
@@ -142,12 +142,12 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("fill", "#ccc")
           .attr("opacity", "0.5")
 
-      let violenceRects = d3.selectAll(".stackedBars").selectAll(".violence")
-      let stereotypeRects = d3.selectAll(".stackedBars").selectAll(".femalestereotypes")
-      let empowermentRects = d3.selectAll(".stackedBars").selectAll(".empowerment")
-      let peopleRects = d3.selectAll(".stackedBars").selectAll(".peopleandplaces")
-      let raceRects = d3.selectAll(".stackedBars").selectAll(".raceethnicityandidentity")
-      
+      let violenceRects = d3.selectAll(".stackedBars").selectAll(".crimeandviolence_class")
+      let stereotypeRects = d3.selectAll(".stackedBars").selectAll(".femalestereotypes_class")
+      let empowermentRects = d3.selectAll(".stackedBars").selectAll(".empowerment_class")
+      let peopleRects = d3.selectAll(".stackedBars").selectAll(".peopleandplaces_class")
+      let raceRects = d3.selectAll(".stackedBars").selectAll(".raceethnicityandidentity_class")
+
       if (theme === "crimeandviolence") {
         violenceRects
           .attr("fill", "#E75C33")
@@ -223,8 +223,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .data(series)
           .join("g")
           .attr("class", d => `${d.key}_group`)
-          .on("mouseenter", showWord)
-					.on("mouseleave", hideWord)
+          //.on("mouseenter", showWord)
+					//.on("mouseleave", hideWord)
           .selectAll("rect")
           .data(d => d)
          

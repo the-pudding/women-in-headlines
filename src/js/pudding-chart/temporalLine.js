@@ -369,16 +369,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 				return self.indexOf(value) === index;
 			}
 
-      function showTooltip(event, d) {
-        $areas.attr("opacity", 0.25)
-				$lines.attr("opacity", 0.4)
-				d3.selectAll(".wordText").attr("opacity", 0.25)
-
-        d3.select('#area'+ d.word).attr("opacity", 0.85)
-				d3.select('#line'+ d.word).attr("opacity", 1)
-				d3.select('#text'+ d.word).attr("opacity", 1)
-      }
-
       function hideTooltip() {
         $areas.attr("opacity", 0.5)
 				$lines.attr("opacity", 1)

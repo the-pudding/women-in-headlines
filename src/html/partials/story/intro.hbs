@@ -110,10 +110,16 @@
       <h2 class="sectionHeader">{{copy.polarity-headline}}</h2>
     </div>
     <div class="bubbleFilters">
-      <p class="annotationButton">Filter by</p>
-      <div>
-        <select id="countrydropdown" class="dropdownOptions"></select>
-        <select id="pubdropdown" class="dropdownOptions"></select>
+      <div class="left">
+        <p class="annotationButton">Filter by</p>
+        <div>
+          <select id="countrydropdown" class="dropdownOptions"></select>
+          <select id="pubdropdown" class="dropdownOptions"></select>
+        </div>
+      </div>
+      <div class="right">
+        <img inline src='touch.svg'>
+        <p>Hover over the bubbles to see sample headlines.</p>
       </div>
     </div>
   <section class="headline-polarity-section">
@@ -151,40 +157,6 @@
   </section>
 </section>
 
-<!-- 2 TEMPORAL CHART -->
-<section class="temporal-chart-section" id="waveChartSection">
-  <div class="header">
-    <h2 style = "text-align: center" class="sectionHeader">{{copy.wave-headline}}</h2>
-  </div>
-  <div class="buttons">
-    <p class="annotationButton">Filter by country</p>
-    <div class="button-wrapper">
-      <button class="country country-active" value="USA">
-        <img inline src='flags/united-states.svg' class="flag">
-        <p>United States</p>
-      </button>
-      <button class="country" value="South Africa">
-        <img inline src='flags/south-africa.svg' class="flag">
-        <p>South Africa</p>
-      </button>
-      <button class="country" value="UK">
-        <img inline src='flags/united-kingdom.svg' class="flag">
-        <p>United Kingdom</p>
-      </button>
-      <button class="country" value="India">
-        <img inline src='flags/india.svg' class="flag">
-        <p>India</p>
-      </button>
-    </div>
-  </div>
-  <div id = "stickyXaxis" style="text-align: center;">
-    <p>News Events</p>
-  </div>
-  <div id="smChart" class="svg-container3" style="text-align: center;"></div>
-  <!--<div class="fade"></div>-->
-  <!--<button class="see-more"><p>See more words</p></button>-->
-</section>
-
 <!-- CONCLUSION -->
 <section class="conclusion-section">
   <div class="header" id="conclusionSection">
@@ -193,6 +165,35 @@
   {{#each copy.conclusion}}
     <p class="description">{{{value}}}</p>
   {{/each}}
+</section> 
+
+<!-- TEMPORAL CHART -->
+<section class="temporal-chart-section" id="waveChartSection">
+  <div class="header">
+    <h2 style = "text-align: center" class="sectionHeader">{{copy.wave-headline}}</h2>
+  </div>
+  <div class="temporalFilters">
+    <div class="left">
+        <p class="annotationButton">Filter by</p>
+        <div>
+          <select id="countrydropdownTemporal" class="dropdownOptions"></select>
+        </div>
+      </div>
+      <div class="right">
+        <img inline src='touch.svg'>
+        <p>Hover over the circles to see world events.</p>
+      </div>
+    </div>
+  <div id = "stickyXaxis" style="text-align: center;">
+    <p>News Events</p>
+  </div>
+  <div id="smChart" class="svg-container3" style="text-align: center;"></div>
+  <!--<div class="fade"></div>-->
+  <!--<button class="see-more"><p>See more words</p></button>-->
+</section>
+
+<!-- METHODS -->
+<section class="methods-section">
   <hr class="methodSep">
   
   <h5 class="inputTitle">Methods</h4>

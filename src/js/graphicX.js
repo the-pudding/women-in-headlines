@@ -58,6 +58,8 @@ let $countryButtons = d3.selectAll("button.country");
 let $seeMoreButton = d3.selectAll(".see-more");
 let $tempChartDiv = d3.selectAll("#smChart");
 let $fade = d3.selectAll(".fade");
+let $countryDropdownTemporal = d3.select("#countrydropdownTemporal");
+let $stackedSpans = d3.selectAll(".stackedBarTextAnnotation");
 
 /* SCROLLAMA */
 const stackedBarScroller = scrollama();
@@ -133,38 +135,90 @@ function scrollTo(element) {
 	});
 }
 
-function countryButtonChange() {
+function onlyUnique(value, index, self) {
+	return self.indexOf(value) === index;
+}
 
-	$countryButtons.classed("country-active", false);
-	let $currButton = d3.select(this);
-	$currButton.classed("country-active", true);
-	country = $currButton.property("value");
+function populateDropdown(data, div, attribute) {
+const select = d3.select(div);
+
+let unique_countries = d3.map(data, d=>d[attribute]).filter(onlyUnique);
+
+	select.selectAll("option")
+	.data(unique_countries)
+	.join("option")
+		.attr("value", d=>d)
+		.text(d=>d);
+	
+	$countryDropdownTemporal.node().options[3].selected = true;
+}
+
+function changeTemporalDropdown() {
+	const selection = this.value;
+	const country = selection;
+
+	console.log(country)
 
 	d3.select("#smChart svg").remove();
 	d3.select("#stickyXaxis svg").remove();
 
 	temporalData = [tempWords, filter_years, country, temporalVar];
-	setupTemporalLine(temporalData);			
+	setupTemporalLine(temporalData);
 }
 
-function seeMoreChange() {
-	chartOpen = !chartOpen;
+function spanEnter() {
+	let span = d3.select(this).attr("value");
 
-	if (chartOpen) {
-		$seeMoreButton.select("p").text("See fewer words")
-		$tempChartDiv.transition().duration("1000").style("height", `${9500}px`);
-		$fade.style("opacity", 0);
+	d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+	d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+}
 
-	} else {
-		$seeMoreButton.select("p").text("See more words")
-		$tempChartDiv.transition().duration("1000").style("height", `${2500}px`);
-		$fade.style("opacity", 1);
+function spanLeave() {
+	let span = d3.select(this).attr("value");
 
-		scrollTo($tempChartDiv.node());
+	if (span === "wear") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .change_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .force_class`).attr("opacity", "1");
+	}
+
+	if (span === "force") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .change_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .wear_class`).attr("opacity", "1");
+	}
+
+	if (span === "change") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .wear_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .force_class`).attr("opacity", "1");
+	}
+
+	if (span === "rape") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .death_class`).attr("opacity", "1");
+	}
+
+	if (span === "death") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .rape_class`).attr("opacity", "1");
 	}
 }
 
+//scrollTo($tempChartDiv.node());
+
 function resize() { 
+
+	// const figure = d3.select('#stickyStackedChart');
+
+	// figure
+	// 	.style('height', '4000px')
+	// 	.style('top', '0px');
 
 	// 1. update height of step elements
 	const stepHeight = Math.floor(window.innerHeight * 0.75)/2;
@@ -173,24 +227,21 @@ function resize() {
 	// 2. update width/height of graphic element
 	// bodyWidth = d3.select('body').node().offsetWidth;
 
-	// const chartMargin = 32;
-	// const textWidth = $scrollText.node().offsetWidth;
-	// const chartWidth = $beeswarmChart.node().offsetWidth - textWidth - chartMargin;
 
-	// 3. tell scrollama to update new element dimensions
-	//stackedBarScroller.resize();
+	// //3. tell scrollama to update new element dimensions
+	stackedBarScroller.resize();
 
 	const $body = d3.select('body');
 	let previousWidth = 0;
 	const width = $body.node().offsetWidth;
 	if (previousWidth !== width) {
 		previousWidth = width;
-		//chartStackedBar.resize();
+		chartStackedBar.resize();
 		//chartTimeSeriesLine.resize();
 		//chartLollipop.resize();
 		//chartBubbleB.resize();
 		//chartBubbleP.resize();
-		chartTemporalLine.resize();
+		//chartTemporalLine.resize();
 	}
 }
 
@@ -214,17 +265,19 @@ function init() {
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
-		//setupScroller();
-		//setupStackedBar(stackedBarData);
+		setupScroller();
+		setupStackedBar(stackedBarData);
 		//setupTimeSeriesLine(sentComp)
 		//setupLollipop(polComparison);
 		//setupBubbleB(biasBubbleData);
 		//setupBubbleP(polBubbleData);
-		setupTemporalLine(temporalData);
+		//setupTemporalLine(temporalData);
 		resize();
 		
-		$countryButtons.on("click", countryButtonChange)
-		//$seeMoreButton.on("click", seeMoreChange);
+		//populateDropdown(tempWords, "#countrydropdownTemporal", "country");
+		$countryDropdownTemporal.on("change", changeTemporalDropdown);
+		$stackedSpans.on("mouseenter", spanEnter)
+		$stackedSpans.on("mouseleave", spanLeave)
 
 	}).catch(console.error)
 }
