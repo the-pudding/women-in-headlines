@@ -126,7 +126,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
             IDs.forEach(ID => {
               let wordRects = d3.selectAll(`.${ID}_class`)
-                .attr("fill", "#E75C33")
+                .attr("fill", "#282828")
                 .attr("opacity", "1")
             })
 
@@ -136,7 +136,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     function highlightThemes(index, direction, task, theme) {
       $stepSel.classed('is-active', (d, i) => i === index);
 
-      console.log(theme)
       let notThemeRects = d3.selectAll(".stackedBars")
           .selectAll(`rect`)
           .attr("fill", "#ccc")
@@ -259,20 +258,15 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           if (direction==="down") {
             highlightWords(index, direction, task, word)
           } else {
-            console.log(task, direction)
           }  
     
         } else if (task === "drawbars") {
-          console.log(task, direction)
           //revealChart();
         } else if (task === "highlightthemes") {
           highlightThemes(index, direction, task, theme)
         } else if (task === "tooltip") {
-          console.log(task, direction)
         } else if (task === "exploreChart") {
-          console.log(task, direction)
         } else if (task === "themeBarsTransition") {
-          console.log(task, direction)
         }
 
         return Chart;

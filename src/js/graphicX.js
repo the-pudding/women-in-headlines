@@ -160,8 +160,6 @@ function changeTemporalDropdown() {
 	const selection = this.value;
 	const country = selection;
 
-	console.log(country)
-
 	d3.select("#smChart svg").remove();
 	d3.select("#stickyXaxis svg").remove();
 
@@ -211,6 +209,27 @@ function spanLeave() {
 		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
 		d3.selectAll(`.stackedBars .rape_class`).attr("opacity", "1");
 	}
+
+	if (span === "body") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .child_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .marry_class`).attr("opacity", "1");
+	}
+
+	if (span === "child") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .body_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .marry_class`).attr("opacity", "1");
+	}
+
+	if (span === "marry") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .child_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .body_class`).attr("opacity", "1");
+	}
 }
 
 //scrollTo($tempChartDiv.node());
@@ -237,11 +256,11 @@ function resize() {
 	if (previousWidth !== width) {
 		previousWidth = width;
 		chartStackedBar.resize();
-		//chartTimeSeriesLine.resize();
-		//chartLollipop.resize();
-		//chartBubbleB.resize();
-		//chartBubbleP.resize();
-		//chartTemporalLine.resize();
+		chartTimeSeriesLine.resize();
+		chartLollipop.resize();
+		chartBubbleB.resize();
+		chartBubbleP.resize();
+		chartTemporalLine.resize();
 	}
 }
 
@@ -267,14 +286,14 @@ function init() {
 
 		setupScroller();
 		setupStackedBar(stackedBarData);
-		//setupTimeSeriesLine(sentComp)
-		//setupLollipop(polComparison);
-		//setupBubbleB(biasBubbleData);
-		//setupBubbleP(polBubbleData);
-		//setupTemporalLine(temporalData);
+		setupTimeSeriesLine(sentComp)
+		setupLollipop(polComparison);
+		setupBubbleB(biasBubbleData);
+		setupBubbleP(polBubbleData);
+		setupTemporalLine(temporalData);
 		resize();
 		
-		//populateDropdown(tempWords, "#countrydropdownTemporal", "country");
+		populateDropdown(tempWords, "#countrydropdownTemporal", "country");
 		$countryDropdownTemporal.on("change", changeTemporalDropdown);
 		$stackedSpans.on("mouseenter", spanEnter)
 		$stackedSpans.on("mouseleave", spanLeave)

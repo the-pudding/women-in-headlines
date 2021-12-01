@@ -181,15 +181,24 @@
     <h2 style = "text-align: center" class="sectionHeader">{{copy.wave-headline}}</h2>
   </div>
   <div class="temporalFilters">
-    <div class="left">
-        <p class="annotationButton">Filter by</p>
-        <div>
-          <select id="countrydropdownTemporal" class="dropdownOptions"></select>
+    <div class="temporal-wrapper">
+      <div class="left">
+          <p class="annotationButton">Filter by</p>
+          <div>
+            <select id="countrydropdownTemporal" class="dropdownOptions"></select>
+          </div>
+        </div>
+        <div class="right">
+          <img inline src='touch.svg'>
+          <p>Hover over the circles to see world events.</p>
         </div>
       </div>
-      <div class="right">
-        <img inline src='touch.svg'>
-        <p>Hover over the circles to see world events.</p>
+      <div class="categories">
+        <button class="btn-violence">Crime &#38; Violence</button>
+        <button class="btn-empowerment">Empowerment</button>
+        <button class="btn-stereotypes">Gender Stereotypes</button>
+        <button class="btn-people">People &#38; Places</button>
+        <button class="btn-race">Race, Ethnicity, &#38; Identity</button>
       </div>
     </div>
   <div id = "stickyXaxis" style="text-align: center;">
