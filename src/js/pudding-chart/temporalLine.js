@@ -541,6 +541,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
           $vis = $svg.append('g').attr('class', 'g-vis');
 
+          console.log(fullData)
+
           $cells = $vis.append('g')
             .selectAll('g')
             .data(fullData)

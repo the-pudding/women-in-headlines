@@ -248,18 +248,18 @@ function resize() {
 
 
 	// //3. tell scrollama to update new element dimensions
-	stackedBarScroller.resize();
+	//stackedBarScroller.resize();
 
 	const $body = d3.select('body');
 	let previousWidth = 0;
 	const width = $body.node().offsetWidth;
 	if (previousWidth !== width) {
 		previousWidth = width;
-		chartStackedBar.resize();
-		chartTimeSeriesLine.resize();
-		chartLollipop.resize();
-		chartBubbleB.resize();
-		chartBubbleP.resize();
+		//chartStackedBar.resize();
+		//chartTimeSeriesLine.resize();
+		//chartLollipop.resize();
+		//chartBubbleB.resize();
+		//chartBubbleP.resize();
 		chartTemporalLine.resize();
 	}
 }
@@ -284,17 +284,17 @@ function init() {
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
-		setupScroller();
-		setupStackedBar(stackedBarData);
-		setupTimeSeriesLine(sentComp)
-		setupLollipop(polComparison);
-		setupBubbleB(biasBubbleData);
-		setupBubbleP(polBubbleData);
+		//setupScroller();
+		//setupStackedBar(stackedBarData);
+		//setupTimeSeriesLine(sentComp)
+		//setupLollipop(polComparison);
+		//setupBubbleB(biasBubbleData);
+		//setupBubbleP(polBubbleData);
 		setupTemporalLine(temporalData);
 		resize();
 		
-		populateDropdown(tempWords, "#countrydropdownTemporal", "country");
-		$countryDropdownTemporal.on("change", changeTemporalDropdown);
+		//populateDropdown(tempWords, "#countrydropdownTemporal", "country");
+		//$countryDropdownTemporal.on("change", changeTemporalDropdown);
 		$stackedSpans.on("mouseenter", spanEnter)
 		$stackedSpans.on("mouseleave", spanLeave)
 
