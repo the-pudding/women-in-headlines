@@ -2866,7 +2866,7 @@ function init() {
 					.attr("y", ttipHeight*0.4)
 					.attr("x", 0)
 					.attr("width", ttipWidth*1.8)
- 					 .attr("height", ttipHeight*0.8)
+ 					 .attr("height", ttipHeight)
 					// .attr("font-weight", "bold")
 					.attr("font-size", "14px")
 					.style("text-transform", "uppercase")
