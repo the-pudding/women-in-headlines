@@ -88,13 +88,13 @@ function init() {
 			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("./assets/data/word_themes.csv", d3.autoType),
 	
-			d3.csv("./assets/data/country_freq_pivoted_all_101221.csv", d3.autoType),
+			d3.csv("./assets/data/country_freq_pivoted_all_101221.csv", d3.autoType), //101221
 			// d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_all_101221.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_all_101221.csv", d3.autoType), //101221
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
-			d3.csv("./assets/data/word_themes_rank_101221.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_rank_101221.csv", d3.autoType), //101221
+			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType), //101221
 			d3.csv("./assets/data/sentiment_comparison.csv", d3.autoType)
 
 		  ])
@@ -143,7 +143,7 @@ function init() {
 				var country = "all countries"
 				var variable = "freq_prop_headlines" //freq_prop_headlines // frequency
 				console.log("temp", tempWords)
-				renderTempChart(tempWords, filter_years, country, variable)
+				renderTempChart(tempWords, filter_years, country, variable, headlines)
 				// update chart when country is changed
 				d3.selectAll("button.country").on("click", function() {
 					// Remove previous chart
@@ -151,7 +151,7 @@ function init() {
 					d3.select(".stickyAxis").remove()
 					let country = d3.select(this).property("value")
 					console.log(country)
-					renderTempChart(tempWords, filter_years, country, variable)
+					renderTempChart(tempWords, filter_years, country, variable, headlines)
 				})
 				
 				// 3) bubble charts
@@ -1819,7 +1819,7 @@ function init() {
 	
 			// TEMPORAL CHART
 			// temporal multiples chart functions
-			function renderTempChart(dataset, filter, country, variable) {
+			function renderTempChart(dataset, filter, country, variable, headlines) {
 
 				// remove legend
 				d3.selectAll(".axisThemeLegend").remove()
@@ -1837,7 +1837,7 @@ function init() {
 				var pColor = "#5787f2"
 				var ntColor = "lightgrey"
 
-				var removeWords = ["axe", "outrage", 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap', 
+				var removeWords = ["trans", "axe", "outrage", 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap', 
 				'rob', 'cop', 'fatal', 'gang', 'die', 'court', 'allege', 
 				'fight', 'violent', 'steal', 'gun', 'bully', 'judge', 'murderer',
 				 'risk', 'funeral', 'law', 'threat', 'plead', 'killing', 'escape',
@@ -2408,6 +2408,15 @@ function init() {
 					.attr("id", d=> 'area'+ d.word)
 					.on("mouseover", (event, d) => showTooltip(event, d))
 					.on("mouseleave", (event, d) => hideTooltip(event, d))
+					.on("mouseenter", (event, d) => {
+						showTooltipHeadlineMatch([event.clientX, event.clientY], headlines, d.word)
+					})
+					.on("mousemove", (event, d) => {
+						showTooltipHeadlineMatch([event.clientX, event.clientY], headlines, d.word)
+					})
+					.on("mouseleave.hl", (event, d) => {
+						d3.select("#tooltipHeadline").style("display", "none")
+					})
 					// .attr('fill', 'red');
 	
 				cells.append('path')
@@ -2757,6 +2766,131 @@ function init() {
 				d3.selectAll(".wordLine").attr("opacity", 1)
 				d3.selectAll(".wordText").attr("opacity", 1)
 				d3.selectAll(".incText").remove()
+			}
+
+			function showTooltipHeadlineMatch(coords, data, word) {
+				// set position of tooltip
+				let x = coords[0]-120;
+				let y = coords[1]-200;
+	
+				// console.log(word)
+				// console.log(data)
+				// remove previous text: 
+				// tooltipHeadline.selectAll("#tooltipText").remove()
+				tooltipHeadline.selectAll(".deets").remove()
+				tooltipHeadline.selectAll(".headline").remove()
+
+				// create box
+				tooltipHeadline
+					.style("display", "block")
+					.style("visibility", "visible")
+					.style("top", y + "px")
+					.style("left", x + "px")
+					// .attr("class", ".tooltipTL")
+					// .style("border", "solid 1px #282828")
+	
+				// remove hoverGuide
+				// d3.select("#hoverGuide").remove()
+				// d3.select("#hoverGuideLine").remove()
+	
+				// filter data for any headline that matches the word
+				data = data.filter(d=>d.headline_no_site.match(word))
+
+				// data = (c.bias>0.5)&&(data.filter(d=>(d.site === text1)&(d.bias > 0.5)).length>10)?
+				// 		 data.filter(d=>(d.site === text1)&(d.bias > 0.5)):
+				// 	   (c.bias<0.5)&&(data.filter(d=>(d.site === text1)&(d.bias < 0.5)).length>10)?
+				// 		 data.filter(d=>(d.site === text1)&(d.bias < 0.5)):
+				// 		 data.filter(d=>(d.site === text1))
+	
+				// console.log(data)
+	
+				// find a random headline
+				let randHeadline = Math.floor(Math.random() * data.length)
+				// console.log(d3.timeFormat("%d/%m/%Y")(new Date(data[randHeadline].time)))
+				// console.log(data[randHeadline].subtitle)
+	
+				// tooltip dimensions
+				let ttipMargin = { left: 40, bottom: 110, right: 20, top: 20 }
+				let ttipWidth = width5/7 - ttipMargin.left - ttipMargin.right;
+				let ttipHeight =height5/2.5 - ttipMargin.top - ttipMargin.bottom;
+		
+				// below we define the tooltip appearance and contents
+				let hlDate = tooltipHeadline.append("text")
+					// .attr("id", "tooltipText")
+					.attr("class", "deets")
+					.attr("y", ttipHeight/4)
+					.attr("x", 0)
+					// .attr("font-size", "11px")
+					.attr("font-weight", "900")
+					// .style("text-transform", "uppercase")
+					.attr("fill", "#E75C33")
+					.html("<span class='datettip'>"+d3.timeFormat("%b %Y")(new Date(data[randHeadline].time)) + " | " + data[randHeadline].site+"</span>")
+					// .html('"' + data[randHeadline].subtitle + '..."')
+					.call(wrap, 300)
+
+				
+				// let headlineWords = data[randHeadline].headline_no_site.split(" ")
+				let headlineWords = data[randHeadline].headline_no_site.split(" ").map(d=>d.match(word)? `<b>${d}</b>`:d)
+				// headlineWords = html`headlineWords.join(" ")`
+
+				// console.log(headlineWords, headlineWords.join(" "))
+
+				// let hlContent = tooltipHeadline.append("svg")//.attr("height", ttipHeight).attr("width", ttipWidth)
+				// 				.append("text")
+
+				// let hlWords = hlContent.selectAll("tspan")
+				// 	.data(headlineWords)
+				// 	.enter()
+				// 	.append("tspan")
+				// 	// .attr("id", "tooltipText")
+					
+				// let hlText = hlWords
+				// 	.attr("class", "headline")
+				// 	.attr("y", ttipHeight/1.2)
+				// 	.attr("x", 0)
+				// 	// .attr("x", (d, i)=>headlineWords[i-1])
+				// 	// .attr("font-weight", "bold")
+				// 	// .attr("font-size", "14px")
+				// 	.style("text-transform", "uppercase")
+				// 	// // .attr("fill", party==="red" ? '#DD1F26':'#0076C0')
+				// 	.attr("fill", "#282828")
+				// 	.html(function (d) { return d + ' '; })
+				// 	// .html(d=>`<span>${d}</span>`)
+				// 	// .html("<b>" + '"' + data[randHeadline].headline_no_site + '"')
+				// 	// .call(wrap, 300)
+
+				tooltipHeadline.append("foreignObject")
+					// .attr("id", "tooltipText")
+					.attr("class", "headline")
+
+					.attr("y", ttipHeight*0.4)
+					.attr("x", 0)
+					.attr("width", ttipWidth*1.8)
+ 					 .attr("height", ttipHeight*0.8)
+					// .attr("font-weight", "bold")
+					.attr("font-size", "14px")
+					.style("text-transform", "uppercase")
+					// .attr("fill", party==="red" ? '#DD1F26':'#0076C0')
+					.attr("fill", "#282828")
+					.html(`<div>${headlineWords.join(" ")}</div>`)
+					// .call(wrap, 300)
+	
+				// tooltipHeadline.append("text")
+				// 	// .attr("id", "tooltipText")
+				// 	.attr("class", "headline")
+
+				// 	.attr("y", ttipHeight/1.2)
+				// 	.attr("x", 0)
+				// 	// .attr("font-weight", "bold")
+				// 	.attr("font-size", "14px")
+				// 	.style("text-transform", "uppercase")
+				// 	// .attr("fill", party==="red" ? '#DD1F26':'#0076C0')
+				// 	.attr("fill", "#282828")
+				// 	.html("<b>" + '"' + data[randHeadline].headline_no_site + '"')
+				// 	.call(wrap, 300)
+
+			//    console.log(tooltipHeadline.selectAll("text.headline").style("font-weight", d=>console.log(d)))//.match(word)?"900":"300")
+	
 			}
 	
 			// BUBBLE CHART
@@ -4061,6 +4195,17 @@ function init() {
 						}
 					}
 				});
+			}
+
+			function getRandomSubarray(arr, size) {
+				var shuffled = arr.slice(0), i = arr.length, temp, index;
+				while (i--) {
+					index = Math.floor((i + 1) * Math.random());
+					temp = shuffled[index];
+					shuffled[index] = shuffled[i];
+					shuffled[i] = temp;
+				}
+				return shuffled.slice(0, size);
 			}
 }
 

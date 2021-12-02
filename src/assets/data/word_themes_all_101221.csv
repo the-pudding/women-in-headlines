@@ -199,7 +199,7 @@
 4028,district,No theme
 4048,divorce,female stereotypes
 4066,doctor,empowerment
-4090,domestic,female stereotypes
+4090,domestic,crime and violence
 4094,dominate,empowerment
 4103,donald,people and places
 4104,donate,No theme
@@ -258,7 +258,7 @@
 4934,feed,No theme
 4937,feel,female stereotypes
 4957,feminism,empowerment
-4958,feminist,female stereotypes
+4958,feminist,empowerment
 5011,field,No theme
 5021,fight,crime and violence
 5023,fighter,empowerment
@@ -621,7 +621,7 @@
 12666,service,No theme
 12689,sex,female stereotypes
 12690,sexism,female stereotypes
-12691,sexist,female stereotypes
+12691,sexist,No theme
 12694,sexual,female stereotypes
 12699,sexually,female stereotypes
 12700,sexy,female stereotypes
@@ -741,7 +741,7 @@
 14641,trip,No theme
 14643,triple,No theme
 14656,troll,No theme
-14678,true,No theme
+14678,TRUE,No theme
 14683,truth,No theme
 14746,tweet,No theme
 14750,twice,No theme
