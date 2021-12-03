@@ -109,6 +109,9 @@
   <div class="header">
       <h2 class="sectionHeader">{{copy.polarity-headline}}</h2>
     </div>
+    {{#each copy.polarity-outro}}
+      <p class="description">{{{value}}}</p>
+    {{/each}}
     <div class="bubbleFilters">
       <div class="left">
         <p class="annotationButton">Filter by</p>
@@ -116,10 +119,6 @@
           <select id="countrydropdown" class="dropdownOptions"></select>
           <select id="pubdropdown" class="dropdownOptions"></select>
         </div>
-      </div>
-      <div class="right">
-        <img inline src='touch.svg'>
-        <p>Hover over the bubbles to see sample headlines.</p>
       </div>
     </div>
   <section class="headline-polarity-section">
@@ -136,9 +135,6 @@
         {{/each}}
       </div>
     </details>
-    {{#each copy.polarity-outro}}
-      <p class="description">{{{value}}}</p>
-    {{/each}}
   </section>
 
   <!-- HEADLINE BIAS SECTION -->
@@ -146,6 +142,9 @@
     <div class="header" id="biasSection">
       <h2 class="sectionHeader">{{copy.bias-headline}}</h2>
     </div>
+    {{#each copy.bias-outro}}
+      <p class="description">{{{value}}}</p>
+    {{/each}}
     <div id="chartB" class="svg-container" style="text-align: center;"></div>
     <div class="chartLabels">
       <p id="xAxisLabel">← Less Biased</p>
@@ -159,9 +158,6 @@
         {{/each}}
       </div>
     </details>
-    {{#each copy.bias-outro}}
-      <p class="description">{{{value}}}</p>
-    {{/each}}
   </section>
 </section>
 
@@ -189,15 +185,13 @@
           </div>
         </div>
         <div class="right">
-          <img inline src='touch.svg'>
-          <p>Hover over the circles to see world events.</p>
+          <div class="categories">
+            <button class="btn-theme active-btn-violence" id="btn-violence">Crime &#38; Violence</button>
+            <button class="btn-theme" id="btn-stereotypes">Stereotypes</button>
+            <button class="btn-theme" id="btn-empowerment">Empowerment</button>
+            <button class="btn-theme" id="btn-race">Identity</button>
+          </div>
         </div>
-      </div>
-      <div class="categories">
-        <button class="btn-theme active-btn-violence" id="btn-violence">Crime &#38; Violence</button>
-        <button class="btn-theme" id="btn-stereotypes">Gender Stereotypes</button>
-        <button class="btn-theme" id="btn-empowerment">Empowerment</button>
-        <button class="btn-theme" id="btn-race">Race, Ethnicity, &#38; Identity</button>
       </div>
     </div>
   <div id = "stickyXaxis" style="text-align: center;">

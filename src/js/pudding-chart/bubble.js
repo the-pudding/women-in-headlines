@@ -246,6 +246,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
           {level: "1B Monthly Viewers", radius: radius(1000000000), y: height+75, x: width/1.85, anchor:"middle", xtext: width/1.85, ytext: height+width/6.5,id: ""}]
           
           $legend.attr('transform', `translate(-${width/2 - MARGIN_LEFT/2 - maxR/2}, -${height})`);
+          //$legend.attr('transform', `translate(0,0)`)
 
           $legendCircle
             .selectAll("circle")

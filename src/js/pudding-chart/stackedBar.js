@@ -68,8 +68,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // scales
     let x = null;
     let y = null;
-    let xThemes = null;
-    let yThemes = null;
 
     // helper functions
     function stripSpaces(string) {
@@ -205,15 +203,36 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     }
 
     function renderThemeBars(data, dataFreq, themes, x, y) {
+      x.domain(["crime and violence","female stereotypes", "empowerment", "people and places", "race, ethnicity and identity"]);
+      y.domain([d3.max(stackedData, d => d3.max(d, d => d[1])), 0]);
+
+      $xAxis.call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
+        .call(g => g.selectAll(".domain").remove())
+        //.call(g => g.selectAll(".tick text").remove());
+      
+      $xAxis.selectAll(".tick")
+      //   // .append("text")
+      //   // .text(d=>d==="female stereotypes"?"gendered language":d)
+      //   // .attr("x", 0)             
+      //   //.attr("y", 0)
+        .attr("class", "stackedChartTicks")
+      //   //.attr("transform", `translate(0,${height-MARGIN_TOP-MARGIN_BOTTOM})`)
+        //.call(wrap, x.bandwidth())
+      
+      
+      $yAxis.call(d3.axisRight(y).tickSizeOuter(0).tickSizeInner(0))
+        .call(g => g.selectAll(".domain").remove())
+        .call(g => g.selectAll(".tick").remove());
+
       $rectThemes 
         .transition().duration("500")
         .ease(d3.easeLinear)
         .delay((d, i) => { return i * 10; })
-        .attr("x", d=> xThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme))
-        .attr("y", d => yThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
-        .attr("height", d => yThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
-                    yThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
-        .attr("width", xThemes.bandwidth()-(themePad/3))
+        .attr("x", d=> x(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme))
+        .attr("y", d => y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+        .attr("height", d => y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
+                    y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+        .attr("width", x.bandwidth()-(themePad/3))
         .attr("transform", `translate(0,${height-MARGIN_TOP})`)
       
     }
@@ -276,20 +295,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("stroke-width", "0.2px");
         
         // themes chart
-        $visThemes = $svg.append('g').attr('class', 'g-visthemes');
-        $axisThemes = $svg.append('g').attr('class', 'g-axisthemes');
-
-        xThemes = d3.scaleBand()
-          .domain(["crime and violence","female stereotypes", "empowerment", "people and places", "race, ethnicity and identity"])
-          .padding(0.1);
-      
-        yThemes = d3.scaleLinear()
-          .domain([d3.max(stackedData, d => d3.max(d, d => d[1])), 0])
-
-        $xAxisGroupThemes = $axisThemes.append('g').attr('class', 'x axis'); 
-        $yAxisGroupThemes = $axisThemes.append('g').attr('class', 'y axis');
-        $xAxisThemes = $xAxisGroupThemes.append("g");
-
         $rectThemes = $vis.selectAll("rect")
           .filter(d=>(d.key.theme!=="No theme")&&(d.data.country==="All countries"))
         
@@ -426,18 +431,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         
         // $rectLabels 
         //   .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
-        
-        // theme chart
-        xThemes.range([MARGIN_LEFT, width + MARGIN_RIGHT])
-        yThemes.rangeRound([MARGIN_TOP, height - MARGIN_BOTTOM])
-
-        $xAxisThemes = g => g
-          .call(d3.axisBottom(xThemes).tickSizeOuter(0).tickSizeInner(0))
-          .call(g => g.selectAll(".domain").remove())
-        
-        $yAxisThemes = g => g
-          .call(d3.axisRight(yThemes).tickSizeOuter(0).tickSizeInner(0))
-          .call(g => g.selectAll(".domain").remove())
           
         return Chart;
       },

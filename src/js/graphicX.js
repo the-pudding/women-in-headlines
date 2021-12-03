@@ -259,6 +259,12 @@ function runEnterview() {
 			$tempButtons.classed(`active-btn-race`, false);
 			$tempButtons.classed(`active-btn-stereotypes`, false);
 			d3.selectAll("#btn-stereotypes").classed(`active-btn-stereotypes`, true);
+		}, exit: () => {
+			$tempButtons.classed(`active-btn-violence`, false);
+			$tempButtons.classed(`active-btn-empowerment`, false);
+			$tempButtons.classed(`active-btn-race`, false);
+			$tempButtons.classed(`active-btn-stereotypes`, false);
+			d3.selectAll("#btn-violence").classed(`active-btn-violence`, true);
 		}
 	});
 
@@ -271,6 +277,12 @@ function runEnterview() {
 			$tempButtons.classed(`active-btn-race`, false);
 			$tempButtons.classed(`active-btn-stereotypes`, false);
 			d3.selectAll("#btn-empowerment").classed(`active-btn-empowerment`, true);
+		}, exit: () => {
+			$tempButtons.classed(`active-btn-violence`, false);
+			$tempButtons.classed(`active-btn-empowerment`, false);
+			$tempButtons.classed(`active-btn-race`, false);
+			$tempButtons.classed(`active-btn-stereotypes`, false);
+			d3.selectAll("#btn-stereotypes").classed(`active-btn-stereotypes`, true);
 		}
 	});
 
@@ -283,6 +295,12 @@ function runEnterview() {
 			$tempButtons.classed(`active-btn-race`, false);
 			$tempButtons.classed(`active-btn-stereotypes`, false);
 			d3.selectAll("#btn-race").classed(`active-btn-race`, true);
+		}, exit: () => {
+			$tempButtons.classed(`active-btn-violence`, false);
+			$tempButtons.classed(`active-btn-empowerment`, false);
+			$tempButtons.classed(`active-btn-race`, false);
+			$tempButtons.classed(`active-btn-stereotypes`, false);
+			d3.selectAll("#btn-empowerment").classed(`active-btn-empowerment`, true);
 		}
 	});
 }

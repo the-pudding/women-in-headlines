@@ -60,7 +60,7 @@ body {
     font-size: 64px;
     font-family: $barlow;
     color: $off-black;
-    font-weight: 900;
+    font-weight: 600;
     background-color: $green;
     border 1px solid $off-black;
     transform: skew(-10deg, 0deg);
@@ -120,7 +120,7 @@ body {
     text-transform: uppercase;
     font-size: 16px;
     font-family: $barlow;
-    font-weight: 900
+    font-weight: 600;
 }
 
 .tooltipTL:nth-child(2), .tooltipTL:nth-child(4) {
@@ -170,7 +170,7 @@ body {
     font-family: 'Barlow Condensed';
     color: #e75c33;
     font-size: 14px;
-    font-weight: 900;
+    font-weight: 600;
     margin: 0;
     text-transform: uppercase;
 }
@@ -274,7 +274,7 @@ h1 {
 .creditLink{
     color: $off-black;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .credits {
@@ -366,7 +366,7 @@ ul {
   font-family: $barlow;
   color: $red;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 600;
   margin: 0;
   text-transform: uppercase
 }
@@ -401,7 +401,7 @@ ul {
   max-width: 200px;
   font-family: $barlow;
   font-size: 14px;
-  font-weight: 700
+  font-weight: 600;
   }
 
 #stackedLegendArrow {
@@ -514,13 +514,13 @@ button:hover {
 select::selection{
     background-color: #F7DC5B;
     color: $off-black;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 .country-active {
     background-color: #F7DC5B;
     color: $off-black;
-    font-weight: 700;
+    font-weight: 600;
     pointer-events: none;
 }
 
@@ -645,10 +645,28 @@ select::selection{
   font-weight: 800;
 }
 
+.hover-icon {
+  font-weight: 600;
+  font-family: $tiempos;
+}
+
+.hover-icon::before {
+  content: '';
+  background-image: url("../assets/images/touch.png");
+  background-size: 24px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+  top: 0.3rem;
+  left: 0rem;
+	margin-right: 0.25rem;
+}
+
 /* sticky axis for wavy chart */
 #stickyXaxis {
   position: sticky;
-  top: 0;
+  top: 90px;
   background-color: $tan;
   fill: $off-black;
   color: $off-black;
@@ -661,13 +679,12 @@ select::selection{
 }
 
 #stickyXaxis p {
-  position: relative;
   font-family: $barlow;
   font-size: 14px;
   font-weight: 600;
   margin: 0;
   position: absolute;
-  top: 3.75rem;
+  top: 3.85rem;
   left: 12%;
 }
 
@@ -756,7 +773,7 @@ span{
 details {
   max-width: 38rem;
   margin: 0 auto 2rem auto;
-  padding: 0 1rem;
+  padding: 0rem 1rem 0rem 2rem;
 }
 
 summary {
@@ -927,38 +944,45 @@ summary {
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
   border-bottom: 1px solid $off-black;
-  padding: 0 3rem;
+  padding: 1rem;
   margin-top: -0.5rem;
+}
+
+.bubbleFilters {
+  justify-content: center;
 }
 
 .temporalFilters {
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .temporal-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 
 .categories {
   display: flex;
   flex-direction: row;
-  margin: 0 0 1rem 0;
+  margin: 0;
+  flex-wrap: wrap;
+  max-width: 18rem;
 }
 
 .categories button {
   font-family: $barlow;
   font-size: 16px;
   font-weight: 600;
-  width: 10rem;
+  width: 8rem;
   padding: 0.25rem;
-  margin: 1rem 0.25rem;
+  margin: 0.25rem;
   border-radius: 0.25rem;
 }
 
@@ -1020,6 +1044,11 @@ summary {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+}
+
+.left {
+  margin-right: 2rem;
 }
 
 .right {
@@ -1030,7 +1059,8 @@ summary {
   font-family: $barlow;
   font-size: 14px;
   color: $off-black;
-  margin: 0;
+  margin: 0 0.25rem 0 0;
+  text-align: right;
 }
 
 .scoreChartBar {
@@ -1152,7 +1182,7 @@ summary {
 .lollipopTextbutton:hover {
   background-color: $green;
   color: $tan;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 #inTextViolence:hover, #inTextViolence.hovered {
@@ -1246,43 +1276,14 @@ summary {
   cursor: pointer;
 }
 
-// .stackedBars {
-//   transform: translateX(10px)
-// }
-
 .stackedBars g {
   cursor: pointer
 }
-
-// .stackedChartCountries {
-//   margin-bottom:20px;
-//   margin-top:30px;
-//   transform: translate(10px, 80px);
-//   max-width: 13px;
-//   text-align: center;
-//   fill: $tan;
-//   z-index: 10    
-// }
-
-// .stackedChartTicks {
-//   font-weight:600;
-//   font-size:14px;
-//   font-family: $barlow;
-//   text-transform: uppercase;
-//   fill: $off-black;
-// }
 
 .stackedChartTicks-light {
   font-weight: 500;
   text-transform: none;
 }
-
-// .stackedBarSection {
-//   display:flex;
-//   flex-direction: row;
-//   margin: 0 auto;
-//   max-width: $double-width;
-// }
 
 /* STACKED CHART SCROLLY*/
 #scrolly-side{
@@ -1337,18 +1338,6 @@ article {
   margin-bottom: 0;
   min-height:10vh
 }
-.step.is-active p {
-  // background-color: #ffe5a7;
-}
-
-
-/* article > p {
-  margin: 0;
-  padding: 1rem;
-  text-align: center;
-  font-weight: 400;
-  color: black;
-}	 */
 
 #stickyStackedChart {
   height: 4000px;
@@ -1359,7 +1348,7 @@ article {
 .stackedBarAnnotation {
   fill: $red;
   font-family: $national;
-  font-weight: 900;
+  font-weight: 600;
   font-size: 12px;
   text-anchor:end;
   text-transform: uppercase;
@@ -1443,7 +1432,7 @@ article {
 
 .word-legend, .freq-legend {
   font-family: $tiempos;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .word-legend::after {
@@ -1477,7 +1466,7 @@ article {
 .stackedChartCountries {
   margin-bottom:20px;
   margin-top:30px;
-  font-weight: 700;
+  font-weight: 600;
   font-family: $barlow;
   transform: translate(10px, 80px);
   max-width: 13px;
@@ -1488,48 +1477,33 @@ article {
 }
 
 .stackedChartTicks {
-  font-weight:700;
+  font-weight:600;
   font-size:13px;
   font-family: $barlow;
-  // font-family: Arial, Helvetica, sans-serif;
-  /* font-style: bold; */
   text-transform: uppercase;
   fill: #282828;
 }
 
 .themesChartTicks {
-  font-weight:900px;
+  font-weight:600px;
   font-size:12px;
   font-family: Arial, Helvetica, sans-serif;
-  /* font-style: bold; */
   text-transform: uppercase;
   fill: #282828;
 }
 
-// .stackedChartyTicks {
-//   font-weight:900px;
-//   font-size:15px;
-//   font-family: Arial, Helvetica, sans-serif;
-//   /* font-style: bold; */
-//   text-transform: uppercase;
-//   fill: #282828;
-// }
-
 .stackedChartyTicks, .lineChartyAxis {
-  font-weight:700;
+  font-weight:600;
   font-size:13px;
   font-family: $barlow;
-  // font-family: Arial, Helvetica, sans-serif;
-  /* font-style: bold; */
   text-transform: uppercase;
   fill: #282828;
 }
 
 .themesChartyTicks {
-  font-weight:900px;
+  font-weight:600;
   font-size:15px;
   font-family: Arial, Helvetica, sans-serif;
-  /* font-style: bold; */
   text-transform: uppercase;
   fill: #282828;
 }
@@ -1626,7 +1600,7 @@ article {
 .women-hed {
   color: $green;
   font-family: $barlow;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   text-align: center;
   max-width: 6rem;
@@ -1688,10 +1662,6 @@ article {
   padding: 0;
   font-family: $barlow;
   font-size: 18px;
-}
-
-.event-circle {
-  fill: $gray-light;
 }
 
 /* Input styling */
@@ -1875,10 +1845,6 @@ label
     flex-direction: column;  
     justify-content: center;
   }
-
-  .right {
-    margin-bottom: 1rem;  
-  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -1920,5 +1886,23 @@ label
   .smDot {
     width: 0.5rem;
     height: 0.5rem;
+  }
+
+  .temporal-wrapper {
+    flex-direction: column;
+  }
+
+  .categories {
+    max-width: 20rem;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+
+  .dropdownOptions {
+    margin: 0rem 0.25rem;
+  }
+
+  #stickyXaxis {
+    top: 140px;
   }
 }
