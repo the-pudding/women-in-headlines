@@ -18,6 +18,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let $vis = null;
       let $row = null;
       let $col = null;
+      let $themeGroups = null;
       let $cells = null;
       let $lines = null;
       let $areas = null;
@@ -57,6 +58,33 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
       words = customSort({data:words, sortBy, sortField: 'theme'})
 
+      function peakSort(data) {
+        const theme0 = d3.rollups(
+					data.filter(d=>d.theme===sortBy[0]).sort(
+					  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)), v => v[0].year, d => d.word).sort(
+						(a, b)=>d3.ascending(a[1], b[1])).map(d=>d[0])
+					
+					const theme1 = d3.rollups(
+					data.filter(d=>d.theme===sortBy[1]).sort(
+					  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)), v => v[0].year, d => d.word).sort(
+						(a, b)=>d3.ascending(a[1], b[1])).map(d=>d[0])
+					
+					const theme2 = d3.rollups(
+					data.filter(d=>d.theme===sortBy[2]).sort(
+					  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)), v => v[0].year, d => d.word).sort(
+						(a, b)=>d3.ascending(a[1], b[1])).map(d=>d[0])
+					
+					const theme3 = d3.rollups(
+					data.filter(d=>d.theme===sortBy[3]).sort(
+					  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)), v => v[0].year, d => d.word).sort(
+						(a, b)=>d3.ascending(a[1], b[1])).map(d=>d[0])
+          
+          const sortedWordList = theme0.concat(theme1, theme2, theme3)
+          return sortedWordList
+      }
+
+      let peakSortedWordList = peakSort(words);
+
       let numUniqueWords = d3.map(words, d=>d.word).filter(onlyUnique).length;
 
       // plot structure
@@ -79,12 +107,13 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         d => d.word
       )
 
-      let fullData = d3.zip(Array.from(freqByWord), grid).map(
+      let fullData = d3.zip(
+        customSort({data:Array.from(freqByWord), sortBy: peakSortedWordList, sortField:"0"}), grid).map(
         ([[word, rates], { row, col }]) => ({
-            word,
-            rates,
-            row,
-            col,
+        word,
+        rates,
+        row,
+        col,
         })
       )
 
@@ -418,31 +447,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         $tooltip.classed("is-visible", false)
       }
 
-      function calcScale() {
-        wordToScaleAndArea = Object.fromEntries(
-            fullData.map(d => {
-            maxRate = d3.max(d.rates, d => d.frequency);
-            y = d3.scaleLinear()
-                .domain([0, maxRate])
-                .range([$row.bandwidth(), 0]).nice();
-            
-            curve = d3.curveMonotoneX // d3.curveBasis
-            area = d3.area()
-                .x(d => x(d.date))
-                .y1(d => y(d.frequency))
-                .y0(d => y(0)).curve(d3.curveMonotoneX);
-
-            
-            line = d3.line()
-                .x(d => x(d.date))
-                .y(d => y(d.frequency)).curve(d3.curveMonotoneX);
-
-            
-            return [d.word, {y, area, line}];
-            })
-        )
-      }
-
       function dodge(data, {radius = 1, x = d => d} = {}) {
         const radius2 = radius ** 2;
         const circles = data.map((d, i) => ({x: +x(d, i, data), data: d})).sort((a, b) => a.x - b.x);
@@ -541,19 +545,28 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
           $vis = $svg.append('g').attr('class', 'g-vis');
 
-          console.log(fullData)
+          $themeGroups = $vis.append('g')
+            .selectAll('g')
+            .data(sortBy)
+            .join('g')
+            .attr("class", d=> d==="female stereotypes"?"biasCells":
+                      d==="empowerment"?"empCells":
+                      d==="crime and violence"?"crimeCells":
+                      d==="race, ethnicity and identity"?"raceCells":
+                      d==="important people"?"peopleCells": "ntCells")
 
-          $cells = $vis.append('g')
+          $cells = $themeGroups
             .selectAll('g')
             .data(fullData)
             .join('g')
             .attr("class", d=> words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"biasCells":
-										words.filter(c=>c.word===d.word)[0].theme==="empowerment"?"empCells":
-										words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"crimeCells":
-										words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"raceCells":
-										words.filter(c=>c.word===d.word)[0].theme==="important people"?"peopleCells": "ntCells")
-            .on("mouseover", (event, d) => showTooltip(event, d))
-					  .on("mouseleave", (event, d) => hideTooltip(event, d));
+                      words.filter(c=>c.word===d.word)[0].theme==="empowerment"?"empCells":
+                      words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"crimeCells":
+                      words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"raceCells":
+                      words.filter(c=>c.word===d.word)[0].theme==="important people"?"peopleCells": "ntCells")
+            .attr('transform', d => `translate(${$col(d.col)}, ${$row(d.row)})`);
+            //.on("mouseover", (event, d) => showTooltip(event, d))
+					  //.on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $areas =  $cells.append('path')
             .attr('fill', d=>words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"url(#linear-gradient-F)":
@@ -563,9 +576,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
                     words.filter(c=>c.word===d.word)[0].theme==="important people"?"url(#linear-gradient-P)": "url(#linear-gradient-NT)")
             .attr('opacity', 0.5)
             .attr("class", "wordArea")
-            .attr("id", d=> 'area'+ d.word)
-            .on("mouseover", (event, d) => showTooltip(event, d))
-					  .on("mouseleave", (event, d) => hideTooltip(event, d));
+            //.on("mouseover", (event, d) => showTooltip(event, d))
+					  //.on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $lines = $cells.append("path")
             .style("stroke", d=>words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"url(#linear-gradient-F)":
@@ -577,8 +589,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .attr('fill', 'none')
             .attr("class", d => "wordLine" + d.theme)
             .attr("id", d => `line-${d.word}`)
-            .on("mouseover", (event, d) => showTooltip(event, d))
-					  .on("mouseleave", (event, d) => hideTooltip(event, d));
+            //.on("mouseover", (event, d) => showTooltip(event, d))
+					  //.on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $rulerG = $vis.append("rect")
             .attr("class", "timeRuler");
@@ -617,14 +629,39 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .tickPadding(30)
             .tickFormat((d, i) => i == 0 || i == 3 || i == 6 || i == 9 || i == 11 ? d3.timeFormat('%Y')(new Date(d)):"");
           
-          calcScale();
+          let wordToScaleAndArea = Object.fromEntries(
+            fullData.map(d => {
+            maxRate = d3.max(d.rates, d => d.frequency);
+
+            y = d3.scaleLinear()
+                .domain([0, maxRate])
+                .range([$row.bandwidth(), 0]).nice();
+            
+            curve = d3.curveMonotoneX // d3.curveBasis
+            area = d3.area()
+                .x(d => x(d.date))
+                .y1(d => y(d.frequency))
+                .y0(d => y(0)).curve(d3.curveMonotoneX);
+
+            
+            line = d3.line()
+                .x(d => x(d.date))
+                .y(d => y(d.frequency)).curve(d3.curveMonotoneX);
+
+            return [d.word, {y, area, line}];
+            })
+          )
 
           $cells
             .attr('transform', d => `translate(${$col(d.col)}, ${$row(d.row)})`);
           
           $areas.attr('d', d => wordToScaleAndArea[d.word].area(d.rates))
-          $lines.attr('d', d => wordToScaleAndArea[d.word].line(d.rates)) 
+          $lines.attr('d', function(d) {
+            //console.log(wordToScaleAndArea[d.word].line(d.rates))
+            return wordToScaleAndArea[d.word].line(d.rates)
+          }) 
 
+          // labels
           $cells.each(function(d) {
             const group = d3.select(this).attr("class", "SMCell").attr("id", d=>"cell"+d.word);
 
@@ -642,6 +679,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 					      .on("mouseleave", (event, d) => hideTooltip(event, d));
           })
 
+          // sticky axis
           $stickyAxis.attr('transform', `translate(${MS_LEFT}, 0)`)
             .attr('width', width + MS_LEFT + MS_RIGHT)
             .attr('height', stickyAxisHeight - MS_TOP - MS_BOTTOM);

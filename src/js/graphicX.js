@@ -38,7 +38,6 @@ let chartOpen = false;
 
 /* data functions */
 
-
 /* charts */
 let chartStackedBar = null;
 let chartTimeSeriesLine = null;
@@ -75,14 +74,12 @@ function setupScroller() {
 		})
 		.onStepEnter(handleStepEnter);
 }
-
 function handleStepEnter(response) {
 	// response = { element, direction, index }
 	$step.classed('is-active', (d, i) => i === response.index);
 
 	renderStep(response.index, response.direction);
 }
-
 function renderStep(index, direction) {
 	chartStackedBar.updateChart(index, direction);
 }
@@ -130,6 +127,7 @@ function setupTemporalLine(data) {
 		.puddingTemporalLine()
 }
 
+/* HELPER FUNCTIONS */
 function scrollTo(element) {
 	window.scroll({
 		behavior: 'smooth',
@@ -143,9 +141,8 @@ function onlyUnique(value, index, self) {
 }
 
 function populateDropdown(data, div, attribute) {
-const select = d3.select(div);
-
-let unique_countries = d3.map(data, d=>d[attribute]).filter(onlyUnique);
+	const select = d3.select(div);
+	let unique_countries = d3.map(data, d=>d[attribute]).filter(onlyUnique);
 
 	select.selectAll("option")
 	.data(unique_countries)
@@ -230,6 +227,15 @@ function spanLeave() {
 		d3.selectAll(`.stackedBars .child_class`).attr("opacity", "1");
 		d3.selectAll(`.stackedBars .body_class`).attr("opacity", "1");
 	}
+
+	if (span === "crimeandviolence" || span === "femalestereotypes" || span === "empowerment" || span === "peopleandplaces" || span === "raceethnicictyandidentity") {
+		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+		d3.selectAll(`.stackedBars .crimeandviolence_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .femalestereotypes_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .empowerment_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .peopleandplaces_class`).attr("opacity", "1");
+		d3.selectAll(`.stackedBars .raceethnicictyandidentity_class`).attr("opacity", "1");
+	}
 }
 
 //scrollTo($tempChartDiv.node());
@@ -243,28 +249,28 @@ function resize() {
 	// 2. update width/height of graphic element
 	const $graphic = d3.select('.scrolly figure');
 	const bodyWidth = d3.select('body').node().offsetWidth;
-
 	$graphic.style('height', window.innerHeight + 'px');
 
-
 	// //3. tell scrollama to update new element dimensions
-	//stackedBarScroller.resize();
+	stackedBarScroller.resize();
 
+	// chart resizes
 	const $body = d3.select('body');
 	let previousWidth = 0;
 	const width = $body.node().offsetWidth;
 	if (previousWidth !== width) {
 		previousWidth = width;
-		//chartStackedBar.resize();
-		//chartTimeSeriesLine.resize();
-		//chartLollipop.resize();
-		//chartBubbleB.resize();
-		//chartBubbleP.resize();
+		chartStackedBar.resize();
+		chartTimeSeriesLine.resize();
+		chartLollipop.resize();
+		chartBubbleB.resize();
+		chartBubbleP.resize();
 		chartTemporalLine.resize();
 	}
 }
 
 function init() {
+	// load all data files
 	loadData(dataFiles).then(result => {
 		headlinesSite = result[0];
 		headlines = result[1];
@@ -279,22 +285,25 @@ function init() {
 		country = "USA";
 		temporalVar = "freq_prop_headlines";
 
+		// organize data
 		stackedBarData = [data, themes, themesRank, themesFreq];
 		biasBubbleData = [headlinesSite, headlines, "bias"];
 		polBubbleData = [headlinesSite, headlines, "polarity"];
 		temporalData = [tempWords, filter_years, country, temporalVar];
 
-		//setupScroller();
-		//setupStackedBar(stackedBarData);
-		//setupTimeSeriesLine(sentComp)
-		//setupLollipop(polComparison);
-		//setupBubbleB(biasBubbleData);
-		//setupBubbleP(polBubbleData);
+		// setup functionality and charts
+		setupScroller();
+		setupStackedBar(stackedBarData);
+		setupTimeSeriesLine(sentComp)
+		setupLollipop(polComparison);
+		setupBubbleB(biasBubbleData);
+		setupBubbleP(polBubbleData);
 		setupTemporalLine(temporalData);
 		resize();
 		
-		//populateDropdown(tempWords, "#countrydropdownTemporal", "country");
-		//$countryDropdownTemporal.on("change", changeTemporalDropdown);
+		// interactions
+		populateDropdown(tempWords, "#countrydropdownTemporal", "country");
+		$countryDropdownTemporal.on("change", changeTemporalDropdown);
 		$stackedSpans.on("mouseenter", spanEnter)
 		$stackedSpans.on("mouseleave", spanLeave)
 

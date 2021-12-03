@@ -17,16 +17,23 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     const $chart = d3.select(el);
     let $svg = null;
     let $axis = null;
+    let $axisThemes = null;
     let $vis = null;
+    let $visThemes = null;
     let $xAxisGroup = null;
     let $yAxisGroup = null;
+    let $xAxisGroupThemes = null;
+    let $yAxisGroupThemes = null;
     let $xAxis = null;
     let $yAxis = null;
+    let $xAxisThemes = null;
+    let $yAxisThemes = null;
     let $xAxisText = null;
     let $xAxisFlags = null;
     let $rects = null;
     let $rect = null;
     let $rectLabels = null;
+    let $rectThemes = null;
     const $container = d3.select('#scrolly-side');
     const $article = $container.select('article');
     const $stepSel = $article.selectAll('.step');
@@ -41,6 +48,11 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let series;
     let flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
 				{country:"India", flag:"assets/images/flags/india.svg"}, {country:"UK", flag:"assets/images/flags/united-kingdom.svg"}, {country: 'All countries', flag:''}]
+    let stackedData = d3.stack()
+      .keys(themesFreq.columns.slice(2))
+      .order(d3.stackOrderAscending)
+    (themesFreq.filter(d=>d.theme!=="No theme"))
+      .map(d => (d.forEach(v => v.key = d.key), d));
 
     // dimensions
     let width = 0;
@@ -50,11 +62,14 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     const MARGIN_BOTTOM = 0;
     const MARGIN_LEFT = 0;
     const MARGIN_RIGHT = 0;
+    const themePad = 20;
     let xPad = null;
 
     // scales
     let x = null;
     let y = null;
+    let xThemes = null;
+    let yThemes = null;
 
     // helper functions
     function stripSpaces(string) {
@@ -115,25 +130,36 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
             .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
     }
 
-    function highlightWords(index, direction, task, word) {
-      $stepSel.classed('is-active', (d, i) => i === index);
-            let IDs = word.split(" ")
-
-            let notWordRects = d3.selectAll(".stackedBars")
+    function baseRects() {
+      let notWordRects = d3.selectAll(".stackedBars")
               .selectAll(`rect`)
               .attr("fill", "#ccc")
               .attr("opacity", "0.5")
-
-            IDs.forEach(ID => {
-              let wordRects = d3.selectAll(`.${ID}_class`)
-                .attr("fill", "#282828")
-                .attr("opacity", "1")
-            })
-
-            //d3.selectAll(".stackedChartyTicks").style("opacity", "0")
     }
 
-    function highlightThemes(index, direction, task, theme) {
+    function highlightWords(index, word) {
+      $stepSel.classed('is-active', (d, i) => i === index);
+            let IDs = word.split(" ")
+
+            if (index === 8 || index === 10) {
+              d3.selectAll(`.stackedBars rect`).attr("opacity", "0.5")
+
+              IDs.forEach(ID => {
+                let wordRects = d3.selectAll(`.${ID}_class`)
+                  .attr("opacity", "1")
+              })
+            } else {
+              baseRects()
+
+              IDs.forEach(ID => {
+                let wordRects = d3.selectAll(`.${ID}_class`)
+                  .attr("fill", "#282828")
+                  .attr("opacity", "1")
+              })
+            }
+    }
+
+    function highlightThemes(index, theme) {
       $stepSel.classed('is-active', (d, i) => i === index);
 
       let notThemeRects = d3.selectAll(".stackedBars")
@@ -154,9 +180,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       } 
 
       if (theme === "femalestereotypes") {
-        violenceRects
-          .attr("fill", "#E75C33")
-          .attr("opacity", "1")
         stereotypeRects
           .attr("fill", "#53B67C")
           .attr("opacity", "1")
@@ -179,6 +202,20 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("fill", "#F2C5D3")
           .attr("opacity", "1")
       }
+    }
+
+    function renderThemeBars(data, dataFreq, themes, x, y) {
+      $rectThemes 
+        .transition().duration("500")
+        .ease(d3.easeLinear)
+        .delay((d, i) => { return i * 10; })
+        .attr("x", d=> xThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme))
+        .attr("y", d => yThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+        .attr("height", d => yThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
+                    yThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+        .attr("width", xThemes.bandwidth()-(themePad/3))
+        .attr("transform", `translate(0,${height-MARGIN_TOP})`)
+      
     }
 
     function prepareWordData(dataLocal, themes) {
@@ -233,9 +270,28 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
             let wordClass = `${d.key.word}_class`
             return `${wordClass} ${themeClass}`
           })
-          .attr("fill", "lightgrey")
+          .attr("fill", "#c9c9c9")
+          .attr("opacity", "0.5")
           .attr("stroke", "#FEFAF1")
           .attr("stroke-width", "0.2px");
+        
+        // themes chart
+        $visThemes = $svg.append('g').attr('class', 'g-visthemes');
+        $axisThemes = $svg.append('g').attr('class', 'g-axisthemes');
+
+        xThemes = d3.scaleBand()
+          .domain(["crime and violence","female stereotypes", "empowerment", "people and places", "race, ethnicity and identity"])
+          .padding(0.1);
+      
+        yThemes = d3.scaleLinear()
+          .domain([d3.max(stackedData, d => d3.max(d, d => d[1])), 0])
+
+        $xAxisGroupThemes = $axisThemes.append('g').attr('class', 'x axis'); 
+        $yAxisGroupThemes = $axisThemes.append('g').attr('class', 'y axis');
+        $xAxisThemes = $xAxisGroupThemes.append("g");
+
+        $rectThemes = $vis.selectAll("rect")
+          .filter(d=>(d.key.theme!=="No theme")&&(d.data.country==="All countries"))
         
         // $rectLabels = $rects.join("text")
         //   .text(d=>d.key.word)
@@ -246,27 +302,52 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         Chart.resize();
       },
       updateChart(index, direction) {
-        //console.log(index, direction)
-
         const sel = $container.select(`[data-index='${index}']`);
-				const task = sel.attr('task');
-				const hovertype = sel.attr('hovertype');
         const word = sel.attr('word');
         const theme = sel.attr('theme');
 
-        if (task==="highlightwords") {
-          if (direction==="down") {
-            highlightWords(index, direction, task, word)
-          } else {
-          }  
-    
-        } else if (task === "drawbars") {
-          //revealChart();
-        } else if (task === "highlightthemes") {
-          highlightThemes(index, direction, task, theme)
-        } else if (task === "tooltip") {
-        } else if (task === "exploreChart") {
-        } else if (task === "themeBarsTransition") {
+        console.log(index)
+
+        if (index === 0) {
+          baseRects()
+        }
+        if (index === 1) {
+          highlightWords(index, word)
+        }
+        if (index === 2) {
+          highlightWords(index, word)
+        }
+        if (index === 3) {
+          highlightWords(index, word)
+        }
+        if (index === 4) {
+          highlightWords(index, word)
+        }
+        if (index === 5) {
+          highlightWords(index, word)
+        }
+        if (index === 6) {
+          highlightWords(index, word)
+        }
+        if (index === 7) {
+          highlightThemes(index, "crimeandviolence")
+        }
+        if (index === 8) {
+          highlightThemes(index, "crimeandviolence")
+          highlightWords(index, word)
+        }
+        if (index === 9) {
+          highlightThemes(index, "femalestereotypes")
+        }
+        if (index === 10) {
+          highlightThemes(index, "femalestereotypes")
+          highlightWords(index, word)
+        }
+        if (index === 11) {
+          highlightThemes(index, "EPR")
+        }
+        if (index === 12) {
+          renderThemeBars(themesRank, themesFreq, themes, x, y)
         }
 
         return Chart;
@@ -320,6 +401,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
               .attr("transform", "translate(-17, -50)")
               .attr("xlink:href", d => flags.filter(c=>c.country===d)[0].flag)
         
+        $xAxisText
+              .attr("x", -275)
+              .attr("y", 10)
+        
         // responsive yAxis 
         $yAxisGroup.attr('transform', `translate(${MARGIN_LEFT},0)`)
 
@@ -335,10 +420,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         $yAxis = $yAxisGroup.append("g")
           .call($yAxis)
         
-        $xAxisText
-          .attr("x", -275)
-          .attr("y", 10)
-        
         $rect
           .attr("x", (d, i) => x(d.data.country))
           .attr("height", d => d.data[d.key.word]===0 || d.data[d.key.word]===null? 0:height/series.length)
@@ -347,6 +428,18 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         
         // $rectLabels 
         //   .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
+        
+        // theme chart
+        xThemes.range([MARGIN_LEFT, width + MARGIN_RIGHT])
+        yThemes.rangeRound([MARGIN_TOP, height - MARGIN_BOTTOM])
+
+        $xAxisThemes = g => g
+          .call(d3.axisBottom(xThemes).tickSizeOuter(0).tickSizeInner(0))
+          .call(g => g.selectAll(".domain").remove())
+        
+        $yAxisThemes = g => g
+          .call(d3.axisRight(yThemes).tickSizeOuter(0).tickSizeInner(0))
+          .call(g => g.selectAll(".domain").remove())
           
         return Chart;
       },

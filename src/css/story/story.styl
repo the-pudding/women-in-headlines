@@ -1062,29 +1062,6 @@ summary {
     font-size: 9px;
 }
 
-// .stackedBarAnnotation {
-//   fill: $red;
-//   font-family: $national;
-//   font-weight: 900;
-//   font-size: 12px;
-//   text-anchor:end;
-//   text-transform: uppercase;
-//   transform: translate(100px, 5px)
-// }
-
-// .stackedBarTextAnnotation {
-//   color: $red;
-//   font-family: $barlow;
-//   font-weight: 600;
-//   font-size: 16px;
-//   text-transform: uppercase;
-//   padding: 0.25rem 0.5rem;
-//   border 1px solid $red;
-//   white-space: nowrap;
-//   border-radius: 0.25rem;
-//   cursor: pointer;
-// }
-
 .lollipopTextbutton {
   color: $green;
   font-weight: 600;
@@ -1144,8 +1121,20 @@ summary {
   color: $red;
   border: 1px solid $red;
 }
+#inTextViolence-none {
+  color: $tan;
+  background: $red;
+  border: 1px solid $red;
+  pointer-events: none;
+}
 #inTextStereotypes {
   color: $green;
+  border: 1px solid $green;
+}
+#inTextStereotypes-none {
+  background: $green;
+  color: $tan;
+  pointer-events: none;
   border: 1px solid $green;
 }
 #inTextEmpowerment {
@@ -1174,6 +1163,19 @@ summary {
 
 #inTextViolence:hover, #inTextViolence.hovered {
   background-color: $red;
+  color: $bg;
+  font-family: $barlow;
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#inTextStereotypes:hover, #inTextStereotypes.hovered {
+  background-color: $green;
   color: $bg;
   font-family: $barlow;
   font-weight: 600;
@@ -1370,7 +1372,7 @@ article {
   transform: translate(100px, 5px)
 }
 
-.stackedBarTextAnnotation {
+.stackedBarTextAnnotation, .stackedBarThemeAnnotation {
   font-family: $barlow;
   font-weight: 600;
   font-size: 16px;
@@ -1386,6 +1388,13 @@ article {
 #hover-black {
   color: $off-black;
   border 1px solid $off-black;
+}
+
+#hover-black-none {
+  color: $tan;
+  border 1px solid $off-black;
+  background: $off-black;
+  pointer-events: none;
 }
 
 #hover-black:hover {
@@ -1438,17 +1447,6 @@ article {
   border 1px solid $yellow;
 }
 
-.stackedBarThemeAnnotation {
-  font-family: $barlow;
-  font-weight: 600;
-  font-size: 16px;
-  text-transform: uppercase;
-  padding: 0.25rem 0.5rem;
-  white-space: nowrap;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-
 .word-legend, .freq-legend {
   font-family: $tiempos;
   font-weight: 700;
@@ -1477,37 +1475,6 @@ article {
                             #FEFAF1 80%);
   margin: 0 0 0 0.5rem;
 }
-
-// #inTextViolence {
-//   color: #F2C5D3
-// }
-// #inTextBias {
-//   color: #0BBF99
-// }
-// #inTextEmpowerment {
-//   color: #F7DC5B
-// }
-
-// .stackedBarTextAnnotation:hover {
-//   background-color: #E75C33;
-//   color: #FEFAF1;
-  
-// }
-
-// #inTextViolence:hover {
-//   background-color: #F2C5D3;
-//   color: #FEFAF1
-// }
-
-// #inTextBias:hover {
-//   background-color: #0BBF99;
-//   color: #FEFAF1
-// }
-
-// #inTextEmpowerment:hover {
-//   background-color: #F7DC5B;
-//   color: #FEFAF1
-// }
 
 .stackedBars {
   transform: translateX(10px)

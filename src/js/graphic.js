@@ -142,7 +142,7 @@ function init() {
 				var filter_years = [2009, 2022]
 				var country = "all countries"
 				var variable = "freq_prop_headlines" //freq_prop_headlines // frequency
-				console.log("temp", tempWords)
+				//console.log("temp", tempWords)
 				renderTempChart(tempWords, filter_years, country, variable)
 				// update chart when country is changed
 				d3.selectAll("button.country").on("click", function() {
@@ -150,7 +150,7 @@ function init() {
 					d3.select(".mainContainer").remove()
 					d3.select(".stickyAxis").remove()
 					let country = d3.select(this).property("value")
-					console.log(country)
+					//console.log(country)
 					renderTempChart(tempWords, filter_years, country, variable)
 				})
 				
@@ -218,7 +218,7 @@ function init() {
 			
 				if ((bottom_of_screen_b > top_of_element_b) && (top_of_screen_b < bottom_of_element_b)){
 					// the element is visible, toggle hovered class to change color
-					console.log("bias Section")
+					//console.log("bias Section")
 					// $('#inTextBias').css({'background-color': 'green', 'color': 'grey'})
 					d3.selectAll("#inTextBias")//.dispatch("mouseover");
 					//    .classed("active", true)
@@ -236,7 +236,7 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 
 				} else if ((bottom_of_screen_v > top_of_element_v) && (top_of_screen_v < bottom_of_element_v)){
-					console.log("crime Section")
+					//console.log("crime Section")
 					d3.selectAll("#inTextViolence")
 					  .attr("class", "hovered")
 					d3.selectAll("#inTextBias")
@@ -251,7 +251,7 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 
 				} else if ((bottom_of_screen_e > top_of_element_e) && (top_of_screen_e < bottom_of_element_e)){
-					console.log("empowerment Section")
+					//console.log("empowerment Section")
 					d3.selectAll("#inTextEmpowerment")
 					  .attr("class", "hovered")
 
@@ -267,7 +267,7 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 
 				} else if ((bottom_of_screen_r > top_of_element_r) && (top_of_screen_r < bottom_of_element_r)){
-					console.log("race Section")
+					//console.log("race Section")
 					d3.selectAll("#inTextRace")
 					  .attr("class", "hovered")
 
@@ -283,7 +283,7 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 
 				} else if ((bottom_of_screen_p > top_of_element_p) && (top_of_screen_p < bottom_of_element_p)){
-					console.log("people Section")
+					//console.log("people Section")
 					d3.selectAll("#inTextPeople")
 					  .attr("class", "hovered")
 
@@ -299,7 +299,7 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 
 				} else if ((bottom_of_screen_nt > top_of_element_nt) && (top_of_screen_nt < bottom_of_element_nt)){
-					console.log("no theme Section")
+					//console.log("no theme Section")
 					d3.selectAll("#inTextNT")
 					  .attr("class", "hovered")
 
@@ -494,7 +494,7 @@ function init() {
 					const task = sel.attr('task')
 					const hovertype = sel.attr('hovertype')
 			
-					console.log(task)
+					//console.log(task)
 					if (task==="highlightwords") {
 						const word = sel.attr('word');
 						if (action==="enter") {
@@ -1224,7 +1224,7 @@ function init() {
 			$('.stackedBarTextAnnotation').on('mouseover', function () {
 				// var word = $(this)[0].innerText.toLowerCase()
 				var word = $(this)[0].attributes.value.value
-				console.log(word)
+				//console.log(word)
 				highlightWords(word, "inTextHover")
 				// d3.select("#rectsBlock").select("#barchart").select('svg rect[data-key='+key+']').style('fill', 'brown');
 			})
@@ -1242,14 +1242,14 @@ function init() {
 				d3.select("#wordSearch").on("input", function() {
 
 					var selectedWord = event.target.value;
-					console.log(selectedWord.toLowerCase())
+					//console.log(selectedWord.toLowerCase())
 
 					if (selectedWord==="") {
 						d3.selectAll(".stackedBars")
 							.selectAll("rect")
 							.attr("opacity", "1")
 
-					console.log("reset")
+					//console.log("reset")
 					d3.selectAll(".stackedChartyTicks").style("opacity", "1")
 
 					} else {
@@ -1337,7 +1337,7 @@ function init() {
 				//console.log(dataBars)
 				
 				top10 = dataBars.filter(function(d,i){ return i<word_count })
-				console.log(top10)
+				//console.log(top10)
 	
 	
 				flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
@@ -1439,7 +1439,7 @@ function init() {
 				// data = data.filter(d=> Math.abs(d.difference) > 0.05)
 				// data = data.filter(d=>d.site_clean !== "dailysun.co.za")
 	
-				console.log(data)
+				//console.log(data)
 			
 			
 			  // Add X axis
@@ -1679,7 +1679,7 @@ function init() {
 			function renderTimeSeries(data){
 				// console.log("sent comp", data)
 				data = mapToArray(d3.rollup(data, v => [d3.median(v, d=>d.women_polarity_median), d3.median(v, d=>d.all_polarity_median)], d => d.year)).filter(d=>(d.year!==2021)&&(d.year!==2016))
-				console.log("sent comp", data)
+				//console.log("sent comp", data)
 
 				// set the dimensions and margins of the graph
 				var margin = {top: 130, right: 50, bottom: 30, left: 100},
@@ -1877,7 +1877,7 @@ function init() {
 				// grid data
 				var grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }))
 	
-				console.log(grid)
+				//console.log(grid)
 	
 				// row/col scales
 				var row = d3.scaleBand()
@@ -2169,7 +2169,7 @@ function init() {
 					})
 				)
 				// console.log("final word temp data")
-				// console.log(data)
+				console.log(data)
 	
 				// same x-scale for all charts
 				var minDate = data[0].rates[0].date
@@ -2538,7 +2538,7 @@ function init() {
 								.attr("width", 20)
 								.attr("height", visHeight)
 	
-								console.log(d.date)
+								//console.log(d.date)
 			
 				// rect dimensions
 				const boxWidth = 200
@@ -2637,15 +2637,15 @@ function init() {
 			//// area charts hover
 			function showTooltip(event, d) {
 
-				console.log("entered show tooltip in temporal chart")
+				//console.log("entered show tooltip in temporal chart")
 				
 				d3.selectAll(".wordArea").attr("opacity", 0.25)
 				d3.selectAll(".wordLine").attr("opacity", 0.4)
 				d3.selectAll(".wordText").attr("opacity", 0.5)
 				// console.log(d3.max(d.rates, c=>c.date))
 				// console.log(d3.max(d.rates, c=>c.frequency))
-				console.log(d.rates)
-				console.log(d.rates[d.rates.length-1].frequency)
+				//console.log(d.rates)
+				//console.log(d.rates[d.rates.length-1].frequency)
 	
 				const endDate = d3.max(d.rates, c=>c.date)
 				const endFreq = d.rates[d.rates.length-1].frequency
@@ -2844,7 +2844,7 @@ function init() {
 					}
 				})
 	
-				console.log("fil data", filterData)
+				//console.log("fil data", filterData)
 				// create chart horizontal scale
 				// var xScale = d3.scaleLinear()
 				var xScale = d3.scaleSymlog()
@@ -3404,7 +3404,7 @@ function init() {
 	
 			// tooltip function for the second chart
 			function tooltipCluster(word, freq, theme, country, coords, pc_freq) {
-				console.log(word)
+				//console.log(word)
 				d3.select("#tooltipCluster")
 					.style("display", "block")
 					.style("top", (coords[1]+10) + "px")
@@ -3416,7 +3416,7 @@ function init() {
 			}
 			// info (bottom right methodology info) tooltip function for the first chart
 			function tooltipInfo(width, height) {
-				console.log("working")
+				//console.log("working")
 				info = d3.select("#tooltipInfo")
 					.style("display", "block")
 					.style("visibility", "visible")
@@ -3475,7 +3475,7 @@ function init() {
 							cs.push(d.cluster);
 						}
 				});
-				console.log(cs)
+				//console.log(cs)
 				
 				n = data.length, // total number of nodes
 				m = cs.length; // number of distinct clusters
@@ -3487,7 +3487,7 @@ function init() {
 				for (var i = 0; i<n; i++){
 					nodes.push(create_nodes(data,i));
 				}
-				console.log(nodes)
+				//console.log(nodes)
 	
 				// select html element, add circles to chart, and define hover event (tooltip showing word frequency)
 				var svg = wordClusters
@@ -3679,11 +3679,11 @@ function init() {
 				const links = data.links.map(d => Object.create(d))
 				const nodes = data.nodes.map(d => Object.create(d))
 			
-				console.log(data)
+				//console.log(data)
 			
 				// define scales
 				extentWordFreq = d3.extent(nodes, d=>d.perc_freq)
-							console.log(extentWordFreq)
+							//console.log(extentWordFreq)
 				
 				// scale for node size
 				var bubbleRadius = d3.scaleSqrt()
@@ -3693,7 +3693,7 @@ function init() {
 								.range([0.1, 4])
 				
 				extentLinkWeight = d3.extent(links, d=>d.weight)
-						console.log(extentLinkWeight)
+						//console.log(extentLinkWeight)
 				// scale for link thickness
 				var linkWeight = d3.scaleLinear()
 								.domain(extentLinkWeight)
@@ -3835,7 +3835,7 @@ function init() {
 				
 				// function to create interaction link between bar charts on the left and networks
 				function barInteract(d) {
-					console.log(d.id)
+					//console.log(d.id)
 					word = d.id
 			
 					// 1) change opacity of other nodes
@@ -3847,7 +3847,7 @@ function init() {
 					y = parseInt(d3.select(bars).select('rect#bar'+d.id).attr("y")) + 86
 					fill = d3.select(bars).select('rect#bar'+d.id).attr("fill")
 			
-					console.log(x, y)
+					//console.log(x, y)
 					
 					// select the bar that matches the specific node being hovered on and show information about frequency
 					d3
