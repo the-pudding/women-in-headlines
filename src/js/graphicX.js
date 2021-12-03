@@ -7,6 +7,7 @@ import './pudding-chart/bubble';
 import './pudding-chart/temporalLine';
 import 'intersection-observer';
 import scrollama from 'scrollama';
+import enterView from 'enter-view';
 
 /* data */
 let dataFiles = ["headlines_site_rapi.csv", 
@@ -53,12 +54,9 @@ const $timeSeries = d3.selectAll("#timeSeriesChart");
 const $lollipop = d3.select('#lollipopChart');
 let $bubble = null;
 let $temporalLine = d3.select('#smChart');
-let $countryButtons = d3.selectAll("button.country");
-let $seeMoreButton = d3.selectAll(".see-more");
-let $tempChartDiv = d3.selectAll("#smChart");
-let $fade = d3.selectAll(".fade");
 let $countryDropdownTemporal = d3.select("#countrydropdownTemporal");
 let $stackedSpans = d3.selectAll(".stackedBarTextAnnotation");
+let $tempButtons = d3.selectAll(".btn-theme");
 
 /* SCROLLAMA */
 const stackedBarScroller = scrollama();
@@ -128,40 +126,17 @@ function setupTemporalLine(data) {
 }
 
 /* HELPER FUNCTIONS */
-function scrollTo(element) {
+function scrollTo(element, offset) {
+
 	window.scroll({
 		behavior: 'smooth',
 		left: 0,
-		top: element.offsetTop - 60
+		top: element.offsetTop + offset
 	});
 }
 
 function onlyUnique(value, index, self) {
 	return self.indexOf(value) === index;
-}
-
-function populateDropdown(data, div, attribute) {
-	const select = d3.select(div);
-	let unique_countries = d3.map(data, d=>d[attribute]).filter(onlyUnique);
-
-	select.selectAll("option")
-	.data(unique_countries)
-	.join("option")
-		.attr("value", d=>d)
-		.text(d=>d);
-	
-	$countryDropdownTemporal.node().options[3].selected = true;
-}
-
-function changeTemporalDropdown() {
-	const selection = this.value;
-	const country = selection;
-
-	d3.select("#smChart svg").remove();
-	d3.select("#stickyXaxis svg").remove();
-
-	temporalData = [tempWords, filter_years, country, temporalVar];
-	setupTemporalLine(temporalData);
 }
 
 function spanEnter() {
@@ -238,7 +213,98 @@ function spanLeave() {
 	}
 }
 
-//scrollTo($tempChartDiv.node());
+function populateDropdown(data, div, attribute) {
+	const select = d3.select(div);
+	let unique_countries = d3.map(data, d=>d[attribute]).filter(onlyUnique);
+
+	select.selectAll("option")
+	.data(unique_countries)
+	.join("option")
+		.attr("value", d=>d)
+		.text(d=>d);
+	
+	$countryDropdownTemporal.node().options[3].selected = true;
+}
+
+function changeTemporalDropdown() {
+	const selection = this.value;
+	const country = selection;
+
+	d3.select("#smChart svg").remove();
+	d3.select("#stickyXaxis svg").remove();
+
+	temporalData = [tempWords, filter_years, country, temporalVar];
+	setupTemporalLine(temporalData);
+}
+
+function runEnterview() {
+	enterView({
+		selector: '#cellviolence',
+		offset: 1,
+		enter: () => {
+			$tempButtons.classed(`active-btn-violence`, false);
+			$tempButtons.classed(`active-btn-empowerment`, false);
+			$tempButtons.classed(`active-btn-race`, false);
+			$tempButtons.classed(`active-btn-stereotypes`, false);
+			d3.selectAll("#btn-violence").classed(`active-btn-violence`, true);
+		}
+	});
+
+	enterView({
+		selector: '#cellemotional',
+		offset: 1,
+		enter: () => {
+			$tempButtons.classed(`active-btn-violence`, false);
+			$tempButtons.classed(`active-btn-empowerment`, false);
+			$tempButtons.classed(`active-btn-race`, false);
+			$tempButtons.classed(`active-btn-stereotypes`, false);
+			d3.selectAll("#btn-stereotypes").classed(`active-btn-stereotypes`, true);
+		}
+	});
+
+	enterView({
+		selector: '#cellmayor',
+		offset: 1,
+		enter: () => {
+			$tempButtons.classed(`active-btn-violence`, false);
+			$tempButtons.classed(`active-btn-empowerment`, false);
+			$tempButtons.classed(`active-btn-race`, false);
+			$tempButtons.classed(`active-btn-stereotypes`, false);
+			d3.selectAll("#btn-empowerment").classed(`active-btn-empowerment`, true);
+		}
+	});
+
+	enterView({
+		selector: '#cellasian',
+		offset: 1,
+		enter: () => {
+			$tempButtons.classed(`active-btn-violence`, false);
+			$tempButtons.classed(`active-btn-empowerment`, false);
+			$tempButtons.classed(`active-btn-race`, false);
+			$tempButtons.classed(`active-btn-stereotypes`, false);
+			d3.selectAll("#btn-race").classed(`active-btn-race`, true);
+		}
+	});
+}
+
+function scrollToTheme() {
+	let $button = d3.select(this)
+	let $ID = $button.attr("id").split("-")[1]
+
+	$tempButtons.classed(`active-btn-violence`, false);
+	$tempButtons.classed(`active-btn-empowerment`, false);
+	$tempButtons.classed(`active-btn-race`, false);
+	$tempButtons.classed(`active-btn-stereotypes`, false);
+	$button.classed(`active-btn-${$ID}`, true);
+
+	let targetDiv = d3.select("#smChart").node();
+
+	if ($ID === "violence") { scrollTo(targetDiv, -100); }
+	if ($ID === "stereotypes") { scrollTo(targetDiv, 4032); }
+	if ($ID === "empowerment") { scrollTo(targetDiv, 8138); }
+	if ($ID === "race") { scrollTo(targetDiv, 12390); }
+
+}
 
 function resize() { 
 
@@ -252,7 +318,7 @@ function resize() {
 	$graphic.style('height', window.innerHeight + 'px');
 
 	// //3. tell scrollama to update new element dimensions
-	stackedBarScroller.resize();
+	//stackedBarScroller.resize();
 
 	// chart resizes
 	const $body = d3.select('body');
@@ -299,13 +365,16 @@ function init() {
 		setupBubbleB(biasBubbleData);
 		setupBubbleP(polBubbleData);
 		setupTemporalLine(temporalData);
+		runEnterview();
 		resize();
 		
 		// interactions
-		populateDropdown(tempWords, "#countrydropdownTemporal", "country");
-		$countryDropdownTemporal.on("change", changeTemporalDropdown);
 		$stackedSpans.on("mouseenter", spanEnter)
 		$stackedSpans.on("mouseleave", spanLeave)
+
+		populateDropdown(tempWords, "#countrydropdownTemporal", "country");
+		$countryDropdownTemporal.on("change", changeTemporalDropdown);
+		$tempButtons.on("click", scrollToTheme);
 
 	}).catch(console.error)
 }

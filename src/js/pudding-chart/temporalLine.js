@@ -42,9 +42,20 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       let country = data[2];
       let variable = data[3];
       let dataDodge = null;
-      let words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places"));
+      const removeWords = ['trans', 'axe', 'outrage', 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap', 
+      'rob', 'cop', 'fatal', 'gang', 'die', 'court', 'allege', 
+      'fight', 'violent', 'steal', 'gun', 'bully', 'judge', 'murderer',
+       'risk', 'funeral', 'law', 'threat', 'plead', 'killing', 'escape',
+       'fall', 'alleged', 'convict', 'slap', 'defend', 'bust', 'prison',
+       'battle', 'war', 'accident', 'tragic', 'thug', 'jail', 'robber', 'kill',
+       'domestic' ,'sexually' ,'pregnancy' ,'feel' ,'care' ,'mama' ,'grace' ,
+       'skin' ,'body' ,'kid' ,'mum' ,'fiance' ,'lie' ,'shop' ,'actress' ,
+       'wedding' ,'widow', 'throne', 'board', 'coach', 'equal', 'launch', 'actor', 'incredible', 'worker', 'olympic', 'job', 'employee', 'work', 'campaign', 'teacher', 'parent', 'great', 'star', 'perfect'
+       , 'singer', 'celebrity', 'idol', 'tamil', 'leadership'];
 
-      const sortBy = ['crime and violence', 'female stereotypes', "empowerment", 'important people', 'race, ethnicity and identity', 'No theme'];
+      let words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places")&&(d.theme!=="important people")&&(d.theme!=="No theme")&&(!removeWords.includes(d.word)));
+
+      const sortBy = ['crime and violence', 'female stereotypes', "empowerment", 'race, ethnicity and identity'];
 
       const customSort = ({data, sortBy, sortField}) => {
         const sortByObject = sortBy.reduce((obj, item, index) => {
@@ -101,6 +112,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             theme: d.theme
         }
       })
+
       let freqByWord = d3.rollup(
         words,
         g => g.map(({ year, frequency}) => ({date: new Date(year, 0, 1), frequency})),
@@ -115,7 +127,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         row,
         col,
         })
-      )
+      );
 
       let minDate = fullData[0].rates[0].date;
       let maxDate = fullData[0].rates[fullData[0].rates.length - 1].date;
@@ -375,7 +387,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       // dimensions
       let width = 0;
       let height = 0;
-      const MARGIN_TOP = 150;
+      const MARGIN_TOP = 50;
       const MARGIN_BOTTOM = 20;
       const MARGIN_LEFT = 80;
       const MARGIN_RIGHT = 0;
@@ -398,6 +410,16 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 				return self.indexOf(value) === index;
 			}
 
+      function showTooltip(event, d) {
+        $areas.attr("opacity", 0.25)
+				$lines.attr("opacity", 0.4)
+				d3.selectAll(".wordText").attr("opacity", 0.25)
+
+        d3.select('#area-'+ d.word).attr("opacity", 0.85)
+				d3.select('#line-'+ d.word).attr("opacity", 1)
+				d3.select('#text'+ d.word).attr("opacity", 1)
+      }
+
       function hideTooltip() {
         $areas.attr("opacity", 0.5)
 				$lines.attr("opacity", 1)
@@ -408,7 +430,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         let selection = d3.select(event.currentTarget);
 
         d3.selectAll(".event-circle").style("opacity", "0.5")
-        selection.style("opacity", "1")
+        selection.style("opacity", "1").style("stroke", "#282828").style("stroke-width", 2)
 
         $rulerG
           .attr('transform', `translate(${$col(0)}, -${MARGIN_TOP/3})`)
@@ -442,7 +464,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       function hideTimeRuler() {
         $rulerG.style("opacity", 0)
 
-        d3.selectAll(".event-circle").style("opacity", "1")
+        d3.selectAll(".event-circle").style("opacity", "1").style("stroke", "none")
 
         $tooltip.classed("is-visible", false)
       }
@@ -545,17 +567,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
           $vis = $svg.append('g').attr('class', 'g-vis');
 
-          $themeGroups = $vis.append('g')
-            .selectAll('g')
-            .data(sortBy)
-            .join('g')
-            .attr("class", d=> d==="female stereotypes"?"biasCells":
-                      d==="empowerment"?"empCells":
-                      d==="crime and violence"?"crimeCells":
-                      d==="race, ethnicity and identity"?"raceCells":
-                      d==="important people"?"peopleCells": "ntCells")
-
-          $cells = $themeGroups
+          $cells = $vis.append('g')
             .selectAll('g')
             .data(fullData)
             .join('g')
@@ -564,9 +576,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
                       words.filter(c=>c.word===d.word)[0].theme==="crime and violence"?"crimeCells":
                       words.filter(c=>c.word===d.word)[0].theme==="race, ethnicity and identity"?"raceCells":
                       words.filter(c=>c.word===d.word)[0].theme==="important people"?"peopleCells": "ntCells")
-            .attr('transform', d => `translate(${$col(d.col)}, ${$row(d.row)})`);
-            //.on("mouseover", (event, d) => showTooltip(event, d))
-					  //.on("mouseleave", (event, d) => hideTooltip(event, d));
+            .attr('transform', d => `translate(${$col(d.col)}, ${$row(d.row)})`)
+            .on("mouseover", (event, d) => showTooltip(event, d))
+					  .on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $areas =  $cells.append('path')
             .attr('fill', d=>words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"url(#linear-gradient-F)":
@@ -576,8 +588,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
                     words.filter(c=>c.word===d.word)[0].theme==="important people"?"url(#linear-gradient-P)": "url(#linear-gradient-NT)")
             .attr('opacity', 0.5)
             .attr("class", "wordArea")
-            //.on("mouseover", (event, d) => showTooltip(event, d))
-					  //.on("mouseleave", (event, d) => hideTooltip(event, d));
+            .attr("id", d => `area-${d.word}`)
+            .on("mouseover", (event, d) => showTooltip(event, d))
+					  .on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $lines = $cells.append("path")
             .style("stroke", d=>words.filter(c=>c.word===d.word)[0].theme==="female stereotypes"?"url(#linear-gradient-F)":
@@ -587,10 +600,10 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
                     words.filter(c=>c.word===d.word)[0].theme==="important people"?"url(#linear-gradient-P)": "url(#linear-gradient-NT)")
             .attr('stroke-width', 1)
             .attr('fill', 'none')
-            .attr("class", d => "wordLine" + d.theme)
+            .attr("class", "wordArea")
             .attr("id", d => `line-${d.word}`)
-            //.on("mouseover", (event, d) => showTooltip(event, d))
-					  //.on("mouseleave", (event, d) => hideTooltip(event, d));
+            .on("mouseover", (event, d) => showTooltip(event, d))
+					  .on("mouseleave", (event, d) => hideTooltip(event, d));
           
           $rulerG = $vis.append("rect")
             .attr("class", "timeRuler");
@@ -610,7 +623,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         resize() {
           // defaults to grabbing dimensions from container element
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-          height = 22000 - MARGIN_TOP - MARGIN_BOTTOM;
+          height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
             .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
@@ -656,10 +669,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             .attr('transform', d => `translate(${$col(d.col)}, ${$row(d.row)})`);
           
           $areas.attr('d', d => wordToScaleAndArea[d.word].area(d.rates))
-          $lines.attr('d', function(d) {
-            //console.log(wordToScaleAndArea[d.word].line(d.rates))
-            return wordToScaleAndArea[d.word].line(d.rates)
-          }) 
+          $lines.attr('d', d => wordToScaleAndArea[d.word].line(d.rates))
 
           // labels
           $cells.each(function(d) {

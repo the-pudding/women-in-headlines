@@ -306,8 +306,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         const word = sel.attr('word');
         const theme = sel.attr('theme');
 
-        console.log(index)
-
         if (index === 0) {
           baseRects()
         }

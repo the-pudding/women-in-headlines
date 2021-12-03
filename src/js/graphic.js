@@ -88,13 +88,13 @@ function init() {
 			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("./assets/data/word_themes.csv", d3.autoType),
 	
-			d3.csv("./assets/data/country_freq_pivoted_all_101221.csv", d3.autoType),
+			d3.csv("./assets/data/country_freq_pivoted_all_101221.csv", d3.autoType), //101221
 			// d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_all_101221.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_all_101221.csv", d3.autoType), //101221
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
-			d3.csv("./assets/data/word_themes_rank_101221.csv", d3.autoType),
-			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType),
+			d3.csv("./assets/data/word_themes_rank_101221.csv", d3.autoType), //101221
+			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType), //101221
 			d3.csv("./assets/data/sentiment_comparison.csv", d3.autoType)
 
 		  ])
@@ -142,16 +142,16 @@ function init() {
 				var filter_years = [2009, 2022]
 				var country = "all countries"
 				var variable = "freq_prop_headlines" //freq_prop_headlines // frequency
-				//console.log("temp", tempWords)
-				renderTempChart(tempWords, filter_years, country, variable)
+				console.log("temp", tempWords)
+				renderTempChart(tempWords, filter_years, country, variable, headlines)
 				// update chart when country is changed
 				d3.selectAll("button.country").on("click", function() {
 					// Remove previous chart
 					d3.select(".mainContainer").remove()
 					d3.select(".stickyAxis").remove()
 					let country = d3.select(this).property("value")
-					//console.log(country)
-					renderTempChart(tempWords, filter_years, country, variable)
+					console.log(country)
+					renderTempChart(tempWords, filter_years, country, variable, headlines)
 				})
 				
 				// 3) bubble charts
@@ -203,22 +203,22 @@ function init() {
 				var bottom_of_screen_r = $(window).scrollTop() + $(window).innerHeight();
 				var top_of_screen_r = $(window).scrollTop();
 				// people
-				var top_of_element_p = $(".peopleCells").offset().top;
-				var bottom_of_element_p = $(".peopleCells").offset().top + $(".peopleCells").outerHeight();
-				var bottom_of_screen_p = $(window).scrollTop() + $(window).innerHeight();
-				var top_of_screen_p = $(window).scrollTop();
-				// no theme
-				var top_of_element_nt = $(".ntCells").offset().top;
-				var bottom_of_element_nt = $(".ntCells").offset().top + $(".ntCells").outerHeight();
-				var bottom_of_screen_nt = $(window).scrollTop() + $(window).innerHeight();
-				var top_of_screen_nt = $(window).scrollTop();
+				// var top_of_element_p = $(".peopleCells").offset().top;
+				// var bottom_of_element_p = $(".peopleCells").offset().top + $(".peopleCells").outerHeight();
+				// var bottom_of_screen_p = $(window).scrollTop() + $(window).innerHeight();
+				// var top_of_screen_p = $(window).scrollTop();
+				// // no theme
+				// var top_of_element_nt = $(".ntCells").offset().top;
+				// var bottom_of_element_nt = $(".ntCells").offset().top + $(".ntCells").outerHeight();
+				// var bottom_of_screen_nt = $(window).scrollTop() + $(window).innerHeight();
+				// var top_of_screen_nt = $(window).scrollTop();
 
 				// var theme = $(this)[0].attributes.theme
 				// console.log(theme)
 			
 				if ((bottom_of_screen_b > top_of_element_b) && (top_of_screen_b < bottom_of_element_b)){
 					// the element is visible, toggle hovered class to change color
-					//console.log("bias Section")
+					console.log("bias Section")
 					// $('#inTextBias').css({'background-color': 'green', 'color': 'grey'})
 					d3.selectAll("#inTextBias")//.dispatch("mouseover");
 					//    .classed("active", true)
@@ -230,13 +230,13 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 					d3.selectAll("#inTextRace")
 					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextPeople")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextNT")
-					  .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextPeople")
+					//   .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextNT")
+					//   .attr("class", "stackedBarThemeAnnotation")
 
 				} else if ((bottom_of_screen_v > top_of_element_v) && (top_of_screen_v < bottom_of_element_v)){
-					//console.log("crime Section")
+					console.log("crime Section")
 					d3.selectAll("#inTextViolence")
 					  .attr("class", "hovered")
 					d3.selectAll("#inTextBias")
@@ -245,13 +245,13 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 					d3.selectAll("#inTextRace")
 					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextPeople")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextNT")
-					  .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextPeople")
+					//   .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextNT")
+					//   .attr("class", "stackedBarThemeAnnotation")
 
 				} else if ((bottom_of_screen_e > top_of_element_e) && (top_of_screen_e < bottom_of_element_e)){
-					//console.log("empowerment Section")
+					console.log("empowerment Section")
 					d3.selectAll("#inTextEmpowerment")
 					  .attr("class", "hovered")
 
@@ -261,13 +261,13 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 					d3.selectAll("#inTextRace")
 					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextPeople")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextNT")
-					  .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextPeople")
+					//   .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextNT")
+					//   .attr("class", "stackedBarThemeAnnotation")
 
 				} else if ((bottom_of_screen_r > top_of_element_r) && (top_of_screen_r < bottom_of_element_r)){
-					//console.log("race Section")
+					console.log("race Section")
 					d3.selectAll("#inTextRace")
 					  .attr("class", "hovered")
 
@@ -277,42 +277,42 @@ function init() {
 					  .attr("class", "stackedBarThemeAnnotation")
 					d3.selectAll("#inTextEmpowerment")
 					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextPeople")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextNT")
-					  .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextPeople")
+					//   .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextNT")
+					//   .attr("class", "stackedBarThemeAnnotation")
 
-				} else if ((bottom_of_screen_p > top_of_element_p) && (top_of_screen_p < bottom_of_element_p)){
-					//console.log("people Section")
-					d3.selectAll("#inTextPeople")
-					  .attr("class", "hovered")
+				// } else if ((bottom_of_screen_p > top_of_element_p) && (top_of_screen_p < bottom_of_element_p)){
+				// 	console.log("people Section")
+				// 	d3.selectAll("#inTextPeople")
+				// 	  .attr("class", "hovered")
 
-					d3.selectAll("#inTextViolence")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextBias")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextEmpowerment")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextRace")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextNT")
-					  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextViolence")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextBias")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextEmpowerment")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextRace")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
+					// d3.selectAll("#inTextNT")
+					//   .attr("class", "stackedBarThemeAnnotation")
 
-				} else if ((bottom_of_screen_nt > top_of_element_nt) && (top_of_screen_nt < bottom_of_element_nt)){
-					//console.log("no theme Section")
-					d3.selectAll("#inTextNT")
-					  .attr("class", "hovered")
+				// } else if ((bottom_of_screen_nt > top_of_element_nt) && (top_of_screen_nt < bottom_of_element_nt)){
+				// 	console.log("no theme Section")
+				// 	d3.selectAll("#inTextNT")
+				// 	  .attr("class", "hovered")
 
-					d3.selectAll("#inTextViolence")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextBias")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextEmpowerment")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextRace")
-					  .attr("class", "stackedBarThemeAnnotation")
-					d3.selectAll("#inTextPeople")
-					  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextViolence")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextBias")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextEmpowerment")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextRace")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
+				// 	d3.selectAll("#inTextPeople")
+				// 	  .attr("class", "stackedBarThemeAnnotation")
 				}
 			});
 
@@ -494,7 +494,7 @@ function init() {
 					const task = sel.attr('task')
 					const hovertype = sel.attr('hovertype')
 			
-					//console.log(task)
+					console.log(task)
 					if (task==="highlightwords") {
 						const word = sel.attr('word');
 						if (action==="enter") {
@@ -1224,7 +1224,7 @@ function init() {
 			$('.stackedBarTextAnnotation').on('mouseover', function () {
 				// var word = $(this)[0].innerText.toLowerCase()
 				var word = $(this)[0].attributes.value.value
-				//console.log(word)
+				console.log(word)
 				highlightWords(word, "inTextHover")
 				// d3.select("#rectsBlock").select("#barchart").select('svg rect[data-key='+key+']').style('fill', 'brown');
 			})
@@ -1242,14 +1242,14 @@ function init() {
 				d3.select("#wordSearch").on("input", function() {
 
 					var selectedWord = event.target.value;
-					//console.log(selectedWord.toLowerCase())
+					console.log(selectedWord.toLowerCase())
 
 					if (selectedWord==="") {
 						d3.selectAll(".stackedBars")
 							.selectAll("rect")
 							.attr("opacity", "1")
 
-					//console.log("reset")
+					console.log("reset")
 					d3.selectAll(".stackedChartyTicks").style("opacity", "1")
 
 					} else {
@@ -1337,7 +1337,7 @@ function init() {
 				//console.log(dataBars)
 				
 				top10 = dataBars.filter(function(d,i){ return i<word_count })
-				//console.log(top10)
+				console.log(top10)
 	
 	
 				flags = [{country:"South Africa", flag:"assets/images/flags/south-africa.svg"}, {country:"USA", flag:"assets/images/flags/united-states.svg"}, 
@@ -1439,7 +1439,7 @@ function init() {
 				// data = data.filter(d=> Math.abs(d.difference) > 0.05)
 				// data = data.filter(d=>d.site_clean !== "dailysun.co.za")
 	
-				//console.log(data)
+				console.log(data)
 			
 			
 			  // Add X axis
@@ -1679,7 +1679,7 @@ function init() {
 			function renderTimeSeries(data){
 				// console.log("sent comp", data)
 				data = mapToArray(d3.rollup(data, v => [d3.median(v, d=>d.women_polarity_median), d3.median(v, d=>d.all_polarity_median)], d => d.year)).filter(d=>(d.year!==2021)&&(d.year!==2016))
-				//console.log("sent comp", data)
+				console.log("sent comp", data)
 
 				// set the dimensions and margins of the graph
 				var margin = {top: 130, right: 50, bottom: 30, left: 100},
@@ -1819,14 +1819,14 @@ function init() {
 	
 			// TEMPORAL CHART
 			// temporal multiples chart functions
-			function renderTempChart(dataset, filter, country, variable) {
+			function renderTempChart(dataset, filter, country, variable, headlines) {
 
 				// remove legend
 				d3.selectAll(".axisThemeLegend").remove()
 				// dimensions
 				var margin = ({top: 150, bottom: 20, left: 40, right: 40});
 				var visWidth = 1200 - margin.left - margin.right;
-				var visHeight = 22000 - margin.top - margin.bottom;
+				var visHeight = 14000 - margin.top - margin.bottom;
 				var stickyAxisHeight = 200;
 				// colors
 				var mainColor = "#3569DC"; //"red" //"cyan"
@@ -1837,10 +1837,21 @@ function init() {
 				var pColor = "#5787f2"
 				var ntColor = "lightgrey"
 
-				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places"))
+				var removeWords = ["trans", "axe", "outrage", 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap', 
+				'rob', 'cop', 'fatal', 'gang', 'die', 'court', 'allege', 
+				'fight', 'violent', 'steal', 'gun', 'bully', 'judge', 'murderer',
+				 'risk', 'funeral', 'law', 'threat', 'plead', 'killing', 'escape',
+				 'fall', 'alleged', 'convict', 'slap', 'defend', 'bust', 'prison',
+				 'battle', 'war', 'accident', 'tragic', 'thug', 'jail', 'robber', 'kill',
+				 'domestic' ,'sexually' ,'pregnancy' ,'feel' ,'care' ,'mama' ,'grace' ,
+				 'skin' ,'body' ,'kid' ,'mum' ,'fiance' ,'lie' ,'shop' ,'actress' ,
+				 'wedding' ,'widow', 'throne', 'board', 'coach', 'equal', 'launch', 'actor', 'incredible', 'worker', 'olympic', 'job', 'employee', 'work', 'campaign', 'teacher', 'parent', 'great', 'star', 'perfect'
+				 , 'singer', 'celebrity', 'idol', 'tamil', 'leadership']
+
+				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places")&&(d.theme!=="important people")&&(d.theme!=="No theme")&&(!removeWords.includes(d.word)))
 
 				// define custom sort for themes
-				const sortBy = ['crime and violence', 'female stereotypes', "empowerment", 'important people', 'race, ethnicity and identity', 'No theme']
+				const sortBy = ['crime and violence', 'female stereotypes', "empowerment", 'race, ethnicity and identity']//, 'No theme']
 				// console.log("words", words)
 
 				const customSort = ({data, sortBy, sortField}) => {
@@ -1856,7 +1867,57 @@ function init() {
 				//   console.log(customSort({data:tasks, sortBy, sortField: 'status'}))
 
 				words = customSort({data:words, sortBy, sortField: 'theme'})
+				
 				// words = words.sort((a, b) => d3.descending(a.theme, b.theme))
+
+				// wordlist for sorting by peak after
+				// function peakSort(dataRaw) {
+				// 	const theme0 = dataRaw.filter(d=>d.theme===sortBy[0]).sort(
+				// 	  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)).map(d=>d.word).filter(onlyUnique)
+				// 	const theme1 = dataRaw.filter(d=>d.theme===sortBy[1]).sort(
+				// 	  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)).map(d=>d.word).filter(onlyUnique)
+				// 	const theme2 = dataRaw.filter(d=>d.theme===sortBy[2]).sort(
+				// 	  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)).map(d=>d.word).filter(onlyUnique)
+				// 	const theme3 = dataRaw.filter(d=>d.theme===sortBy[3]).sort(
+				// 	  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)).map(d=>d.word).filter(onlyUnique)
+					
+					
+				// 	const sortedWordList = theme0.concat(theme1, theme2, theme3)//.filter(d=>d !== undefined)
+				// 	// const peakSortedData = customSort({data:dataGrouped, sortBy:sortedWordList, sortField: 'word'})
+				// 	return sortedWordList
+				//   }
+
+				function peakSort(dataRaw) {
+					const theme0 = d3.rollups(
+					dataRaw.filter(d=>d.theme===sortBy[0]).sort(
+					  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)), v => v[0].year, d => d.word).sort(
+						(a, b)=>d3.ascending(a[1], b[1])).map(d=>d[0])
+					
+					const theme1 = d3.rollups(
+					dataRaw.filter(d=>d.theme===sortBy[1]).sort(
+					  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)), v => v[0].year, d => d.word).sort(
+						(a, b)=>d3.ascending(a[1], b[1])).map(d=>d[0])
+					
+					const theme2 = d3.rollups(
+					dataRaw.filter(d=>d.theme===sortBy[2]).sort(
+					  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)), v => v[0].year, d => d.word).sort(
+						(a, b)=>d3.ascending(a[1], b[1])).map(d=>d[0])
+					
+					const theme3 = d3.rollups(
+					dataRaw.filter(d=>d.theme===sortBy[3]).sort(
+					  (a,b)=>d3.ascending(a.freq_prop_headlines, b.freq_prop_headlines)), v => v[0].year, d => d.word).sort(
+						(a, b)=>d3.ascending(a[1], b[1])).map(d=>d[0])
+					
+					// return theme3
+					const sortedWordList = theme0.concat(theme1, theme2, theme3)//.filter(d=>d !== undefined)
+					// const peakSortedData = customSort({data:dataGrouped, sortBy:sortedWordList, sortField: 'word'})
+					  return sortedWordList
+					// return [sortedWordList, peakSortedData]
+				  }
+				
+				var peakSortedWordList = peakSort(words)
+				// console.log("sorted word temp words")
+				// console.log(peakSortedWordList)
 
 				var numUniqueWords = d3.map(words, d=>d.word).filter(onlyUnique).length
 				// console.log("unique words", numUniqueWords)
@@ -1877,7 +1938,7 @@ function init() {
 				// grid data
 				var grid = d3.cross(d3.range(rows), d3.range(cols), (row, col) => ({ row, col }))
 	
-				//console.log(grid)
+				console.log(grid)
 	
 				// row/col scales
 				var row = d3.scaleBand()
@@ -1906,6 +1967,10 @@ function init() {
 					 name: "The U.S. military removes a ban against women serving in combat positions", 
 					 category: 4, 
 					 date: new Date(2013, 1, 24)},
+				{uid: 1, 
+				name: "On May 8, 2013, Cleveland Kidnapping Suspect Ariel Castro is charged with four counts of kidnapping and three counts of rape.", 
+				category: 4, 
+				date: new Date(2013, 4, 8)},
 			  {uid: 1, 
 					 name: "A new Pentagon report found a 50% increase in sexual assault reports in 2013", 
 					 category: 4, 
@@ -1942,6 +2007,10 @@ function init() {
 					 name: "People v. Turner: Brock Turner is released after spending 3 months in jail", 
 					 category: 4, 
 					 date: new Date(2016, 9, 2)},
+					{uid: 1, 
+					name: "Multiple actors, including Meryl Streep, come forward and say they were groped by Dustin Hoffman on set.", 
+					category: 4, 
+					date: new Date(2017, 1, 1)},
 					{uid: 1, 
 					 name: "#MeToo in U.S.A.", 
 					 category: 4, 
@@ -2156,11 +2225,14 @@ function init() {
 					// e => e.frequency//words.filter(c=>(c.word>d.word)&&(c.year==filter[1]))['frequency'],
 	
 				)
+
+				// console.log("datatosort", freqByWord)
 	
 				// topWords = d3.sort(freqByWord, d=>-d.frequency).filter(function(d,i){ return i<50 })
 				
 				// add grid data to word data
-				var data = d3.zip(Array.from(freqByWord), grid).map(
+				var data = d3.zip(
+					customSort({data:Array.from(freqByWord), sortBy: peakSortedWordList, sortField:"0"}), grid).map(
 					([[word, rates], { row, col }]) => ({
 					word,
 					rates,
@@ -2169,7 +2241,13 @@ function init() {
 					})
 				)
 				// console.log("final word temp data")
-				console.log(data)
+				// console.log(data)
+
+				
+
+				// var dataSorted = customSort({data, sortBy: peakSortedWordList, sortField:"word"})
+				// console.log("sorted word temp data")
+				// console.log(dataSorted)
 	
 				// same x-scale for all charts
 				var minDate = data[0].rates[0].date
@@ -2330,6 +2408,15 @@ function init() {
 					.attr("id", d=> 'area'+ d.word)
 					.on("mouseover", (event, d) => showTooltip(event, d))
 					.on("mouseleave", (event, d) => hideTooltip(event, d))
+					.on("mouseenter", (event, d) => {
+						showTooltipHeadlineMatch([event.clientX, event.clientY], headlines, d.word)
+					})
+					.on("mousemove", (event, d) => {
+						showTooltipHeadlineMatch([event.clientX, event.clientY], headlines, d.word)
+					})
+					.on("mouseleave.hl", (event, d) => {
+						d3.select("#tooltipHeadline").style("display", "none")
+					})
 					// .attr('fill', 'red');
 	
 				cells.append('path')
@@ -2370,9 +2457,9 @@ function init() {
 				const themesNames = [{name:"Crime and Violence", id:"inTextViolence", width:"150px"}, 
 									 {name:"Gendered Language", id:"inTextBias", width:"150px"}, 
 									 {name:"Empowerment", id:"inTextEmpowerment", width:"110px"}, 
-									 {name:"People and Places", id:"inTextPeople", width:"140px"}, 
-									 {name:"Race, Ethnicity and Identity", id:"inTextRace", width:"200px"}, 
-									 {name:"Other", id:"inTextNT", width:"60px"}]
+									//  {name:"People and Places", id:"inTextPeople", width:"140px"}, 
+									 {name:"Race, Ethnicity and Identity", id:"inTextRace", width:"200px"}]
+									//  {name:"Other", id:"inTextNT", width:"60px"}]
 
 				themesNames.map(d=>axisThemeLegend
 									.append("text")
@@ -2505,7 +2592,7 @@ function init() {
 	
 					group.append("g").attr("class", "catLabel").append("text")
 					.attr("x", -10)
-					.attr("y", row.bandwidth())
+					.attr("y", row.bandwidth()*0.5)
 					.attr("class", "wordText")
 					.attr("id", d=> 'text'+ d.word) 
 					.text(d.word)
@@ -2538,7 +2625,7 @@ function init() {
 								.attr("width", 20)
 								.attr("height", visHeight)
 	
-								//console.log(d.date)
+								console.log(d.date)
 			
 				// rect dimensions
 				const boxWidth = 200
@@ -2637,15 +2724,15 @@ function init() {
 			//// area charts hover
 			function showTooltip(event, d) {
 
-				//console.log("entered show tooltip in temporal chart")
+				console.log("entered show tooltip in temporal chart")
 				
-				d3.selectAll(".wordArea").attr("opacity", 0.25)
-				d3.selectAll(".wordLine").attr("opacity", 0.4)
-				d3.selectAll(".wordText").attr("opacity", 0.5)
+				d3.selectAll(".wordArea").attr("opacity", 0.15)
+				d3.selectAll(".wordLine").attr("opacity", 0.3)
+				d3.selectAll(".wordText").attr("opacity", 0.3)
 				// console.log(d3.max(d.rates, c=>c.date))
 				// console.log(d3.max(d.rates, c=>c.frequency))
-				//console.log(d.rates)
-				//console.log(d.rates[d.rates.length-1].frequency)
+				console.log(d.rates)
+				console.log(d.rates[d.rates.length-1].frequency)
 	
 				const endDate = d3.max(d.rates, c=>c.date)
 				const endFreq = d.rates[d.rates.length-1].frequency
@@ -2679,6 +2766,131 @@ function init() {
 				d3.selectAll(".wordLine").attr("opacity", 1)
 				d3.selectAll(".wordText").attr("opacity", 1)
 				d3.selectAll(".incText").remove()
+			}
+
+			function showTooltipHeadlineMatch(coords, data, word) {
+				// set position of tooltip
+				let x = coords[0]-120;
+				let y = coords[1]-200;
+	
+				// console.log(word)
+				// console.log(data)
+				// remove previous text: 
+				// tooltipHeadline.selectAll("#tooltipText").remove()
+				tooltipHeadline.selectAll(".deets").remove()
+				tooltipHeadline.selectAll(".headline").remove()
+
+				// create box
+				tooltipHeadline
+					.style("display", "block")
+					.style("visibility", "visible")
+					.style("top", y + "px")
+					.style("left", x + "px")
+					// .attr("class", ".tooltipTL")
+					// .style("border", "solid 1px #282828")
+	
+				// remove hoverGuide
+				// d3.select("#hoverGuide").remove()
+				// d3.select("#hoverGuideLine").remove()
+	
+				// filter data for any headline that matches the word
+				data = data.filter(d=>d.headline_no_site.match(word))
+
+				// data = (c.bias>0.5)&&(data.filter(d=>(d.site === text1)&(d.bias > 0.5)).length>10)?
+				// 		 data.filter(d=>(d.site === text1)&(d.bias > 0.5)):
+				// 	   (c.bias<0.5)&&(data.filter(d=>(d.site === text1)&(d.bias < 0.5)).length>10)?
+				// 		 data.filter(d=>(d.site === text1)&(d.bias < 0.5)):
+				// 		 data.filter(d=>(d.site === text1))
+	
+				// console.log(data)
+	
+				// find a random headline
+				let randHeadline = Math.floor(Math.random() * data.length)
+				// console.log(d3.timeFormat("%d/%m/%Y")(new Date(data[randHeadline].time)))
+				// console.log(data[randHeadline].subtitle)
+	
+				// tooltip dimensions
+				let ttipMargin = { left: 40, bottom: 110, right: 20, top: 20 }
+				let ttipWidth = width5/7 - ttipMargin.left - ttipMargin.right;
+				let ttipHeight =height5/2.5 - ttipMargin.top - ttipMargin.bottom;
+		
+				// below we define the tooltip appearance and contents
+				let hlDate = tooltipHeadline.append("text")
+					// .attr("id", "tooltipText")
+					.attr("class", "deets")
+					.attr("y", ttipHeight/4)
+					.attr("x", 0)
+					// .attr("font-size", "11px")
+					.attr("font-weight", "900")
+					// .style("text-transform", "uppercase")
+					.attr("fill", "#E75C33")
+					.html("<span class='datettip'>"+d3.timeFormat("%b %Y")(new Date(data[randHeadline].time)) + " | " + data[randHeadline].site+"</span>")
+					// .html('"' + data[randHeadline].subtitle + '..."')
+					.call(wrap, 300)
+
+				
+				// let headlineWords = data[randHeadline].headline_no_site.split(" ")
+				let headlineWords = data[randHeadline].headline_no_site.split(" ").map(d=>d.match(word)? `<b>${d}</b>`:d)
+				// headlineWords = html`headlineWords.join(" ")`
+
+				// console.log(headlineWords, headlineWords.join(" "))
+
+				// let hlContent = tooltipHeadline.append("svg")//.attr("height", ttipHeight).attr("width", ttipWidth)
+				// 				.append("text")
+
+				// let hlWords = hlContent.selectAll("tspan")
+				// 	.data(headlineWords)
+				// 	.enter()
+				// 	.append("tspan")
+				// 	// .attr("id", "tooltipText")
+					
+				// let hlText = hlWords
+				// 	.attr("class", "headline")
+				// 	.attr("y", ttipHeight/1.2)
+				// 	.attr("x", 0)
+				// 	// .attr("x", (d, i)=>headlineWords[i-1])
+				// 	// .attr("font-weight", "bold")
+				// 	// .attr("font-size", "14px")
+				// 	.style("text-transform", "uppercase")
+				// 	// // .attr("fill", party==="red" ? '#DD1F26':'#0076C0')
+				// 	.attr("fill", "#282828")
+				// 	.html(function (d) { return d + ' '; })
+				// 	// .html(d=>`<span>${d}</span>`)
+				// 	// .html("<b>" + '"' + data[randHeadline].headline_no_site + '"')
+				// 	// .call(wrap, 300)
+
+				tooltipHeadline.append("foreignObject")
+					// .attr("id", "tooltipText")
+					.attr("class", "headline")
+
+					.attr("y", ttipHeight*0.4)
+					.attr("x", 0)
+					.attr("width", ttipWidth*1.8)
+ 					 .attr("height", ttipHeight)
+					// .attr("font-weight", "bold")
+					.attr("font-size", "14px")
+					.style("text-transform", "uppercase")
+					// .attr("fill", party==="red" ? '#DD1F26':'#0076C0')
+					.attr("fill", "#282828")
+					.html(`<div>${headlineWords.join(" ")}</div>`)
+					// .call(wrap, 300)
+	
+				// tooltipHeadline.append("text")
+				// 	// .attr("id", "tooltipText")
+				// 	.attr("class", "headline")
+
+				// 	.attr("y", ttipHeight/1.2)
+				// 	.attr("x", 0)
+				// 	// .attr("font-weight", "bold")
+				// 	.attr("font-size", "14px")
+				// 	.style("text-transform", "uppercase")
+				// 	// .attr("fill", party==="red" ? '#DD1F26':'#0076C0')
+				// 	.attr("fill", "#282828")
+				// 	.html("<b>" + '"' + data[randHeadline].headline_no_site + '"')
+				// 	.call(wrap, 300)
+
+			//    console.log(tooltipHeadline.selectAll("text.headline").style("font-weight", d=>console.log(d)))//.match(word)?"900":"300")
+	
 			}
 	
 			// BUBBLE CHART
@@ -2844,7 +3056,7 @@ function init() {
 					}
 				})
 	
-				//console.log("fil data", filterData)
+				console.log("fil data", filterData)
 				// create chart horizontal scale
 				// var xScale = d3.scaleLinear()
 				var xScale = d3.scaleSymlog()
@@ -3404,7 +3616,7 @@ function init() {
 	
 			// tooltip function for the second chart
 			function tooltipCluster(word, freq, theme, country, coords, pc_freq) {
-				//console.log(word)
+				console.log(word)
 				d3.select("#tooltipCluster")
 					.style("display", "block")
 					.style("top", (coords[1]+10) + "px")
@@ -3416,7 +3628,7 @@ function init() {
 			}
 			// info (bottom right methodology info) tooltip function for the first chart
 			function tooltipInfo(width, height) {
-				//console.log("working")
+				console.log("working")
 				info = d3.select("#tooltipInfo")
 					.style("display", "block")
 					.style("visibility", "visible")
@@ -3475,7 +3687,7 @@ function init() {
 							cs.push(d.cluster);
 						}
 				});
-				//console.log(cs)
+				console.log(cs)
 				
 				n = data.length, // total number of nodes
 				m = cs.length; // number of distinct clusters
@@ -3487,7 +3699,7 @@ function init() {
 				for (var i = 0; i<n; i++){
 					nodes.push(create_nodes(data,i));
 				}
-				//console.log(nodes)
+				console.log(nodes)
 	
 				// select html element, add circles to chart, and define hover event (tooltip showing word frequency)
 				var svg = wordClusters
@@ -3679,11 +3891,11 @@ function init() {
 				const links = data.links.map(d => Object.create(d))
 				const nodes = data.nodes.map(d => Object.create(d))
 			
-				//console.log(data)
+				console.log(data)
 			
 				// define scales
 				extentWordFreq = d3.extent(nodes, d=>d.perc_freq)
-							//console.log(extentWordFreq)
+							console.log(extentWordFreq)
 				
 				// scale for node size
 				var bubbleRadius = d3.scaleSqrt()
@@ -3693,7 +3905,7 @@ function init() {
 								.range([0.1, 4])
 				
 				extentLinkWeight = d3.extent(links, d=>d.weight)
-						//console.log(extentLinkWeight)
+						console.log(extentLinkWeight)
 				// scale for link thickness
 				var linkWeight = d3.scaleLinear()
 								.domain(extentLinkWeight)
@@ -3835,7 +4047,7 @@ function init() {
 				
 				// function to create interaction link between bar charts on the left and networks
 				function barInteract(d) {
-					//console.log(d.id)
+					console.log(d.id)
 					word = d.id
 			
 					// 1) change opacity of other nodes
@@ -3847,7 +4059,7 @@ function init() {
 					y = parseInt(d3.select(bars).select('rect#bar'+d.id).attr("y")) + 86
 					fill = d3.select(bars).select('rect#bar'+d.id).attr("fill")
 			
-					//console.log(x, y)
+					console.log(x, y)
 					
 					// select the bar that matches the specific node being hovered on and show information about frequency
 					d3
@@ -3983,6 +4195,17 @@ function init() {
 						}
 					}
 				});
+			}
+
+			function getRandomSubarray(arr, size) {
+				var shuffled = arr.slice(0), i = arr.length, temp, index;
+				while (i--) {
+					index = Math.floor((i + 1) * Math.random());
+					temp = shuffled[index];
+					shuffled[index] = shuffled[i];
+					shuffled[i] = temp;
+				}
+				return shuffled.slice(0, size);
 			}
 }
 
