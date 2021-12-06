@@ -100,7 +100,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     }
 
     function hideWord() {
-      //console.log("hide word")
+      baseRects();
+      $rectLabels.remove();
     }
 
     function revealChart() {
@@ -266,8 +267,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .data(series)
           .join("g")
           .attr("class", d => `${d.key}_group`)
-          //.on("mouseenter", showWord)
-					//.on("mouseleave", hideWord)
+          .on("mouseenter", showWord)
+					.on("mouseleave", hideWord)
           .selectAll("rect")
           .data(d => d)
          
