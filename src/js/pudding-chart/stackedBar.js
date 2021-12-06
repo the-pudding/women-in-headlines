@@ -1,4 +1,4 @@
-import Autocomplete from 'accessible-autocomplete'
+//import Autocomplete from 'accessible-autocomplete'
 import { wrap } from '../utils/wrap';
 /* global d3 */
 

@@ -215,7 +215,7 @@ function spanLeave() {
 
 function populateDropdown(data, div, attribute) {
 	const select = d3.select(div);
-	let unique_countries = d3.map(data, d=>d[attribute]).filter(onlyUnique);
+	let unique_countries = ['all countries', 'india', 'south africa', 'uk', 'usa'];
 
 	select.selectAll("option")
 	.data(unique_countries)
@@ -223,7 +223,7 @@ function populateDropdown(data, div, attribute) {
 		.attr("value", d=>d)
 		.text(d=>d);
 	
-	$countryDropdownTemporal.node().options[3].selected = true;
+	$countryDropdownTemporal.node().options[4].selected = true;
 }
 
 function changeTemporalDropdown() {
