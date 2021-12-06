@@ -59,7 +59,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let height = 0;
     const MARGIN_TOP = 50;
     const FLAG_TOP = 80;
-    const MARGIN_BOTTOM = 0;
+    const MARGIN_BOTTOM = 50;
     const MARGIN_LEFT = 0;
     const MARGIN_RIGHT = 0;
     const themePad = 20;
@@ -76,22 +76,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       stripped = stripped.replace(",", "");
       stripped = stripped.toLowerCase();
       return stripped;
-    }
-
-    function searchWords() {
-      let onlyWords = dataLocal.columns;
-
-      Autocomplete({
-        element: document.querySelector('#wordSearch'),
-        id: 'my-autocomplete',
-        source: onlyWords,
-        displayMenu: 'overlay',
-        confirmOnBlur: false,
-        onConfirm(word) {
-
-          highlightWords(null, null, null, word)
-        },
-      });
     }
 
     function showWord() {
@@ -203,21 +187,25 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     }
 
     function renderThemeBars(data, dataFreq, themes, x, y) {
+      let chartHeight = height/3.5;
+
       x.domain(["crime and violence","female stereotypes", "empowerment", "people and places", "race, ethnicity and identity"]);
-      y.domain([d3.max(stackedData, d => d3.max(d, d => d[1])), 0]);
+      y
+        .rangeRound([MARGIN_TOP, chartHeight - MARGIN_BOTTOM])
+        .domain([d3.max(stackedData, d => d3.max(d, d => d[1])), 0]);
 
       $xAxis.call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
         .call(g => g.selectAll(".domain").remove())
-        //.call(g => g.selectAll(".tick text").remove());
+        .call(g => g.selectAll(".tick text").remove());
       
       $xAxis.selectAll(".tick")
-      //   // .append("text")
-      //   // .text(d=>d==="female stereotypes"?"gendered language":d)
-      //   // .attr("x", 0)             
-      //   //.attr("y", 0)
+        .append("text")
+        .text(d=>d==="female stereotypes"?"gendered language":d)
+        .attr("x", 0)             
+        .attr("y", 0)
         .attr("class", "stackedChartTicks")
-      //   //.attr("transform", `translate(0,${height-MARGIN_TOP-MARGIN_BOTTOM})`)
-        //.call(wrap, x.bandwidth())
+        .attr("transform", `translate(0,${height-MARGIN_BOTTOM-MARGIN_TOP})`)
+        .call(wrap, x.bandwidth())
       
       
       $yAxis.call(d3.axisRight(y).tickSizeOuter(0).tickSizeInner(0))
@@ -231,9 +219,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .attr("x", d=> x(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme))
         .attr("y", d => y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
         .attr("height", d => y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
-                    y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
-        .attr("width", x.bandwidth()-(themePad/3))
-        .attr("transform", `translate(0,${height-MARGIN_TOP})`)
+            y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+        .attr("width", x.bandwidth())
+        .attr("transform", `translate(0,${height*3.5-MARGIN_BOTTOM-MARGIN_TOP})`)
       
     }
 
@@ -369,7 +357,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
         x = d3.scaleBand()
 				      .domain(dataLocal.map(d => d.country))
-				      .range([0, width + MARGIN_RIGHT])
+				      .range([MARGIN_LEFT, width - MARGIN_RIGHT])
 				      .padding(0.1);
         
         xPad = x.padding();

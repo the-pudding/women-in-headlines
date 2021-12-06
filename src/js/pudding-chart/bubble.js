@@ -235,11 +235,11 @@ d3.selection.prototype.puddingBubble = function init(options) {
           $vis
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
             .attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
-            
+          
           xScale = d3.scaleSymlog()
-            .range([MARGIN_LEFT*2+MARGIN_RIGHT, width - maxR])
-            .domain(variable==="polarity"?[0, d3.max(filterData, d => +d[variable])]:
-                            d3.extent(filterData, d => +d[variable]))
+          .range([MARGIN_LEFT+MARGIN_RIGHT, width - maxR])
+          .domain(variable==="polarity"?[0, d3.max(filterData, d => +d[variable])]:
+                          d3.extent(filterData, d => +d[variable]))
                             
           legendData = [{level: "", radius: radius(10000000), y: height+75, x: width/2.2, anchor:"end", xtext: width/2.235, ytext: height+53,id: ""}, 
           {level: "", radius: radius(100000000), y: height+75, x: width/2.05,id: ""}, 
@@ -287,16 +287,12 @@ d3.selection.prototype.puddingBubble = function init(options) {
                 .attr("id", d => `${d.site}-circle`)
                 .style("opacity", "1")
                 .attr('r', d=>radius(+d.monthly_visits))
-                .attr('cx', function(d) { return d.x; })
-                .attr('cy', function(d) { return d.y; })
                 .on("mouseenter", showTooltip)
 					      .on("mouseleave", hideTooltip);
-
-              //$circles.merge($newCircles)
-                  // .attr('cx', function(d) { return d.x; })
-                  // .attr('cy', function(d) { return d.y; })
-                  // .on("mouseenter", (event, d) => { showTooltip() })
-                  // .on("mouseleave", (event, d) => { hideTooltip() });
+              
+              $circles.merge($newCircles) 
+                .attr('cx', function(d) { return d.x; })
+                .attr('cy', function(d) { return d.y; })
               
               $newLogos = $logos.join("svg:image")
 									.attr("class", "forceLogo")
@@ -304,20 +300,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
                     let logoR = radius(+d.monthly_visits)
                     return `translate(-${logoR/2}, -${logoR/2})`
                   })
-									// each logo needs to be centered in the bubble (couldnt find better way of doing this)
-                  //.attr("transform", "translate(-50%, -50%)")
-									// .attr("transform", d=>d.site=="bbc.co.uk" ? "translate(-50,-50)"
-									// 					: d.site=="cnn.com" | d.site=="foxnews.com" ? "translate(-30,-30)"
-									// 					: d.site=="espn.go.com" ? "translate(-34,-10)"
-									// 					: d.site=="nytimes.com" | d.site=="buzzfeed.com" ? "translate(-25,-25)"
-									// 					: d.site=="washingtonpost.com" | d.site=="huffingtonpost.com" | d.site== "usatoday.com" ? "translate(-20,-20)"
-									// 					: d.site=="dailymail.co.uk" ? "translate(-22,-18)"
-									// 					: d.site=="politico.com" | d.site=="ksl.com" | d.site=="abcnews.go.com" | d.site=="nydailynews.com" ? "translate(-12.5,-12.5)"
-									// 					: d.site=="telegraph.co.uk" ? "translate(-15,-3)"
-									// 					: d.site=="breitbart.com" ? "translate(-14,-10)"
-									// 					: d.site=="aajtak.in" ? "translate(-25,-20)"
-									// 					: d.site=="businessinsider.com" ? "translate(-14,-13)"
-									// 					: "translate(-15,-15)")
 									.attr('width', d=>logoScale(+d.monthly_visits))
                   .attr('height', d=>logoScale(+d.monthly_visits))
                   .attr('xlink:href', function(d) { 
@@ -330,10 +312,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
                   })
                   .attr('x', function(d) { return d.x; })
                   .attr('y', function(d) { return d.y; })
-              
-              // $logos.merge($newLogos)
-              //     .attr('x', function(d) { return d.x; })
-              //     .attr('y', function(d) { return d.y; })
             }); 
 
           return Chart;
