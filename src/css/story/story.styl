@@ -207,6 +207,7 @@ body {
     font-size: 14px;
     text-anchor: middle;
     fill: $off-black;
+    text-shadow: -1px -1px 0 $tan, 1px -1px 0 $tan, -1px 1px 0 $tan, 1px 1px 0 $tan;
     }
 
 .xAxis line, .yAxis line{
@@ -973,14 +974,14 @@ summary {
   flex-direction: row;
   margin: 0;
   flex-wrap: wrap;
-  max-width: 18rem;
+  max-width: 30rem;
 }
 
 .categories button {
   font-family: $barlow;
   font-size: 16px;
   font-weight: 600;
-  width: 8rem;
+  width: 12rem;
   padding: 0.25rem;
   margin: 0.25rem;
   border-radius: 0.25rem;
@@ -1051,6 +1052,11 @@ summary {
   margin-right: 2rem;
 }
 
+.left div {
+  display: flex;
+  flex-direction: row;  
+}
+
 .right {
   margin-bottom: 0rem; 
 }
@@ -1116,17 +1122,6 @@ summary {
   margin: 0.025rem 0;
   padding: 0.125rem 0.5rem;
 }
-
-// .stackedBarThemeAnnotation {
-//   font-family: $barlow;
-//   font-weight: 600;
-//   font-size: 16px;
-//   text-transform: uppercase;
-//   padding: 0.25rem 0.5rem;
-//   white-space: nowrap;
-//   border-radius: 0.25rem;
-//   cursor: pointer;
-// }
 
 #wordSearch {
 
@@ -1276,8 +1271,9 @@ summary {
   cursor: pointer;
 }
 
-.stackedBars g {
-  cursor: pointer
+.stackedBars rect {
+  cursor: pointer;
+  pointer-events: none;
 }
 
 .stackedChartTicks-light {
@@ -1341,7 +1337,7 @@ article {
 
 #stickyStackedChart {
   height: 4000px;
-  max-width: 350px;
+  max-width: 400px;
   margin: 0;
 }
 
@@ -1368,6 +1364,19 @@ article {
   border 1px solid $off-black;
 }
 
+.stackedBarThemeHover {
+    font-family: $barlow;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    fill: $off-black;
+}
+
+.hoverRectActive {
+  //fill: $off-black !important;
+  opacity: 1 !important;
+}
+
 #hover-black {
   color: $off-black;
   border 1px solid $off-black;
@@ -1391,6 +1400,13 @@ article {
   border 1px solid $red;
 }
 
+#hover-red-none {
+  color: $tan;
+  border 1px solid $red;
+  background: $red;
+  pointer-events: none;
+}
+
 #hover-red:hover {
   color: $bg;
   background: $red;
@@ -1400,6 +1416,13 @@ article {
 #hover-green {
   color: $green;
   border 1px solid $green;
+}
+
+#hover-green-none {
+  color: $tan;
+  border 1px solid $green;
+  background: $green;
+  pointer-events: none;
 }
 
 #hover-green:hover {
@@ -1845,6 +1868,23 @@ label
     flex-direction: column;  
     justify-content: center;
   }
+
+  .categories {
+    margin-top: 1rem;
+    justify-content: center;
+  }
+
+  .temporal-wrapper {
+    flex-direction: column;
+  }
+
+  .dropdownOptions {
+    margin: 0rem 0.25rem;
+  }
+
+  #stickyXaxis {
+    top: 140px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -1887,31 +1927,15 @@ label
     width: 0.5rem;
     height: 0.5rem;
   }
+}
 
-  .temporal-wrapper {
-    flex-direction: column;
-  }
-
-  .categories {
-    max-width: 20rem;
-    margin-top: 1rem;
-    justify-content: center;
+@media only screen and (max-width: 450px) {
+  .categories button {
+    font-size: 14px;
+    width: 10rem;
   }
 
   .dropdownOptions {
-    margin: 0rem 0.25rem;
+    font-size: 14px;
   }
-
-  #stickyXaxis {
-    top: 140px;
-  }
-
-  // #chartB, #chartP {
-  //   height: 85vh;
-  // }
-
-  // .chartLabels {
-  //   transform: rotate(90deg);
-  //   position: relative;
-  // }
 }

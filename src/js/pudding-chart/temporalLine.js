@@ -174,9 +174,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 		}
 
 		function showTooltip(event, d) {
-			$areas.attr("opacity", 0.25)
-			$lines.attr("opacity", 0.4)
-			d3.selectAll(".wordText").attr("opacity", 0.25)
+			$areas.attr("opacity", 0.125)
+			$lines.attr("opacity", 0.25)
+			d3.selectAll(".wordText").attr("opacity", 0.125)
 
 			d3.select('#area-' + d.word).attr("opacity", 0.85)
 			d3.select('#line-' + d.word).attr("opacity", 1)
@@ -407,7 +407,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
 				let wordToScaleAndArea = Object.fromEntries(
 					fullData.map(d => {
-						// if (d.word === "witchcraft") console.log(d);
 						const maxRate = d3.max(d.rates, d => +d.frequency);
 
 						const y = d3.scaleLinear()
@@ -429,7 +428,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 					})
 
 				)
-				console.log(wordToScaleAndArea);
 
 				$cells
 					.attr('transform', d => `translate(${$col(d.col)}, ${$row(d.row)})`);

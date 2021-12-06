@@ -215,7 +215,7 @@ function spanLeave() {
 
 function populateDropdown(data, div, attribute) {
 	const select = d3.select(div);
-	let unique_countries = ['all countries', 'india', 'south africa', 'uk', 'usa'];
+	let unique_countries = ['all countries', 'India', 'South Africa', 'UK', 'USA'];
 
 	select.selectAll("option")
 	.data(unique_countries)
@@ -229,6 +229,7 @@ function populateDropdown(data, div, attribute) {
 function changeTemporalDropdown() {
 	const selection = this.value;
 	const country = selection;
+	console.log(country)
 
 	d3.select("#smChart svg").remove();
 	d3.select("#stickyXaxis svg").remove();

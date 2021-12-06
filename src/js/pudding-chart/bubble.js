@@ -90,10 +90,10 @@ d3.selection.prototype.puddingBubble = function init(options) {
 		// dimensions
 		let width = 0;
 		let height = 0;
-		const MARGIN_TOP = 110;
-		const MARGIN_BOTTOM = 20;
+		const MARGIN_TOP = 50;
+		const MARGIN_BOTTOM = 120;
 		const MARGIN_LEFT = 50;
-		const MARGIN_RIGHT = 30;
+		const MARGIN_RIGHT = 50;
 
 		// scales
 		let xScale = null;
@@ -125,12 +125,14 @@ d3.selection.prototype.puddingBubble = function init(options) {
 			const dropdownType = d3.select(this).property("id");
 
 			let allCircs = d3.selectAll(".forceCircles");
-			let allLogos = d3.selectAll(".forceLogos");
+			let allLogos = d3.selectAll(".forceLogo");
 
 			if (dropdownType === "countrydropdown") {
 				$pubDropdown.node().options[0].selected = true;
 
 				allCircs.style("fill", d => d.country_of_pub.toLowerCase() === selection.toLowerCase() ? "#F7DC5B" : "#FEFAF1")
+				allCircs.style("stroke", d => d.site.toLowerCase() === selection.toLowerCase() ? "#E75C33" : "#282828")
+				allCircs.style("stroke-width", d => d.site.toLowerCase() === selection.toLowerCase() ? "3" : "1")
 				allCircs.style("opacity", d => d.country_of_pub.toLowerCase() === selection.toLowerCase() ? "1" :
 					selection === "" ? "1" : "0.2")
 				allLogos.style("opacity", d => d.country_of_pub.toLowerCase() === selection.toLowerCase() ? "1" :
@@ -141,6 +143,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
 				$countryDropdown.node().options[0].selected = true;
 
 				allCircs.style("fill", d => d.site.toLowerCase() === selection.toLowerCase() ? "#F7DC5B" : "#FEFAF1")
+				allCircs.style("stroke", d => d.site.toLowerCase() === selection.toLowerCase() ? "#E75C33" : "#282828")
+				allCircs.style("stroke-width", d => d.site.toLowerCase() === selection.toLowerCase() ? "3" : "1")
 				allCircs.style("opacity", d => d.site.toLowerCase() === selection.toLowerCase() ? "1" :
 					selection === "" ? "1" : "0.2")
 				allLogos.style("opacity", d => d.site.toLowerCase() === selection.toLowerCase() ? "1" :
@@ -160,9 +164,16 @@ d3.selection.prototype.puddingBubble = function init(options) {
 			let siteMatch = d3.select(this).attr('id');
 			siteMatch = siteMatch.split("-");
 			siteMatch = siteMatch[0];
+			let siteMatchNoPunc = siteMatch.replace(/\./g,'');
+
+			let allCircs = d3.selectAll(".forceCircles").style("opacity", 0.2);
+			let allLogos = d3.selectAll(".forceLogo").style("opacity", 0.2);
 
 			let circ = d3.select(this);
-			circ.style("stroke-width", 3).style("stroke", "#E75C33")
+			let logo = d3.selectAll(`.forceLogo-${siteMatchNoPunc}`)
+			console.log(logo)
+			circ.style("stroke-width", 3).style("stroke", "#E75C33").style("opacity", 1).style("fill", "#F7DC5B");
+			logo.style("opacity", 1); 
 
 			let dataSubset = headlines.filter(d => d.site === siteMatch);
 			let randomHeadline = Math.floor(Math.random() * dataSubset.length);
@@ -171,8 +182,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
 			if (width >= 600) {
 				$tooltip
-					.style("top", y + "px")
-					.style("left", (x - offset) + "px")
+					.style("top", `${y}px`)
+					.style("left", `${x - offset}px`)
 					.style("bottom", "auto");
 			} else {
 				$tooltip
@@ -191,8 +202,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
 			let allCircs = d3.selectAll(".forceCircles");
 
-			allCircs.style("stroke-width", "1")
-			allCircs.style("stroke", "#282828")
+			allCircs.style("stroke-width", "1").style("stroke", "#282828").style("opacity", 1).style("fill", "#FEFAF1");
+			let allLogos = d3.selectAll(".forceLogo").style("opacity", 1);
 		}
 
 		const Chart = {
@@ -222,8 +233,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
 				width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
 				height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
-				radius.range([3, width / 20])
-				logoScale.range([18, width / 20])
+				radius.range([3, width / 18])
+				logoScale.range([12, width / 18])
 
 				maxR = d3.max(filterData, d => +d.monthly_visits)
 				maxR = radius(maxR);
@@ -243,10 +254,10 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
 				legendData = [{ level: "", radius: radius(10000000), y: height + 75, x: width / 2.2, anchor: "end", xtext: width / 2.235, ytext: height + 53, id: "" },
 				{ level: "", radius: radius(100000000), y: height + 75, x: width / 2.05, id: "" },
-				{ level: "1B Monthly Viewers", radius: radius(1000000000), y: height + 75, x: width / 1.85, anchor: "middle", xtext: width / 1.85, ytext: height + width / 6.5, id: "" }]
+				{ level: "1B Monthly Viewers", radius: radius(1000000000), y: height + 75, x: width / 1.85, anchor: "middle", xtext: width / 1.65, ytext: height + MARGIN_BOTTOM/2, id: "" }]
 
-				$legend.attr('transform', `translate(-${width / 2 - MARGIN_LEFT / 2 - maxR / 2}, -${height})`);
-				//$legend.attr('transform', `translate(0,0)`)
+				//$legend.attr('transform', `translate(-${width / 2 - MARGIN_LEFT / 2 - maxR / 2}, -${height})`);
+				$legend.attr('transform', `translate(0,50)`)
 
 				$legendCircle
 					.selectAll("circle")
@@ -305,7 +316,10 @@ d3.selection.prototype.puddingBubble = function init(options) {
 					.attr('cy', function (d) { return d.y; })
 
 				$newLogos = $logos.join("svg:image")
-					.attr("class", "forceLogo")
+					.attr("class", function(d) {
+						let siteNoPunc = (d.site).replace(/\./g,'');
+						return `forceLogo-${siteNoPunc} forceLogo`
+					})
 					.attr("transform", function (d) {
 						let logoR = radius(+d.monthly_visits)
 						return `translate(-${logoR / 2}, -${logoR / 2})`
