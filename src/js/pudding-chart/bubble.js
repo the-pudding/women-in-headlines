@@ -171,7 +171,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
 			let circ = d3.select(this);
 			let logo = d3.selectAll(`.forceLogo-${siteMatchNoPunc}`)
-			console.log(logo)
 			circ.style("stroke-width", 3).style("stroke", "#E75C33").style("opacity", 1).style("fill", "#F7DC5B");
 			logo.style("opacity", 1); 
 
@@ -233,8 +232,10 @@ d3.selection.prototype.puddingBubble = function init(options) {
 				width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
 				height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
-				radius.range([3, width / 18])
-				logoScale.range([12, width / 18])
+				let rSize = width >= 500 ? 18 : 12;
+
+				radius.range([3, width / rSize])
+				logoScale.range([12, width / rSize])
 
 				maxR = d3.max(filterData, d => +d.monthly_visits)
 				maxR = radius(maxR);
@@ -248,16 +249,20 @@ d3.selection.prototype.puddingBubble = function init(options) {
 					.attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
 
 				xScale = d3.scaleLinear()
-					.range([MARGIN_LEFT + MARGIN_RIGHT, width - maxR])
-					.domain(variable === "polarity" ? d3.extent(filterData, d => +d[variable]) :
-						d3.extent(filterData, d => +d[variable]))
+					.range([MARGIN_LEFT + MARGIN_RIGHT, width - maxR*2])
+					.domain(d3.extent(filterData, d => +d[variable]));
+					
+				yScale = d3.scaleLinear()
+					.range([MARGIN_TOP + MARGIN_BOTTOM, height - maxR*2])
+					.domain(d3.extent(filterData, d => +d[variable]));
 
-				legendData = [{ level: "", radius: radius(10000000), y: height + 75, x: width / 2.2, anchor: "end", xtext: width / 2.235, ytext: height + 53, id: "" },
-				{ level: "", radius: radius(100000000), y: height + 75, x: width / 2.05, id: "" },
-				{ level: "1B Monthly Viewers", radius: radius(1000000000), y: height + 75, x: width / 1.85, anchor: "middle", xtext: width / 1.65, ytext: height + MARGIN_BOTTOM/2, id: "" }]
+				legendData = [{ level: "", radius: radius(10000000), y: height + 75, x: width / 2 + maxR, anchor: "end", xtext: width / 2.235, ytext: height + 53, id: "" },
+				{ level: "", radius: radius(100000000), y: height + 75, x: width / 2 + maxR*1.5, id: "" },
+				{ level: "1B Monthly Viewers", radius: radius(1000000000), y: height + 75, x: width / 2 + maxR*2.75, anchor: "middle", xtext: width / 2 + maxR*2.75, ytext: height + MARGIN_BOTTOM/2 - 10, id: "" }]
 
 				//$legend.attr('transform', `translate(-${width / 2 - MARGIN_LEFT / 2 - maxR / 2}, -${height})`);
-				$legend.attr('transform', `translate(0,50)`)
+				let legendPos = width >= 500 ? -maxR : -width/2 - maxR/1.5;
+				$legend.attr('transform', `translate(${legendPos},50)`)
 
 				$legendCircle
 					.selectAll("circle")
@@ -280,7 +285,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
 				simulation = d3.forceSimulation()
 					.nodes(filterData)
-					// .force('charge', d3.forceManyBody().strength(1))
 					.force('x', d3.forceX().x(function (d) {
 						return xScale(+d[variable]);
 					}).strength(1))
@@ -288,16 +292,24 @@ d3.selection.prototype.puddingBubble = function init(options) {
 					.force('collide', d3.forceCollide((d) => {
 						return radius(+d.monthly_visits)
 					}))
-					// .alphaDecay(0.1)
-					.on("tick", () => {
-
-
-					})
 					.stop();
+				
+				// if (width >= 500) {
+				// 	simulation
+				// 		.force('x', d3.forceX().x(function (d) {
+				// 			return xScale(+d[variable]);
+				// 		}).strength(1))
+				// 		.force("y", d3.forceY(height / 2).strength(0.2))
+				// } else {
+				// 	simulation
+				// 		.force("x", d3.forceX(height / 2).strength(0.2))
+				// 		.force('y', d3.forceY().y(function (d) {
+				// 			return yScale(+d[variable]);
+				// 		}).strength(1))
+				// }
 
 				for (var i = 0; i < 300; i++) {
 					simulation.tick();
-
 				}
 
 				$circles = $vis.selectAll('circle').data(filterData);
@@ -312,8 +324,16 @@ d3.selection.prototype.puddingBubble = function init(options) {
 					.on("mouseleave", hideTooltip);
 
 				$circles.merge($newCircles)
-					.attr('cx', function (d) { return d.x; })
-					.attr('cy', function (d) { return d.y; })
+					.attr('cx', function (d) { 
+						let posX = width >= 500 ? d.x : d.y;
+						//let posX = d.x;
+						return posX; 
+					})
+					.attr('cy', function (d) { 
+						let posY = width >= 500 ? d.y : d.x;
+						//let posY = d.y;
+						return posY; 
+					})
 
 				$newLogos = $logos.join("svg:image")
 					.attr("class", function(d) {
@@ -334,8 +354,16 @@ d3.selection.prototype.puddingBubble = function init(options) {
 							return ""
 						}
 					})
-					.attr('x', function (d) { return d.x; })
-					.attr('y', function (d) { return d.y; })
+					.attr('x', function (d) { 
+						let posX = width >= 500 ? d.x : d.y;
+						//let posX = d.x;
+						return posX; 
+					})
+					.attr('y', function (d) { 
+						let posY = width >= 500 ? d.y : d.x;
+						//let posY = d.y;
+						return posY; 
+					})
 
 
 				return Chart;
@@ -343,7 +371,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
 			// update scales and render chart
 			render() {
 				// offset chart for margins
-				$vis.attr('transform', `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
+				$vis.attr('transform', `translate(${MARGIN_LEFT + MARGIN_RIGHT}, ${MARGIN_TOP})`);
 
 				populateDropdown(chartData, "#countrydropdown", "country_of_pub")
 				populateDropdown(chartData, "#pubdropdown", "site")

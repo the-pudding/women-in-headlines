@@ -1573,6 +1573,7 @@ article {
   flex-direction: row;
   justify-content: space-between;
   margin: 0 auto 2rem auto;
+  width: 100%;
   max-width: 60rem;
 }
 
@@ -1662,31 +1663,12 @@ article {
   width: 100%;
 }
 
-.fade {
-  background: linear-gradient(rgba($tan, 0), rgba($tan, 1));
-  height: 10rem;
-  transform: translateY(-10rem);
-  margin-bottom: -10rem;
-  pointer-events: none;
-  z-index set-index(overlay)
+.bubble-wrapper {
+  position: relative;
 }
 
-.see-more {
-    border: 1px solid $off-black;
-    border-radius: 0.25rem;
-    width: 10rem;
-    margin: 2rem auto;
-    padding: 0;
-    display: block;
-    height: 2rem;
-}
 
-.see-more p {
-  margin: 0;
-  padding: 0;
-  font-family: $barlow;
-  font-size: 18px;
-}
+
 
 /* Input styling */
 
@@ -1927,6 +1909,31 @@ label
   .smDot {
     width: 0.5rem;
     height: 0.5rem;
+  }
+
+  #chartP, #chartB {
+    height: 500px;
+  }
+
+  .chartLabels {
+    transform-origin: 100% 0;
+    transform: rotate(90deg);
+    position: absolute;
+    height: 2rem;
+    bottom: -2rem;
+    right: 0;
+    width: 460px;
+  }
+  .xAxisLabel-left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  .xAxisLabel-right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 }
 

@@ -120,19 +120,21 @@
       </div>
     </div>
   <section class="headline-polarity-section">
-    <div id="chartP" class="svg-container" style="text-align: center;"></div>
-    <div class="chartLabels">
-      <p id="xAxisLabel">← Less Polarizing</p>
-      <p id="xAxisLabel">More Polarizing →</p>
-    </div>
-    <details>
-      <summary>{{copy.notes-headline-pol}}</summary>
-      <div class="inner">
-        {{#each copy.bubble-notes-pol}}
-          <p class="bubble-notes">{{{value}}}</p>
-        {{/each}}
+    <div class="bubble-wrapper">
+      <div id="chartP" class="svg-container" style="text-align: center;"></div>
+      <div class="chartLabels">
+        <p id="xAxisLabel" class="xAxisLabel-left">← Less Polarizing</p>
+        <p id="xAxisLabel" class="xAxisLabel-right">More Polarizing →</p>
       </div>
-    </details>
+      <details>
+        <summary>{{copy.notes-headline-pol}}</summary>
+        <div class="inner">
+          {{#each copy.bubble-notes-pol}}
+            <p class="bubble-notes">{{{value}}}</p>
+          {{/each}}
+        </div>
+      </details>
+    </div>
   </section>
 
   <!-- HEADLINE BIAS SECTION -->
@@ -143,19 +145,21 @@
     {{#each copy.bias-outro}}
       <p class="description">{{{value}}}</p>
     {{/each}}
-    <div id="chartB" class="svg-container" style="text-align: center;"></div>
-    <div class="chartLabels">
-      <p id="xAxisLabel">← Less Biased</p>
-      <p id="xAxisLabel">More Biased →</p>
-    </div>
-    <details>
-      <summary>{{copy.notes-headline-bias}}</summary>
-      <div class="inner">
-        {{#each copy.bubble-notes-bias}}
-          <p class="bubble-notes">{{{value}}}</p>
-        {{/each}}
+    <div class="bubble-wrapper">
+      <div id="chartB" class="svg-container" style="text-align: center;"></div>
+      <div class="chartLabels">
+        <p id="xAxisLabel"class="xAxisLabel-left">← Less Biased</p>
+        <p id="xAxisLabel" class="xAxisLabel-right">More Biased →</p>
       </div>
-    </details>
+      <details>
+        <summary>{{copy.notes-headline-bias}}</summary>
+        <div class="inner">
+          {{#each copy.bubble-notes-bias}}
+            <p class="bubble-notes">{{{value}}}</p>
+          {{/each}}
+        </div>
+      </details>
+    </div>
   </section>
 </section>
 
