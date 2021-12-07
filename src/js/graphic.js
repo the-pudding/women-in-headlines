@@ -908,7 +908,7 @@ function init() {
 				// console.log(event.y)
 				// console.log(transform)
 				d3.selectAll("."+ word)
-				.attr("fill", "#E75C33")
+				.attr("fill", "#E76B2D")
 				//.attr("stroke-width", "0.1px")
 			
 				d3.selectAll(".stackedBars")
@@ -2823,7 +2823,7 @@ function init() {
 					// .attr("font-size", "11px")
 					.attr("font-weight", "900")
 					// .style("text-transform", "uppercase")
-					.attr("fill", "#E75C33")
+					.attr("fill", "#E76B2D")
 					.html("<span class='datettip'>"+d3.timeFormat("%b %Y")(new Date(data[randHeadline].time)) + " | " + data[randHeadline].site+"</span>")
 					// .html('"' + data[randHeadline].subtitle + '..."')
 					.call(wrap, 300)

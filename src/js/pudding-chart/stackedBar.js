@@ -84,7 +84,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 			let wordText = wordGroup.attr("class");
 			wordText = wordText.split("_")[0];
 
-			$rect.style("opacity", "0.5");
+			$rect.style("opacity", "0.3");
 
 			let wordRects = wordGroup.selectAll("rect")
 				.classed("hoverRectActive", true);
@@ -126,8 +126,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 		function baseRects() {
 			let notWordRects = d3.selectAll(".stackedBars")
 				.selectAll(`rect`)
-				.attr("fill", "#ccc")
-				.attr("opacity", "0.5")
+				.attr("fill", "#c9c9c9")
+				.attr("opacity", "1")
 		}
 
 		function highlightWords(index, word) {
@@ -137,11 +137,11 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 			let wordGroup = d3.select(`.${ID}_group`);
 
 			if (index === 7 || index === 9) {
-				d3.selectAll(`.stackedBars rect`).attr("opacity", "0.5")
+				d3.selectAll(`.stackedBars rect`).attr("opacity", "0.3")
 
 				wordRects = d3.selectAll(`.${ID}_class`).attr("opacity", "1")
 			} else {
-				baseRects()
+				d3.selectAll(`.stackedBars rect`).attr("fill", "#c9c9c9").attr("opacity", "0.3")
 
 				wordRects = d3.selectAll(`.${ID}_class`)
 						.attr("fill", "#282828")
@@ -170,7 +170,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 			let notThemeRects = d3.selectAll(".stackedBars")
 				.selectAll(`rect`)
 				.attr("fill", "#ccc")
-				.attr("opacity", "0.5")
+				.attr("opacity", "0.3")
 
 			let violenceRects = d3.selectAll(".stackedBars").selectAll(".crimeandviolence_class")
 			let stereotypeRects = d3.selectAll(".stackedBars").selectAll(".femalestereotypes_class")
@@ -180,7 +180,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 			if (theme === "crimeandviolence") {
 				violenceRects
-					.attr("fill", "#E75C33")
+					.attr("fill", "#E76B2D")
 					.attr("opacity", "1")
 			}
 
@@ -192,16 +192,16 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 			if (theme === "EPR") {
 				violenceRects
-					.attr("fill", "#E75C33")
+					.attr("fill", "#E76B2D")
 					.attr("opacity", "1")
 				stereotypeRects
 					.attr("fill", "#53B67C")
 					.attr("opacity", "1")
 				empowermentRects
-					.attr("fill", "#F7DC5B")
+					.attr("fill", "#648FDC")
 					.attr("opacity", "1")
 				peopleRects
-					.attr("fill", "#3569DC")
+					.attr("fill", "#F7DC5B")
 					.attr("opacity", "1")
 				raceRects
 					.attr("fill", "#F2C5D3")
@@ -316,9 +316,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 						return `${wordClass} ${themeClass}`
 					})
 					.attr("fill", "#c9c9c9")
-					.attr("opacity", "0.5")
+					.attr("opacity", "1")
 					.attr("stroke", "#FEFAF1")
-					.attr("stroke-width", "0.2px");
+					.attr("stroke-width", "1");
 
 				// themes chart
 				$rectThemes = $vis.selectAll("rect")

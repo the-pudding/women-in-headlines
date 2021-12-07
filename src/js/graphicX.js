@@ -142,68 +142,14 @@ function onlyUnique(value, index, self) {
 function spanEnter() {
 	let span = d3.select(this).attr("value");
 
-	d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
+	d3.selectAll(".stackedBars rect").attr("opacity", "0.3");
 	d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
 }
 
 function spanLeave() {
 	let span = d3.select(this).attr("value");
 
-	if (span === "wear") {
-		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
-		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .change_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .force_class`).attr("opacity", "1");
-	}
-
-	if (span === "force") {
-		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
-		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .change_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .wear_class`).attr("opacity", "1");
-	}
-
-	if (span === "change") {
-		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
-		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .wear_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .force_class`).attr("opacity", "1");
-	}
-
-	if (span === "rape") {
-		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
-		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .death_class`).attr("opacity", "1");
-	}
-
-	if (span === "death") {
-		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
-		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .rape_class`).attr("opacity", "1");
-	}
-
-	if (span === "body") {
-		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
-		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .child_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .marry_class`).attr("opacity", "1");
-	}
-
-	if (span === "child") {
-		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
-		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .body_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .marry_class`).attr("opacity", "1");
-	}
-
-	if (span === "marry") {
-		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
-		d3.selectAll(`.stackedBars .${span}_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .child_class`).attr("opacity", "1");
-		d3.selectAll(`.stackedBars .body_class`).attr("opacity", "1");
-	}
-
-	if (span === "crimeandviolence" || span === "femalestereotypes" || span === "empowerment" || span === "peopleandplaces" || span === "raceethnicictyandidentity") {
+	if (span === "crimeandviolence" || span === "femalestereotypes" || span === "empowerment" || span === "peopleandplaces" || span === "raceethnicityandidentity") {
 		d3.selectAll(".stackedBars rect").attr("opacity", "0.5");
 		d3.selectAll(`.stackedBars .crimeandviolence_class`).attr("opacity", "1");
 		d3.selectAll(`.stackedBars .femalestereotypes_class`).attr("opacity", "1");
@@ -223,7 +169,7 @@ function populateDropdown(data, div, attribute) {
 		.attr("value", d=>d)
 		.text(d=>d);
 	
-	$countryDropdownTemporal.node().options[4].selected = true;
+	$countryDropdownTemporal.node().options[0].selected = true;
 }
 
 function changeTemporalDropdown() {
@@ -241,7 +187,7 @@ function changeTemporalDropdown() {
 function runEnterview() {
 	enterView({
 		selector: '#cellviolence',
-		offset: 1,
+		offset: 0.5,
 		enter: () => {
 			$tempButtons.classed(`active-btn-violence`, false);
 			$tempButtons.classed(`active-btn-empowerment`, false);
@@ -253,7 +199,7 @@ function runEnterview() {
 
 	enterView({
 		selector: '#cellemotional',
-		offset: 1,
+		offset: 0.5,
 		enter: () => {
 			$tempButtons.classed(`active-btn-violence`, false);
 			$tempButtons.classed(`active-btn-empowerment`, false);
@@ -271,7 +217,7 @@ function runEnterview() {
 
 	enterView({
 		selector: '#cellmayor',
-		offset: 1,
+		offset: 0.5,
 		enter: () => {
 			$tempButtons.classed(`active-btn-violence`, false);
 			$tempButtons.classed(`active-btn-empowerment`, false);
@@ -289,7 +235,7 @@ function runEnterview() {
 
 	enterView({
 		selector: '#cellasian',
-		offset: 1,
+		offset: 0.5,
 		enter: () => {
 			$tempButtons.classed(`active-btn-violence`, false);
 			$tempButtons.classed(`active-btn-empowerment`, false);
@@ -319,9 +265,9 @@ function scrollToTheme() {
 	let targetDiv = d3.select("#smChart").node();
 
 	if ($ID === "violence") { scrollTo(targetDiv, -100); }
-	if ($ID === "stereotypes") { scrollTo(targetDiv, 4032); }
-	if ($ID === "empowerment") { scrollTo(targetDiv, 8138); }
-	if ($ID === "race") { scrollTo(targetDiv, 12390); }
+	if ($ID === "stereotypes") { scrollTo(targetDiv, 4032-100); }
+	if ($ID === "empowerment") { scrollTo(targetDiv, 8138-100); }
+	if ($ID === "race") { scrollTo(targetDiv, 12390-100); }
 
 }
 
@@ -367,7 +313,7 @@ function init() {
 		themesFreq = result[7];
 		sentComp = result[8];
 		filter_years = [2009, 2022];
-		country = "USA";
+		country = "all countries";
 		temporalVar = "freq_prop_headlines";
 
 		// organize data

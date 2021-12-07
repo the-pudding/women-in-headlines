@@ -131,7 +131,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
 				$pubDropdown.node().options[0].selected = true;
 
 				allCircs.style("fill", d => d.country_of_pub.toLowerCase() === selection.toLowerCase() ? "#F7DC5B" : "#FEFAF1")
-				allCircs.style("stroke", d => d.site.toLowerCase() === selection.toLowerCase() ? "#E75C33" : "#282828")
+				allCircs.style("stroke", d => d.site.toLowerCase() === selection.toLowerCase() ? "#E76B2D" : "#282828")
 				allCircs.style("stroke-width", d => d.site.toLowerCase() === selection.toLowerCase() ? "3" : "1")
 				allCircs.style("opacity", d => d.country_of_pub.toLowerCase() === selection.toLowerCase() ? "1" :
 					selection === "" ? "1" : "0.2")
@@ -143,7 +143,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
 				$countryDropdown.node().options[0].selected = true;
 
 				allCircs.style("fill", d => d.site.toLowerCase() === selection.toLowerCase() ? "#F7DC5B" : "#FEFAF1")
-				allCircs.style("stroke", d => d.site.toLowerCase() === selection.toLowerCase() ? "#E75C33" : "#282828")
+				allCircs.style("stroke", d => d.site.toLowerCase() === selection.toLowerCase() ? "#E76B2D" : "#282828")
 				allCircs.style("stroke-width", d => d.site.toLowerCase() === selection.toLowerCase() ? "3" : "1")
 				allCircs.style("opacity", d => d.site.toLowerCase() === selection.toLowerCase() ? "1" :
 					selection === "" ? "1" : "0.2")
@@ -171,7 +171,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
 			let circ = d3.select(this);
 			let logo = d3.selectAll(`.forceLogo-${siteMatchNoPunc}`)
-			circ.style("stroke-width", 3).style("stroke", "#E75C33").style("opacity", 1).style("fill", "#F7DC5B");
+			circ.style("stroke-width", 3).style("stroke", "#E76B2D").style("opacity", 1).style("fill", "#F7DC5B");
 			logo.style("opacity", 1); 
 
 			let dataSubset = headlines.filter(d => d.site === siteMatch);
@@ -371,7 +371,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
 			// update scales and render chart
 			render() {
 				// offset chart for margins
-				$vis.attr('transform', `translate(${MARGIN_LEFT + MARGIN_RIGHT}, ${MARGIN_TOP})`);
+				$vis.attr('transform', `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
 
 				populateDropdown(chartData, "#countrydropdown", "country_of_pub")
 				populateDropdown(chartData, "#pubdropdown", "site")

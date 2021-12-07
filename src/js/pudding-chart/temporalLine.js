@@ -30,11 +30,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 		// colors
 		const mainColor = "#3569DC";
 		const fColor = "#53B67C";
-		const eColor = "#F7DC5B";
+		const eColor = "#648FDC";
 		const vColor = "#f76e45";
 		const rColor = "#F2C5D3";
-		const pColor = "#5787f2";
-		const ntColor = "lightgrey";
 
 		// data
 		let data = $chart.datum();
@@ -304,19 +302,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 				linearGradientR.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
 				linearGradientR.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
 
-				let linearGradientP = $defs.append("linearGradient").attr("id", "linear-gradient-P");
-				linearGradientP.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
-				linearGradientP.append("stop").attr("offset", "0%").attr("stop-color", pColor);
-				linearGradientP.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
-				linearGradientP.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
-
-				let linearGradientNT = $defs.append("linearGradient").attr("id", "linear-gradient-NT");
-				linearGradientNT.attr("x1", "0%").attr("y1", "0%").attr("x2", "0%").attr("y2", "100%");
-				linearGradientNT.append("stop").attr("offset", "0%").attr("stop-color", ntColor);
-				linearGradientNT.append("stop").attr("offset", "90%").attr("stop-color", "#FEFAF1");
-				linearGradientNT.append("stop").attr("offset", "100%").attr("stop-color", "#FEFAF1");
-
-
 				// create axis
 				$axis = $svg.append('g').attr('class', 'g-axis');
 
@@ -474,12 +459,12 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 					.attr("cy", d => d.y)
 					.attr("r", radius)
 					.attr("fill", d =>
-						d.data.categories === "empowerment" ? "#F7DC5B" :
+						d.data.categories === "empowerment" ? "#648FDC" :
 							d.data.categories === "crime and violence" ? "#f76e45" :
 								d.data.categories === "race, ethnicity and identity" ? "#F2C5D3" :
 									d.data.categories === "people and places" ? "#5787f2" : "lightgrey")
 					.attr("stroke", d =>
-						d.data.categories === "empowerment" ? "#F7DC5B" :
+						d.data.categories === "empowerment" ? "#648FDC" :
 							d.data.categories === "crime and violence" ? "#f76e45" :
 								d.data.categories === "race, ethnicity and identity" ? "#F2C5D3" :
 									d.data.categories === "people and places" ? "#5787f2" : "lightgrey")
