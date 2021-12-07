@@ -28,7 +28,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 		let $yAxis = null;
 		let $xAxisThemes = null;
 		let $yAxisThemes = null;
-		let $xAxisText = null;
+		let $yAxisText = null;
 		let $xAxisFlags = null;
 		let $rects = null;
 		let $rect = null;
@@ -283,12 +283,17 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 				$xAxis = $xAxisGroup.append("g");
 
-				$yAxisGroup = $axis.append('g').attr('class', 'y axis')
+				$yAxisGroup = $axis.append('g')
+					.attr('class', 'y axis');
 
-				$xAxisText = $axis.append("text")
+				$yAxisText = $yAxisGroup.append("text")
 					.attr("class", "stackedChartyTicks")
-					.attr("transform", "rotate(-90)")
-					.text("Frequency of use of headlines ⇢");
+					.attr("transform", "translate(10,275) rotate(-90)")
+					.text("Frequency of use of headlines ⇢")
+				
+				x = d3.scaleBand()
+					.domain(dataLocal.map(d => d.country))
+					.padding(0.1);
 
 				// setup viz group
 				$vis = $svg.append('g').attr('class', 'g-vis');
@@ -321,11 +326,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 				
 				$rectDrops = $vis.selectAll("rect")
 					.filter(d => d.data.country !== "All countries")
-
-				// $rectLabels = $rects.join("text")
-				//   .text(d=>d.key.word)
-				//   .attr("id", d =>`${d.key.word}_label`)
-				//   .attr("class", d => `stackedBarAnnotation ${d.key.theme}_label`)
 
 				Chart.render();
 				Chart.resize();
@@ -402,45 +402,34 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 					.attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
 
 				// responsive xAxis 
-				$xAxisGroup.attr('transform', `translate(${MARGIN_RIGHT},${FLAG_TOP})`)
+				$xAxisGroup.attr('transform', `translate(0,${FLAG_TOP})`)
 
-				x = d3.scaleBand()
-					.domain(dataLocal.map(d => d.country))
-					.range([MARGIN_LEFT, width - MARGIN_RIGHT])
-					.padding(0.1);
-
+				x.range([MARGIN_LEFT, width - MARGIN_RIGHT])
 				xPad = x.padding();
 
 				$xAxis
 					.call(d3.axisBottom(x))
-					.call(g => g.selectAll(".tick line").remove())
-					.call(g => g.selectAll(".tick text").remove())
-					.call(g => g.selectAll(".domain").remove())
 
-				// xAxis flags
-				$xAxis.selectAll(".tick text").remove();
-				$xAxis.selectAll(".tick tickFlag").remove();
-
-				$xAxis.selectAll(".tick")
-					.append("text")
-					.text(d => d)
-					.attr("x", -x.bandwidth() + 13)
-					.attr("y", 0)
+				$xAxis.selectAll(".domain").remove();
+				$xAxis.selectAll(".tick line").remove();
+				$xAxis.selectAll(".tick .tickFlag").remove();
+				
+				$xAxis.selectAll(".tick text")
+					.attr("x", 0)
+					.attr("y", -5)
 					.attr("class", "stackedChartTicks")
 					.call(wrap, x.bandwidth())
+				
+				$xAxis.selectAll(".tick text").attr("transform", `translate(${x.bandwidth() - MARGIN_RIGHT + 6}, 0)`)
 
 				$xAxis.selectAll(".tick")
 					.append("svg:image")
 					.attr("class", "tickFlag")
 					.attr('height', "35px")
-					.attr("x", -x.bandwidth() + 13)
+					.attr("x", x.bandwidth() - MARGIN_RIGHT + 5)
 					.attr("y", 0)
-					.attr("transform", "translate(-17, -50)")
+					.attr("transform", "translate(-17, -55)")
 					.attr("xlink:href", d => flags.filter(c => c.country === d)[0].flag)
-
-				$xAxisText
-					.attr("x", 0)
-					.attr("y", 10)
 
 				// responsive yAxis 
 				$yAxisGroup.attr('transform', `translate(${MARGIN_LEFT},0)`)

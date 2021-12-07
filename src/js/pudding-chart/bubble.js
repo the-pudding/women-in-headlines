@@ -84,7 +84,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
 		{ site: "businessinsider.com", link: "businessInsider.png" },
 		{ site: "aajtak.in", link: "aajtak.png" },
 		{ site: "espn.go.com", link: "espn.png" },
-		{ site: "huffingtonpost.com", link: "huffingtonPost.png" }
+		{ site: "huffingtonpost.com", link: "huffPost.png" }
 		]
 
 		// dimensions
