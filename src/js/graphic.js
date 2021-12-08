@@ -82,8 +82,8 @@ function init() {
 		Promise.all([
 			d3.csv("./assets/data/headlines_site_rapi.csv"),
 			// d3.csv("./assets/data/headlines_cl_sent_sm_rapi.csv"),
-			d3.csv("./assets/data/headlines_cl_sent_rapi_reduced_102621.csv"),
-			d3.csv("./assets/data/country_time_freqrank_rapi_clean_101421.csv", d3.autoType),
+			d3.csv("./assets/data/headlines_cl_sent_rapi_reduced_bubble_120821.csv"), //headlines_cl_sent_rapi_reduced_102621
+			d3.csv("./assets/data/country_time_freqrank_rapi_clean_120821.csv", d3.autoType), //101421
 			d3.csv("./assets/data/polarity_comparison.csv", d3.autoType),
 			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("./assets/data/word_themes.csv", d3.autoType),
@@ -95,14 +95,15 @@ function init() {
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
 			d3.csv("./assets/data/word_themes_rank_101221.csv", d3.autoType), //101221
 			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType), //101221
-			d3.csv("./assets/data/sentiment_comparison.csv", d3.autoType)
+			d3.csv("./assets/data/sentiment_comparison.csv", d3.autoType),
+			d3.csv("./assets/data/headlines_cl_sent_rapi_reduced_temp_120821.csv"),
 
 		  ])
 			.then((datasets) => {
 				// define each dataset
 				let headlinesSite = datasets[0]
 				// countries_data = datasets[1]
-				let headlines = datasets[1]
+				let headlinesBubble = datasets[1]
 				let tempWords = datasets[2]
 				let polComparison = datasets[3]
 				// let dataWordsOLD = datasets[4]
@@ -112,6 +113,7 @@ function init() {
 				let themesRank = datasets[6]
 				let themesFreq = datasets[7]
 				let sentComp = datasets[8]
+				let headlinesTemp = datasets[9]
 				// console.log(dataFreq)
 				// console.log(themes)
 				// console.log(themesRank)
@@ -143,7 +145,7 @@ function init() {
 				var country = "all countries"
 				var variable = "freq_prop_headlines" //freq_prop_headlines // frequency
 				console.log("temp", tempWords)
-				renderTempChart(tempWords, filter_years, country, variable, headlines)
+				renderTempChart(tempWords, filter_years, country, variable, headlinesTemp)
 				// update chart when country is changed
 				d3.selectAll("button.country").on("click", function() {
 					// Remove previous chart
@@ -151,15 +153,15 @@ function init() {
 					d3.select(".stickyAxis").remove()
 					let country = d3.select(this).property("value")
 					console.log(country)
-					renderTempChart(tempWords, filter_years, country, variable, headlines)
+					renderTempChart(tempWords, filter_years, country, variable, headlinesTemp)
 				})
 				
 				// 3) bubble charts
 				// console.log("hd", headlinesSite)
 				populateDropdown(headlinesSite, "#countrydropdown", "country_of_pub")
 				populateDropdown(headlinesSite, "#pubdropdown", "site")
-				drawBubbleChart(headlinesSite, headlines, bubbleChartB, "bias")
-				drawBubbleChart(headlinesSite, headlines, bubbleChartP, "polarity")
+				drawBubbleChart(headlinesSite, headlinesBubble, bubbleChartB, "bias")
+				drawBubbleChart(headlinesSite, headlinesBubble, bubbleChartP, "polarity")
 			})
 	
 			// Sticky timeline enabled only during temporal chart
@@ -695,6 +697,7 @@ function init() {
 			
 			function renderStackedBars(data, series) {
 			
+				// console.log("stackedData", data)
 				
 				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
 			
@@ -1837,18 +1840,20 @@ function init() {
 				var pColor = "#5787f2"
 				var ntColor = "lightgrey"
 
-				var removeWords = ["trans", "axe", "outrage", 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap', 
-				'rob', 'cop', 'fatal', 'gang', 'die', 'court', 'allege', 
-				'fight', 'violent', 'steal', 'gun', 'bully', 'judge', 'murderer',
-				 'risk', 'funeral', 'law', 'threat', 'plead', 'killing', 'escape',
-				 'fall', 'alleged', 'convict', 'slap', 'defend', 'bust', 'prison',
-				 'battle', 'war', 'accident', 'tragic', 'thug', 'jail', 'robber', 'kill',
-				 'domestic' ,'sexually' ,'pregnancy' ,'feel' ,'care' ,'mama' ,'grace' ,
-				 'skin' ,'body' ,'kid' ,'mum' ,'fiance' ,'lie' ,'shop' ,'actress' ,
-				 'wedding' ,'widow', 'throne', 'board', 'coach', 'equal', 'launch', 'actor', 'incredible', 'worker', 'olympic', 'job', 'employee', 'work', 'campaign', 'teacher', 'parent', 'great', 'star', 'perfect'
-				 , 'singer', 'celebrity', 'idol', 'tamil', 'leadership']
+				// var removeWords = ["trans", "axe", "outrage", 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap', 
+				// 'rob', 'cop', 'fatal', 'gang', 'die', 'court', 'allege', 
+				// 'fight', 'violent', 'steal', 'gun', 'bully', 'judge', 'murderer',
+				//  'risk', 'funeral', 'law', 'threat', 'plead', 'killing', 'escape',
+				//  'fall', 'alleged', 'convict', 'slap', 'defend', 'bust', 'prison',
+				//  'battle', 'war', 'accident', 'tragic', 'thug', 'jail', 'robber', 'kill',
+				//  'domestic' ,'sexually' ,'pregnancy' ,'feel' ,'care' ,'mama' ,'grace' ,
+				//  'skin' ,'body' ,'kid' ,'mum' ,'fiance' ,'lie' ,'shop' ,'actress' ,
+				//  'wedding' ,'widow', 'throne', 'board', 'coach', 'equal', 'launch', 'actor', 'incredible', 'worker', 'olympic', 'job', 'employee', 'work', 'campaign', 'teacher', 'parent', 'great', 'star', 'perfect'
+				//  , 'singer', 'celebrity', 'idol', 'tamil', 'leadership']
 
-				var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places")&&(d.theme!=="important people")&&(d.theme!=="No theme")&&(!removeWords.includes(d.word)))
+				// var words = dataset.filter(d=>(d.year>filter[0])&&(d.year<filter[1])&&(d.country===country)&&(d.theme!=="people and places")&&(d.theme!=="important people")&&(d.theme!=="No theme")&&(!removeWords.includes(d.word)))
+
+				var words = dataset.filter(d=>(d.country===country))
 
 				// define custom sort for themes
 				const sortBy = ['crime and violence', 'female stereotypes', "empowerment", 'race, ethnicity and identity']//, 'No theme']
@@ -2885,7 +2890,7 @@ function init() {
 				// d3.select("#hoverGuideLine").remove()
 	
 				// filter data for any headline that matches the word
-				data = data.filter(d=>d.headline_no_site.match(word))
+				data = data.filter(d=>d.headline_no_site.toLowerCase().match(word))
 
 				// data = (c.bias>0.5)&&(data.filter(d=>(d.site === text1)&(d.bias > 0.5)).length>10)?
 				// 		 data.filter(d=>(d.site === text1)&(d.bias > 0.5)):
@@ -2921,7 +2926,7 @@ function init() {
 
 				
 				// let headlineWords = data[randHeadline].headline_no_site.split(" ")
-				let headlineWords = data[randHeadline].headline_no_site.split(" ").map(d=>d.match(word)? `<b>${d}</b>`:d)
+				let headlineWords = data[randHeadline].headline_no_site.toLowerCase().split(" ").map(d=>d.match(word)? `<b>${d}</b>`:d)
 				// headlineWords = html`headlineWords.join(" ")`
 
 				// console.log(headlineWords, headlineWords.join(" "))
