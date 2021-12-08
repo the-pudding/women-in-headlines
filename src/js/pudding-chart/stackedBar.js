@@ -81,7 +81,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 		function showWord() {
 			let wordGroup = d3.select(this);
-			let wordText = wordGroup.attr("class");
+			let wordText = wordGroup.attr("id");
 			wordText = wordText.split("_")[0];
 
 			$rect.style("opacity", "0.3");
@@ -110,6 +110,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 			$rectLabels.remove();
 
+			d3.selectAll(".stackedBars").selectAll(".crimeandviolence_class, .femalestereotypes_class, .empowerment_class, .peopleandplaces_class, .raceethnicityandidentity_class")
+				.style("opacity", 1)
+
 			let wordRects = wordGroup.selectAll("rect")
 				.classed("hoverRectActive", false);
 		}
@@ -134,7 +137,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 			$stepSel.classed('is-active', (d, i) => i === index);
 			let ID = word;
 			let wordRects = null;
-			let wordGroup = d3.select(`.${ID}_group`);
+			let wordGroup = d3.select(`#${ID}_group`);
 
 			if (index === 7 || index === 9) {
 				d3.selectAll(`.stackedBars rect`).attr("opacity", "0.3")
@@ -211,13 +214,74 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 		function renderThemeBars(data, dataFreq, themes, x, y) {
 
-			$xAxis.selectAll(".tick .tickFlag").remove();
+			let $INcolumn = d3.selectAll(".india_class, .india_tick");
+			let $SAcolumn = d3.selectAll(".southafrica_class, .southafrica_tick");
+			let $UKcolumn = d3.selectAll(".uk_class, .uk_tick");
+			let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
 
-			$rectDrops
-				.transition().duration("500")
-				.ease(d3.easeLinear)
-				.delay((d, i) => { return i * 1.25; })
-				.style("opacity", 0);
+			setTimeout(() => { $INcolumn.style("opacity", 0) }, 500)
+			setTimeout(() => { $SAcolumn.style("opacity", 0) }, 1000)
+			setTimeout(() => { $UKcolumn.style("opacity", 0) }, 1500)
+			setTimeout(() => { $UScolumn.style("opacity", 0) }, 2000)
+
+			setTimeout(() => {
+				x.domain(["crime and violence", "female stereotypes", "empowerment", "people and places", "race, ethnicity and identity"]);
+				y.domain([d3.max(stackedData, d => d3.max(d, d => d[1])), 0]);
+				
+				$xAxis.call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
+					.call(g => g.selectAll(".domain").remove())
+					.call(g => g.selectAll(".tick text").remove());
+				
+				$xAxis.selectAll(".tick")
+					.append("text")
+					.text(d => d === "female stereotypes" ? "gendered language" : d)
+					.attr("x", 0)
+					.attr("y", -5)
+					.attr("class", "stackedChartTicks")
+					.call(wrap, x.bandwidth())
+				
+				$xAxis.selectAll(".tick").style("opacity", 1)
+			}, 2500)
+
+			setTimeout(() => {
+				$rectThemes
+					.transition().duration("500")
+					.ease(d3.easeLinear)
+					.delay((d, i) => { return i * 10; })
+					.attr("x", d => x(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0].data.theme))
+					.attr("y", d => y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1]))
+					.attr("height", function(d) {
+						let firstVal = y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][0])
+						let secondVal = y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1])
+						console.log(firstVal, secondVal)
+						return firstVal
+					})
+					// .attr("height", d => y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][0]) -
+					// 	y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1]))
+					.attr("width", x.bandwidth())
+					//.attr("transform", `translate(0,${height - MARGIN_TOP})`)
+			}, 3000)
+			setTimeout(() => {
+				$rectDrops
+					.transition().duration("500")
+					.ease(d3.easeLinear)
+					.delay((d, i) => { return i * 2; })
+					.style("opacity", 0);
+			}, 3000)
+			
+
+			// $xAxis.selectAll(".tick text")
+			// 	.transition()
+			// 	.delay(2000)
+			// 	.text(d => `${d}`)
+
+			
+
+			// $rectDrops
+			// 	.transition().duration("500")
+			// 	.ease(d3.easeLinear)
+			// 	.delay((d, i) => { return i * 1.25; })
+			// 	.style("opacity", 0);
 			
 			
 			// let chartHeight = height / 3.5;
@@ -262,11 +326,13 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 			series = d3.stack()
 				.keys(dataLocal.columns.slice(2))
 				(dataLocal)
-				.map(d => (d.forEach(v => v.key = themes.filter(c => c.word === d.key)[0] !== undefined ?
-					{ "word": d.key, "theme": themes.filter(c => c.word === d.key)[0].theme } :
-					{ "word": d.key, "theme": "No theme" }), d))
-			return series
+				.map(d => 
+					(d.forEach(v => v.key = themes.filter(c => c.word === d.key)[0] !== undefined ?
+					{ "word": d.key, "country": v.data.country, "theme": themes.filter(c => c.word === d.key)[0].theme } :
+					{ "word": d.key, "country": v.data.country, "theme": "No theme" }), d))
+					return series
 		}
+
 
 		const Chart = {
 			// called once at start
@@ -303,7 +369,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 					.selectAll("g")
 					.data(series)
 					.join("g")
-					.attr("class", d => `${d.key}_group`)
+					.attr("id", d => `${d.key}_group`)
 					.on("mouseenter", showWord)
 					.on("mouseleave", hideWord)
 					.selectAll("rect")
@@ -313,7 +379,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 					.attr("class", function (d) {
 						let themeClass = `${stripSpaces(d.key.theme)}_class`
 						let wordClass = `${d.key.word}_class`
-						return `${wordClass} ${themeClass}`
+						let countryClass = `${stripSpaces(d.key.country)}_class`
+						return `${wordClass} ${themeClass} ${countryClass}`
 					})
 					.attr("fill", "#e7dfc8")
 					.attr("opacity", "1")
@@ -325,7 +392,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 					.filter(d => (d.key.theme !== "No theme") && (d.data.country === "All countries"))
 				
 				$rectDrops = $vis.selectAll("rect")
-					.filter(d => d.data.country !== "All countries")
+					.filter(d => (d.key.theme === "No theme") && (d.data.country === "All countries"))
 
 				Chart.render();
 				Chart.resize();
@@ -413,6 +480,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 				$xAxis.selectAll(".domain").remove();
 				$xAxis.selectAll(".tick line").remove();
 				$xAxis.selectAll(".tick .tickFlag").remove();
+
+				$xAxis.selectAll(".tick").attr("class", d => `${stripSpaces(d)}_tick tick`)
 				
 				$xAxis.selectAll(".tick text")
 					.attr("x", 0)
@@ -425,6 +494,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 				$xAxis.selectAll(".tick")
 					.append("svg:image")
 					.attr("class", "tickFlag")
+					.attr("id", d => `${stripSpaces(d)}_flag`)
 					.attr('height', "35px")
 					.attr("x", x.bandwidth() - MARGIN_RIGHT + 5)
 					.attr("y", 0)
@@ -451,9 +521,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 					.attr("height", d => d.data[d.key.word] === 0 || d.data[d.key.word] === null ? 0 : height / series.length)
 					.attr("width", x.bandwidth())
 					.attr("y", d => d.data[d.key.word] !== 0 || d.data[d.key.word] !== null ? y(d.data[d.key.word]) : y(null));
-
-				// $rectLabels 
-				//   .attr("y", d => d.data[d.key.word]!==0 || d.data[d.key.word]!==null? y(d.data[d.key.word]):y(null))
 
 				return Chart;
 			},
