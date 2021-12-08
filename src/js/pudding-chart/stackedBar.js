@@ -126,7 +126,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 		function baseRects() {
 			let notWordRects = d3.selectAll(".stackedBars")
 				.selectAll(`rect`)
-				.attr("fill", "#c9c9c9")
+				.attr("fill", "#ded5bb")
 				.attr("opacity", "1")
 		}
 
@@ -141,7 +141,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 				wordRects = d3.selectAll(`.${ID}_class`).attr("opacity", "1")
 			} else {
-				d3.selectAll(`.stackedBars rect`).attr("fill", "#c9c9c9").attr("opacity", "0.3")
+				d3.selectAll(`.stackedBars rect`).attr("fill", "#ded5bb").attr("opacity", "0.3")
 
 				wordRects = d3.selectAll(`.${ID}_class`)
 						.attr("fill", "#282828")
@@ -169,7 +169,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 			let notThemeRects = d3.selectAll(".stackedBars")
 				.selectAll(`rect`)
-				.attr("fill", "#ccc")
+				.attr("fill", "#ded5bb")
 				.attr("opacity", "0.3")
 
 			let violenceRects = d3.selectAll(".stackedBars").selectAll(".crimeandviolence_class")
@@ -315,7 +315,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 						let wordClass = `${d.key.word}_class`
 						return `${wordClass} ${themeClass}`
 					})
-					.attr("fill", "#c9c9c9")
+					.attr("fill", "#e7dfc8")
 					.attr("opacity", "1")
 					.attr("stroke", "#FEFAF1")
 					.attr("stroke-width", "1");
