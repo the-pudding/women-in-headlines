@@ -42,18 +42,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 		let variable = data[3];
 		let headlinesTemp = data[4];
 		let dataDodge = null;
-		// const removeWords = ['trans', 'axe', 'outrage', 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap',
-		// 	'rob', 'cop', 'fatal', 'gang', 'die', 'court', 'allege',
-		// 	'fight', 'violent', 'steal', 'gun', 'bully', 'judge', 'murderer',
-		// 	'risk', 'funeral', 'law', 'threat', 'plead', 'killing', 'escape',
-		// 	'fall', 'alleged', 'convict', 'slap', 'defend', 'bust', 'prison',
-		// 	'battle', 'war', 'accident', 'tragic', 'thug', 'jail', 'robber', 'kill',
-		// 	'domestic', 'sexually', 'pregnancy', 'feel', 'care', 'mama', 'grace',
-		// 	'skin', 'body', 'kid', 'mum', 'fiance', 'lie', 'shop', 'actress',
-		// 	'wedding', 'widow', 'throne', 'board', 'coach', 'equal', 'launch', 'actor', 'incredible', 'worker', 'olympic', 'job', 'employee', 'work', 'campaign', 'teacher', 'parent', 'great', 'star', 'perfect'
-		// 	, 'singer', 'celebrity', 'idol', 'tamil', 'leadership'];
-
-		// let words = dataset.filter(d => (d.year > filter[0]) && (d.year < filter[1]) && (d.country === country) && (d.theme !== "people and places") && (d.theme !== "important people") && (d.theme !== "No theme") && (!removeWords.includes(d.word)));
 
 		var words = dataset.filter(d=>(d.country===country));
 
@@ -175,19 +163,46 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 		}
 
 		function showTooltip(event, d) {
-			$areas.attr("opacity", 0.125)
-			$lines.attr("opacity", 0.25)
-			d3.selectAll(".wordText").attr("opacity", 0.125)
+			$areas.attr("opacity", 0.125);
+			$lines.attr("opacity", 0.25);
+			d3.selectAll(".wordText").attr("opacity", 0.125);
 
-			d3.select('#area-' + d.word).attr("opacity", 0.85)
-			d3.select('#line-' + d.word).attr("opacity", 1)
-			d3.select('#text' + d.word).attr("opacity", 1)
+			d3.select('#area-' + d.word).attr("opacity", 0.85);
+			d3.select('#line-' + d.word).attr("opacity", 1);
+			d3.select('#text' + d.word).attr("opacity", 1);
+
+			console.log(d.word)
+
+			let wordHeadlines = headlinesTemp.filter(d=>d.headline_no_site.toLowerCase().match(d.word));
+			let randHeadline = Math.floor(Math.random() * wordHeadlines.length)
+
+			let [xPos, yPos] = d3.pointer(event);
+			let right = xPos > window.innerWidth / 2;
+			let offset = right ? $tooltip.node().offsetWidth + -50 : 50;
+			
+			$tooltip.classed("is-visible", true);
+
+			if (width >= 600) {
+				$tooltip
+					.style("top", (0 + 10) + "px")
+					.style("left", (xPos - offset) + "px")
+					.style("bottom", "auto");
+			} else {
+				$tooltip
+					.style("bottom", 0 + "px")
+					.style("left", 0 + "px")
+					.style("top", "auto");
+			}
+
+			$tooltip.html(`<p class="tt-date">${d3.timeFormat("%m/%Y")(new Date(wordHeadlines[randHeadline].time))} | ${wordHeadlines[randHeadline].site}</p><p class="tt-hed">${wordHeadlines[randHeadline].headline_no_site}</p>`)
 		}
 
 		function hideTooltip() {
-			$areas.attr("opacity", 0.5)
-			$lines.attr("opacity", 1)
-			d3.selectAll(".wordText").attr("opacity", 1)
+			$areas.attr("opacity", 0.5);
+			$lines.attr("opacity", 1);
+			d3.selectAll(".wordText").attr("opacity", 1);
+
+			$tooltip.classed("is-visible", false);
 		}
 
 		function showTimeRuler(event, d) {
