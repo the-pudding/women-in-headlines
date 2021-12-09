@@ -253,7 +253,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 					.attr("height", function(d) {
 						let firstVal = y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][0])
 						let secondVal = y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1])
-						console.log(firstVal, secondVal)
+						//console.log(firstVal, secondVal)
 						return firstVal
 					})
 					// .attr("height", d => y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][0]) -

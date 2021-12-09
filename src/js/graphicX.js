@@ -59,6 +59,8 @@ let $temporalLine = d3.select('#smChart');
 let $countryDropdownTemporal = d3.select("#countrydropdownTemporal");
 let $stackedSpans = d3.selectAll(".stackedBarTextAnnotation");
 let $tempButtons = d3.selectAll(".btn-theme");
+let $exampleHeadlines = d3.selectAll(".tooltipTL");
+let $shuffleHeadlines = d3.selectAll("#shuffle-headlines")
 
 /* SCROLLAMA */
 const stackedBarScroller = scrollama();
@@ -135,10 +137,6 @@ function scrollTo(element, offset) {
 		left: 0,
 		top: element.offsetTop + offset
 	});
-}
-
-function onlyUnique(value, index, self) {
-	return self.indexOf(value) === index;
 }
 
 function spanEnter() {
@@ -273,6 +271,34 @@ function scrollToTheme() {
 
 }
 
+function updateExampleHeadlines() {
+	let data = headlinesBubble;
+	let dataLen = data.length;
+	let randNums = [];
+
+	while(randNums.length < 3) {
+		let rand = Math.floor(Math.random() * data.length) + 1;
+		if(randNums.indexOf(rand) === -1) { randNums.push(rand) }
+	}
+
+	randNums.forEach((num, i) => {
+		let index = i;
+		let div = $exampleHeadlines.filter((d, i) => i == index)
+		let deetsCont = div.select(".deets");
+		let headlineCont = div.select(".headline");
+
+		let site = data[num].site;
+		let date = data[num].time;
+		let month = (new Date(date)).toLocaleString("en-US", { month: "long" });;
+		let year = (new Date(date)).getUTCFullYear();
+		let deets = `${month} ${year} | ${site}`;
+		let headline = data[num].headline_no_site;
+
+		deetsCont.text(`${deets}`);
+		headlineCont.text(`${headline}`);
+	})
+}
+
 function resize() { 
 
 	// 1. update height of step elements
@@ -343,6 +369,7 @@ function init() {
 		populateDropdown(tempWords, "#countrydropdownTemporal", "country");
 		$countryDropdownTemporal.on("change", changeTemporalDropdown);
 		$tempButtons.on("click", scrollToTheme);
+		$shuffleHeadlines.on("click", updateExampleHeadlines);
 
 	}).catch(console.error)
 }
