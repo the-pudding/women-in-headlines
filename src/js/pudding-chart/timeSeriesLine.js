@@ -33,7 +33,7 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
       // dimensions
       let width = 0;
       let height = 0;
-      const MARGIN_TOP = 10;
+      const MARGIN_TOP = 30;
       const MARGIN_BOTTOM = 10;
       const MARGIN_LEFT = 50;
       const MARGIN_RIGHT = 20;
@@ -135,7 +135,7 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
                 .call(g => g.select(".domain").remove());
             
             $axisText
-                .attr("x", -height/1.2)
+                .attr("x", -height/1.1)
                 .attr("y", 10)
     
             $lineW
@@ -174,7 +174,7 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
 				.attr("y", function(d) {
                     let dataLength = data.length - 1;
                     let point = data[dataLength].womenPolarityMed;
-                    return y(point) + 70
+                    return y(point) + 8
                 })
                 .call(wrap, 100)
             

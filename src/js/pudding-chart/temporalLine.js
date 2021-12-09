@@ -40,19 +40,22 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 		let filter = data[1];
 		let country = data[2];
 		let variable = data[3];
+		let headlinesTemp = data[4];
 		let dataDodge = null;
-		const removeWords = ['trans', 'axe', 'outrage', 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap',
-			'rob', 'cop', 'fatal', 'gang', 'die', 'court', 'allege',
-			'fight', 'violent', 'steal', 'gun', 'bully', 'judge', 'murderer',
-			'risk', 'funeral', 'law', 'threat', 'plead', 'killing', 'escape',
-			'fall', 'alleged', 'convict', 'slap', 'defend', 'bust', 'prison',
-			'battle', 'war', 'accident', 'tragic', 'thug', 'jail', 'robber', 'kill',
-			'domestic', 'sexually', 'pregnancy', 'feel', 'care', 'mama', 'grace',
-			'skin', 'body', 'kid', 'mum', 'fiance', 'lie', 'shop', 'actress',
-			'wedding', 'widow', 'throne', 'board', 'coach', 'equal', 'launch', 'actor', 'incredible', 'worker', 'olympic', 'job', 'employee', 'work', 'campaign', 'teacher', 'parent', 'great', 'star', 'perfect'
-			, 'singer', 'celebrity', 'idol', 'tamil', 'leadership'];
+		// const removeWords = ['trans', 'axe', 'outrage', 'fraud', 'hijacking', 'injury', 'wound', 'injure', 'robbery', 'fatally', 'scream', 'crime', 'shoot', 'bail', 'fire', 'harassment', 'trap',
+		// 	'rob', 'cop', 'fatal', 'gang', 'die', 'court', 'allege',
+		// 	'fight', 'violent', 'steal', 'gun', 'bully', 'judge', 'murderer',
+		// 	'risk', 'funeral', 'law', 'threat', 'plead', 'killing', 'escape',
+		// 	'fall', 'alleged', 'convict', 'slap', 'defend', 'bust', 'prison',
+		// 	'battle', 'war', 'accident', 'tragic', 'thug', 'jail', 'robber', 'kill',
+		// 	'domestic', 'sexually', 'pregnancy', 'feel', 'care', 'mama', 'grace',
+		// 	'skin', 'body', 'kid', 'mum', 'fiance', 'lie', 'shop', 'actress',
+		// 	'wedding', 'widow', 'throne', 'board', 'coach', 'equal', 'launch', 'actor', 'incredible', 'worker', 'olympic', 'job', 'employee', 'work', 'campaign', 'teacher', 'parent', 'great', 'star', 'perfect'
+		// 	, 'singer', 'celebrity', 'idol', 'tamil', 'leadership'];
 
-		let words = dataset.filter(d => (d.year > filter[0]) && (d.year < filter[1]) && (d.country === country) && (d.theme !== "people and places") && (d.theme !== "important people") && (d.theme !== "No theme") && (!removeWords.includes(d.word)));
+		// let words = dataset.filter(d => (d.year > filter[0]) && (d.year < filter[1]) && (d.country === country) && (d.theme !== "people and places") && (d.theme !== "important people") && (d.theme !== "No theme") && (!removeWords.includes(d.word)));
+
+		var words = dataset.filter(d=>(d.country===country));
 
 		const sortBy = ['crime and violence', 'female stereotypes', "empowerment", 'race, ethnicity and identity'];
 

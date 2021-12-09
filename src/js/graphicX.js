@@ -11,16 +11,17 @@ import enterView from 'enter-view';
 
 /* data */
 let dataFiles = ["headlines_site_rapi.csv", 
-				"headlines_cl_sent_rapi_reduced_102621.csv", 
-				"country_time_freqrank_rapi_clean_101421.csv",
+				"headlines_cl_sent_rapi_reduced_bubble_120821.csv", 
+				"country_time_freqrank_rapi_clean_120821.csv",
 				"polarity_comparison.csv",
 				"country_freq_pivoted_all_101221.csv",
 				"word_themes_all_101221.csv",
 				"word_themes_rank_101221.csv",
 				"word_themes_freq_101221.csv",
-				"sentiment_comparison.csv"];
+				"sentiment_comparison.csv",
+				"headlines_cl_sent_rapi_reduced_temp_120821.csv"];
 let headlinesSite;
-let headlines;
+let headlinesBubble;
 let tempWords;
 let polComparison;
 let data;
@@ -28,6 +29,7 @@ let themes;
 let themesRank;
 let themesFreq;
 let sentComp;
+let headlinesTemp;
 let biasBubbleData;
 let polBubbleData;
 let stackedBarData;
@@ -304,7 +306,7 @@ function init() {
 	// load all data files
 	loadData(dataFiles).then(result => {
 		headlinesSite = result[0];
-		headlines = result[1];
+		headlinesBubble = result[1];
 		tempWords = result[2];
 		polComparison = result[3];
 		data = result[4];
@@ -312,15 +314,16 @@ function init() {
 		themesRank = result[6];
 		themesFreq = result[7];
 		sentComp = result[8];
+		headlinesTemp = result[9];
 		filter_years = [2009, 2022];
 		country = "all countries";
 		temporalVar = "freq_prop_headlines";
 
 		// organize data
 		stackedBarData = [data, themes, themesRank, themesFreq];
-		biasBubbleData = [headlinesSite, headlines, "bias"];
-		polBubbleData = [headlinesSite, headlines, "polarity"];
-		temporalData = [tempWords, filter_years, country, temporalVar];
+		biasBubbleData = [headlinesSite, headlinesBubble, "bias"];
+		polBubbleData = [headlinesSite, headlinesBubble, "polarity"];
+		temporalData = [tempWords, filter_years, country, temporalVar, headlinesTemp];
 
 		// setup functionality and charts
 		setupScroller();
