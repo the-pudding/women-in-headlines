@@ -88,13 +88,13 @@ function init() {
 			// d3.csv("./assets/data/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("./assets/data/word_themes.csv", d3.autoType),
 	
-			d3.csv("./assets/data/country_freq_pivoted_all_101221.csv", d3.autoType), //101221
+			d3.csv("./assets/data/country_freq_pivoted_all_091221.csv", d3.autoType), //101221 //091221
 			// d3.csv("../data/processed/country_freqtheme_pivoted.csv", d3.autoType),
 			// d3.csv("../data/processed/word_themes.csv", d3.autoType),
 			d3.csv("./assets/data/word_themes_all_101221.csv", d3.autoType), //101221
 			// d3.csv("../data/processed/word_themes_rank_old.csv", d3.autoType)]).then((datasets) => {
-			d3.csv("./assets/data/word_themes_rank_101221.csv", d3.autoType), //101221
-			d3.csv("./assets/data/word_themes_freq_101221.csv", d3.autoType), //101221
+			d3.csv("./assets/data/word_themes_rank_091221.csv", d3.autoType), //101221
+			d3.csv("./assets/data/word_themes_freq_091221.csv", d3.autoType), //101221
 			d3.csv("./assets/data/sentiment_comparison.csv", d3.autoType),
 			d3.csv("./assets/data/headlines_cl_sent_rapi_reduced_temp_120821.csv"),
 
@@ -416,7 +416,8 @@ function init() {
 
 				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
 			
-				var height = 5000 - margin.top - margin.bottom
+				// var height = 5000 - margin.top - margin.bottom
+				var height = 1200 - margin.top - margin.bottom
 				var width = 500 - margin.left - margin.right
 
 				var x = d3.scaleBand()
@@ -437,9 +438,13 @@ function init() {
 
 			function prepareWordData (data, themes) {
 
-
-				// themes = themes.filter(d=>d.word!=="youtube")
+				// console.log("before series", data)
+				// // themes = themes.filter(d=>d.word!=="youtube")
 			
+				// console.log(data.forEach((country)=>{
+				// 	country.map(d=>d)
+				// }))
+
 				let series = d3.stack()
 					.keys(data.columns.slice(2))
 					// .keys(data.map(d=>d.country))
@@ -448,7 +453,7 @@ function init() {
 													{"word": d.key, "theme": themes.filter(c=>c.word===d.key)[0].theme}:
 													{"word": d.key, "theme": "No theme"}), d))
 				
-					// console.log(series)
+					// console.log("after series", series)
 			
 				return series
 			
@@ -566,7 +571,8 @@ function init() {
 			
 				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
 			
-				var height = 5000 - margin.top - margin.bottom
+				var height = 1200 - margin.top - margin.bottom
+				// var height = 5000 - margin.top - margin.bottom
 				var width = 500 - margin.left - margin.right
 
 				d3.selectAll("#themeticks").remove()
@@ -609,7 +615,7 @@ function init() {
 			
 				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
 			
-				var height = 4000 - margin.top - margin.bottom
+				var height = 5000 - margin.top - margin.bottom
 				var width = 500 - margin.left - margin.right
 				// var height = 600 - margin.top - margin.bottom
 				// var width = 200 - margin.left - margin.right
@@ -701,7 +707,8 @@ function init() {
 				
 				var margin = ({top: 100, right: 0, bottom: 0, left: 100})
 			
-				var height = 5000 - margin.top - margin.bottom
+				// var height = 5000 - margin.top - margin.bottom
+				var height = 1200 - margin.top - margin.bottom
 				var width = 500 - margin.left - margin.right
 				// var height = 600 - margin.top - margin.bottom
 				// var width = 200 - margin.left - margin.right
@@ -1186,14 +1193,19 @@ function init() {
 			
 					// NEW
 					// .attr("x", (d, i) => xThemes(d.data.theme))
-					.attr("x", d=> xThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme))
-					.attr("y", d => yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
-					.attr("height", d => yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
-										 yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+					
+					// .attr("x", d=> xThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme))
+					// .attr("y", d => yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+					// .attr("height", d => yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
+					// 					 yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+					
+					.attr("x", d=> stackedData.filter(c=>c.key === d.key.word)[0]!== undefined?xThemes(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme):null)
+					.attr("y", d => stackedData.filter(c=>c.key === d.key.word)[0]!== undefined?yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]):null)
+					.attr("height", d => stackedData.filter(c=>c.key === d.key.word)[0]!== undefined?yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
+										 yThemesStack(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]):null)					 
 					.attr("width", xThemes.bandwidth()-(themePad/3))
 					.attr("transform", `translate(0,${heightChart-margin.top})`)
 					// console.log("test scale", stackedData.filter(c=>c.key === "kill")[0].filter(e=>e.data.theme==="violence")[0][1])
-			
 			
 					// .attr("y", d => yThemesStack(d[1]))
 					// .attr("height", d => yThemesStack(d[0]) - yThemesStack(d[1]))
@@ -1781,11 +1793,13 @@ function init() {
 					.attr("stroke", "#53B67C")
 					.attr("stroke-width", 4)
 					.attr("d", lineW)
-					// .call(transition);
+					.call(transition);
 				
 				const womenCircle = linechart.append("circle")
 					.attr("cx", x(d3.max(data, d=>d.year)))
 					.attr("cy", y(d3.max(data, d=>d.womenPolarityMed)))
+					.attr("r", "0")
+					.transition().duration("1000")
 					.attr("r", "11")
 					.attr("class", "polarityCompBubbleRight")
 
@@ -1802,11 +1816,14 @@ function init() {
 					.attr("stroke", "black")
 					.attr("stroke-width", 2)
 					.attr("d", lineA)
-					// .call(transition);
+					.call(transition);
 
 				const allCircle = linechart.append("circle")
+					
 					.attr("cx", x(d3.max(data, d=>d.year)))
 					.attr("cy", y(d3.max(data, d=>d.allPolarityMed))+8)
+					.attr("r", "0")
+					.transition().duration("1000")
 					.attr("r", "4")
 					.attr("class", "polarityCompBubbleLeft")
 
