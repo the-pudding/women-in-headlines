@@ -32,9 +32,9 @@ d3.selection.prototype.puddingLollipop = function init(options) {
   
       // data
       let data = $chart.datum();
-      data = data.filter(d=>(d.popularity==1)&&(Math.abs(d.difference) > 0.05)
-													   &&((d.site_clean !== "dailysun.co.za")
-													   &&(d.site_clean !== "msnbc")))
+      data = data.filter(d=>(d.popularity==1)&&(Math.abs(d.difference) > 0.01)
+                          &&((d.site_clean !== "dailysun.co.za")
+                          &&(d.site_clean !== "")))
       data = data.sort((a,b)=> d3.descending(+a.polarity_women, +b.polarity_women))
       
       let $xMin = d3.max(data, d => d.polarity_women);
@@ -83,7 +83,7 @@ d3.selection.prototype.puddingLollipop = function init(options) {
         $vis.selectAll(".polarityDiffAnnotation")
           .sort((a, b) => d3.ascending(+a[sortType], +b[sortType]))
           .transition().duration("1000")
-          .attr("y", (d, i)=> y(d.site_clean))
+          .attr("y", (d, i)=> y(d.site_clean));
 
         $vis.selectAll(".polarityCompBubbleLine")
           .sort((a, b) => d3.ascending(+a[sortType], +b[sortType]))
@@ -187,7 +187,7 @@ d3.selection.prototype.puddingLollipop = function init(options) {
           }
 
           width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-          height = 1700 - MARGIN_TOP - MARGIN_BOTTOM;
+          height = 2230 - MARGIN_TOP - MARGIN_BOTTOM;
 
           $svg
             .attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
@@ -232,7 +232,7 @@ d3.selection.prototype.puddingLollipop = function init(options) {
 
           $polText
               .attr("x", d=>x(d.polarity_women) - 8)
-              .attr("y", d=> y(d.site_clean) + 6)
+              .attr("y", d=> y(d.site_clean) + 4)
 
           return Chart;
         },

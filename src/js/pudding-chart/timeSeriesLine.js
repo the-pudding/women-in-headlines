@@ -1,4 +1,5 @@
 import { wrap } from '../utils/wrap';
+import enterView from 'enter-view';
 /* global d3 */
 
 /*
@@ -52,6 +53,62 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
       });
         return res
       }
+
+      function tweenDashIn() {
+        const l = this.getTotalLength()
+        const i = d3.interpolateString('0,' + l, l + ',' + l);
+        return function(t) { return i(t); };
+    }
+
+    function enterChart() {
+        enterView({
+            selector: '#timeSeriesChart',
+            offset: 0.5,
+            enter: () => {
+                $womenLine
+                    .transition()
+                    .duration(2000)
+                    .ease(d3.easeLinear)
+                    .attrTween('stroke-dasharray', tweenDashIn);
+                
+                $womenCircle
+                    .transition()
+                    .duration(200)
+                    .delay(2000)
+                    .ease(d3.easeLinear)
+                    .attr("r", d => width >= 600 ? 11 : 8)
+                
+                $womenAnno
+                    .transition()
+                    .duration(200)
+                    .delay(2000)
+                    .ease(d3.easeLinear)
+                    .attr("opacity", 1)
+
+                $allLine  
+                    .transition()
+                    .duration(2000)
+                    .ease(d3.easeLinear)
+                    .attrTween('stroke-dasharray', tweenDashIn);
+                
+                $allCircle
+                    .transition()
+                    .duration(200)
+                    .delay(2000)
+                    .ease(d3.easeLinear)
+                    .attr("r", d => width >= 600 ? 4 : 3)
+                
+                $allAnno
+                    .transition()
+                    .duration(200)
+                    .delay(2000)
+                    .ease(d3.easeLinear)
+                    .attr("opacity", 1)
+
+            }, exit: () => {
+            }
+        });
+    }
   
       const Chart = {
         // called once at start
@@ -93,18 +150,20 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
             
             $womenLine = $vis.append("path")
                 .datum(data)
-                .attr("class", "women-comp-line");
+                .attr("class", "women-comp-line")
+                .attr('stroke-dasharray', 0);
             
             $allLine = $vis.append("path")
                 .datum(data)
-                .attr("class", "all-comp-line");
+                .attr("class", "all-comp-line")
+                .attr('stroke-dasharray', 0);
             
             $womenCircle = $vis.append("circle")
-                .attr("r", "11")
+                .attr("r", 0)
                 .attr("class", "polarityCompBubbleRight");
             
             $allCircle = $vis.append("circle")
-                .attr("r", "4")
+                .attr("r", 0)
                 .attr("class", "polarityCompBubbleLeft");
             
             $womenAnno = $vis.append("text")
@@ -157,7 +216,7 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
                     let point = data[dataLength].womenPolarityMed;
                     return y(point)
                 })
-                .attr("r", d => width >= 600 ? 11 : 8)
+                .attr("r", 0)
             
             $allCircle
                 .attr("cx", x(d3.max(data, d=>d.year)))
@@ -166,10 +225,11 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
                     let point = data[dataLength].allPolarityMed;
                     return y(point)
                 })
-                .attr("r", d => width >= 600 ? 4 : 3)
+                .attr("r", 0)
             
             $womenAnno
                 .text("Headlines about women")
+                .attr("opacity", 0)
                 .attr("x", x(d3.max(data, d=>d.year)))
 				.attr("y", function(d) {
                     let dataLength = data.length - 1;
@@ -180,6 +240,7 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
             
             $allAnno
                 .text("All headlines")
+                .attr("opacity", 0)
                 .attr("x", x(d3.max(data, d=>d.year)))
 				.attr("y", function(d) {
                     let dataLength = data.length - 1;
@@ -187,6 +248,8 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
                     return y(point) + 40
                 })
                 .call(wrap, 100)
+            
+            enterChart();
 
             return Chart;
         },
@@ -194,7 +257,7 @@ d3.selection.prototype.puddingTimeSeriesLine = function init(options) {
         render() {
           // offset chart for margins
           $vis.attr('transform', `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
-  
+
           return Chart;
         },
         // get / set data

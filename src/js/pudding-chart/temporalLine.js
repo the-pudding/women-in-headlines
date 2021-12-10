@@ -29,10 +29,10 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
 		// colors
 		const mainColor = "#3569DC";
-		const fColor = "#53B67C";
-		const eColor = "#648FDC";
+		const fColor = "#F2C5D3";
+		const eColor = "#A35FD0";
 		const vColor = "#f76e45";
-		const rColor = "#F2C5D3";
+		const rColor = "#53B67C";
 
 		// data
 		let data = $chart.datum();
@@ -184,7 +184,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
 			if (width >= 600) {
 				$tooltip
-					.style("top", (0 + 10) + "px")
+					.style("top", yPos + "px")
 					.style("left", (xPos - offset) + "px")
 					.style("bottom", "auto");
 			} else {
@@ -477,14 +477,14 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 					.attr("cy", d => d.y)
 					.attr("r", radius)
 					.attr("fill", d =>
-						d.data.categories === "empowerment" ? "#648FDC" :
+						d.data.categories === "empowerment" ? "#A35FD0" :
 							d.data.categories === "crime and violence" ? "#f76e45" :
-								d.data.categories === "race, ethnicity and identity" ? "#F2C5D3" :
+								d.data.categories === "race, ethnicity and identity" ? "#53B67C" :
 									d.data.categories === "people and places" ? "#5787f2" : "lightgrey")
 					.attr("stroke", d =>
-						d.data.categories === "empowerment" ? "#648FDC" :
+						d.data.categories === "empowerment" ? "#A35FD0" :
 							d.data.categories === "crime and violence" ? "#f76e45" :
-								d.data.categories === "race, ethnicity and identity" ? "#F2C5D3" :
+								d.data.categories === "race, ethnicity and identity" ? "#53B67C" :
 									d.data.categories === "people and places" ? "#5787f2" : "lightgrey")
 					.on("mouseover", (event, d) => showTimeRuler(event, d.data))
 					.on("mouseleave", (event, d) => hideTimeRuler(event, d.data));
