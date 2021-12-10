@@ -14,10 +14,10 @@ let dataFiles = ["headlines_site_rapi.csv",
 				"headlines_cl_sent_rapi_reduced_bubble_120821.csv", 
 				"country_time_freqrank_rapi_clean_120821.csv",
 				"polarity_comparison.csv",
-				"country_freq_pivoted_all_101221.csv",
+				"country_freq_pivoted_all_091221.csv",
 				"word_themes_all_101221.csv",
-				"word_themes_rank_101221.csv",
-				"word_themes_freq_101221.csv",
+				"word_themes_rank_091221.csv",
+				"word_themes_freq_091221.csv",
 				"sentiment_comparison.csv",
 				"headlines_cl_sent_rapi_reduced_temp_120821.csv"];
 let headlinesSite;
@@ -302,7 +302,7 @@ function updateExampleHeadlines() {
 function resize() { 
 
 	// 1. update height of step elements
-	const stepHeight = Math.floor(window.innerHeight * 0.75)/2;
+	const stepHeight = Math.floor(window.innerHeight * 0.75);
 	$step.style('height', stepHeight + 'px');
 
 	// 2. update width/height of graphic element

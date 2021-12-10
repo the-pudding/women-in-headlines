@@ -248,18 +248,18 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 					.transition().duration("500")
 					.ease(d3.easeLinear)
 					.delay((d, i) => { return i * 10; })
-					.attr("x", d => x(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0].data.theme))
-					.attr("y", d => y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1]))
-					.attr("height", function(d) {
-						let firstVal = y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][0])
-						let secondVal = y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1])
-						//console.log(firstVal, secondVal)
-						return firstVal
-					})
-					// .attr("height", d => y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][0]) -
-					// 	y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1]))
+					.attr("x", d=> stackedData.filter(c=>c.key === d.key.word)[0]!== undefined ? x(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme):null)
+					.attr("y", d => stackedData.filter(c=>c.key === d.key.word)[0]!== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]):null)
+					// .attr("height", function(d) {
+					// 	let data = stackedData.filter(c=>c.key === d.key.word)[0] !== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) : null;
+					// 	console.log(data)
+					// 	let firstVal = stackedData.filter(c=>c.key === d.key.word)[0]!== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]):null;
+					// 	let secondVal = y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]);
+					// 	console.log(firstVal)
+					// 	return firstVal - secondVal
+					// })
+					.attr("height", d => stackedData.filter(c=>c.key === d.key.word)[0]!== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]):null) 
 					.attr("width", x.bandwidth())
-					//.attr("transform", `translate(0,${height - MARGIN_TOP})`)
 			}, 3000)
 			setTimeout(() => {
 				$rectDrops
@@ -268,57 +268,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 					.delay((d, i) => { return i * 2; })
 					.style("opacity", 0);
 			}, 3000)
-			
-
-			// $xAxis.selectAll(".tick text")
-			// 	.transition()
-			// 	.delay(2000)
-			// 	.text(d => `${d}`)
-
-			
-
-			// $rectDrops
-			// 	.transition().duration("500")
-			// 	.ease(d3.easeLinear)
-			// 	.delay((d, i) => { return i * 1.25; })
-			// 	.style("opacity", 0);
-			
-			
-			// let chartHeight = height / 3.5;
-
-			// x.domain(["crime and violence", "female stereotypes", "empowerment", "people and places", "race, ethnicity and identity"]);
-			// y
-			// 	.rangeRound([MARGIN_TOP, chartHeight - MARGIN_BOTTOM])
-			// 	.domain([d3.max(stackedData, d => d3.max(d, d => d[1])), 0]);
-
-			// $xAxis.call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
-			// 	.call(g => g.selectAll(".domain").remove())
-			// 	.call(g => g.selectAll(".tick text").remove());
-
-			// $xAxis.selectAll(".tick")
-			// 	.append("text")
-			// 	.text(d => d === "female stereotypes" ? "gendered language" : d)
-			// 	.attr("x", 0)
-			// 	.attr("y", 0)
-			// 	.attr("class", "stackedChartTicks")
-			// 	.attr("transform", `translate(0,${height - MARGIN_BOTTOM - MARGIN_TOP})`)
-			// 	.call(wrap, x.bandwidth())
-
-
-			// $yAxis.call(d3.axisRight(y).tickSizeOuter(0).tickSizeInner(0))
-			// 	.call(g => g.selectAll(".domain").remove())
-			// 	.call(g => g.selectAll(".tick").remove());
-
-			// $rectThemes
-			// 	.transition().duration("500")
-			// 	.ease(d3.easeLinear)
-			// 	.delay((d, i) => { return i * 10; })
-			// 	.attr("x", d => x(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0].data.theme))
-			// 	.attr("y", d => y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1]))
-			// 	.attr("height", d => y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][0]) -
-			// 		y(stackedData.filter(c => c.key === d.key.word)[0].filter(e => e.data.theme === d.key.theme)[0][1]))
-			// 	.attr("width", x.bandwidth())
-			// 	.attr("transform", `translate(0,${height * 3.5 - MARGIN_BOTTOM - MARGIN_TOP})`)
 
 		}
 
@@ -463,7 +412,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 			resize() {
 				// defaults to grabbing dimensions from container element
 				width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-				height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
+				height = $chart.node().offsetHeight*1.5 - MARGIN_TOP - MARGIN_BOTTOM;
+
 				$svg
 					.attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
 					.attr('height', height + MARGIN_TOP + MARGIN_BOTTOM);
@@ -518,7 +468,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 				$rect
 					.attr("x", (d, i) => x(d.data.country))
-					.attr("height", d => d.data[d.key.word] === 0 || d.data[d.key.word] === null ? 0 : height / series.length)
+					.attr("height", d => d.data[d.key.word]===0 || d.data[d.key.word]===null? 0:height/series.length)
 					.attr("width", x.bandwidth())
 					.attr("y", d => d.data[d.key.word] !== 0 || d.data[d.key.word] !== null ? y(d.data[d.key.word]) : y(null));
 
