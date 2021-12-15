@@ -431,7 +431,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 			resize() {
 				// defaults to grabbing dimensions from container element
 				width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-				height = $chart.node().offsetHeight*1.5 - MARGIN_TOP - MARGIN_BOTTOM;
+				height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
 				$svg
 					.attr('width', width + MARGIN_LEFT + MARGIN_RIGHT)
@@ -484,10 +484,12 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
 				$yAxis = $yAxisGroup.append("g")
 					.call($yAxis)
+				
+				console.log(height/series.length)
 
 				$rect
 					.attr("x", (d, i) => x(d.data.country))
-					.attr("height", d => d.data[d.key.word]===0 || d.data[d.key.word]===null? 0:height/series.length)
+					.attr("height", d => d.data[d.key.word] === 0 || d.data[d.key.word] === null ? 0 : height/series.length)
 					.attr("width", x.bandwidth())
 					.attr("y", d => d.data[d.key.word] !== 0 || d.data[d.key.word] !== null ? y(d.data[d.key.word]) : y(null));
 
