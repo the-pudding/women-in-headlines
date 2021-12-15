@@ -1,4 +1,4 @@
-//import Autocomplete from 'accessible-autocomplete'
+import Autocomplete from 'accessible-autocomplete'
 import { wrap } from '../utils/wrap';
 /* global d3 */
 
@@ -71,6 +71,25 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 		let y = null;
 
 		// helper functions
+		function searchWords() {
+			let onlyWords = dataLocal.columns;
+			console.log(onlyWords);
+	  
+			Autocomplete({
+			  element: document.querySelector('#wordSearch'),
+			  id: 'my-autocomplete',
+			  source: onlyWords,
+			  displayMenu: 'overlay',
+			  placeholder: 'Search for a word',
+			  confirmOnBlur: false,
+			  onConfirm(word) {
+				
+				$rectLabels.remove();
+				highlightWords(null, word, "search")
+			  },
+			});
+		  }
+
 		function stripSpaces(string) {
 			let stripped = string.trim();
 			stripped = stripped.replace(/ /g, "");
@@ -133,13 +152,13 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 				.attr("opacity", "1")
 		}
 
-		function highlightWords(index, word) {
+		function highlightWords(index, word, userAction) {
 			$stepSel.classed('is-active', (d, i) => i === index);
 			let ID = word;
 			let wordRects = null;
 			let wordGroup = d3.select(`#${ID}_group`);
 
-			if (index === 7 || index === 9) {
+			if (index === 7 || index === 9 || userAction === "search") {
 				d3.selectAll(`.stackedBars rect`).attr("opacity", "0.3")
 
 				wordRects = d3.selectAll(`.${ID}_class`).attr("opacity", "1")
@@ -287,7 +306,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 			// called once at start
 			init() {
 				prepareWordData(dataLocal, themes);
-				//searchWords();
+				searchWords();
 
 				$svg = $chart.append('svg').attr('class', 'stackedChart');
 
