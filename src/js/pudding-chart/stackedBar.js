@@ -81,7 +81,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // helper functions
     function searchWords() {
       let onlyWords = dataLocal.columns;
-      console.log(onlyWords);
 
       Autocomplete({
         element: document.querySelector("#wordSearch"),
@@ -175,6 +174,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     }
 
     function highlightWords(index, word, userAction) {
+      console.log({ index, word, userAction });
       $stepSel.classed("is-active", (d, i) => i === index);
       let ID = word;
       let wordRects = null;
@@ -466,54 +466,56 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         const theme = sel.attr("theme");
 
         if (index === 0) {
+          if ($rectLabels) $rectLabels.remove();
           baseRects();
         }
         if (index === 1) {
+          if ($rectLabels) $rectLabels.remove();
           highlightWords(index, word);
         }
         if (index === 2) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightWords(index, word);
         }
         if (index === 3) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightWords(index, word);
         }
         if (index === 4) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightWords(index, word);
         }
         if (index === 5) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightWords(index, word);
         }
         if (index === 6) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightThemes(index, "crimeandviolence");
         }
         if (index === 7) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightThemes(index, "crimeandviolence");
           highlightWords(index, word);
         }
         if (index === 8) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightThemes(index, "femalestereotypes");
         }
         if (index === 9) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightThemes(index, "femalestereotypes");
           highlightWords(index, word);
         }
         if (index === 10) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           highlightThemes(index, "EPR");
         }
         if (index === 11 && direction === "down") {
           $rect.style("pointer-events", "auto");
         }
         if (index === 12) {
-          $rectLabels.remove();
+          if ($rectLabels) $rectLabels.remove();
           $rect.style("pointer-events", "none");
           renderThemeBars(themesRank, themesFreq, themes, x, y);
         }
@@ -588,8 +590,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .scaleLinear()
           .domain(d3.extent(allYValues))
           .range([height - MARGIN_BOTTOM, MARGIN_TOP]);
-
-        console.log(y.domain(), y.range());
 
         $yAxis = (g) =>
           g
