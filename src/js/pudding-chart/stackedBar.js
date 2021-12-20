@@ -1,5 +1,6 @@
 import Autocomplete from "accessible-autocomplete";
 import { wrap } from "../utils/wrap";
+import _ from "lodash";
 /* global d3 */
 
 /*
@@ -67,7 +68,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let height = 0;
     const MARGIN_TOP = 50;
     const FLAG_TOP = 80;
-    const MARGIN_BOTTOM = 50;
+    const MARGIN_BOTTOM = 70;
     const MARGIN_LEFT = 0;
     const MARGIN_RIGHT = 50;
     const themePad = 20;
@@ -464,8 +465,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         const word = sel.attr("word");
         const theme = sel.attr("theme");
 
-        console.log(index);
-
         if (index === 0) {
           baseRects();
         }
@@ -578,10 +577,19 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         // responsive yAxis
         $yAxisGroup.attr("transform", `translate(${MARGIN_LEFT},0)`);
 
+        const allYValues = series[0].reduce((acc, currentValue) => {
+          const nums = _.values(_.omit(currentValue.data, ["country"]))
+            .filter((d) => d !== "")
+            .map((d) => parseInt(d));
+          return [...acc, ...nums];
+        }, []);
+
         y = d3
           .scaleLinear()
-          .domain([series.length, 0])
+          .domain(d3.extent(allYValues))
           .range([height - MARGIN_BOTTOM, MARGIN_TOP]);
+
+        console.log(y.domain(), y.range());
 
         $yAxis = (g) =>
           g
@@ -591,21 +599,25 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
         $yAxis = $yAxisGroup.append("g").call($yAxis);
 
-        console.log(height / series.length);
-
         $rect
           .attr("x", (d, i) => x(d.data.country))
-          .attr("height", (d) =>
-            d.data[d.key.word] === 0 || d.data[d.key.word] === null
-              ? 0
-              : height / series.length
-          )
+          .attr("height", (d) => {
+            return d.data[d.key.word] !== 0 &&
+              d.data[d.key.word] !== null &&
+              d.data[d.key.word] !== ""
+              ? height / series.length
+              : 0;
+          })
           .attr("width", x.bandwidth())
-          .attr("y", (d) =>
-            d.data[d.key.word] !== 0 || d.data[d.key.word] !== null
-              ? y(d.data[d.key.word])
-              : y(null)
-          )
+          .attr("y", (d, i) => {
+            // console.log(y(d.data[d.key.word]));
+            // return d.data[d.key.word] !== 0 &&
+            //   d.data[d.key.word] !== null &&
+            //   d.data[d.key.word] !== ""
+            //   ? y(i)
+            //   : 0;
+            return y(d.data[d.key.word]);
+          })
           .style("display", (d) =>
             d.data[d.key.word] === "" ? "none" : "block"
           );
