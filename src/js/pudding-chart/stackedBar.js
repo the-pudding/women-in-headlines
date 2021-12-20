@@ -174,7 +174,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     }
 
     function highlightWords(index, word, userAction) {
-      console.log({ index, word, userAction });
       $stepSel.classed("is-active", (d, i) => i === index);
       let ID = word;
       let wordRects = null;
@@ -262,101 +261,104 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let $UKcolumn = d3.selectAll(".uk_class, .uk_tick");
       let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
 
-      setTimeout(() => {
-        $INcolumn.style("opacity", 0);
-      }, 500);
-      setTimeout(() => {
-        $SAcolumn.style("opacity", 0);
-      }, 1000);
-      setTimeout(() => {
-        $UKcolumn.style("opacity", 0);
-      }, 1500);
-      setTimeout(() => {
-        $UScolumn.style("opacity", 0);
-      }, 2000);
+      // 1. fade out column titles progressively
+      $INcolumn.style("transition", "opacity 1s 0s");
+      $SAcolumn.style("transition", "opacity 1s 300ms");
+      $UKcolumn.style("transition", "opacity 1s 600ms");
+      $UScolumn.style("transition", "opacity 1s 900ms");
+
+      $INcolumn.style("opacity", 0);
+      $SAcolumn.style("opacity", 0);
+      $UKcolumn.style("opacity", 0);
+      $UScolumn.style("opacity", 0);
+
+      // 2. fade in new column titles
+      x.domain([
+        "crime and violence",
+        "female stereotypes",
+        "empowerment",
+        "people and places",
+        "race, ethnicity and identity",
+      ]);
+      y.domain([d3.max(stackedData, (d) => d3.max(d, (d) => d[1])), 0]);
 
       setTimeout(() => {
-        x.domain([
-          "crime and violence",
-          "female stereotypes",
-          "empowerment",
-          "people and places",
-          "race, ethnicity and identity",
-        ]);
-        y.domain([d3.max(stackedData, (d) => d3.max(d, (d) => d[1])), 0]);
-
+        // remove old titles
         $xAxis
           .call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
           .call((g) => g.selectAll(".domain").remove())
           .call((g) => g.selectAll(".tick text").remove());
 
+        // add new ones
+        $xAxis.selectAll(".tick").style("transition", "opacity 1s");
+
         $xAxis
           .selectAll(".tick")
+          .style("opacity", 0)
           .append("text")
           .text((d) => (d === "female stereotypes" ? "gendered language" : d))
           .attr("x", 0)
           .attr("y", -5)
           .attr("class", "stackedChartTicks")
           .call(wrap, x.bandwidth());
-
         $xAxis.selectAll(".tick").style("opacity", 1);
-      }, 2500);
+      }, 1800);
 
-      setTimeout(() => {
-        $rectThemes
-          .transition()
-          .duration("500")
-          .ease(d3.easeLinear)
-          .delay((d, i) => {
-            return i * 10;
-          })
-          .attr("x", (d) =>
-            stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
-              ? x(
-                  stackedData
-                    .filter((c) => c.key === d.key.word)[0]
-                    .filter((e) => e.data.theme === d.key.theme)[0].data.theme
-                )
-              : null
-          )
-          .attr("y", (d) =>
-            stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
-              ? y(
-                  stackedData
-                    .filter((c) => c.key === d.key.word)[0]
-                    .filter((e) => e.data.theme === d.key.theme)[0][1]
-                )
-              : null
-          )
-          // .attr("height", function(d) {
-          // 	let data = stackedData.filter(c=>c.key === d.key.word)[0] !== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) : null;
-          // 	console.log(data)
-          // 	let firstVal = stackedData.filter(c=>c.key === d.key.word)[0]!== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]):null;
-          // 	let secondVal = y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]);
-          // 	console.log(firstVal)
-          // 	return firstVal - secondVal
-          // })
-          .attr("height", (d) =>
-            stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
-              ? y(
-                  stackedData
-                    .filter((c) => c.key === d.key.word)[0]
-                    .filter((e) => e.data.theme === d.key.theme)[0][1]
-                )
-              : null
-          )
-          .attr("width", x.bandwidth());
-      }, 3000);
-      setTimeout(() => {
-        $rectDrops
-          .transition()
-          .duration("500")
-          .ease(d3.easeLinear)
-          .delay((d, i) => {
-            return i * 2;
-          })
-          .style("opacity", 0);
-      }, 3000);
+      // 3. move rectangles
+      console.log({ stackedData });
+
+      $rectThemes
+        .transition()
+        .duration("500")
+        .ease(d3.easeLinear)
+        .delay((d, i) => {
+          return 1500 + i * 10;
+        })
+        .attr("x", (d) =>
+          stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
+            ? x(
+                stackedData
+                  .filter((c) => c.key === d.key.word)[0]
+                  .filter((e) => e.data.theme === d.key.theme)[0].data.theme
+              )
+            : null
+        )
+        .attr("y", (d) =>
+          stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
+            ? y(
+                stackedData
+                  .filter((c) => c.key === d.key.word)[0]
+                  .filter((e) => e.data.theme === d.key.theme)[0][1]
+              )
+            : null
+        )
+        // .attr("height", function(d) {
+        // 	let data = stackedData.filter(c=>c.key === d.key.word)[0] !== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) : null;
+        // 	console.log(data)
+        // 	let firstVal = stackedData.filter(c=>c.key === d.key.word)[0]!== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]):null;
+        // 	let secondVal = y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]);
+        // 	console.log(firstVal)
+        // 	return firstVal - secondVal
+        // })
+        .attr("height", (d) =>
+          stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
+            ? y(
+                stackedData
+                  .filter((c) => c.key === d.key.word)[0]
+                  .filter((e) => e.data.theme === d.key.theme)[0][1]
+              )
+            : null
+        )
+        .attr("width", x.bandwidth());
+
+      $rectDrops
+        .transition()
+        .duration("500")
+        .ease(d3.easeLinear)
+        .delay((d, i) => {
+          return 1500 + i * 2;
+        })
+        .style("opacity", 0);
     }
 
     function prepareWordData(dataLocal, themes) {
@@ -514,6 +516,13 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         if (index === 11 && direction === "down") {
           $rect.style("pointer-events", "auto");
         }
+        if (index === 11 && direction === "up") {
+          // todo: reset properly
+          $rect.remove();
+          highlightThemes(index, "EPR");
+          if ($rectLabels) $rectLabels.remove();
+          $rect.style("pointer-events", "auto");
+        }
         if (index === 12) {
           if ($rectLabels) $rectLabels.remove();
           $rect.style("pointer-events", "none");
@@ -610,12 +619,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           })
           .attr("width", x.bandwidth())
           .attr("y", (d, i) => {
-            // console.log(y(d.data[d.key.word]));
-            // return d.data[d.key.word] !== 0 &&
-            //   d.data[d.key.word] !== null &&
-            //   d.data[d.key.word] !== ""
-            //   ? y(i)
-            //   : 0;
             return y(d.data[d.key.word]);
           })
           .style("display", (d) =>
