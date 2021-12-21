@@ -248,13 +248,15 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           .style("top", "auto");
       }
 
-      $tooltip.html(
-        `<p class="tt-date">${d3.timeFormat("%m/%Y")(
-          new Date(wordHeadlines[randHeadline].time)
-        )} | ${wordHeadlines[randHeadline].site}</p><p class="tt-hed">${
-          wordHeadlines[randHeadline].headline_no_site
-        }</p>`
-      );
+      if (wordHeadlines.length > 0) {
+        $tooltip.html(
+          `<p class="tt-date">${d3.timeFormat("%m/%Y")(
+            new Date(wordHeadlines[randHeadline].time)
+          )} | ${wordHeadlines[randHeadline].site}</p><p class="tt-hed">${
+            wordHeadlines[randHeadline].headline_no_site
+          }</p>`
+        );
+      }
     }
 
     function hideTooltip() {
@@ -301,9 +303,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       }
 
       $tooltip.html(
-        `<p class="tt-date">${d3.timeFormat("%m/%Y")(
+        `<p class="tt-date">EVENT: ${d3.timeFormat("%m/%Y")(
           d.date
-        )}</p><p class="tt-hed">${d.name}</p>`
+        )}</p><p class="tt-hed-no-italic">${d.name}</p>`
       );
     }
 
