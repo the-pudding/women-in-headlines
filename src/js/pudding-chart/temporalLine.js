@@ -222,15 +222,15 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       d3.select("#line-" + d.word).attr("opacity", 1);
       d3.select("#text" + d.word).attr("opacity", 1);
 
-      console.log(d.word);
+      const hoveredWord = event.target.id.replace("area-", "");
+      let wordHeadlines = headlinesTemp.filter((d) => {
+        return d.headline_no_site.toLowerCase().match(hoveredWord);
+      });
 
-      let wordHeadlines = headlinesTemp.filter((d) =>
-        d.headline_no_site.toLowerCase().match(d.word)
-      );
-      console.log(wordHeadlines);
       let randHeadline = Math.floor(Math.random() * wordHeadlines.length);
 
-      let [xPos, yPos] = d3.pointer(event);
+      let { clientX: xPos, clientY: yPos } = event;
+
       let right = xPos > window.innerWidth / 2;
       let offset = right ? $tooltip.node().offsetWidth + -50 : 50;
 
@@ -238,7 +238,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
       if (width >= 600) {
         $tooltip
-          .style("top", yPos + "px")
+          .style("top", yPos + 50 + "px")
           .style("left", xPos - offset + "px")
           .style("bottom", "auto");
       } else {
@@ -248,13 +248,15 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           .style("top", "auto");
       }
 
-      $tooltip.html(
-        `<p class="tt-date">${d3.timeFormat("%m/%Y")(
-          new Date(wordHeadlines[randHeadline].time)
-        )} | ${wordHeadlines[randHeadline].site}</p><p class="tt-hed">${
-          wordHeadlines[randHeadline].headline_no_site
-        }</p>`
-      );
+      if (wordHeadlines.length > 0) {
+        $tooltip.html(
+          `<p class="tt-date">${d3.timeFormat("%m/%Y")(
+            new Date(wordHeadlines[randHeadline].time)
+          )} | ${wordHeadlines[randHeadline].site}</p><p class="tt-hed">${
+            wordHeadlines[randHeadline].headline_no_site
+          }</p>`
+        );
+      }
     }
 
     function hideTooltip() {
@@ -282,7 +284,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         .attr("width", 20)
         .style("opacity", 1);
 
-      let [xPos, yPos] = d3.pointer(event);
+      let { clientX: xPos, clientY: yPos } = event;
       let right = xPos > window.innerWidth / 2;
       let offset = right ? $tooltip.node().offsetWidth + -50 : 50;
 
@@ -290,7 +292,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
       if (width >= 600) {
         $tooltip
-          .style("top", 0 + 10 + "px")
+          .style("top", yPos + 50 + "px")
           .style("left", xPos - offset + "px")
           .style("bottom", "auto");
       } else {
@@ -301,9 +303,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       }
 
       $tooltip.html(
-        `<p class="tt-date">${d3.timeFormat("%m/%Y")(
+        `<p class="tt-date">EVENT: ${d3.timeFormat("%m/%Y")(
           d.date
-        )}</p><p class="tt-hed">${d.name}</p>`
+        )}</p><p class="tt-hed-no-italic">${d.name}</p>`
       );
     }
 
