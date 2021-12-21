@@ -29,7 +29,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
     // colors
     const mainColor = "#3569DC";
-    const fColor = "#F2C5D3";
+    const fColor = "#648FDC";
     const eColor = "#A35FD0";
     const vColor = "#f76e45";
     const rColor = "#53B67C";

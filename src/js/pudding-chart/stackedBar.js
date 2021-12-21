@@ -243,12 +243,12 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       }
 
       if (theme === "femalestereotypes") {
-        stereotypeRects.attr("fill", "#F2C5D3").attr("opacity", "1");
+        stereotypeRects.attr("fill", "#648FDC").attr("opacity", "1");
       }
 
       if (theme === "EPR") {
         violenceRects.attr("fill", "#E76B2D").attr("opacity", "1");
-        stereotypeRects.attr("fill", "#F2C5D3").attr("opacity", "1");
+        stereotypeRects.attr("fill", "#648FDC").attr("opacity", "1");
         empowermentRects.attr("fill", "#A35FD0").attr("opacity", "1");
         peopleRects.attr("fill", "#F7DC5B").attr("opacity", "1");
         raceRects.attr("fill", "#53B67C").attr("opacity", "1");
