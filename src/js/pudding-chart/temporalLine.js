@@ -222,9 +222,11 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       d3.select("#line-" + d.word).attr("opacity", 1);
       d3.select("#text" + d.word).attr("opacity", 1);
 
-      let wordHeadlines = headlinesTemp.filter((d) =>
-        d.headline_no_site.toLowerCase().match(d.word)
-      );
+      const hoveredWord = event.target.id.replace("area-", "");
+      let wordHeadlines = headlinesTemp.filter((d) => {
+        return d.headline_no_site.toLowerCase().match(hoveredWord);
+      });
+
       let randHeadline = Math.floor(Math.random() * wordHeadlines.length);
 
       let { clientX: xPos, clientY: yPos } = event;
