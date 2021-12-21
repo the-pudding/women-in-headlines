@@ -222,15 +222,13 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       d3.select("#line-" + d.word).attr("opacity", 1);
       d3.select("#text" + d.word).attr("opacity", 1);
 
-      console.log(d.word);
-
       let wordHeadlines = headlinesTemp.filter((d) =>
         d.headline_no_site.toLowerCase().match(d.word)
       );
-      console.log(wordHeadlines);
       let randHeadline = Math.floor(Math.random() * wordHeadlines.length);
 
-      let [xPos, yPos] = d3.pointer(event);
+      let { clientX: xPos, clientY: yPos } = event;
+
       let right = xPos > window.innerWidth / 2;
       let offset = right ? $tooltip.node().offsetWidth + -50 : 50;
 
@@ -238,7 +236,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
       if (width >= 600) {
         $tooltip
-          .style("top", yPos + "px")
+          .style("top", yPos + 50 + "px")
           .style("left", xPos - offset + "px")
           .style("bottom", "auto");
       } else {
@@ -282,7 +280,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         .attr("width", 20)
         .style("opacity", 1);
 
-      let [xPos, yPos] = d3.pointer(event);
+      let { clientX: xPos, clientY: yPos } = event;
       let right = xPos > window.innerWidth / 2;
       let offset = right ? $tooltip.node().offsetWidth + -50 : 50;
 
@@ -290,7 +288,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
       if (width >= 600) {
         $tooltip
-          .style("top", 0 + 10 + "px")
+          .style("top", yPos + 50 + "px")
           .style("left", xPos - offset + "px")
           .style("bottom", "auto");
       } else {
