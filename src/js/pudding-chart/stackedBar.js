@@ -305,8 +305,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       }, 1800);
 
       // 3. move rectangles
-      console.log({ stackedData });
-
       $rectThemes
         .transition()
         .duration("500")
@@ -517,9 +515,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 11 && direction === "up") {
-          // todo: reset properly
-          $rect.remove();
-          highlightThemes(index, "EPR");
+          // TODO: resetting, need to bring back original rects
           if ($rectLabels) $rectLabels.remove();
           $rect.style("pointer-events", "auto");
         }

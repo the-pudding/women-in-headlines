@@ -581,7 +581,6 @@ function init() {
 
     // scrollama event handlers
     function handleStepEnter(response) {
-      // console.log(response)
       updateChart(response.index, "enter");
     }
 
@@ -591,12 +590,13 @@ function init() {
     }
 
     function updateChart(index, action) {
+      console.log("hey!", { index, action });
+
       const sel = container.select(`[data-index='${index}']`);
       // const width = sel.attr('data-width');
       const task = sel.attr("task");
       const hovertype = sel.attr("hovertype");
 
-      console.log(task);
       if (task === "highlightwords") {
         const word = sel.attr("word");
         if (action === "enter") {
@@ -801,6 +801,8 @@ function init() {
   }
 
   function renderStackedBars(data, series) {
+    console.log("renderStackedBars");
+
     var margin = { top: 100, right: 0, bottom: 0, left: 100 };
 
     var height = 5000 - margin.top - margin.bottom;
