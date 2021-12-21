@@ -512,15 +512,74 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           highlightThemes(index, "EPR");
         }
         if (index === 11 && direction === "down") {
+          if ($rectLabels) $rectLabels.remove();
           $rect.style("pointer-events", "auto");
         }
         if (index === 11 && direction === "up") {
-          // TODO: resetting, need to bring back original rects
-          if ($rectLabels) $rectLabels.remove();
+          // clear
+          $rect.remove();
+
+          // reset scales
+          const allYValues = series[0].reduce((acc, currentValue) => {
+            const nums = _.values(_.omit(currentValue.data, ["country"]))
+              .filter((d) => d !== "")
+              .map((d) => parseInt(d));
+            return [...acc, ...nums];
+          }, []);
+          x = d3
+            .scaleBand()
+            .domain(dataLocal.map((d) => d.country))
+            .padding(0.1);
+          y = d3
+            .scaleLinear()
+            .domain(d3.extent(allYValues))
+            .range([height - MARGIN_BOTTOM, MARGIN_TOP]);
+
+          // redraw rectangles
+          $rect = $rects
+            .join("rect")
+            .attr("class", function (d) {
+              let themeClass = `${stripSpaces(d.key.theme)}_class`;
+              let wordClass = `${d.key.word}_class`;
+              let countryClass = `${stripSpaces(d.key.country)}_class`;
+              return `${wordClass} ${themeClass} ${countryClass}`;
+            })
+            .attr("fill", "#e7dfc8")
+            .attr("opacity", "1")
+            .attr("stroke", "#FEFAF1")
+            .attr("stroke-width", "1")
+            .attr("x", (d, i) => {
+              x(d.data.country);
+            })
+            .attr("height", (d) => {
+              return d.data[d.key.word] !== 0 &&
+                d.data[d.key.word] !== null &&
+                d.data[d.key.word] !== ""
+                ? height / series.length
+                : 0;
+            })
+            .attr("width", x.bandwidth())
+            .attr("y", (d, i) => {
+              return y(d.data[d.key.word]);
+            })
+            .style("display", (d) =>
+              d.data[d.key.word] === "" ? "none" : "block"
+            );
+
+          Chart.render();
+          Chart.resize();
+
+          // highlight themes
+          highlightThemes(index, "EPR");
+
           $rect.style("pointer-events", "auto");
         }
         if (index === 12) {
           if ($rectLabels) $rectLabels.remove();
+          // bump up the x-axis
+          $xAxisGroup.style("transition", "transform 800ms");
+          $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 30})`);
+
           $rect.style("pointer-events", "none");
           renderThemeBars(themesRank, themesFreq, themes, x, y);
         }
