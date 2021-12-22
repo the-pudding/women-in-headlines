@@ -653,9 +653,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("x", x.bandwidth() - MARGIN_RIGHT + 5)
           .attr("y", 0)
           .attr("transform", "translate(-17, -55)")
-          .attr(
-            "xlink:href",
-            (d) => flags.filter((c) => c.country === d)[0].flag
+          .attr("xlink:href", (d) =>
+            flags.filter((c) => c.country === d)[0]
+              ? flags.filter((c) => c.country === d)[0].flag
+              : null
           );
 
         // responsive yAxis

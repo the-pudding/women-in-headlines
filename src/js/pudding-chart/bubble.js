@@ -397,19 +397,24 @@ d3.selection.prototype.puddingBubble = function init(options) {
             .stop();
         } else {
           // TODO: keep adjusting this mobile version
+          console.log("mobile setting");
           simulation = d3
             .forceSimulation()
             .nodes(filterData)
             .force(
+              "y",
+              d3
+                .forceY()
+                .y((d) => $chart.node().offsetWidth / 2)
+                .strength(3)
+            )
+            .force(
               "x",
               d3
                 .forceX()
-                .x(function (d) {
-                  return xScale(+d[variable]);
-                })
-                .strength(0.2)
+                .x((d) => xScale(+d[variable]))
+                .strength(0.5)
             )
-            .force("y", d3.forceY(height / 2).strength(1))
             .force(
               "collide",
               d3.forceCollide((d) => {
@@ -418,20 +423,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
             )
             .stop();
         }
-
-        // if (width >= 500) {
-        // 	simulation
-        // 		.force('x', d3.forceX().x(function (d) {
-        // 			return xScale(+d[variable]);
-        // 		}).strength(1))
-        // 		.force("y", d3.forceY(height / 2).strength(0.2))
-        // } else {
-        // 	simulation
-        // 		.force("x", d3.forceX(height / 2).strength(0.2))
-        // 		.force('y', d3.forceY().y(function (d) {
-        // 			return yScale(+d[variable]);
-        // 		}).strength(1))
-        // }
 
         for (var i = 0; i < 300; i++) {
           simulation.tick();
@@ -498,7 +489,9 @@ d3.selection.prototype.puddingBubble = function init(options) {
       // update scales and render chart
       render() {
         // offset chart for margins
-        $vis.attr("transform", `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
+        if (width >= 600) {
+          $vis.attr("transform", `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
+        }
 
         populateDropdown(chartData, "#countrydropdown", "country_of_pub");
         populateDropdown(chartData, "#pubdropdown", "site");
