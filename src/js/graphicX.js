@@ -40,6 +40,7 @@ let country;
 let temporalVar;
 let temporalData;
 let chartOpen = false;
+let scrollFromClick = false;
 
 /* data functions */
 
@@ -121,11 +122,17 @@ function setupTemporalLine(data) {
 
 /* HELPER FUNCTIONS */
 function scrollTo(element, offset) {
+  scrollFromClick = true;
+
   window.scroll({
     behavior: "smooth",
     left: 0,
     top: element.offsetTop + offset,
   });
+
+  setTimeout(() => {
+    scrollFromClick = false;
+  }, 1000);
 }
 
 function spanEnter() {
@@ -204,65 +211,91 @@ function runEnterview() {
     selector: "#cellviolence",
     offset: 0.5,
     enter: () => {
-      $tempButtons.classed(`active-btn-violence`, false);
-      $tempButtons.classed(`active-btn-empowerment`, false);
-      $tempButtons.classed(`active-btn-race`, false);
-      $tempButtons.classed(`active-btn-stereotypes`, false);
-      d3.selectAll("#btn-violence").classed(`active-btn-violence`, true);
+      if (!scrollFromClick) {
+        $tempButtons.classed(`active-btn-violence`, false);
+        $tempButtons.classed(`active-btn-empowerment`, false);
+        $tempButtons.classed(`active-btn-race`, false);
+        $tempButtons.classed(`active-btn-stereotypes`, false);
+        d3.selectAll("#btn-violence").classed(`active-btn-violence`, true);
+      }
     },
   });
   enterView({
     selector: "#cellemotional",
     offset: 0.5,
     enter: () => {
-      $tempButtons.classed(`active-btn-violence`, false);
-      $tempButtons.classed(`active-btn-empowerment`, false);
-      $tempButtons.classed(`active-btn-race`, false);
-      $tempButtons.classed(`active-btn-stereotypes`, false);
-      d3.selectAll("#btn-stereotypes").classed(`active-btn-stereotypes`, true);
+      if (!scrollFromClick) {
+        $tempButtons.classed(`active-btn-violence`, false);
+        $tempButtons.classed(`active-btn-empowerment`, false);
+        $tempButtons.classed(`active-btn-race`, false);
+        $tempButtons.classed(`active-btn-stereotypes`, false);
+        d3.selectAll("#btn-stereotypes").classed(
+          `active-btn-stereotypes`,
+          true
+        );
+      }
     },
     exit: () => {
-      $tempButtons.classed(`active-btn-violence`, false);
-      $tempButtons.classed(`active-btn-empowerment`, false);
-      $tempButtons.classed(`active-btn-race`, false);
-      $tempButtons.classed(`active-btn-stereotypes`, false);
-      d3.selectAll("#btn-violence").classed(`active-btn-violence`, true);
+      if (!scrollFromClick) {
+        $tempButtons.classed(`active-btn-violence`, false);
+        $tempButtons.classed(`active-btn-empowerment`, false);
+        $tempButtons.classed(`active-btn-race`, false);
+        $tempButtons.classed(`active-btn-stereotypes`, false);
+        d3.selectAll("#btn-violence").classed(`active-btn-violence`, true);
+      }
     },
   });
   enterView({
     selector: "#cellmayor",
     offset: 0.5,
     enter: () => {
-      $tempButtons.classed(`active-btn-violence`, false);
-      $tempButtons.classed(`active-btn-empowerment`, false);
-      $tempButtons.classed(`active-btn-race`, false);
-      $tempButtons.classed(`active-btn-stereotypes`, false);
-      d3.selectAll("#btn-empowerment").classed(`active-btn-empowerment`, true);
+      if (!scrollFromClick) {
+        $tempButtons.classed(`active-btn-violence`, false);
+        $tempButtons.classed(`active-btn-empowerment`, false);
+        $tempButtons.classed(`active-btn-race`, false);
+        $tempButtons.classed(`active-btn-stereotypes`, false);
+        d3.selectAll("#btn-empowerment").classed(
+          `active-btn-empowerment`,
+          true
+        );
+      }
     },
     exit: () => {
-      $tempButtons.classed(`active-btn-violence`, false);
-      $tempButtons.classed(`active-btn-empowerment`, false);
-      $tempButtons.classed(`active-btn-race`, false);
-      $tempButtons.classed(`active-btn-stereotypes`, false);
-      d3.selectAll("#btn-stereotypes").classed(`active-btn-stereotypes`, true);
+      if (!scrollFromClick) {
+        $tempButtons.classed(`active-btn-violence`, false);
+        $tempButtons.classed(`active-btn-empowerment`, false);
+        $tempButtons.classed(`active-btn-race`, false);
+        $tempButtons.classed(`active-btn-stereotypes`, false);
+        d3.selectAll("#btn-stereotypes").classed(
+          `active-btn-stereotypes`,
+          true
+        );
+      }
     },
   });
   enterView({
     selector: "#cellasian",
     offset: 0.5,
     enter: () => {
-      $tempButtons.classed(`active-btn-violence`, false);
-      $tempButtons.classed(`active-btn-empowerment`, false);
-      $tempButtons.classed(`active-btn-race`, false);
-      $tempButtons.classed(`active-btn-stereotypes`, false);
-      d3.selectAll("#btn-race").classed(`active-btn-race`, true);
+      if (!scrollFromClick) {
+        $tempButtons.classed(`active-btn-violence`, false);
+        $tempButtons.classed(`active-btn-empowerment`, false);
+        $tempButtons.classed(`active-btn-race`, false);
+        $tempButtons.classed(`active-btn-stereotypes`, false);
+        d3.selectAll("#btn-race").classed(`active-btn-race`, true);
+      }
     },
     exit: () => {
-      $tempButtons.classed(`active-btn-violence`, false);
-      $tempButtons.classed(`active-btn-empowerment`, false);
-      $tempButtons.classed(`active-btn-race`, false);
-      $tempButtons.classed(`active-btn-stereotypes`, false);
-      d3.selectAll("#btn-empowerment").classed(`active-btn-empowerment`, true);
+      if (!scrollFromClick) {
+        $tempButtons.classed(`active-btn-violence`, false);
+        $tempButtons.classed(`active-btn-empowerment`, false);
+        $tempButtons.classed(`active-btn-race`, false);
+        $tempButtons.classed(`active-btn-stereotypes`, false);
+        d3.selectAll("#btn-empowerment").classed(
+          `active-btn-empowerment`,
+          true
+        );
+      }
     },
   });
 }
@@ -270,8 +303,6 @@ function runEnterview() {
 function scrollToTheme() {
   let $button = d3.select(this);
   let $ID = $button.attr("id").split("-")[1];
-
-  console.log("scrollToTheme", $ID);
 
   $tempButtons.classed(`active-btn-violence`, false);
   $tempButtons.classed(`active-btn-empowerment`, false);
