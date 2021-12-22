@@ -100,10 +100,10 @@ d3.selection.prototype.puddingBubble = function init(options) {
     // dimensions
     let width = 0;
     let height = 0;
-    const MARGIN_TOP = 50;
-    const MARGIN_BOTTOM = 120;
-    const MARGIN_LEFT = 50;
-    const MARGIN_RIGHT = 50;
+    let MARGIN_TOP = 50;
+    let MARGIN_BOTTOM = 120;
+    let MARGIN_LEFT = 50;
+    let MARGIN_RIGHT = 50;
 
     // scales
     let xScale = null;
@@ -374,26 +374,50 @@ d3.selection.prototype.puddingBubble = function init(options) {
           .style("text-anchor", (d) => d.anchor)
           .call(wrap, 10);
 
-        simulation = d3
-          .forceSimulation()
-          .nodes(filterData)
-          .force(
-            "x",
-            d3
-              .forceX()
-              .x(function (d) {
-                return xScale(+d[variable]);
+        if (width >= 600) {
+          simulation = d3
+            .forceSimulation()
+            .nodes(filterData)
+            .force(
+              "x",
+              d3
+                .forceX()
+                .x(function (d) {
+                  return xScale(+d[variable]);
+                })
+                .strength(1)
+            )
+            .force("y", d3.forceY(height / 2).strength(0.2))
+            .force(
+              "collide",
+              d3.forceCollide((d) => {
+                return radius(+d.monthly_visits);
               })
-              .strength(1)
-          )
-          .force("y", d3.forceY(height / 2).strength(0.2))
-          .force(
-            "collide",
-            d3.forceCollide((d) => {
-              return radius(+d.monthly_visits);
-            })
-          )
-          .stop();
+            )
+            .stop();
+        } else {
+          // TODO: keep adjusting this mobile version
+          simulation = d3
+            .forceSimulation()
+            .nodes(filterData)
+            .force(
+              "x",
+              d3
+                .forceX()
+                .x(function (d) {
+                  return xScale(+d[variable]);
+                })
+                .strength(0.2)
+            )
+            .force("y", d3.forceY(height / 2).strength(1))
+            .force(
+              "collide",
+              d3.forceCollide((d) => {
+                return radius(+d.monthly_visits);
+              })
+            )
+            .stop();
+        }
 
         // if (width >= 500) {
         // 	simulation
