@@ -198,15 +198,6 @@ function changeTemporalDropdown() {
 }
 
 function runEnterview() {
-  // TODO: can we detect enter both ways?
-
-  // intersection observer
-  //   const violenceCell = document.querySelector("#cellviolence");
-  //   let observer = new IntersectionObserver((entry, observer) => {
-  //     console.log({ entry, observer });
-  //   });
-  //   observer.observe(violenceCell);
-
   enterView({
     selector: "#cellviolence",
     offset: 0.5,
