@@ -272,7 +272,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       $UKcolumn.style("opacity", 0);
       $UScolumn.style("opacity", 0);
 
-      // 2. fade in new column titles
+      // 2. new column titles
       x.domain([
         "crime and violence",
         "female stereotypes",
@@ -280,6 +280,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         "people and places",
         "race, ethnicity and identity",
       ]);
+      x.range([0, width]);
       y.domain([d3.max(stackedData, (d) => d3.max(d, (d) => d[1])), 0]);
 
       setTimeout(() => {
@@ -292,6 +293,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         // add new ones
         $xAxis.selectAll(".tick").style("transition", "opacity 1s");
 
+        // fade in
         $xAxis
           .selectAll(".tick")
           .style("opacity", 0)
@@ -302,6 +304,12 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("class", "stackedChartTicks")
           .call(wrap, x.bandwidth());
         $xAxis.selectAll(".tick").style("opacity", 1);
+
+        // move text slightly
+        $xAxis.selectAll(".tick text").style("transform", (d, i) => {
+          if (d === "empowerment") return `translate(10px, 15px)`;
+          return `translate(10px, 0px)`;
+        });
       }, 1800);
 
       // 3. move rectangles
@@ -529,6 +537,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           x = d3
             .scaleBand()
             .domain(dataLocal.map((d) => d.country))
+            .range([MARGIN_LEFT, width - MARGIN_RIGHT])
             .padding(0.1);
           y = d3
             .scaleLinear()
@@ -578,7 +587,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           if ($rectLabels) $rectLabels.remove();
           // bump up the x-axis
           $xAxisGroup.style("transition", "transform 800ms");
-          $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 30})`);
+          $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 20})`);
 
           $rect.style("pointer-events", "none");
           renderThemeBars(themesRank, themesFreq, themes, x, y);
