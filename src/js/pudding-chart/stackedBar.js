@@ -390,6 +390,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .domain(dataLocal.map((d) => d.country))
         .range([MARGIN_LEFT, width - MARGIN_RIGHT])
         .padding(0.1);
+
       y = d3
         .scaleLinear()
         .domain(d3.extent(allYValues))
@@ -671,7 +672,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
         y = d3
           .scaleLinear()
-          .domain(d3.extent(allYValues))
+          .domain(d3.extent(allYValues).reverse())
           .range([height - MARGIN_BOTTOM, MARGIN_TOP]);
 
         $yAxis = (g) =>
