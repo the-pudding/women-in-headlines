@@ -55,6 +55,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       { country: "UK", flag: "assets/images/flags/united-kingdom.svg" },
       { country: "All countries", flag: "" },
     ];
+
     let stackedData = d3
       .stack()
       .keys(themesFreq.columns.slice(2))
@@ -317,6 +318,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         }
       }, 1800);
 
+      console.log(y.domain(), y.range());
       // 3. move rectangles
       $rectThemes = $vis
         .selectAll("rect")
