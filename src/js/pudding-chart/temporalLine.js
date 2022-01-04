@@ -225,7 +225,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
       const hoveredWord = event.target.id.replace("area-", "");
       let wordHeadlines = headlinesTemp.filter((d) => {
         return (
-          d.country === country &&
+          (country === "all countries" || d.country === country) &&
           d.headline_no_site.toLowerCase().match(hoveredWord)
         );
       });
