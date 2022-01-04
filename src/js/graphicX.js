@@ -136,7 +136,6 @@ function scrollTo(element, offset) {
 }
 
 function spanEnter() {
-  console.log("spanEnter");
   let span = d3.select(this).attr("value");
 
   d3.selectAll(".stackedBars rect").attr("opacity", "0.3");
@@ -188,12 +187,11 @@ function populateDropdown(data, div, attribute) {
 function changeTemporalDropdown() {
   const selection = this.value;
   const country = selection;
-  console.log(country);
 
   d3.select("#smChart svg").remove();
   d3.select("#stickyXaxis svg").remove();
 
-  temporalData = [tempWords, filter_years, country, temporalVar];
+  temporalData = [tempWords, filter_years, country, temporalVar, headlinesTemp];
   setupTemporalLine(temporalData);
 }
 

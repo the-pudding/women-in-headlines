@@ -78,6 +78,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let x = null;
     let y = null;
 
+    // state
+    let countryLabels = true;
+
     // helper functions
     function searchWords() {
       let onlyWords = dataLocal.columns;
@@ -255,7 +258,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       }
     }
 
-    function renderThemeBars(data, dataFreq, themes, x, y) {
+    function renderThemeBars(data, dataFreq, themes, x, y, index) {
       let $INcolumn = d3.selectAll(".india_class, .india_tick");
       let $SAcolumn = d3.selectAll(".southafrica_class, .southafrica_tick");
       let $UKcolumn = d3.selectAll(".uk_class, .uk_tick");
@@ -280,7 +283,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         "people and places",
         "race, ethnicity and identity",
       ]);
-      x.range([0, width]);
+      // x.range([0, width]);
       y.domain([d3.max(stackedData, (d) => d3.max(d, (d) => d[1])), 0]);
 
       setTimeout(() => {
@@ -304,12 +307,14 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("class", "stackedChartTicks")
           .call(wrap, x.bandwidth());
         $xAxis.selectAll(".tick").style("opacity", 1);
-
-        // move text slightly
-        $xAxis.selectAll(".tick text").style("transform", (d, i) => {
-          if (d === "empowerment") return `translate(10px, 15px)`;
-          return `translate(10px, 0px)`;
-        });
+        if (!countryLabels) {
+          console.log("move slightly");
+          // move text slightly
+          $xAxis.selectAll(".tick text").style("transform", (d, i) => {
+            if (d === "empowerment") return `translate(10px, 15px)`;
+            return `translate(10px, 0px)`;
+          });
+        }
       }, 1800);
 
       // 3. move rectangles
@@ -588,19 +593,26 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 11 && direction === "up") {
+          countryLabels = true;
+
+          x.domain(dataLocal.map((d) => d.country));
+          x.range([MARGIN_LEFT, width - MARGIN_RIGHT]);
+
           restoreBars();
           highlightThemes(index, "EPR");
 
           $rect.style("pointer-events", "auto");
         }
         if (index === 12) {
+          countryLabels = false;
+
           if ($rectLabels) $rectLabels.remove();
           // bump up the x-axis
           $xAxisGroup.style("transition", "transform 800ms");
           $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 20})`);
 
           $rect.style("pointer-events", "none");
-          renderThemeBars(themesRank, themesFreq, themes, x, y);
+          renderThemeBars(themesRank, themesFreq, themes, x, y, index);
         }
 
         return Chart;
@@ -658,6 +670,12 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
             flags.filter((c) => c.country === d)[0]
               ? flags.filter((c) => c.country === d)[0].flag
               : null
+          );
+        $xAxis
+          .selectAll(".tick text")
+          .attr(
+            "transform",
+            `translate(${x.bandwidth() - MARGIN_RIGHT + 6}, 0)`
           );
 
         // responsive yAxis

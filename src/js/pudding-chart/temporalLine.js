@@ -224,7 +224,10 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
       const hoveredWord = event.target.id.replace("area-", "");
       let wordHeadlines = headlinesTemp.filter((d) => {
-        return d.headline_no_site.toLowerCase().match(hoveredWord);
+        return (
+          d.country === country &&
+          d.headline_no_site.toLowerCase().match(hoveredWord)
+        );
       });
 
       let randHeadline = Math.floor(Math.random() * wordHeadlines.length);
