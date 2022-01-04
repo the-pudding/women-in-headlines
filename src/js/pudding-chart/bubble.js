@@ -264,8 +264,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
       allCircs
         .style("stroke-width", "1")
         .style("stroke", "#282828")
-        .style("opacity", 1)
-        .style("fill", "#FEFAF1");
+        .style("opacity", 1);
       let allLogos = d3.selectAll(".forceLogo").style("opacity", 1);
     }
 
