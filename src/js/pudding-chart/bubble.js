@@ -310,12 +310,12 @@ d3.selection.prototype.puddingBubble = function init(options) {
         $vis = $svg.append("g").attr("class", "g-vis");
 
         // zoom
-        const onZoom = (e) => {
-          d3.select($vis.node()).attr("transform", e.transform);
-        };
-        const zoomer = d3.zoom().scaleExtent([-5, 5]).on("zoom", onZoom);
-        d3.select($svg.node()).call(zoomer);
-        d3.select($svg.node()).style("cursor", "grab");
+        // const onZoom = (e) => {
+        //   d3.select($vis.node()).attr("transform", e.transform);
+        // };
+        // const zoomer = d3.zoom().scaleExtent([-5, 5]).on("zoom", onZoom);
+        // d3.select($svg.node()).call(zoomer);
+        // d3.select($svg.node()).style("cursor", "grab");
 
         Chart.resize();
         Chart.render();
@@ -385,6 +385,10 @@ d3.selection.prototype.puddingBubble = function init(options) {
         //$legend.attr('transform', `translate(-${width / 2 - MARGIN_LEFT / 2 - maxR / 2}, -${height})`);
         let legendPos = width >= 500 ? -maxR : -width / 2 - maxR / 1.5;
         $legend.attr("transform", `translate(${legendPos},50)`);
+
+        filterData = filterData.map((d) => {
+          return { ...d, x: 0, y: 0 };
+        });
 
         if (width >= 500) {
           simulation = d3

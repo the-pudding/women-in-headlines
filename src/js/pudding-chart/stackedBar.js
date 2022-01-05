@@ -259,7 +259,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       }
     }
 
-    function renderThemeBars(data, dataFreq, themes, x, y, index) {
+    /*function renderThemeBars(data, dataFreq, themes, x, y, index) {
       let $INcolumn = d3.selectAll(".india_class, .india_tick");
       let $SAcolumn = d3.selectAll(".southafrica_class, .southafrica_tick");
       let $UKcolumn = d3.selectAll(".uk_class, .uk_tick");
@@ -376,7 +376,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           return 1500 + i * 2;
         })
         .style("opacity", 0);
-    }
+    }*/
 
     function restoreBars() {
       // clear
@@ -592,27 +592,28 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 11 && direction === "up") {
-          countryLabels = true;
+          // countryLabels = true;
 
-          x.domain(dataLocal.map((d) => d.country));
-          x.range([MARGIN_LEFT, width - MARGIN_RIGHT]);
+          // x.domain(dataLocal.map((d) => d.country));
+          // x.range([MARGIN_LEFT, width - MARGIN_RIGHT]);
 
-          restoreBars();
-          highlightThemes(index, "EPR");
-
-          $rect.style("pointer-events", "auto");
-        }
-        if (index === 12) {
-          countryLabels = false;
+          // restoreBars();
 
           if ($rectLabels) $rectLabels.remove();
-          // bump up the x-axis
-          $xAxisGroup.style("transition", "transform 800ms");
-          $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 20})`);
-
-          $rect.style("pointer-events", "none");
-          renderThemeBars(themesRank, themesFreq, themes, x, y, index);
+          highlightThemes(index, "EPR");
+          $rect.style("pointer-events", "auto");
         }
+        // if (index === 12) {
+        //   countryLabels = false;
+
+        //   if ($rectLabels) $rectLabels.remove();
+        //   // bump up the x-axis
+        //   $xAxisGroup.style("transition", "transform 800ms");
+        //   $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 20})`);
+
+        //   $rect.style("pointer-events", "none");
+        //   renderThemeBars(themesRank, themesFreq, themes, x, y, index);
+        // }
 
         return Chart;
       },
