@@ -290,6 +290,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
         };
         const zoomer = d3.zoom().scaleExtent([-5, 5]).on("zoom", onZoom);
         d3.select($svg.node()).call(zoomer);
+        d3.select($svg.node()).style("cursor", "grab");
 
         Chart.resize();
         Chart.render();
@@ -359,26 +360,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
         //$legend.attr('transform', `translate(-${width / 2 - MARGIN_LEFT / 2 - maxR / 2}, -${height})`);
         let legendPos = width >= 500 ? -maxR : -width / 2 - maxR / 1.5;
         $legend.attr("transform", `translate(${legendPos},50)`);
-
-        $legendCircle
-          .selectAll("circle")
-          .data(legendData)
-          .join("circle")
-          .attr("cx", (d) => d.x)
-          .attr("cy", (d) => d.y)
-          .attr("r", (d) => d.radius)
-          .attr("class", "legendBubble");
-
-        $legendText = $legend
-          .selectAll("text")
-          .data(legendData)
-          .join("text")
-          .text((d) => d.level)
-          .attr("x", (d) => d.xtext)
-          .attr("y", (d) => d.ytext)
-          .attr("class", "themesText")
-          .style("text-anchor", (d) => d.anchor)
-          .call(wrap, 10);
 
         if (width >= 500) {
           simulation = d3
@@ -484,6 +465,27 @@ d3.selection.prototype.puddingBubble = function init(options) {
             let posY = d.y;
             return posY;
           });
+
+        $legendCircle
+          .selectAll("circle")
+          .data(legendData)
+          .join("circle")
+          .attr("fill", "orange")
+          .attr("cx", (d) => d.x)
+          .attr("cy", (d) => d.y)
+          .attr("r", (d) => d.radius)
+          .attr("class", "legendBubble");
+
+        $legendText = $legend
+          .selectAll("text")
+          .data(legendData)
+          .join("text")
+          .text((d) => d.level)
+          .attr("x", (d) => d.xtext)
+          .attr("y", (d) => d.ytext)
+          .attr("class", "themesText")
+          .style("text-anchor", (d) => d.anchor)
+          .call(wrap, 10);
 
         return Chart;
       },
