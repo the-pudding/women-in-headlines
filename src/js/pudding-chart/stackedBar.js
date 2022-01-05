@@ -284,7 +284,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         "people and places",
         "race, ethnicity and identity",
       ]);
-      // x.range([0, width]);
       y.domain([d3.max(stackedData, (d) => d3.max(d, (d) => d[1])), 0]);
 
       setTimeout(() => {
@@ -303,22 +302,20 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .style("opacity", 0)
           .append("text")
           .text((d) => (d === "female stereotypes" ? "gendered language" : d))
-          .attr("x", 0)
+          .attr("x", 5)
           .attr("y", -5)
           .attr("class", "stackedChartTicks")
           .call(wrap, x.bandwidth());
         $xAxis.selectAll(".tick").style("opacity", 1);
+
         if (!countryLabels) {
-          console.log("move slightly");
           // move text slightly
-          $xAxis.selectAll(".tick text").style("transform", (d, i) => {
-            if (d === "empowerment") return `translate(10px, 15px)`;
-            return `translate(10px, 0px)`;
-          });
+          $xAxis
+            .selectAll(".tick text")
+            .style("transform", "translate(8px, 0px)");
         }
       }, 1800);
 
-      console.log(y.domain(), y.range());
       // 3. move rectangles
       $rectThemes = $vis
         .selectAll("rect")
@@ -672,12 +669,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
             flags.filter((c) => c.country === d)[0]
               ? flags.filter((c) => c.country === d)[0].flag
               : null
-          );
-        $xAxis
-          .selectAll(".tick text")
-          .attr(
-            "transform",
-            `translate(${x.bandwidth() - MARGIN_RIGHT + 6}, 0)`
           );
 
         // responsive yAxis
