@@ -222,14 +222,38 @@ d3.selection.prototype.puddingBubble = function init(options) {
       let allCircs = d3.selectAll(".forceCircles").style("opacity", 0.2);
       let allLogos = d3.selectAll(".forceLogo").style("opacity", 0.2);
 
-      let circ = d3.select(this);
-      let logo = d3.selectAll(`.forceLogo-${siteMatchNoPunc}`);
-      circ
-        .style("stroke-width", 3)
-        .style("stroke", "#E76B2D")
-        .style("opacity", 1)
-        .style("fill", "#F7DC5B");
-      logo.style("opacity", 1);
+      allCircs
+        .style("fill", (d) => {
+          if (e.target.id.startsWith(d.site)) return "#F7DC5B";
+          return null;
+        })
+        .style("stroke-width", (d) => {
+          if (e.target.id.startsWith(d.site)) return 3;
+          return null;
+        })
+        .style("stroke", (d) => {
+          if (e.target.id.startsWith(d.site)) return "#E76B2D";
+          return null;
+        })
+        .style("opacity", (d) => {
+          if (e.target.id.startsWith(d.site)) return 1;
+          return null;
+        });
+
+      allLogos.style("opacity", (d) => {
+        if (e.target.id.startsWith(d.site)) return 1;
+        return null;
+      });
+
+      //let circ = d3.select(`#${e.target.id}`);
+      //let logo = d3.selectAll(`.forceLogo-${siteMatchNoPunc}`);
+
+      // circ
+      //   .style("stroke-width", 3)
+      //   .style("stroke", "#E76B2D")
+      //   .style("opacity", 1)
+      //   .style("fill", "#F7DC5B");
+      // logo.style("opacity", 1);
 
       let dataSubset = headlines.filter((d) => d.site === siteMatch);
       let randomHeadline = Math.floor(Math.random() * dataSubset.length);
@@ -264,7 +288,8 @@ d3.selection.prototype.puddingBubble = function init(options) {
       allCircs
         .style("stroke-width", "1")
         .style("stroke", "#282828")
-        .style("opacity", 1);
+        .style("opacity", 1)
+        .style("fill", "#fefaf1");
       let allLogos = d3.selectAll(".forceLogo").style("opacity", 1);
     }
 
