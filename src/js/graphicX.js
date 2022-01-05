@@ -5,7 +5,6 @@ import "./pudding-chart/timeSeriesLine";
 import "./pudding-chart/lollipop";
 import "./pudding-chart/bubble";
 import "./pudding-chart/temporalLine";
-import "./pudding-chart/horizontalStackedBar";
 import "intersection-observer";
 import scrollama from "scrollama";
 import enterView from "enter-view";
@@ -65,7 +64,6 @@ let $stackedSpans = d3.selectAll(".stackedBarTextAnnotation");
 let $tempButtons = d3.selectAll(".btn-theme");
 let $exampleHeadlines = d3.selectAll(".tooltipTL");
 let $shuffleHeadlines = d3.selectAll("#shuffle-headlines");
-let $horizontalStackedBar = d3.selectAll("#horizontalStackedBar");
 
 /* SCROLLAMA */
 const stackedBarScroller = scrollama();
@@ -94,11 +92,6 @@ function renderStep(index, direction) {
 /* STACKED BAR */
 function setupStackedBar(data) {
   chartStackedBar = $stackedBar.datum(data).puddingStackedBar();
-}
-function setupHorizontalStackedBar(data) {
-  chartHorizontalStackedBar = $horizontalStackedBar
-    .datum(data)
-    .puddingHorizontalStackedBar();
 }
 
 /* TIME SERIES LINE */
@@ -413,7 +406,6 @@ function init() {
       // setup functionality and charts
       setupScroller();
       setupStackedBar(stackedBarData);
-      setupHorizontalStackedBar(stackedBarData);
       setupTimeSeriesLine(sentComp);
       setupLollipop(polComparison);
       setupBubbleB(biasBubbleData);

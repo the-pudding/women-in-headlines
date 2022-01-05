@@ -259,180 +259,18 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       }
     }
 
-    /*function renderThemeBars(data, dataFreq, themes, x, y, index) {
+    function renderThemeBars(data, dataFreq, themes, x, y, index) {
       let $INcolumn = d3.selectAll(".india_class, .india_tick");
       let $SAcolumn = d3.selectAll(".southafrica_class, .southafrica_tick");
       let $UKcolumn = d3.selectAll(".uk_class, .uk_tick");
       let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
+      let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
 
-      // 1. fade out column titles progressively
-      $INcolumn.style("transition", "opacity 1s 0s");
-      $SAcolumn.style("transition", "opacity 1s 300ms");
-      $UKcolumn.style("transition", "opacity 1s 600ms");
-      $UScolumn.style("transition", "opacity 1s 900ms");
-
-      $INcolumn.style("opacity", 0);
-      $SAcolumn.style("opacity", 0);
-      $UKcolumn.style("opacity", 0);
-      $UScolumn.style("opacity", 0);
-
-      // 2. new column titles
-      x.domain([
-        "crime and violence",
-        "female stereotypes",
-        "empowerment",
-        "people and places",
-        "race, ethnicity and identity",
-      ]);
-      y.domain([d3.max(stackedData, (d) => d3.max(d, (d) => d[1])), 0]);
-
-      setTimeout(() => {
-        // remove old titles
-        $xAxis
-          .call(d3.axisBottom(x).tickSizeOuter(0).tickSizeInner(0))
-          .call((g) => g.selectAll(".domain").remove())
-          .call((g) => g.selectAll(".tick text").remove());
-
-        // add new ones
-        $xAxis.selectAll(".tick").style("transition", "opacity 1s");
-
-        // fade in
-        $xAxis
-          .selectAll(".tick")
-          .style("opacity", 0)
-          .append("text")
-          .text((d) => (d === "female stereotypes" ? "gendered language" : d))
-          .attr("x", 5)
-          .attr("y", -5)
-          .attr("class", "stackedChartTicks")
-          .call(wrap, x.bandwidth());
-        $xAxis.selectAll(".tick").style("opacity", 1);
-
-        if (!countryLabels) {
-          // move text slightly
-          $xAxis
-            .selectAll(".tick text")
-            .style("transform", "translate(8px, 0px)");
-        }
-      }, 1800);
-
-      // 3. move rectangles
-      $rectThemes = $vis
-        .selectAll("rect")
-        .filter(
-          (d) =>
-            d.key.theme !== "No theme" && d.data.country === "All countries"
-        );
-
-      $rectThemes
-        .transition()
-        .duration("500")
-        .ease(d3.easeLinear)
-        .delay((d, i) => {
-          return 1500 + i * 10;
-        })
-        .attr("x", (d) =>
-          stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
-            ? x(
-                stackedData
-                  .filter((c) => c.key === d.key.word)[0]
-                  .filter((e) => e.data.theme === d.key.theme)[0].data.theme
-              )
-            : null
-        )
-        .attr("y", (d) =>
-          stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
-            ? y(
-                stackedData
-                  .filter((c) => c.key === d.key.word)[0]
-                  .filter((e) => e.data.theme === d.key.theme)[0][1]
-              )
-            : null
-        )
-        // .attr("height", function(d) {
-        // 	let data = stackedData.filter(c=>c.key === d.key.word)[0] !== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) : null;
-        // 	console.log(data)
-        // 	let firstVal = stackedData.filter(c=>c.key === d.key.word)[0]!== undefined ? y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]):null;
-        // 	let secondVal = y(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]);
-        // 	console.log(firstVal)
-        // 	return firstVal - secondVal
-        // })
-        .attr("height", (d) =>
-          stackedData.filter((c) => c.key === d.key.word)[0] !== undefined
-            ? y(
-                stackedData
-                  .filter((c) => c.key === d.key.word)[0]
-                  .filter((e) => e.data.theme === d.key.theme)[0][1]
-              )
-            : null
-        )
-        .attr("width", x.bandwidth());
-
-      $rectDrops
-        .transition()
-        .duration("500")
-        .ease(d3.easeLinear)
-        .delay((d, i) => {
-          return 1500 + i * 2;
-        })
-        .style("opacity", 0);
-    }*/
+      $svg.remove();
+    }
 
     function restoreBars() {
-      // clear
-      $rect.remove();
-
-      // reset scales
-      const allYValues = series[0].reduce((acc, currentValue) => {
-        const nums = _.values(_.omit(currentValue.data, ["country"]))
-          .filter((d) => d !== "")
-          .map((d) => parseInt(d));
-        return [...acc, ...nums];
-      }, []);
-      x = d3
-        .scaleBand()
-        .domain(dataLocal.map((d) => d.country))
-        .range([MARGIN_LEFT, width - MARGIN_RIGHT])
-        .padding(0.1);
-
-      y = d3
-        .scaleLinear()
-        .domain(d3.extent(allYValues))
-        .range([height - MARGIN_BOTTOM, MARGIN_TOP]);
-
-      // redraw rectangles
-      $rect = $rects
-        .join("rect")
-        .attr("class", function (d) {
-          let themeClass = `${stripSpaces(d.key.theme)}_class`;
-          let wordClass = `${d.key.word}_class`;
-          let countryClass = `${stripSpaces(d.key.country)}_class`;
-          return `${wordClass} ${themeClass} ${countryClass}`;
-        })
-        .attr("fill", "#e7dfc8")
-        .attr("opacity", "1")
-        .attr("stroke", "#FEFAF1")
-        .attr("stroke-width", "1")
-        .attr("x", (d, i) => {
-          x(d.data.country);
-        })
-        .attr("height", (d) => {
-          return d.data[d.key.word] !== 0 &&
-            d.data[d.key.word] !== null &&
-            d.data[d.key.word] !== ""
-            ? height / series.length
-            : 0;
-        })
-        .attr("width", x.bandwidth())
-        .attr("y", (d, i) => {
-          return y(d.data[d.key.word]);
-        })
-        .style("display", (d) =>
-          d.data[d.key.word] === "" ? "none" : "block"
-        );
-
-      Chart.render();
-      Chart.resize();
+      Chart.init();
     }
 
     function prepareWordData(dataLocal, themes) {
@@ -592,28 +430,23 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 11 && direction === "up") {
-          // countryLabels = true;
-
-          // x.domain(dataLocal.map((d) => d.country));
-          // x.range([MARGIN_LEFT, width - MARGIN_RIGHT]);
-
-          // restoreBars();
+          restoreBars();
 
           if ($rectLabels) $rectLabels.remove();
           highlightThemes(index, "EPR");
           $rect.style("pointer-events", "auto");
         }
-        // if (index === 12) {
-        //   countryLabels = false;
+        if (index === 12) {
+          // countryLabels = false;
 
-        //   if ($rectLabels) $rectLabels.remove();
-        //   // bump up the x-axis
-        //   $xAxisGroup.style("transition", "transform 800ms");
-        //   $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 20})`);
+          // if ($rectLabels) $rectLabels.remove();
+          // // bump up the x-axis
+          // $xAxisGroup.style("transition", "transform 800ms");
+          // $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 20})`);
 
-        //   $rect.style("pointer-events", "none");
-        //   renderThemeBars(themesRank, themesFreq, themes, x, y, index);
-        // }
+          // $rect.style("pointer-events", "none");
+          renderThemeBars(themesRank, themesFreq, themes, x, y, index);
+        }
 
         return Chart;
       },
