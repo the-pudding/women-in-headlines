@@ -21,7 +21,6 @@ function wrap(text, width) {
     }
 
     while ((word = words.pop())) {
-      console.log({ word });
       line.push(word);
       tspan.text(line.join(" "));
       if (tspan.node().getComputedTextLength() > width) {

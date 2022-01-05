@@ -236,7 +236,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
       $tooltip.classed("is-visible", true);
 
-      if (width >= 600) {
+      if (width >= 500) {
         $tooltip
           .style("top", `${y + 50}px`)
           .style("left", `${x - offset}px`)
@@ -283,6 +283,13 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
         // setup viz group
         $vis = $svg.append("g").attr("class", "g-vis");
+
+        // zoom
+        const onZoom = (e) => {
+          d3.select($vis.node()).attr("transform", e.transform);
+        };
+        const zoomer = d3.zoom().scaleExtent([-5, 5]).on("zoom", onZoom);
+        d3.select($svg.node()).call(zoomer);
 
         Chart.resize();
         Chart.render();
@@ -373,7 +380,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
           .style("text-anchor", (d) => d.anchor)
           .call(wrap, 10);
 
-        if (width >= 600) {
+        if (width >= 500) {
           simulation = d3
             .forceSimulation()
             .nodes(filterData)
@@ -386,7 +393,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
                 })
                 .strength(1)
             )
-            .force("y", d3.forceY(height / 2).strength(0.2))
+            .force("y", d3.forceY(height / 2).strength(0.8))
             .force(
               "collide",
               d3.forceCollide((d) => {
@@ -395,23 +402,18 @@ d3.selection.prototype.puddingBubble = function init(options) {
             )
             .stop();
         } else {
-          // TODO: keep adjusting this mobile version
-          console.log("mobile setting");
           simulation = d3
             .forceSimulation()
             .nodes(filterData)
             .force(
               "y",
-              d3
-                .forceY()
-                .y((d) => $chart.node().offsetWidth / 2)
-                .strength(3)
+              d3.forceY().y((d) => yScale(+d[variable]))
             )
             .force(
               "x",
               d3
                 .forceX()
-                .x((d) => xScale(+d[variable]))
+                .x((d) => $chart.node().offsetWidth * 0.45)
                 .strength(0.5)
             )
             .force(
@@ -423,7 +425,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
             .stop();
         }
 
-        for (var i = 0; i < 300; i++) {
+        for (var i = 0; i < 800; i++) {
           simulation.tick();
         }
 
@@ -442,13 +444,13 @@ d3.selection.prototype.puddingBubble = function init(options) {
         $circles
           .merge($newCircles)
           .attr("cx", function (d) {
-            let posX = width >= 500 ? d.x : d.y;
-            //let posX = d.x;
+            //let posX = width >= 500 ? d.x : d.y;
+            let posX = d.x;
             return posX;
           })
           .attr("cy", function (d) {
-            let posY = width >= 500 ? d.y : d.x;
-            //let posY = d.y;
+            //let posY = width >= 500 ? d.y : d.x;
+            let posY = d.y;
             return posY;
           });
 
@@ -473,13 +475,13 @@ d3.selection.prototype.puddingBubble = function init(options) {
             }
           })
           .attr("x", function (d) {
-            let posX = width >= 500 ? d.x : d.y;
-            //let posX = d.x;
+            //let posX = width >= 500 ? d.x : d.y;
+            let posX = d.x;
             return posX;
           })
           .attr("y", function (d) {
-            let posY = width >= 500 ? d.y : d.x;
-            //let posY = d.y;
+            //let posY = width >= 500 ? d.y : d.x;
+            let posY = d.y;
             return posY;
           });
 
@@ -488,7 +490,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
       // update scales and render chart
       render() {
         // offset chart for margins
-        if (width >= 600) {
+        if (width >= 500) {
           $vis.attr("transform", `translate(${MARGIN_LEFT}, ${MARGIN_TOP})`);
         }
 
