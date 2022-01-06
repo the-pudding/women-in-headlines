@@ -16,8 +16,20 @@ function wrap(text, width) {
         .attr("y", y)
         .attr("dy", dy + "em");
 
-    if (words.includes("empowerment")) {
-      words = ["ment", "empower-"];
+    // if (words.includes("empowerment")) {
+    //   words = ["ment", "power-", "em-"];
+    // }
+    // if (words.includes("stereotypes")) {
+    //   words = ["types", "stereo-", "female"];
+    // }
+    if (words.includes("places")) {
+      words = ["places", "people and"];
+    }
+    if (words.includes("ethnicity")) {
+      words = ["and identity", "race, ethnicity"];
+    }
+    if (words.includes("violence")) {
+      words = ["and violence", "crime"];
     }
 
     while ((word = words.pop())) {

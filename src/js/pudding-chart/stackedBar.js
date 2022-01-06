@@ -59,9 +59,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // dimensions
     let width = 0;
     let height = 0;
-    const MARGIN_TOP = 50;
+    let MARGIN_TOP = 50;
     const FLAG_TOP = 80;
-    const MARGIN_BOTTOM = 120;
+    let MARGIN_BOTTOM = 80;
     const MARGIN_LEFT = 0;
     const MARGIN_RIGHT = 50;
     const themePad = 20;
@@ -72,26 +72,34 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let y = null;
     let xScale = null;
     let yScale = null;
+    let xAccessor = null;
+    let yAccessor = null;
 
-    // state
+    // other
     let showThemes = false;
+    let themeRects = null;
 
     // helper functions
     function searchWords() {
       let onlyWords = dataLocal.columns;
 
-      Autocomplete({
-        element: document.querySelector("#wordSearch"),
-        id: "my-autocomplete",
-        source: onlyWords,
-        displayMenu: "overlay",
-        placeholder: "Search for a word",
-        confirmOnBlur: false,
-        onConfirm(word) {
-          $rectLabels.remove();
-          highlightWords(null, word, "search");
-        },
-      });
+      const existing = document.querySelector(
+        "#wordSearch .autocomplete__wrapper"
+      );
+      if (!existing) {
+        Autocomplete({
+          element: document.querySelector("#wordSearch"),
+          id: "my-autocomplete",
+          source: onlyWords,
+          displayMenu: "overlay",
+          placeholder: "Search for a word",
+          confirmOnBlur: false,
+          onConfirm(word) {
+            $rectLabels.remove();
+            highlightWords(null, word, "search");
+          },
+        });
+      }
     }
 
     function stripSpaces(string) {
@@ -285,15 +293,25 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .domain(themeGroups)
         .range([0, width])
         .padding([0.2]);
-      let xAccessor = (d) => d.data.theme;
-      yScale = d3.scaleLinear().domain([0, 100000]).range([height, 0]);
-      let yAccessor = (d) => d[1];
+      xAccessor = (d) => d.data.theme;
+
+      const maxY = stackedData.reduce((acc, currentValue) => {
+        currentValue.forEach((d) => {
+          if (d[0] > acc) acc = d[0];
+          if (d[1] > acc) acc = d[1];
+        });
+        return acc;
+      }, 0);
+      yScale = d3.scaleLinear().domain([0, maxY]).range([height, 0]);
+      yAccessor = (d) => d[1];
+
       var colorScale = d3
         .scaleOrdinal()
         .domain(themeGroups)
         .range(["#E76B2D", "#648FDC", "#A35FD0", "#F7DC5B", "#53B67C"]);
 
       $svg = $chart.append("svg").attr("class", "horizontalStackedChart");
+      $svg.style("transform", "translate(0px, 10px)");
       $vis = $svg.append("g").attr("class", "g-vis");
 
       let bars = $vis.append("g").attr("class", "bars");
@@ -303,7 +321,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .enter()
         .append("g")
         .attr("class", (d) => `word ${d.key}`);
-      wordGroups
+
+      themeRects = wordGroups
         .selectAll("rect")
         .data((d) => d)
         .enter()
@@ -342,7 +361,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .attr(
           "transform",
           (d, i) =>
-            `translate(${xScale.bandwidth() - MARGIN_RIGHT + 12 + i * 10}, 0)`
+            `translate(${
+              xScale.bandwidth() - MARGIN_RIGHT + 12 + i * 10
+            }, 0) rotate(23)`
         );
 
       Chart.resizeCategoryChart();
@@ -387,6 +408,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         searchWords();
 
         $svg = $chart.append("svg").attr("class", "stackedChart");
+        console.log("init - setting to 80");
+        MARGIN_BOTTOM = 80;
 
         // create axis
         $axis = $svg.append("g").attr("class", "g-axis");
@@ -455,6 +478,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         Chart.resize();
       },
       updateChart(index, direction) {
+        console.log("updateChart");
         const sel = $container.select(`[data-index='${index}']`);
         const word = sel.attr("word");
         const theme = sel.attr("theme");
@@ -526,6 +550,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       },
       // on resize, update new dimensions
       resizeCategoryChart() {
+        console.log("resize - setting to 160");
+        MARGIN_BOTTOM = 90;
+
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
         height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
@@ -561,8 +588,23 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr(
             "transform",
             (d, i) =>
-              `translate(${xScale.bandwidth() - MARGIN_RIGHT + 12 + i * 10}, 0)`
+              `translate(${
+                xScale.bandwidth() - MARGIN_RIGHT + 10 + i * 8
+              }, 0) rotate(28)`
           );
+
+        $xAxis.attr(
+          "transform",
+          `translate(0, ${height - MARGIN_BOTTOM * 1.5})`
+        );
+
+        yScale.range([height - MARGIN_BOTTOM, MARGIN_TOP]);
+
+        themeRects
+          .attr("x", (d) => xScale(xAccessor(d)))
+          .attr("y", (d) => yScale(yAccessor(d)))
+          .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
+          .attr("width", xScale.bandwidth());
 
         return Chart;
       },
