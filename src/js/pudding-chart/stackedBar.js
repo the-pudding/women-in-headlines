@@ -56,14 +56,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       { country: "All countries", flag: "" },
     ];
 
-    let stackedData = d3
-      .stack()
-      .keys(themesFreq.columns.slice(2))
-      .order(d3.stackOrderAscending)(
-        themesFreq.filter((d) => d.theme !== "No theme")
-      )
-      .map((d) => (d.forEach((v) => (v.key = d.key)), d));
-
     // dimensions
     let width = 0;
     let height = 0;
@@ -267,6 +259,33 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
 
       $svg.remove();
+      const themeGroups = [
+        "crime and violence",
+        "female stereotypes",
+        "empowerment",
+        "people and places",
+        "race, ethnicity and identity",
+      ];
+
+      let stackedData = d3
+        .stack()
+        .keys(themesFreq.columns.slice(2))
+        .order(d3.stackOrderAscending)(
+          themesFreq.filter((d) => d.theme !== "No theme")
+        )
+        .map((d) => (d.forEach((v) => (v.key = d.key)), d));
+      console.log({ stackedData });
+
+      $svg = $chart.append("svg").attr("class", "horizontalStackedChart");
+      $vis = $svg.append("g").attr("class", "g-vis");
+      let bars = $vis.append("g").attr("class", "bars");
+      let rects = bars
+        .selectAll("rect")
+        .data(stackedData)
+        .append("rect")
+        .attr("height", 20)
+        .attr("width", 20)
+        .attr("fill", "cornflowerblue");
     }
 
     function restoreBars() {
