@@ -61,7 +61,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let height = 0;
     const MARGIN_TOP = 50;
     const FLAG_TOP = 80;
-    const MARGIN_BOTTOM = 70;
+    const MARGIN_BOTTOM = 120;
     const MARGIN_LEFT = 0;
     const MARGIN_RIGHT = 50;
     const themePad = 20;
@@ -70,6 +70,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // scales
     let x = null;
     let y = null;
+    let xScale = null;
+    let yScale = null;
 
     // state
     let countryLabels = true;
@@ -259,6 +261,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
 
       $svg.remove();
+
       const themeGroups = [
         "crime and violence",
         "female stereotypes",
@@ -274,18 +277,71 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           themesFreq.filter((d) => d.theme !== "No theme")
         )
         .map((d) => (d.forEach((v) => (v.key = d.key)), d));
+
       console.log({ stackedData });
+
+      xScale = d3
+        .scaleBand()
+        .domain(themeGroups)
+        .range([0, width])
+        .padding([0.2]);
+      let xAccessor = (d) => d.data.theme;
+      yScale = d3.scaleLinear().domain([0, 100000]).range([height, 0]);
+      let yAccessor = (d) => d[1];
+      var colorScale = d3
+        .scaleOrdinal()
+        .domain(themeGroups)
+        .range(["#E76B2D", "#648FDC", "#A35FD0", "#F7DC5B", "#53B67C"]);
 
       $svg = $chart.append("svg").attr("class", "horizontalStackedChart");
       $vis = $svg.append("g").attr("class", "g-vis");
+
       let bars = $vis.append("g").attr("class", "bars");
-      let rects = bars
-        .selectAll("rect")
+      let wordGroups = bars
+        .selectAll("g")
         .data(stackedData)
+        .enter()
+        .append("g")
+        .attr("class", (d) => `word ${d.key}`);
+      wordGroups
+        .selectAll("rect")
+        .data((d) => d)
+        .enter()
         .append("rect")
-        .attr("height", 20)
-        .attr("width", 20)
-        .attr("fill", "cornflowerblue");
+        .attr("x", (d) => xScale(xAccessor(d)))
+        .attr("y", (d) => yScale(yAccessor(d)))
+        .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
+        .attr("width", xScale.bandwidth())
+        .attr("fill", (d) => colorScale(xAccessor(d)));
+
+      // Axes
+      $axis = $svg.append("g").attr("class", "g-axis");
+      $xAxisGroup = $axis.append("g").attr("class", "x axis");
+      $xAxis = $xAxisGroup.append("g");
+      $xAxis.call(d3.axisBottom(xScale));
+
+      $xAxis.selectAll(".domain").remove();
+      $xAxis.selectAll(".tick line").remove();
+      $xAxis.selectAll(".tick .tickFlag").remove();
+
+      $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM / 2})`);
+
+      $xAxis
+        .selectAll(".tick")
+        .attr("class", (d) => `${stripSpaces(d)}_tick tick`);
+
+      $xAxis
+        .selectAll(".tick text")
+        .attr("x", 0)
+        .attr("y", -5)
+        .attr("class", "stackedChartTicks")
+        .call(wrap, xScale.bandwidth());
+
+      $xAxis
+        .selectAll(".tick text")
+        .attr("transform", `translate(${xScale.bandwidth() + 20}, 0)`);
+
+      Chart.resizeCategoryChart();
     }
 
     function restoreBars() {
@@ -470,6 +526,45 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         return Chart;
       },
       // on resize, update new dimensions
+      resizeCategoryChart() {
+        width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
+        height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
+
+        $svg
+          .attr("width", width + MARGIN_LEFT + MARGIN_RIGHT)
+          .attr("height", height + MARGIN_TOP + MARGIN_BOTTOM);
+
+        // responsive xAxis
+        $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP})`);
+
+        xScale.range([MARGIN_LEFT, width - MARGIN_RIGHT]);
+        // xPad = xScale.padding();
+
+        $xAxis.call(d3.axisBottom(xScale));
+
+        $xAxis.selectAll(".domain").remove();
+        $xAxis.selectAll(".tick line").remove();
+        $xAxis.selectAll(".tick .tickFlag").remove();
+
+        $xAxis
+          .selectAll(".tick")
+          .attr("class", (d) => `${stripSpaces(d)}_tick tick`);
+
+        $xAxis
+          .selectAll(".tick text")
+          .attr("x", 0)
+          .attr("y", -5)
+          .attr("class", "stackedChartTicks")
+          .call(wrap, xScale.bandwidth());
+
+        $xAxis
+          .selectAll(".tick text")
+          .attr(
+            "transform",
+            (d, i) =>
+              `translate(${xScale.bandwidth() - MARGIN_RIGHT + 12 + i * 10}, 0)`
+          );
+      },
       resize() {
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
