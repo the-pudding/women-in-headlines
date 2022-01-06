@@ -74,7 +74,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let yScale = null;
 
     // state
-    let countryLabels = true;
+    let showThemes = false;
 
     // helper functions
     function searchWords() {
@@ -339,12 +339,17 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
       $xAxis
         .selectAll(".tick text")
-        .attr("transform", `translate(${xScale.bandwidth() + 20}, 0)`);
+        .attr(
+          "transform",
+          (d, i) =>
+            `translate(${xScale.bandwidth() - MARGIN_RIGHT + 12 + i * 10}, 0)`
+        );
 
       Chart.resizeCategoryChart();
     }
 
     function restoreBars() {
+      $svg.remove();
       Chart.init();
     }
 
@@ -505,6 +510,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 11 && direction === "up") {
+          showThemes = false;
           restoreBars();
 
           if ($rectLabels) $rectLabels.remove();
@@ -512,14 +518,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 12) {
-          // countryLabels = false;
-
-          // if ($rectLabels) $rectLabels.remove();
-          // // bump up the x-axis
-          // $xAxisGroup.style("transition", "transform 800ms");
-          // $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP - 20})`);
-
-          // $rect.style("pointer-events", "none");
+          showThemes = true;
           renderThemeBars(themesRank, themesFreq, themes, x, y, index);
         }
 
@@ -564,8 +563,12 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
             (d, i) =>
               `translate(${xScale.bandwidth() - MARGIN_RIGHT + 12 + i * 10}, 0)`
           );
+
+        return Chart;
       },
       resize() {
+        if (showThemes) return;
+
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
         height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
