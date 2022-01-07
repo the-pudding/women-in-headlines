@@ -331,7 +331,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .attr("y", (d) => yScale(yAccessor(d)))
         .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
         .attr("width", xScale.bandwidth())
-        .attr("fill", (d) => colorScale(xAccessor(d)));
+        .attr("fill", (d) => colorScale(xAccessor(d)))
+        .attr("stroke-width", 0.5)
+        .attr("stroke", "#fefaf1");
 
       // Axes
       $axis = $svg.append("g").attr("class", "g-axis");
