@@ -46,9 +46,9 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
     var words = dataset.filter((d) => d.country === country);
 
     const sortBy = [
+      "empowerment",
       "crime and violence",
       "female stereotypes",
-      "empowerment",
       "race, ethnicity and identity",
     ];
 
