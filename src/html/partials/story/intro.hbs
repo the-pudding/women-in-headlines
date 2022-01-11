@@ -82,6 +82,7 @@
       <p class="description">{{{value}}}</p>
     {{/each}}
   </div>
+
   <div class="barbellLegend">
     <div class="leg1">
       <p class="all-hed">All headlines</p>
@@ -97,6 +98,12 @@
       <p id="xAxisLabel">← Less Polarizing</p>
       <p id="xAxisLabel">More Polarizing →</p>
   </div>
+
+  <div class="barbelButtons">
+    <button id="sortLollipopPol" class="lollipopTextbutton-active">absolute polarity score</button>
+    <button id="sortLollipopDiff" class="lollipopTextbutton">% difference in the polarity scores</button>
+  </div>
+
   <div class="lollipop" class="svg-container" style="text-align: center;">
     <div id="lollipopChart"></div>
   </div>
