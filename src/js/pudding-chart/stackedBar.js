@@ -410,7 +410,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         searchWords();
 
         $svg = $chart.append("svg").attr("class", "stackedChart");
-        console.log("init - setting to 80");
         MARGIN_BOTTOM = 80;
 
         // create axis
@@ -554,7 +553,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       },
       // on resize, update new dimensions
       resizeCategoryChart() {
-        console.log("resize - setting to 160");
         MARGIN_BOTTOM = 90;
 
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
