@@ -480,10 +480,11 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         Chart.resize();
       },
       updateChart(index, direction) {
-        console.log("updateChart");
         const sel = $container.select(`[data-index='${index}']`);
         const word = sel.attr("word");
         const theme = sel.attr("theme");
+
+        $rect.style("pointer-events", "none");
 
         if (index === 0) {
           if ($rectLabels) $rectLabels.remove();
@@ -530,6 +531,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         if (index === 10) {
           if ($rectLabels) $rectLabels.remove();
           highlightThemes(index, "EPR");
+          $rect.style("opacity", null);
         }
         if (index === 11 && direction === "down") {
           if ($rectLabels) $rectLabels.remove();
