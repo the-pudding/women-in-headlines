@@ -268,7 +268,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     //   let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
     //   let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
 
-
     //   $svg.remove();
 
     //   const themeGroups = [
@@ -379,15 +378,29 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let $UKcolumn = d3.selectAll(".uk_class, .uk_tick");
       let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
       let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
-      
-      console.log("bars to remove", $svg.selectAll(".stackedBars").selectAll(`rect`)
-                                      .filter(d=>d.key.country!=="All countries"||d.key.theme==="No theme"))
+
+      console.log(
+        "bars to remove",
+        $svg
+          .selectAll(".stackedBars")
+          .selectAll(`rect`)
+          .filter(
+            (d) =>
+              d.key.country !== "All countries" || d.key.theme === "No theme"
+          )
+      );
 
       // $svg.remove();
 
       // remove rects in other columns
-      $svg.selectAll(".stackedBars").selectAll(`rect`).filter(d=>d.key.country!=="All countries"||d.key.theme==="No theme").remove()
-      d3.selectAll(".allcountries_tick").remove()
+      $svg
+        .selectAll(".stackedBars")
+        .selectAll(`rect`)
+        .filter(
+          (d) => d.key.country !== "All countries" || d.key.theme === "No theme"
+        )
+        .remove();
+      d3.selectAll(".allcountries_tick").remove();
       $UScolumn.remove();
       $UKcolumn.remove();
       $INcolumn.remove();
@@ -411,10 +424,18 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
       console.log({ stackedData });
 
-      console.log("bars to transition", $svg.selectAll(".stackedBars").selectAll(`rect`)
-                                      .filter(d=>(d.key.country==="All countries")&&
-                                                 (d.key.theme!=="No theme")&&
-                                                 (stackedData.map(c=>c.key).includes(d.key.word))))
+      console.log(
+        "bars to transition",
+        $svg
+          .selectAll(".stackedBars")
+          .selectAll(`rect`)
+          .filter(
+            (d) =>
+              d.key.country === "All countries" &&
+              d.key.theme !== "No theme" &&
+              stackedData.map((c) => c.key).includes(d.key.word)
+          )
+      );
 
       xScale = d3
         .scaleBand()
@@ -430,7 +451,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         });
         return acc;
       }, 0);
-      yScale = d3.scaleLinear().domain([0, maxY]).range([height*0.82, 0]);
+      yScale = d3
+        .scaleLinear()
+        .domain([0, maxY])
+        .range([height * 0.82, 0]);
       yAccessor = (d) => d[1];
 
       var colorScale = d3
@@ -445,30 +469,62 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       // let bars = $vis.append("g").attr("class", "bars");
 
       // select all old bars to transition
-      let bars  = $svg.selectAll(".stackedBars")
-                      .selectAll(`rect`)
-                      .filter(d=>(d.key.country==="All countries")&&
-                                 (d.key.theme!=="No theme")&&
-                                 (stackedData.map(c=>c[0].key).includes(d.key.word)))
-                      .on("mouseover", (event, d)=>console.log(d));
-      
-      console.log("stackedwords", stackedData.map(d=>d[0].key))
-      console.log(bars)
+      let bars = $svg
+        .selectAll(".stackedBars")
+        .selectAll(`rect`)
+        .filter(
+          (d) =>
+            d.key.country === "All countries" &&
+            d.key.theme !== "No theme" &&
+            stackedData.map((c) => c[0].key).includes(d.key.word)
+        )
+        .on("mouseover", (event, d) => console.log(d));
+
+      console.log(
+        "stackedwords",
+        stackedData.map((d) => d[0].key)
+      );
+      console.log(bars);
 
       themeRects = bars
-        .transition().duration(1000)
+        .transition()
+        .duration(1000)
         // .attr("opacity", d=>d.key.word==="abuse"?0:1)
-        .attr("x", (d) => xScale(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0].data.theme))
-        .attr("y", (d) => yScale(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
-        .attr("height", (d) => yScale(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][0]) - 
-                               yScale(stackedData.filter(c=>c.key === d.key.word)[0].filter(e=>e.data.theme===d.key.theme)[0][1]))
+        .attr("x", (d) =>
+          xScale(
+            stackedData
+              .filter((c) => c.key === d.key.word)[0]
+              .filter((e) => e.data.theme === d.key.theme)[0].data.theme
+          )
+        )
+        .attr("y", (d) =>
+          yScale(
+            stackedData
+              .filter((c) => c.key === d.key.word)[0]
+              .filter((e) => e.data.theme === d.key.theme)[0][1]
+          )
+        )
+        .attr(
+          "height",
+          (d) =>
+            yScale(
+              stackedData
+                .filter((c) => c.key === d.key.word)[0]
+                .filter((e) => e.data.theme === d.key.theme)[0][0]
+            ) -
+            yScale(
+              stackedData
+                .filter((c) => c.key === d.key.word)[0]
+                .filter((e) => e.data.theme === d.key.theme)[0][1]
+            )
+        )
         .attr("width", xScale.bandwidth())
         // .attr("fill", (d) => colorScale(xAccessor(stackedData.filter(c=>c[0].key===d.key.word))))
         .attr("stroke-width", 0.5)
-        .attr("stroke", "#fefaf1")
+        .attr("stroke", "#fefaf1");
 
       // weirdly we have to remove this otherwise there is a floating rect that stays in the old position
-      d3.selectAll("#abuse_group").remove()
+      d3.selectAll("#abuse_group").remove();
 
       // Axes
       $axis = $svg.append("g").attr("class", "g-axis");
@@ -480,7 +536,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       $xAxis.selectAll(".tick line").remove();
       $xAxis.selectAll(".tick .tickFlag").remove();
 
-      $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM / 2})`);
+      $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM})`);
 
       $xAxis
         .selectAll(".tick")
