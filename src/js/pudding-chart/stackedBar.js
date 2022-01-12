@@ -536,7 +536,17 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       $xAxis.selectAll(".tick line").remove();
       $xAxis.selectAll(".tick .tickFlag").remove();
 
-      $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM})`);
+      if (window.innerWidth < 600) {
+        $xAxis.attr(
+          "transform",
+          `translate(0, ${height - MARGIN_BOTTOM + 40})`
+        );
+      } else {
+        $xAxis.attr(
+          "transform",
+          `translate(0, ${height - MARGIN_BOTTOM + 10})`
+        );
+      }
 
       $xAxis
         .selectAll(".tick")
@@ -736,6 +746,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 12) {
+          //$rect.style("pointer-events", "auto");
           showThemes = true;
           renderThemeBars(themesRank, themesFreq, themes, x, y, index);
         }
@@ -807,6 +818,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
         height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
+
+        if (window.innerWidth < 600) {
+          height -= 120;
+        }
 
         $svg
           .attr("width", width + MARGIN_LEFT + MARGIN_RIGHT)
@@ -883,11 +898,13 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         $rect
           .attr("x", (d, i) => x(d.data.country))
           .attr("height", (d) => {
-            return d.data[d.key.word] !== 0 &&
+            const h =
+              d.data[d.key.word] !== 0 &&
               d.data[d.key.word] !== null &&
               d.data[d.key.word] !== ""
-              ? height / series.length
-              : 0;
+                ? height / series.length
+                : 0;
+            return h > 0 ? h : 0;
           })
           .attr("width", x.bandwidth())
           .attr("y", (d, i) => {
