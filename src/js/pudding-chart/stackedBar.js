@@ -110,7 +110,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       return stripped;
     }
 
-    function showWord() {
+    function showWord(e) {
       let wordGroup = d3.select(this);
       let wordText = wordGroup.attr("id");
       wordText = wordText.split("_")[0];
@@ -132,12 +132,22 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
       const top = y(+lastVal);
 
-      $rectLabels = wordGroup
-        .append("text")
-        .text(wordText)
-        .attr("class", "stackedBarThemeHover")
-        .attr("x", width - MARGIN_RIGHT)
-        .attr("y", top);
+      if (!showThemes) {
+        $rectLabels = wordGroup
+          .append("text")
+          .text(wordText)
+          .attr("class", "stackedBarThemeHover")
+          .attr("x", width - MARGIN_RIGHT)
+          .attr("y", top);
+      } else {
+        let rectCoordinates = e.target.getBoundingClientRect();
+        $rectLabels = wordGroup
+          .append("text")
+          .text(wordText)
+          .attr("class", "stackedBarThemeHover")
+          .attr("x", rectCoordinates.x / 3.8)
+          .attr("y", rectCoordinates.y * 0.8);
+      }
     }
 
     function hideWord() {
@@ -746,7 +756,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 12) {
-          //$rect.style("pointer-events", "auto");
+          $rect.style("pointer-events", "auto");
           showThemes = true;
           renderThemeBars(themesRank, themesFreq, themes, x, y, index);
         }
