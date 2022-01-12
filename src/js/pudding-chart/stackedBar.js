@@ -261,6 +261,117 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       }
     }
 
+    // function renderThemeBars(data, dataFreq, themes, x, y, index) {
+    //   let $INcolumn = d3.selectAll(".india_class, .india_tick");
+    //   let $SAcolumn = d3.selectAll(".southafrica_class, .southafrica_tick");
+    //   let $UKcolumn = d3.selectAll(".uk_class, .uk_tick");
+    //   let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
+    //   let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
+
+    //   $svg.remove();
+
+    //   const themeGroups = [
+    //     "crime and violence",
+    //     "female stereotypes",
+    //     "empowerment",
+    //     "people and places",
+    //     "race, ethnicity and identity",
+    //   ];
+
+    //   let stackedData = d3
+    //     .stack()
+    //     .keys(themesFreq.columns.slice(2))
+    //     .order(d3.stackOrderAscending)(
+    //       themesFreq.filter((d) => d.theme !== "No theme")
+    //     )
+    //     .map((d) => (d.forEach((v) => (v.key = d.key)), d));
+
+    //   console.log({ stackedData });
+
+    //   xScale = d3
+    //     .scaleBand()
+    //     .domain(themeGroups)
+    //     .range([0, width])
+    //     .padding([0.2]);
+    //   xAccessor = (d) => d.data.theme;
+
+    //   const maxY = stackedData.reduce((acc, currentValue) => {
+    //     currentValue.forEach((d) => {
+    //       if (d[0] > acc) acc = d[0];
+    //       if (d[1] > acc) acc = d[1];
+    //     });
+    //     return acc;
+    //   }, 0);
+    //   yScale = d3.scaleLinear().domain([0, maxY]).range([height, 0]);
+    //   yAccessor = (d) => d[1];
+
+    //   var colorScale = d3
+    //     .scaleOrdinal()
+    //     .domain(themeGroups)
+    //     .range(["#E76B2D", "#648FDC", "#A35FD0", "#F7DC5B", "#53B67C"]);
+
+    //   $svg = $chart.append("svg").attr("class", "horizontalStackedChart");
+    //   $svg.style("transform", "translate(0px, 10px)");
+    //   $vis = $svg.append("g").attr("class", "g-vis");
+
+    //   let bars = $vis.append("g").attr("class", "bars");
+    //   let wordGroups = bars
+    //     .selectAll("g")
+    //     .data(stackedData)
+    //     .enter()
+    //     .append("g")
+    //     .attr("class", (d) => `word ${d.key}`);
+
+    //   themeRects = wordGroups
+    //     .selectAll("rect")
+    //     .data((d) => d)
+    //     .enter()
+    //     .append("rect")
+    //     .attr("x", (d) => xScale(xAccessor(d)))
+    //     .attr("y", (d) => yScale(yAccessor(d)))
+    //     .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
+    //     .attr("width", xScale.bandwidth())
+    //     .attr("fill", (d) => colorScale(xAccessor(d)))
+    //     .attr("stroke-width", 0.5)
+    //     .attr("stroke", "#fefaf1")
+    //     .on("mouseover", (event, d)=>console.log(d));
+
+    //   // Axes
+    //   $axis = $svg.append("g").attr("class", "g-axis");
+    //   $xAxisGroup = $axis.append("g").attr("class", "x axis");
+    //   $xAxis = $xAxisGroup.append("g");
+    //   $xAxis.call(d3.axisBottom(xScale));
+
+    //   $xAxis.selectAll(".domain").remove();
+    //   $xAxis.selectAll(".tick line").remove();
+    //   $xAxis.selectAll(".tick .tickFlag").remove();
+
+    //   $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM / 2})`);
+
+    //   $xAxis
+    //     .selectAll(".tick")
+    //     .attr("class", (d) => `${stripSpaces(d)}_tick tick`);
+
+    //   $xAxis
+    //     .selectAll(".tick text")
+    //     .attr("x", 0)
+    //     .attr("y", -5)
+    //     .attr("class", "stackedChartTicks")
+    //     .call(wrap, xScale.bandwidth());
+
+    //   $xAxis
+    //     .selectAll(".tick text")
+    //     .attr(
+    //       "transform",
+    //       (d, i) =>
+    //         `translate(${
+    //           xScale.bandwidth() - MARGIN_RIGHT + 12 + i * 10
+    //         }, 0) rotate(23)`
+    //     );
+
+    //   Chart.resizeCategoryChart();
+    // }
+
     function renderThemeBars(data, dataFreq, themes, x, y, index) {
       let $INcolumn = d3.selectAll(".india_class, .india_tick");
       let $SAcolumn = d3.selectAll(".southafrica_class, .southafrica_tick");
@@ -268,7 +379,32 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
       let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
 
-      $svg.remove();
+      console.log(
+        "bars to remove",
+        $svg
+          .selectAll(".stackedBars")
+          .selectAll(`rect`)
+          .filter(
+            (d) =>
+              d.key.country !== "All countries" || d.key.theme === "No theme"
+          )
+      );
+
+      // $svg.remove();
+
+      // remove rects in other columns
+      $svg
+        .selectAll(".stackedBars")
+        .selectAll(`rect`)
+        .filter(
+          (d) => d.key.country !== "All countries" || d.key.theme === "No theme"
+        )
+        .remove();
+      d3.selectAll(".allcountries_tick").remove();
+      $UScolumn.remove();
+      $UKcolumn.remove();
+      $INcolumn.remove();
+      $SAcolumn.remove();
 
       const themeGroups = [
         "crime and violence",
@@ -288,6 +424,19 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
       console.log({ stackedData });
 
+      console.log(
+        "bars to transition",
+        $svg
+          .selectAll(".stackedBars")
+          .selectAll(`rect`)
+          .filter(
+            (d) =>
+              d.key.country === "All countries" &&
+              d.key.theme !== "No theme" &&
+              stackedData.map((c) => c.key).includes(d.key.word)
+          )
+      );
+
       xScale = d3
         .scaleBand()
         .domain(themeGroups)
@@ -302,7 +451,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         });
         return acc;
       }, 0);
-      yScale = d3.scaleLinear().domain([0, maxY]).range([height, 0]);
+      yScale = d3
+        .scaleLinear()
+        .domain([0, maxY])
+        .range([height * 0.82, 0]);
       yAccessor = (d) => d[1];
 
       var colorScale = d3
@@ -310,30 +462,69 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .domain(themeGroups)
         .range(["#E76B2D", "#648FDC", "#A35FD0", "#F7DC5B", "#53B67C"]);
 
-      $svg = $chart.append("svg").attr("class", "horizontalStackedChart");
-      $svg.style("transform", "translate(0px, 10px)");
-      $vis = $svg.append("g").attr("class", "g-vis");
+      // $svg = $chart.append("svg").attr("class", "horizontalStackedChart");
+      // $svg.style("transform", "translate(0px, 10px)");
+      // $vis = $svg.append("g").attr("class", "g-vis");
 
-      let bars = $vis.append("g").attr("class", "bars");
-      let wordGroups = bars
-        .selectAll("g")
-        .data(stackedData)
-        .enter()
-        .append("g")
-        .attr("class", (d) => `word ${d.key}`);
+      // let bars = $vis.append("g").attr("class", "bars");
 
-      themeRects = wordGroups
-        .selectAll("rect")
-        .data((d) => d)
-        .enter()
-        .append("rect")
-        .attr("x", (d) => xScale(xAccessor(d)))
-        .attr("y", (d) => yScale(yAccessor(d)))
-        .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
+      // select all old bars to transition
+      let bars = $svg
+        .selectAll(".stackedBars")
+        .selectAll(`rect`)
+        .filter(
+          (d) =>
+            d.key.country === "All countries" &&
+            d.key.theme !== "No theme" &&
+            stackedData.map((c) => c[0].key).includes(d.key.word)
+        )
+        .on("mouseover", (event, d) => console.log(d));
+
+      console.log(
+        "stackedwords",
+        stackedData.map((d) => d[0].key)
+      );
+      console.log(bars);
+
+      themeRects = bars
+        .transition()
+        .duration(1000)
+        // .attr("opacity", d=>d.key.word==="abuse"?0:1)
+        .attr("x", (d) =>
+          xScale(
+            stackedData
+              .filter((c) => c.key === d.key.word)[0]
+              .filter((e) => e.data.theme === d.key.theme)[0].data.theme
+          )
+        )
+        .attr("y", (d) =>
+          yScale(
+            stackedData
+              .filter((c) => c.key === d.key.word)[0]
+              .filter((e) => e.data.theme === d.key.theme)[0][1]
+          )
+        )
+        .attr(
+          "height",
+          (d) =>
+            yScale(
+              stackedData
+                .filter((c) => c.key === d.key.word)[0]
+                .filter((e) => e.data.theme === d.key.theme)[0][0]
+            ) -
+            yScale(
+              stackedData
+                .filter((c) => c.key === d.key.word)[0]
+                .filter((e) => e.data.theme === d.key.theme)[0][1]
+            )
+        )
         .attr("width", xScale.bandwidth())
-        .attr("fill", (d) => colorScale(xAccessor(d)))
+        // .attr("fill", (d) => colorScale(xAccessor(stackedData.filter(c=>c[0].key===d.key.word))))
         .attr("stroke-width", 0.5)
         .attr("stroke", "#fefaf1");
+
+      // weirdly we have to remove this otherwise there is a floating rect that stays in the old position
+      d3.selectAll("#abuse_group").remove();
 
       // Axes
       $axis = $svg.append("g").attr("class", "g-axis");
@@ -345,7 +536,17 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       $xAxis.selectAll(".tick line").remove();
       $xAxis.selectAll(".tick .tickFlag").remove();
 
-      $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM / 2})`);
+      if (window.innerWidth < 600) {
+        $xAxis.attr(
+          "transform",
+          `translate(0, ${height - MARGIN_BOTTOM + 40})`
+        );
+      } else {
+        $xAxis.attr(
+          "transform",
+          `translate(0, ${height - MARGIN_BOTTOM + 10})`
+        );
+      }
 
       $xAxis
         .selectAll(".tick")
@@ -368,7 +569,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
             }, 0) rotate(23)`
         );
 
-      Chart.resizeCategoryChart();
+      // Chart.resizeCategoryChart();
     }
 
     function restoreBars() {
@@ -545,6 +746,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           $rect.style("pointer-events", "auto");
         }
         if (index === 12) {
+          //$rect.style("pointer-events", "auto");
           showThemes = true;
           renderThemeBars(themesRank, themesFreq, themes, x, y, index);
         }
@@ -616,6 +818,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
         height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
+
+        if (window.innerWidth < 600) {
+          height -= 120;
+        }
 
         $svg
           .attr("width", width + MARGIN_LEFT + MARGIN_RIGHT)
@@ -692,11 +898,13 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         $rect
           .attr("x", (d, i) => x(d.data.country))
           .attr("height", (d) => {
-            return d.data[d.key.word] !== 0 &&
+            const h =
+              d.data[d.key.word] !== 0 &&
               d.data[d.key.word] !== null &&
               d.data[d.key.word] !== ""
-              ? height / series.length
-              : 0;
+                ? height / series.length
+                : 0;
+            return h > 0 ? h : 0;
           })
           .attr("width", x.bandwidth())
           .attr("y", (d, i) => {
