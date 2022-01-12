@@ -655,8 +655,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
         // sticky axis
         $stickyAxis
-          .attr("transform", `translate(${MS_LEFT}, 0)`)
-          .attr("width", width + MS_LEFT + MS_RIGHT)
+          .attr("transform", `translate(${MS_LEFT / 2}, 0)`)
+          .attr("width", width)
           .attr("height", stickyAxisHeight - MS_TOP - MS_BOTTOM);
 
         $stickyAxisGroup

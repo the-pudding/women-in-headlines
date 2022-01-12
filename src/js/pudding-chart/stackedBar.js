@@ -549,7 +549,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       if (window.innerWidth < 600) {
         $xAxis.attr(
           "transform",
-          `translate(0, ${height - MARGIN_BOTTOM + 40})`
+          `translate(-16, ${height - MARGIN_BOTTOM + 40})`
         );
       } else {
         $xAxis.attr(
