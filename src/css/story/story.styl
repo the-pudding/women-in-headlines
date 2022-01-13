@@ -1654,7 +1654,7 @@ article {
 
 #smChart {
   width: 100%;
-  height: 14000px;
+  height: 9000px;
   padding: 0 1rem;
   margin: 0 auto;
   max-width: 60rem;
@@ -1981,7 +1981,7 @@ label
   }
 
   #stickyXaxis {
-    top: 140px;
+    top: 150px;
   }
 
   .padded-dropcap {
@@ -1990,6 +1990,10 @@ label
 }
 
 @media only screen and (max-width: 600px) {
+  #smChart {
+    height: 5000px;
+  }
+
   .temporalAnno {
     transform: translate(10%, 50px);
     font-size: 13px;
@@ -2081,5 +2085,14 @@ label
 
   .dropdownOptions {
     font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .temporalFilters {
+    top: 250px;
+  }
+  #stickyXaxis {
+    top: 400px;
   }
 }

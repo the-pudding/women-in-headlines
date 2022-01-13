@@ -192,6 +192,9 @@ function changeTemporalDropdown() {
   d3.select("#smChart svg").remove();
   d3.select("#stickyXaxis svg").remove();
 
+  // remove pulse
+  d3.select(".pulsating-circle").remove();
+
   temporalData = [tempWords, filter_years, country, temporalVar, headlinesTemp];
   setupTemporalLine(temporalData);
 }
