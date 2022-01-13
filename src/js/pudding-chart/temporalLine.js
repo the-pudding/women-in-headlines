@@ -258,10 +258,18 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           .style("top", "auto");
       }
 
+      console.log(
+        wordHeadlines[randHeadline].time.replace(/-/g, "/"),
+        new Date(wordHeadlines[randHeadline].time.replace(/-/g, "/")),
+        d3.timeFormat("%m/%Y")(
+          new Date(wordHeadlines[randHeadline].time.replace(/-/g, "/"))
+        )
+      );
+
       if (wordHeadlines.length > 0) {
         $tooltip.html(
           `<p class="tt-date">${d3.timeFormat("%m/%Y")(
-            new Date(wordHeadlines[randHeadline].time)
+            new Date(wordHeadlines[randHeadline].time.replace(/-/g, "/"))
           )} | ${wordHeadlines[randHeadline].site}</p><p class="tt-hed">${
             wordHeadlines[randHeadline].headline_no_site
           }</p>`
