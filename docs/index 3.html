@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang='en' data-version='1642016431732'>
+
+<head>
+
+	<title>When Women Make Headlines</title>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+	<meta name='description' content='A visual essay about the (mis)representation of women in the news' />
+	<meta name='news_keywords' content='women, headline, news, media, woman, girl, representation, gender, words, data, analysis, stereotype, bias, polarity, sensational, language' />
+	
+	<meta property='og:title' content='When Women Make Headlines' />
+	<meta property='og:site_name' content='The Pudding' />
+	<meta property='og:url' content='https://pudding.cool/2021/12/women-in-headlines/' />
+	<meta property='og:description' content='A visual essay about the (mis)representation of women in the news' />
+	<meta property='og:type' content='article' />
+	<meta property='og:locale' content='en_US' />
+	
+	<meta property='og:image' content='https://pudding.cool/2021/12/women-in-headlines/assets/social/social-facebook.jpg' />
+	<meta property='og:image:type' content='image/jpeg' />
+	<meta property='og:image:width' content='1200' />
+	<meta property='og:image:height' content='600' />
+	
+	<meta name='twitter:card' content='summary_large_image' />
+	<meta name='twitter:site' content='https://pudding.cool' />
+	<meta name='twitter:creator' content='@puddingviz' />
+	<meta name='twitter:title' content='When Women Make Headlines' />
+	<meta name='twitter:description' content='A visual essay about the (mis)representation of women in the news' />
+	<meta name='twitter:image:src' content='https://pudding.cool/2021/12/women-in-headlines/assets/social/social-twitter.jpg' />
+	
+	<meta name="robots" content="max-image-preview:large">
+	
+	<link rel='canonical' href='https://pudding.cool/2021/12/women-in-headlines/' />
+	
+	<link rel='apple-touch-icon' sizes='180x180' href='https://pudding.cool/apple-touch-icon.png'>
+	<link rel='icon' type='image/png' sizes='32x32' href='https://pudding.cool/favicon-32x32.png'>
+	<link rel='icon' type='image/png' sizes='16x16' href='https://pudding.cool/favicon-16x16.png'>
+	<link rel='manifest' href='https://pudding.cool/site.webmanifest'>
+	<link rel='mask-icon' href='https://pudding.cool/safari-pinned-tab.svg' color='#5bbad5'>
+	<meta name='msapplication-TileColor' content='#ffc40d'>
+	<meta name='theme-color' content='#ffffff'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/national/National2Web-Regular.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/national/National2Web-Bold.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/national/National2NarrowWeb-Regular.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/national/National2NarrowWeb-Bold.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2'>
+	<link rel='preload' type='font/woff2' as='font' crossorigin
+		href='https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2'>
+
+	<style>*{-webkit-box-sizing:border-box;box-sizing:border-box}html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section{display:block}a img{border:none}blockquote{quotes:none}blockquote:before,blockquote:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}caption,th,td{text-align:left;font-weight:normal;vertical-align:middle}.xxx-small{font-size:10px;line-height:1.65}.xx-small{font-size:11px;line-height:1.65}.x-small{font-size:12px;line-height:1.65}.small{font-size:14px;line-height:1.65}.root{font-size:16px;line-height:1.65}.medium{font-size:18px;line-height:1.65}.large{font-size:20px;line-height:1.5}.x-large{font-size:24px;line-height:1.4}.xx-large{font-size:32px;line-height:1.4}.xxx-large{font-size:40px;line-height:1.4}.xxxx-large{font-size:48px;line-height:1.2}.xxxxx-large{font-size:64px;line-height:1.2}.hide-accessible{width:1px;height:1px;overflow:hidden;position:absolute}.hide-invisible{visibility:hidden}.hide-display{display:none}.skip-to-main{border:none;width:1px;height:1px;overflow:hidden;position:absolute}.skip-to-main:focus{width:auto;height:auto;background-color:#f4f4f4;padding:.5rem;z-index:1000}.prose{max-width:40rem;margin:0 auto;padding:0 1rem}.media-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkRDMDBGQ0Y5NEI4NjExRTM5RTg2QTY1RTUyQjIxNEQyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkRDMDBGQ0ZBNEI4NjExRTM5RTg2QTY1RTUyQjIxNEQyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6REMwMEZDRjc0Qjg2MTFFMzlFODZBNjVFNTJCMjE0RDIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6REMwMEZDRjg0Qjg2MTFFMzlFODZBNjVFNTJCMjE0RDIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6C0EmkAAAAGElEQVR42mJiYGD4DwQMTECCEchhAAgwAEcGBv9dngKPAAAAAElFTkSuQmCC")}#starter-guide{max-width:40rem;margin:0 auto}body{background-color:#fefaf1;color:#282828;font-weight:500;font-family:'Tiempos Text Web',Georgia,Times,serif;-webkit-font-feature-settings:'kern' 1,'onum' 0,'liga' 0,'tnum' 1;font-feature-settings:'kern' 1,'onum' 0,'liga' 0,'tnum' 1;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:rgba(0,0,0,0);font-size:16px}@media only screen and (min-width:30em){body{font-size:18px}}body.modal-open{overflow-y:hidden;padding-right:1rem;height:100vh}h1{font-size:32px;line-height:1.4;margin-top:1.5rem}h2{font-size:24px;line-height:1.4;margin-top:1.5rem}h3{font-size:20px;line-height:1.5;margin-top:1.5rem}h4{font-size:18px;line-height:1.65;margin-top:1.5rem}h5{font-size:16px;line-height:1.65;margin-top:1.5rem}h6{font-size:14px;line-height:1.65;margin-top:1.5rem}p{margin:1.5rem 0;font-size:16px;line-height:1.65}@media only screen and (min-width:30em){p{font-size:18px;line-height:1.65}}a{border-bottom:1px solid #282828;color:#282828;text-decoration:none}a:hover{border-bottom:1px solid #e76b2d}strong,b{font-weight:700}em,i{font-style:italic}ul{list-style-type:none}li{font-size:16px}@media only screen and (min-width:30em){li{font-size:18px}}img,video{display:block;width:100%}button{margin:0;padding:0;border:none;cursor:pointer;font-size:16px}@media only screen and (min-width:30em){button{font-size:18px}}sub,sup{position:relative;vertical-align:baseline;font-size:.75rem;line-height:0}sup{top:-.5em}sub{bottom:-.25em}footer.pudding-footer{padding:3rem 1rem;border-top:4px solid #000;font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;margin-top:3rem}footer.pudding-footer .footer-recirc{max-width:65rem;margin:0 auto}footer.pudding-footer .footer-recirc__articles{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}footer.pudding-footer .footer-recirc__article{display:block;width:100%;border:none;margin-bottom:2rem}@media only screen and (min-width:50em){footer.pudding-footer .footer-recirc__article{width:calc(25% - 1.5rem);margin-right:1.5rem}footer.pudding-footer .footer-recirc__article:last-of-type{margin-right:0}}footer.pudding-footer .footer-recirc .article__headline{font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;font-size:20px;line-height:1;font-weight:700;padding-left:.5rem}footer.pudding-footer .footer-company{margin:0 auto;margin-top:3rem;max-width:65rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;font-family:'Barlow Condensed',Helvetica,Arial,sans-serif}@media only screen and (min-width:50em){footer.pudding-footer .footer-company{-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}}footer.pudding-footer .footer-company__cta{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1;margin:2rem 0 0 0;width:100%}@media only screen and (min-width:50em){footer.pudding-footer .footer-company__cta{width:22rem;margin:0 0 0 2rem}}footer.pudding-footer .footer-company__cta-list{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;height:12rem}@media only screen and (min-width:50em){footer.pudding-footer .footer-company__cta-list{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}}footer.pudding-footer .footer-company__cta-list li{display:-webkit-box;display:-ms-flexbox;display:flex;width:50%;margin-bottom:1rem;-webkit-box-align:center;-ms-flex-align:center;align-items:center}@media only screen and (min-width:50em){footer.pudding-footer .footer-company__cta-list li{padding-left:1rem}}footer.pudding-footer .footer-company__cta-list li a{display:-webkit-box;display:-ms-flexbox;display:flex;border:none}footer.pudding-footer .footer-company__cta-list li p{font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;margin:0;padding-left:.5rem;padding-top:.1rem;line-height:1;color:#949494}@media only screen and (min-width:40em){footer.pudding-footer .footer-company__cta-list li p{font-size:20px}}footer.pudding-footer .footer-company__cta-list li svg{fill:#949494;stroke:none;vertical-align:middle}footer.pudding-footer .footer-company__cta-list li svg circle,footer.pudding-footer .footer-company__cta-list li svg polyline,footer.pudding-footer .footer-company__cta-list li svg line{fill:none;stroke:#949494}footer.pudding-footer .footer-company__cta-list li .feather-mail path,footer.pudding-footer .footer-company__cta-list li .feather-lock path,footer.pudding-footer .footer-company__cta-list li .feather-rss path{stroke:#949494;fill:none}footer.pudding-footer .footer-company__about{-webkit-box-ordinal-group:1;-ms-flex-order:0;order:0;width:100%;color:#949494;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}@media only screen and (min-width:50em){footer.pudding-footer .footer-company__about{width:calc(100% - 24rem)}}footer.pudding-footer .footer-company__about p{margin:0;font-size:16px;line-height:1.4}footer.pudding-footer .footer-company__about svg{width:12rem;margin-bottom:.5rem}header{z-index:1000;position:absolute;top:0;left:0;width:100%;background-color:#f7dc5b;font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;border-bottom:1px solid #282828}header .header-skew{position:relative;z-index:999;width:10rem;max-width:10rem}header .header-skew .skew{position:absolute;border-right:1px solid #282828;background-color:#f7dc5b;width:12.25rem;max-width:12.25rem;height:3rem;left:-1rem;-webkit-transform:skew(-10deg,0);-ms-transform:skew(-10deg,0);transform:skew(-10deg,0)}header a.logo{position:absolute;border:none;width:10rem;max-width:10rem;margin:.5rem;height:2rem}header a.logo svg{fill:#282828;display:block;width:85%;margin:0 auto}.header__container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}header.is-sticky{position:fixed;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);background-color:#fff;-webkit-box-shadow:0 0 7px 1px #c9c9c9;box-shadow:0 0 7px 1px #c9c9c9;height:3rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}header.is-sticky a.logo{margin:0 auto}header.is-sticky .header__container{width:100%;padding:0 2rem;margin:auto;position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;height:100%}header.is-sticky .header__toggle{display:block;pointer-events:all;visibility:visible;position:fixed;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);top:0;right:0;padding:.75rem;cursor:pointer;line-height:1;z-index:1000;border:none;background-color:transparent}header.is-sticky .header__toggle svg{stroke:#282828}header.is-sticky .header__toggle:focus{outline:2px solid}header.is-sticky .header__toggle span:first-of-type{display:block}header.is-sticky .header__toggle span:last-of-type{display:none}header.is-sticky .header__toggle.is-visible span:first-of-type{display:none}header.is-sticky .header__toggle.is-visible span:last-of-type{display:block}header.is-sticky .header__toggle.is-visible span svg{stroke:#f4f4f4}header.is-sticky #slide__menu{position:absolute;top:3rem;right:0;-webkit-transform:translateX(100%);-ms-transform:translateX(100%);transform:translateX(100%);height:100vh;width:100%;max-width:30rem;padding:1rem 1.5rem;background-color:#282828;color:#f4f4f4;z-index:1000;-webkit-transition:-webkit-transform 200ms ease-in-out;transition:-webkit-transform 200ms ease-in-out;-o-transition:transform 200ms ease-in-out;transition:transform 200ms ease-in-out;transition:transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;visibility:hidden}@media only screen and (min-width:30em){header.is-sticky #slide__menu{border-left:1px solid #5b5b5b}}header.is-sticky #slide__menu.is-visible{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0);-webkit-transition:-webkit-transform 200ms ease-in-out;transition:-webkit-transform 200ms ease-in-out;-o-transition:transform 200ms ease-in-out;transition:transform 200ms ease-in-out;transition:transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;visibility:visible}header.is-sticky #slide__menu a{color:#f4f4f4;border-bottom:1px solid #f4f4f4}header.is-sticky #slide__menu a:hover{color:#c9c9c9}header.is-sticky #slide__menu .menu__links{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}@media only screen and (min-width:40em){header.is-sticky #slide__menu .menu__links{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}}header.is-sticky #slide__menu .menu__links li{font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;font-weight:700;text-transform:uppercase;margin-bottom:.5em;margin-right:.5em;font-size:20px}@media only screen and (min-width:30em){header.is-sticky #slide__menu .menu__links li{font-size:24px}}header.is-sticky #slide__menu a.patreon-link{font-family:'Barlow Condensed',Helvetica,Arial,sans-serif;font-weight:700;text-transform:uppercase;border:none;background-color:#f4f4f4;color:#282828;padding:.5em .75em}header.is-sticky #slide__menu a.patreon-link:hover{opacity:.75}header.is-sticky .menu__patrons ul{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}header.is-sticky .menu__patrons li:after{display:inline;content:',';margin-right:.25em}header.is-sticky .menu__patrons li:last-of-type:after{content:'.'}header.is-sticky.is-dark{background-color:#282828;-webkit-box-shadow:0 0 7px 1px #5b5b5b;box-shadow:0 0 7px 1px #5b5b5b}header.is-sticky.is-dark svg path{fill:#f4f4f4}header.is-sticky.is-dark .header__menu{background-color:#fff;color:#282828}@media only screen and (min-width:30em){header.is-sticky.is-dark .header__menu{border-left:1px solid #c9c9c9}}header.is-sticky.is-dark a{color:#282828;border-bottom:1px solid #282828}header.is-sticky.is-dark a:hover{color:#5b5b5b}header.is-sticky.is-dark .header__toggle svg{stroke:#f4f4f4}header.is-sticky.is-dark .header__toggle.is-visible span svg{stroke:#282828}.intro{margin:0 auto;padding:3rem 0 3rem 0}.intro__hed{max-width:60rem;margin:0 auto;text-align:center}.intro__dek{max-width:40rem;margin:0 auto;margin-top:1rem;text-align:center}.intro__byline{max-width:40rem;margin:0 auto;margin-top:1rem;text-align:center}.intro__time{display:block;max-width:40rem;margin:0 auto;margin-top:1rem;text-align:center}.txtscroll{height:3rem;background-color:#e76b2d;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.txtscroll p{font-size:1.25em;color:#282828;font-family:'Barlow Condensed';text-transform:uppercase;font-weight:300;font-style:italic}body{background-color:#fefaf1;overflow-x:hidden}.annotation{fill:#282828;font-family:'Barlow Condensed';font-weight:600;font-size:14px;text-anchor:middle;-webkit-transform:translate(-45px,6px);-ms-transform:translate(-45px,6px);transform:translate(-45px,6px)}.button-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap}.annotationButton{fill:#282828;font-family:'Barlow Condensed';font-weight:400;font-size:14px;margin:0;text-align:left}.bubbleFilters .annotationButton{width:3rem}.padded-dropcap{padding:1rem 1.25rem 1rem 1rem;float:left;position:relative;top:-.1em;margin:1rem 1.25rem -.5rem .25rem;font-size:64px;font-family:'Barlow Condensed';color:#282828;font-weight:900;background-color:#f2c5d3;border:1px solid #282828;-webkit-transform:skew(-10deg,0);-ms-transform:skew(-10deg,0);transform:skew(-10deg,0);line-height:.8}#hoverGuide{font-size:16px;fill:#282828;font-weight:600;font-family:'Barlow Condensed'}#hoverGuideLine{stroke:#282828;stroke-width:.8px}.txt-rotate{fill:#282828}#tooltipText{font-family:'Barlow Condensed';display:block;text-transform:uppercase}.tooltipTL{font-family:'Barlow Condensed';color:#282828;background-color:#f7f2e5;border:1px #282828 solid;border-top:2px #282828 solid;margin:1rem;padding:1rem;width:15rem;max-height:12rem}.tooltipTemp{font-family:'Barlow Condensed';color:#282828;background-color:#fefaf1;border:1px #282828 solid;border-top:2px #282828 solid;margin:1rem;padding:1rem;width:16%;margin-left:82%}.datettip{color:#e76b2d;text-transform:uppercase;font-size:16px;font-family:'Barlow Condensed';font-weight:600}.exampleheadlines{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;width:100%;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:0 1rem;margin:0 auto}.exampleheadlines .btn-wrapper{width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.exampleheadlines button{font-family:'Barlow Condensed';font-size:16px;font-weight:600;width:8rem;padding:.25rem;margin:.25rem;border-radius:.25rem;border:2px solid #282828;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.exampleheadlines button:hover{background:#282828;color:#fefaf1}.exampleheadlines button:hover svg{stroke:#fefaf1}.exampleheadlines button svg{stroke:#282828;height:16px;width:16px;margin-left:.25rem}.tooltip{top:10px;left:0;padding:1rem;color:#282828;background-color:#f7f2e5;border:1px #282828 solid;border-top:2px #282828 solid;position:fixed;opacity:0;z-index:1000;-webkit-transition:opacity .25s ease-in;-o-transition:opacity .25s ease-in;transition:opacity .25s ease-in;width:15rem;visibility:hidden}.is-visible{opacity:1;visibility:visible}.forceLogo{pointer-events:none}.tt-date,.tt-site,.tt-hed,.tt-hed-no-italic{margin:0}.tt-date,.tt-site{font-family:'Barlow Condensed';color:#282828;font-size:14px;font-weight:600;margin:0;text-transform:uppercase}.tt-hed{font-family:'Barlow Condensed';font-weight:300;font-size:16px;font-style:italic}.tt-hed-no-italic{font-family:'Barlow Condensed';font-weight:300;font-size:16px}#tooltipHeadline path{fill:none}.forceText{font-weight:bold;font-family:'National 2 Web';font-size:8px;text-anchor:middle;fill:#c0c0c0}.forceCircles{fill:#fefaf1;stroke:#282828;stroke-width:1px;cursor:pointer}.themesText{font-weight:600;font-family:'Barlow Condensed';font-size:14px;text-anchor:middle;fill:#282828;text-shadow:-1px -1px 0 #fefaf1,1px -1px 0 #fefaf1,-1px 1px 0 #fefaf1,1px 1px 0 #fefaf1}.xAxis line,.yAxis line{stroke:#c0c0c0}.xAxis text{font-family:'National 2 Web'}.xAxis path,.yAxis path{display:none}#xAxisLabel{font-size:14px;fill:#282828;font-family:'Barlow Condensed';font-weight:600;margin:1rem 0 0 0}.axisLabel{font-weight:bold;font-family:'National 2 Web'}h1{font-family:Georgia;font-style:bold;color:#282828}.title{font-weight:900;font-size:130px;text-align:left;font-family:'Barlow Condensed';text-transform:uppercase;color:#282828;line-height:1}.title span{font-family:'Barlow Condensed';font-weight:900;border-bottom:1px solid #282828;display:block;padding:1rem 2rem 0 2rem;font-style:italic;line-height:.8}.title span:last-of-type{border-bottom:none}.subTitleArt{font-weight:300;font-size:24px;font-family:'Barlow Condensed';text-transform:uppercase}.creditLink{color:#282828;text-transform:uppercase;font-weight:600}.credits{font-weight:400;font-size:16px;font-family:'Barlow Condensed';color:#282828;max-width:10rem}.sectionHeader{font-family:'Barlow Condensed';font-style:italic;font-weight:900;color:#282828;text-align:center;width:100%;font-size:48px;margin:6rem auto .5rem auto;text-transform:uppercase;line-height:.8;border-bottom:1px solid #282828}h2{font-family:Georgia;font-style:bold;color:#282828}h4{font-family:'Tiempos Text Web';font-size:x-large;font-style:bold;color:#282828}h5{font-family:'Tiempos Text Web';font-size:medium;font-weight:600;text-align:center;margin-bottom:0;color:#282828}.description{max-width:40rem;color:#282828;font-family:'Tiempos Text Web';margin:0 auto;padding:1rem 1rem;text-align:left}#endStackedbarSection + .description{margin-top:7em}ul{max-width:40rem;margin:0 auto;padding-left:1.5rem;list-style-type:disc}.intro-questions{margin:0 auto;padding:1rem 0;font-family:'Tiempos Text Web';font-style:italic}.stackedChartDescription{max-width:24rem;text-align:left;color:#282828;font-family:'Barlow Condensed';font-size:18px;line-height:1.75}.scrolltext{padding:1rem 1rem 0 1rem;font-family:'Tiempos Text Web';font-size:18px;line-height:1.75;text-align:left;margin-bottom:0}.deets{font-family:'Barlow Condensed';color:#282828;font-size:14px;font-weight:600;margin:0;text-transform:uppercase}.headline{font-family:'Barlow Condensed';font-weight:300;font-size:16px;font-style:italic;margin:1rem 0 .5rem 0}#stackedLegend{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;max-width:210px;max-height:30px;margin-top:20px;-webkit-box-align:center;-ms-flex-align:center;align-items:center}#stackedLegendText{max-width:200px;font-family:'Barlow Condensed';font-size:14px;font-weight:600}#stackedLegendArrow{font-size:20px;max-width:10px;margin-left:.2rem;margin-right:.5rem}#stackedLegendrect{fill:#ccc}#stackedLegendsvg{max-width:58px}.subtitle{margin-top:0;margin-bottom:10;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.header{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;display:-webkit-box;display:-ms-flexbox;display:flex;text-anchor:middle}.titleArt{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin-top:2rem;height:508px;margin-bottom:5rem;border-bottom:1px solid #282828}.titlewords{width:70%;border-right:1px solid #282828}.titlesep{width:100%;border:.1px solid #282828;-webkit-transform:translate(0,32px);-ms-transform:translate(0,32px);transform:translate(0,32px);line-height:0;margin-top:0;margin-bottom:0}.titleCredits{width:calc(30% - 3rem);padding:10rem 1.5rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;min-width:18rem}.dropOptions{font-family:'Tiempos Text Web';font-size:x-large;font-weight:bold}.buttons{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;width:100%;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;padding:.5rem 1rem 0 1rem;background-color:#fefaf1}button{border-color:#fefaf1;background-color:#fefaf1;color:#282828;font-weight:400px;border-style:solid;border-width:1;padding:0 20px;margin-top:5;text-align:center;text-decoration:none;font-size:20px;font-family:'National 2 Web';text-transform:uppercase}#wordFreq{margin-top:0;margin-bottom:100}button:hover{background-color:#fefaf1;color:#282828}select::-moz-selection{background-color:#f7dc5b;color:#282828;font-weight:600}select::selection{background-color:#f7dc5b;color:#282828;font-weight:600}.country-active{background-color:#f7dc5b;color:#282828;font-weight:600;pointer-events:none}.flag{height:30px;text-anchor:middle;padding-right:.5rem;max-width:30%}.country{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;border:1px solid #282828;border-radius:.25rem;width:10rem;margin:.5rem;padding:0;height:2rem}.country p{margin:0;padding:0;font-family:'Barlow Condensed';font-size:18px}.search{text-align:center}.legend circle{fill:none;stroke:#282828}.legendBubble{fill:none;stroke:#282828;stroke-width:.8}.legend text{fill:#c0c0c0;font:8px sans-serif;text-anchor:end}.svg-container{width:100%;max-width:60rem;padding:0 1rem;height:60vh}.svg-content{display:inline-block;position:absolute;text-align:center;top:50;left:0}#tooltipCluster{border:solid 1px #282828;padding:10px;position:fixed;display:block;color:#282828}#tooltipInfo{border:solid 1px #282828;padding:10px;max-width:180px;text-align:justify;position:fixed;display:block;color:#282828;background-color:#fefaf1}.clusterLegend{display:block;margin-left:auto;margin-right:auto}.netbars{display:grid;grid-template-columns:27vw 65vw;grid-template-rows:60vh 60vh 60vh 60vh;-webkit-column-gap:0;-moz-column-gap:0;column-gap:0;row-gap:40vh;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:30vh;margin-left:4vw;margin-right:4vw}.barLegend{margin-top:20px;padding-bottom:10px}.barLegendText{font-size:13px;font-family:'Tiempos Text Web';fill:#c0c0c0;text-anchor:start;text-align:left;opacity:.9;font-weight:800}.hover-icon{font-weight:600;font-family:'Tiempos Text Web'}.hover-icon::before{content:'';background-image:url("./assets/images/touch.png");background-size:24px;width:24px;height:24px;display:inline-block;position:relative;top:.3rem;left:0;margin-right:.25rem}#stickyXaxis{position:sticky;top:90px;background-color:#fefaf1;fill:#282828;color:#282828;stroke-width:1;font-weight:800;font-size:12;border-bottom:1px solid #282828;padding:0 1rem 1rem 1rem;height:150px}#stickyXaxis p{font-family:'Barlow Condensed';font-size:14px;font-weight:600;margin:0;position:absolute;top:3.85rem;left:12%}.stickyAxis .tick text{font-family:'Barlow Condensed';font-size:14px;font-weight:400}.axisThemeLegend{-webkit-transform:translate(-25px,85px);-ms-transform:translate(-25px,85px);transform:translate(-25px,85px);display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;text-align:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.wordText{text-anchor:end;fill:#282828;font-weight:600;font-size:14px;font-family:'Barlow Condensed';text-transform:uppercase;cursor:pointer}.SMCell{cursor:pointer}.timeRuler{z-index:10;position:fixed;stroke:#282828;fill:none;stroke-width:2;width:20}.container{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:nowrap;flex-wrap:nowrap;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.freqBars{width:16vw;height:35vw}.movingHeadline{font-size:20px;font-family:sans-serif}#hlAnimation{height:15vh}.barChart{text-anchor:start;text-align:left}.yAxis text{font-family:'National 2 Web';text-align:center;text-anchor:end;fill:#c0c0c0;font-weight:bold}span{font-family:sans-serif}details{max-width:38rem;margin:0 auto 2rem auto;padding:0 1rem 0 2rem}summary{font-family:'Barlow Condensed';font-size:14px;font-weight:600;margin-left:-.75rem}.bubble-notes{max-width:40rem;font-family:'National 2 Web';font-size:14px;margin:0 auto;padding:1rem 1rem 0 1rem;line-height:1.45;text-align:left}.inputTitle{font-family:'Barlow Condensed';font-size:20px;font-weight:600;color:#282828;text-transform:uppercase;padding:0 1rem}.methodDescription{max-width:40rem;font-family:'National 2 Web';font-size:14px;margin:0 auto;padding:1rem 1rem;line-height:1.45;text-align:left}.methodSep{width:100%;max-width:40rem;border:1px solid #282828;margin:4rem auto 1rem auto}.intextLink:hover{border-bottom:1px solid #e76b2d}.polarityCompyAxis text{font-family:'Barlow Condensed';text-align:left;text-anchor:end;fill:#282828;font-size:14px;font-weight:600;text-transform:uppercase}.polarityCompyAxis .domain{stroke:none}.grid{stroke:#d3d3d3;stroke-width:1px;shape-rendering:crispEdges}.polarityCompBubbleLeft{fill:#282828;stroke:#282828;stroke-width:2.5px;-webkit-box-sizing:border-box;box-sizing:border-box}.polarityCompBubbleRight{fill:#53b67c;stroke:#282828;stroke-width:2.5px;-webkit-box-sizing:border-box;box-sizing:border-box}.polarityCompFemText{fill:#53b67c;font-family:'Barlow Condensed';font-weight:600;font-size:14px;text-anchor:middle;-webkit-transform:translate(0,-40px);-ms-transform:translate(0,-40px);transform:translate(0,-40px)}.polarityDiffAnnotation{fill:#282828;font-family:'Barlow Condensed';font-weight:600;font-size:14px;text-anchor:left;-webkit-transform:translate(20px,-10px);-ms-transform:translate(20px,-10px);transform:translate(20px,-10px)}.polarityCompAllText{fill:#282828;font-family:'Barlow Condensed';font-size:14px;text-anchor:middle;-webkit-transform:translate(0,-20px);-ms-transform:translate(0,-20px);transform:translate(0,-20px)}.polarityCompxAxisLabel{font-size:14px;fill:#282828;font-family:'Barlow Condensed'}.polarityCompxAxis{display:none}.lollipop{width:100%;max-width:60rem;padding:0 1rem;margin:0 auto}#lollipopChart{width:100%}.sectionHeader,.bubbleFilters{padding:0 1rem}.dropdownOptions{background-color:#fefaf1;border:1px solid #282828;font-size:16px;font-weight:600;text-transform:uppercase;padding:.25rem;margin:1rem .25rem;font-family:'Barlow Condensed';font-weight:400;border-radius:.25rem;cursor:pointer;width:8rem;height:2rem}.example,.bubbleFilters,.temporalFilters{text-align:right;background-color:#fefaf1;z-index:1;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;width:100%;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:sticky;top:0;border-bottom:1px solid #282828;padding:1rem;margin-top:-.5rem}.bubbleFilters{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.temporalFilters{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;margin-top:2rem;border-top:1px solid #282828}.temporal-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.categories{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;margin:0;-ms-flex-wrap:wrap;flex-wrap:wrap;max-width:30rem}.categories button{font-family:'Barlow Condensed';font-size:16px;font-weight:600;width:12rem;padding:.25rem;margin:.25rem;border-radius:.25rem}#btn-violence{color:#282828;border:2px solid #e76b2d}.active-btn-violence,#btn-violence:hover{color:#282828 !important;background:#e76b2d}#btn-empowerment{color:#282828;border:2px solid #a35fd0}.active-btn-empowerment,#btn-empowerment:hover{color:#282828 !important;background:#a35fd0}#btn-stereotypes{color:#282828;border:2px solid #648fdc}.active-btn-stereotypes,#btn-stereotypes:hover{color:#282828 !important;background:#648fdc}#btn-race{color:#282828;border:2px solid #53b67c}.active-btn-race,#btn-race:hover{color:#282828 !important;background:#53b67c}.active-btn-violence,.active-btn-stereotypes,.active-btn-empowerment,.active-btn-race{pointer-events:none}.right svg{margin:0 .25rem 0 0;fill:none}.right svg .st1{stroke:#282828;stroke-width:2}.left,.right{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.left{margin-right:2rem}.left div{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}.right{margin-bottom:0}.left p,.right p{font-family:'Barlow Condensed';font-size:14px;color:#282828;margin:0 .25rem 0 0;text-align:right}.scoreChartBar{stroke:#282828;stroke-width:.5px}.scoreChartTitle{margin-bottom:30px;font-weight:500;-webkit-transform:translateX(10px);-ms-transform:translateX(10px);transform:translateX(10px);font-size:10px;max-width:10px;text-align:center;font-family:'National 2 Web';font-style:bold;text-transform:uppercase;color:#282828}.scoreChartBarText{font-family:'National 2 Web';font-size:9px}.lollipopTextbutton{color:#282828;font-weight:600;font-family:'Barlow Condensed';font-size:16px;background-color:#fefaf1;text-transform:uppercase;white-space:nowrap;border-radius:.25rem;border:2px solid #53b67c;height:1.9rem;margin:.025rem 0;padding:.125rem .5rem}.lollipopTextbutton-active{color:#282828;font-weight:600;font-family:'Barlow Condensed';font-size:16px;background-color:#53b67c;border:2px solid #53b67c;text-transform:uppercase;white-space:nowrap;border-radius:.25rem;pointer-events:none;height:1.9rem;margin:.025rem 0;padding:.125rem .5rem}#wordSearch{font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;border:1px solid;background-color:#fefaf1}#inTextViolence{color:#282828;border:2px solid #e76b2d}#inTextViolence-none{color:#282828;background:#e76b2d;border:2px solid #e76b2d;pointer-events:none}#inTextStereotypes{color:#282828;border:2px solid #648fdc}#inTextStereotypes-none{background:#648fdc;color:#282828;pointer-events:none;border:2px solid #648fdc}#inTextEmpowerment{color:#282828;border:2px solid #a35fd0}#inTextPeople{color:#282828;border:2px solid #f7dc5b}#inTextRace{color:#282828;border:2px solid #53b67c}#inTextNT{color:#808080;border:1px solid #808080}.lollipopTextbutton:hover{background-color:#53b67c;color:#282828;font-weight:600}#inTextViolence:hover,#inTextViolence.hovered{background-color:#e76b2d;color:#282828;font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer}#inTextStereotypes:hover,#inTextStereotypes.hovered{background-color:#f2c5d3;color:#282828;font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer}#inTextBias:hover,#inTextBias.hovered{background-color:#53b67c;color:#fefaf1;font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer}#inTextEmpowerment:hover,#inTextEmpowerment.hovered{background-color:#a35fd0;color:#282828;font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer}#inTextPeople:hover,#inTextPeople.hovered{background-color:#f7dc5b;color:#282828;font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer}#inTextRace:hover,#inTextRace.hovered{background-color:#53b67c;color:#282828;font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer}#inTextNT:hover,#inTextNT.hovered{background-color:#808080;color:#fefaf1;font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer}.stackedBars rect{cursor:pointer;pointer-events:none}.stackedChartTicks-light{font-weight:500;text-transform:none}#scrolly-side{width:100%;max-width:60rem;margin:3rem auto;padding:1rem}.scrolly{width:100%;position:relative}.scrolly figure{position:sticky;top:0;padding:0 1rem;max-width:40rem;margin-left:24rem}article{width:100%;max-width:24rem;position:relative;margin:0}.step{min-height:110vh;margin-bottom:1rem;-webkit-transition:background-color 250ms ease-in-out;-o-transition:background-color 250ms ease-in-out;transition:background-color 250ms ease-in-out;text-align:justify;color:#282828;font-family:'Barlow Condensed';font-size:16px;margin-bottom:0;opacity:.6}.step.is-active{opacity:1}.step-inner{background-color:#fefaf1;padding-bottom:1rem}.step:last-of-type{margin-bottom:0;min-height:10vh}#stickyStackedChart{max-width:380px;width:380px;margin:0;height:100%}.stackedBarAnnotation{fill:#e76b2d;font-family:'National 2 Web';font-weight:600;font-size:12px;text-anchor:end;text-transform:uppercase;-webkit-transform:translate(100px,5px);-ms-transform:translate(100px,5px);transform:translate(100px,5px)}.stackedBarTextAnnotation,.stackedBarThemeAnnotation{font-family:'Barlow Condensed';font-weight:600;font-size:16px;text-transform:uppercase;padding:.25rem .5rem;white-space:nowrap;border-radius:.25rem;cursor:pointer;color:#282828;border:1px solid #282828}.stackedBarThemeHover{font-family:'Barlow Condensed';font-weight:600;font-size:14px;text-transform:uppercase;fill:#282828}.hoverRectActive{opacity:1 !important}#hover-black{color:#282828;border:1px solid #282828}#hover-black-none{color:#fefaf1;border:1px solid #282828;background:#282828;pointer-events:none}#hover-black:hover{color:#fefaf1;background:#282828;border:1px solid #282828}#hover-red{color:#e76b2d;border:1px solid #e76b2d}#hover-red-none{color:#282828;border:1px solid #e76b2d;background:#e76b2d;pointer-events:none}#hover-red:hover{color:#fefaf1;background:#e76b2d;border:1px solid #e76b2d}#hover-green{color:#53b67c;border:1px solid #53b67c}#hover-green-none{color:#000;border:1px solid #648fdc;background:#648fdc;pointer-events:none}#hover-green:hover{color:#fefaf1;background:#53b67c;border:1px solid #53b67c}#hover-pink{color:#f2c5d3;border:1px solid #f2c5d3}#hover-pink:hover{color:#fefaf1;background:#f2c5d3;border:1px solid #f2c5d3}#hover-yellow{color:#f7dc5b;border:1px solid #f7dc5b}#hover-yellow:hover{color:#fefaf1;background:#f7dc5b;border:1px solid #f7dc5b}.word-legend,.freq-legend{font-family:'Tiempos Text Web';font-weight:600}.word-legend::after{display:inline-block;content:'';width:3rem;height:.25rem;background-color:#ded5bb;margin:0 .25rem .125rem .25rem}.freq-legend::after{display:inline-block;content:'↕';line-height:1;padding:.25rem;width:4rem;height:1rem;top:1px;position:relative;text-align:right;background:-webkit-gradient(linear,left top, right top,color-stop(80%, #ded5bb),color-stop(80%, #fefaf1));background:-o-linear-gradient(left,#ded5bb 80%,#fefaf1 80%);background:linear-gradient(to right,#ded5bb 80%,#fefaf1 80%);margin:0 0 0 .5rem}.stackedBars{-webkit-transform:translateX(10px);-ms-transform:translateX(10px);transform:translateX(10px)}.stackedChartCountries{margin-bottom:20px;margin-top:30px;font-weight:600;font-family:'Barlow Condensed';-webkit-transform:translate(10px,80px);-ms-transform:translate(10px,80px);transform:translate(10px,80px);max-width:13px;text-align:center;fill:#fefaf1;z-index:10}.stackedChartTicks{font-weight:600;font-size:13px;font-family:'Barlow Condensed';text-transform:uppercase;fill:#282828}.themesChartTicks{font-weight:600px;font-size:12px;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;fill:#282828}.stackedChartyTicks,.lineChartyAxis{font-weight:600;font-size:13px;font-family:'Barlow Condensed';text-transform:uppercase;fill:#282828}.themesChartyTicks{font-weight:600;font-size:15px;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;fill:#282828}.spacer{height:55vh}#timeSeriesChart{padding:0 1rem;max-width:40rem;margin:2rem auto;height:300px}#chartP,#chartB{width:100%;height:420px;margin:0 auto}#chartP svg,#chartB svg{width:100%;height:100%}#smChart{width:100%;height:14000px;padding:0 1rem;margin:0 auto;max-width:60rem;-webkit-transition:height .25s ease-in;-o-transition:height .25s ease-in;transition:height .25s ease-in}.pudding-chart{width:100%;height:100%}.chartLabels{padding:0 1rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;margin:0 auto 2rem auto;width:100%;max-width:60rem}.women-comp-line{fill:none;stroke:#53b67c;stroke-width:3}.all-comp-line{fill:none;stroke:#282828;stroke-width:2}.barbellLabels{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;width:100%;max-width:60rem;margin:0 auto 2rem auto;padding:0 50px 0 160px}.barbellLegend{width:100%;padding:0 3.5rem 0 11.5rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;margin:2rem auto 0 auto;max-width:60rem}.barbellButtons{max-width:40rem;margin:auto;margin-bottom:2rem}.leg1{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;position:relative;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;width:16.5rem;-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end;margin-bottom:.5rem}.all-hed{color:#282828;font-family:'Barlow Condensed';font-size:14px;text-align:center;margin:0 0 0 -1.25rem}.women-hed{color:#282828;font-family:'Barlow Condensed';font-weight:600;font-size:14px;text-align:center;max-width:6rem;line-height:1;margin:0}.leg2{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.smDot{border-radius:50%;width:.65rem;height:.65rem;background:#282828}.line{border-top:3px solid #282828;width:12rem}.lgDot{border-radius:50%;width:1.5rem;height:1.5rem;background:#53b67c;border:3px solid #282828}.temporal-chart-section{width:100%}.bubble-wrapper{position:relative}.autocomplete__wrapper{position:relative}label{display:none}.autocomplete__hint,.autocomplete__input{-webkit-appearance:none;border:2px solid #0b0c0c;border-radius:0;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;margin-bottom:0;width:100%}.autocomplete__input{background-color:transparent;position:relative}.autocomplete__hint{color:#b1b4b6;position:absolute}.autocomplete__input--default{padding:5px}.autocomplete__input--focused{outline:3px solid $karen-red;outline-offset:0;-webkit-box-shadow:inset 0 0 0 2px;box-shadow:inset 0 0 0 2px}.autocomplete__input--show-all-values{padding:5px 34px 5px 5px;cursor:pointer}.autocomplete__dropdown-arrow-down{z-index:-1;display:inline-block;position:absolute;right:8px;width:24px;height:24px;top:10px}.autocomplete__menu{background-color:#fff;border:2px solid #0b0c0c;border-top:0;color:#0b0c0c;margin:0;max-height:342px;overflow-x:hidden;padding:0;width:100%;width:calc(100% - 4px)}.autocomplete__menu--visible{display:block}.autocomplete__menu--hidden{display:none}.autocomplete__menu--overlay{-webkit-box-shadow:rgba(0,0,0,0.257) 0 2px 6px;box-shadow:rgba(0,0,0,0.257) 0 2px 6px;left:0;position:absolute;top:100%;z-index:100}.autocomplete__menu--inline{position:relative}.autocomplete__option{border-bottom:solid #b1b4b6;border-width:1px 0;cursor:pointer;display:block;position:relative}.autocomplete__option > *{pointer-events:none}.autocomplete__option:first-of-type{border-top-width:0}.autocomplete__option:last-of-type{border-bottom-width:0}.autocomplete__option--odd{background-color:#fafafa}.autocomplete__option--focused,.autocomplete__option:hover{background-color:#1d70b8;border-color:#1d70b8;color:#fff;outline:0}.autocomplete__option--no-results{background-color:#fafafa;color:#646b6f;cursor:not-allowed}.autocomplete__hint,.autocomplete__input,.autocomplete__option{font-size:16px;line-height:1.25}.autocomplete__hint,.autocomplete__option{padding:5px}@media only screen and (max-width:960px){.title{font-size:120px}.titleArt{height:476px}.title span{padding:1rem 2rem 0 1rem}}@media only screen and (max-width:800px){#stickyStackedChart{margin:0 auto}article{margin:0 auto}.scrolly figure{margin:0 auto}.titleArt{height:auto;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;border-bottom:none}.titlewords{width:100%;border-right:none}.title{text-align:center}.title span:last-of-type{border-bottom:1px solid #282828}.titleCredits{padding:0 1rem;width:100%}.subTitleArt{max-width:40rem;margin:0 auto;padding:2rem 0;text-align:center}.credits{max-width:40rem;margin:0 auto;text-align:center}.credits a{font-weight:600;text-transform:uppercase}.bubbleFilters,.temporalFilters{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.categories{margin-top:1rem;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.temporal-wrapper{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.dropdownOptions{margin:0 .25rem}#stickyXaxis{top:140px}.padded-dropcap{font-size:48px}}@media only screen and (max-width:600px){.scrolltext{font-size:16px}.scrolly figure{top:160px}.barbellButtons{max-width:20rem;margin:auto;margin-bottom:2em}.title{font-size:80px}.sectionHeader,.padded-dropcap{font-size:36px}.tooltipTL{width:100%;max-width:25rem;margin:1rem 0}.barbellLabels{padding:0 50px}.barbellLegend{padding:0 3.5rem 0 3.5rem}.tooltip{bottom:0;left:0;top:auto;width:100%}.lgDot{width:1.25rem;height:1.25rem;border:3px solid #282828}.smDot{width:.5rem;height:.5rem}#chartP,#chartB{height:500px}.chartLabels{-webkit-transform-origin:100% 0;-ms-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg);position:absolute;height:2rem;bottom:-2rem;right:0;width:460px}.xAxisLabel-left{position:absolute;left:0;bottom:0}.xAxisLabel-right{position:absolute;right:0;bottom:0}}@media only screen and (max-width:450px){.categories button{font-size:14px;width:10rem}.dropdownOptions{font-size:14px}}</style>
+
+	<style>
+		/*
+	        This font software is the property of Commercial Type.
+	
+	        You may not modify the font software, use it on another website, or install it on a computer.
+	
+	        License information is available at http://commercialtype.com/eula
+	        For more information please visit Commercial Type at http://commercialtype.com or email us at info[at]commercialtype.com
+	
+	        Copyright (C) 2017 Schwartzco Inc.
+	        License: 1704-GNCLGK
+	*/
+	
+	
+	/*
+		********************
+			Barlow Condensed
+		********************
+		*/
+	
+		@font-face {
+			font-family: 'Barlow Condensed';
+			src: url('./assets/fonts/barlow/BarlowCondensed-Black.woff2') format('woff2'),
+			url('./assets/fonts/barlow/BarlowCondensed-Black.woff') format('woff');
+			font-weight: 900;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Barlow Condensed';
+			src: url('./assets/fonts/barlow/BarlowCondensed-Bold.woff2') format('woff2'),
+			url('./assets/fonts/barlow/BarlowCondensed-Bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Barlow Condensed';
+			src: url('./assets/fonts/barlow/BarlowCondensed-Regular.woff2') format('woff2'),
+			url('./assets/fonts/barlow/BarlowCondensed-Regular.woff') format('woff');
+			font-weight: 400;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Barlow Condensed';
+			src: url('./assets/fonts/barlow/BarlowCondensed-Light.woff2') format('woff2'),
+			url('./assets/fonts/barlow/BarlowCondensed-Light.woff') format('woff');
+			font-weight: 300;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		/*
+		********************
+			National
+		********************
+		*/
+	
+		@font-face {
+			font-family: 'National 2 Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2Web-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2Web-Regular.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'National 2 Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2Web-Bold.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2Web-Bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		/*
+		********************
+			National Narrow
+		********************
+		*/
+	
+		/*
+		@font-face {
+			font-family: 'National 2 Narrow Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Extralight.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Extralight.woff') format('woff');
+			font-weight: 200;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+		
+		@font-face {
+			font-family: 'National 2 Narrow Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Regular.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'National 2 Narrow Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Bold.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		/*
+		@font-face {
+			font-family: 'National 2 Narrow Web';
+			src: url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Black.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/national/National2NarrowWeb-Black.woff') format('woff');
+			font-weight: 900;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+	
+		/*
+		********************
+			Tiempos Text
+		********************
+		*/
+	
+		@font-face {
+			font-family: 'Tiempos Text Web';
+			src: url('https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Regular.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Tiempos Text Web';
+			src: url('https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/tiempos/TiemposTextWeb-Bold.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		/*
+		********************
+			Tiempos Headline
+		********************
+		*/
+	
+		/*
+		@font-face {
+			font-family: 'Tiempos Headline Web';
+			src: url('https://pudding.cool/assets/fonts/tiempos/TiemposHeadlineWeb-Regular.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/tiempos/TiemposHeadlineWeb-Regular.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+		
+		/*
+		********************
+			Publico Text
+		********************
+		*/
+		/*
+		@font-face {
+			font-family: 'Publico Text Web';
+			src: url('https://pudding.cool/assets/fonts/publico/PublicoText-Roman-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/publico/PublicoText-Roman-Web.woff') format('woff');
+			font-weight: 400;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Publico Text Web';
+			src: url('https://pudding.cool/assets/fonts/publico/PublicoText-Bold-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/publico/PublicoText-Bold-Web.woff') format('woff');
+			font-weight: 700;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+		
+		/*
+		********************
+			Atlas Grotesk
+		********************
+		*/
+	
+		/*
+		@font-face {
+			font-family: 'Atlas Grotesk Web';
+			src: url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Regular-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Regular-Web.woff') format('woff');
+			font-weight: 400;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+	
+		@font-face {
+			font-family: 'Atlas Grotesk Web';
+			src: url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Medium-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Medium-Web.woff') format('woff');
+			font-weight: 500;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		
+		@font-face {
+			font-family: 'Atlas Grotesk Web';
+			src: url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Bold-Web.woff2') format('woff2'),
+			url('https://pudding.cool/assets/fonts/atlas/AtlasGrotesk-Bold-Web.woff') format('woff');
+			font-weight: 600;
+			font-style: normal;
+			font-stretch: normal;
+			font-display: swap;
+		}
+		*/
+	</style>
+</head>
+
+<body>
+
+	<a href='#content' class='skip-to-main'>Skip to main content</a>
+	
+	<header
+		class=''>
+		<div class='header__container'>
+			<div class="header-skew">
+				<div class="skew"></div>
+				<a href='https://pudding.cool' target='_blank' class='logo'>
+					<svg id="wordmark" x="0px" y="0px" style="enable-background:new 0 0 192.6 50;" xml:space="preserve" viewBox="0 0 192.6 50">
+<g>
+	<path class="st0" d="M150.1,9.5c1.5,0,2.8,1.3,2.8,2.8s-1.3,2.8-2.8,2.8s-2.8-1.3-2.8-2.8S148.6,9.5,150.1,9.5z"/>
+	<path class="st0" d="M147.2,17.3h5.6v18.2h-5.6V17.3z"/>
+	<path class="st0" d="M77.1,9.5h-1.9h-7v19.3v6.7h5.6v-6.7v-1.4h1.4h1.9c4.9,0,8.9-4,8.9-8.9S82.1,9.5,77.1,9.5z M77.1,21.8h-1.9
+		h-1.4v-1.4v-3.8v-1.4h1.4h1.9c1.8,0,3.3,1.5,3.3,3.3S79,21.8,77.1,21.8z"/>
+	<path class="st0" d="M105.7,17.6h-5.6v8.9c0,1.8-1.5,3.3-3.3,3.3s-3.3-1.5-3.3-3.3v-8.9h-5.6v8.9c0,4.9,4,8.9,8.9,8.9
+		s8.9-4,8.9-8.9V17.6z"/>
+	<path class="st0" d="M164.1,17.6c-4.9,0-8.9,4-8.9,8.9v8.9h5.6v-8.9c0-1.8,1.5-3.3,3.3-3.3s3.3,1.5,3.3,3.3v8.9h5.6v-8.9
+		C173,21.6,169,17.6,164.1,17.6z"/>
+	<path class="st0" d="M119.7,16.2v1.4h-1.4h-1.9c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h7V16.2V9.5l-5.6,3.3
+		C119.7,12.8,119.7,16.2,119.7,16.2z M119.8,24.6v3.8v1.4h-1.4h-1.9c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9h1.4V24.6z"/>
+	<path class="st0" d="M139.3,16.2v1.4h-1.4H136c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h7V16.2V9.5l-5.6,3.3V16.2z M139.4,24.6v3.8
+		v1.4h-1.5H136c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9h1.4v1.4H139.4z"/>
+	<path class="st0" d="M183.7,17.6c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h1.4v1.4v0.9v1.4v1.4c0,1.8-1.5,3.3-3.3,3.3
+		s-3.3-1.5-3.3-3.3V38l-5.6,3.3c0.4,4.5,4.2,8.1,8.9,8.1c4.9,0,8.9-4,8.9-8.9v-1.4v-2.3V17.6h-7H183.7z M187,23.4v1.4v3.8V30h-1.4
+		h-1.9c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9C185.6,23.4,187,23.4,187,23.4z"/>
+	<path class="st0" d="M28.6,17.6c-1.2,0-2.3,0.2-3.3,0.6V9.5l-5.6,3.3v13.7v2v6.9h5.6v-6.9l0,0v-2c0-1.8,1.5-3.3,3.3-3.3
+		s3.3,1.5,3.3,3.3v8.9h5.6v-8.9C37.5,21.6,33.5,17.6,28.6,17.6z"/>
+	<path class="st0" d="M17.8,9.5H0v5.6h6.1v20.3h5.6V15.1h6.1V9.5z"/>
+	<path class="st0" d="M48.3,30.2c-0.4,0-1.2-0.1-1.8-0.4l5.2-2.1l5.6-2.3l-1-2.3l-0.1-0.2c-0.1-0.3-0.3-0.6-0.5-1
+		c-0.1-0.1-0.1-0.2-0.2-0.3c0,0,0-0.1-0.1-0.1l-0.1-0.1l-0.1-0.1c-1.6-2.2-4-3.5-6.7-3.7l0,0h-0.6c-4.9,0-8.9,4-8.9,8.9
+		c0,0.4,0,0.9,0.1,1.4l0,0V28c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0.3,0.1,0.5,0.2,0.8v0.1v0.1c0.1,0.3,0.2,0.7,0.4,1v0.1v0.1
+		c0.1,0.3,0.3,0.5,0.4,0.8c0,0.1,0.1,0.1,0.1,0.2l0,0c0.1,0.2,0.3,0.4,0.4,0.6c0,0,0,0,0,0.1c0,0,0,0.1,0.1,0.1l0.1,0.1
+		c1.7,2.1,4.4,3.4,7.2,3.4h6.1v-5.2C54.5,30.2,50.6,30.2,48.3,30.2L48.3,30.2z M56.2,22.9L56.2,22.9L56.2,22.9z M44.6,25.7
+		L44.6,25.7l-0.2,0.1c0.2-1.9,1.8-3.5,3.7-3.5c0.9,0,1.8,0.4,2.4,0.9L46.2,25L44.6,25.7L44.6,25.7z"/>
+</g>
+</svg>
+				</a>
+			</div>
+			<marquee class="txtscroll" behavior="scroll" scrollamount="10" direction="left" loop="infinite"><p><strong>Woman</strong> with later start to periods, menopause more likely to reach age 90... <strong>Woman</strong> may be missing out on outpatient hospital care in northern India... <strong>Woman</strong> had fatal heart attack due to years of taking antipsychotics, inquest hears... <strong>Woman</strong> dies after house catches fire in Wythenshawe... <strong>Woman</strong> found dead in River Goyt following major emergency service presence... <strong>Woman</strong>, 33, dies following crash on M66 motorway near Bury... <strong>Woman</strong>, killed in Oldham named as man charged with murder... <strong>Woman</strong> banned from owning pets after dog left in dark cupboard to starve to death... <strong>Woman</strong> fined £650 for dropping cigarette butt in town centre... <strong>Woman</strong> arrested as armed police close off road for several hours... <strong>Woman</strong> who went missing before being found dead at park was suffering from depression, inquest opening hears... <strong>Woman</strong>, dies and girl, 16, seriously hurt after fire rips through home in Birmingham... <strong>Woman</strong> taken to hospital after falling from M60 bridge in early hours... <strong>Woman</strong> taken to hospital after being hit by car in Stockport... <strong>Woman</strong> taken to hospital after being rescued from Stalybridge canal... <strong>Woman</strong> nearly crashes into police officers on M60 after her husband is caught drink driving... <strong>Woman</strong> spends £10k transforming her home into a pink paradise... <strong>Woman</strong> confronts masked gang stealing catalytic converter, then this happened... <strong>Woman</strong> faked terminal cancer to dupe friends into paying for dream wedding... <strong>Woman</strong>, 31, found dead in a disused graveyard after 18 day search... <strong>Woman</strong>, two days away from being deported stabbed housemate 30 times... <strong>Woman</strong> who stabbed boyfriend while high on crack walks free in time for Christmas... <strong>Woman</strong> who gave birth on flight had no idea she was pregnant... <strong>Women</strong> suffer more with anxiety, depression during months of isolation due to COVID 19 Gender differences... <strong>Women</strong> are a valuable human resource, there should be zero tolerance towards gender insensitivity... <strong>Women</strong> in Data Science: Changing the rules of the game... <strong>Woman</strong> capable of creating history, future with formidable grace: Rahul Gandhi</p>
+	</marquee>
+			
+			
+		</div>
+	
+	</header>
+	<main id='content'>
+
+		<!-- TITLE -->
+		<div class="titleArt">
+		  <div class="titlewords">
+		    <h1 id = "typedtext" class="title"><span>When</span> <span>Women</span> <span>Make</span> <span>Headlines</span></h1>
+		  </div>
+		  <div class="titleCredits">
+		    <h2 class="subTitleArt">A visual essay about the (mis)representation of women in the news</h2>
+		    <p class="credits">By <a href="https://pudding.cool/author/leonardo-nicoletti" class="creditLink">​​Leonardo Nicoletti</a>
+		        and <a href="https://pudding.cool/author/sahiti-sarva" class="creditLink">Sahiti Sarva</a></p>
+		  </div>
+		</div>
+		
+		<!-- INTRO -->
+		<section class="intro-section">
+		    <p class="description"><span class=padded-dropcap>A</span>t the Seneca Falls Convention 173 years ago, the American suffragette movement kicked off with a declaration that “all men <strong>and women</strong> are created equal.” When newspapers covered this historic call for women's right to vote, some readers saw headlines like “<a href=https://senecafallscoverage.tumblr.com/post/78771341533/the-north-star-july-28th-1848>The Rights of Women</a>” which echoed the messages of the event. Others read headlines like “<a href=https://senecafallscoverage.tumblr.com/post/78771452513/the-mechanics-advocate>Women out of their latitude</a>” followed by a piece which criticized convention-goers for abandoning their womanly duties. There were also articles without headlines, where the publisher lamented what the <a href=https://senecafallscoverage.tumblr.com/post/78771482216/oneida-whig>men would do about their dinners</a> if women went out to vote.</p>
+		    <p class="description">Over the years, women have gained more freedom and space to express themselves while newspaper editors lost some of theirs. There were fewer title-less pieces that took the liberty to walk readers through long descriptive paragraphs. The publisher’s instinct shifted to more crisp headlines that conveyed the crux of the story. In 2006, when Sampat Pal Devi started The Gulabi Gang (i.e. Pink Gang), a female vigilante group, to protest against domestic violence in one of the most conservative villages in Northern India, the news was not merely about reporting an event but about painting a picture. Across the globe, people heard of <a href=http://news.bbc.co.uk/2/hi/7068875.stm>India’s ‘pink’ vigilante women</a>. Some publishers took the creative freedom to title it ‘<a href=https://www.theage.com.au/world/pretty-in-pink-female-vigilantes-also-handy-with-an-axe-20071215-ge6if6.html>Pretty in pink, female vigilantes, also handy with an axe</a>’. Women handy with axes was as novel in 2006 as women taking the stage were in 1848.</p>
+		    <p class="description">Cultural shifts are typically much slower than leaps in technological advancement. Stories, and the words used to tell them, can be an effective way to observe the culture of a society. Somewhere between the height of black and white print newspapers and today’s bite-sized content released on a mobile app, <a href=https://thereader.mitpress.mit.edu/headlines-journalism/>headlines started to turn news into stories</a>.</p>
+		    <p class="description">Behind these catchy headlines that are designed to stick are the often-edited-out names, nuances, and stories of women who make the headline. While the piece itself can clarify, construct, and conserve the full story, in a world too busy to look past the headline they tend to have a <a href=https://www.newyorker.com/science/maria-konnikova/headlines-change-way-think>disproportionate impact on the reader’s mind</a>. If these headlines are all that some of us will read each morning, we wanted to know how the headlines about women have changed over the last decade.</p>
+		    <p class="description">Borrowing some of the spirits of the Black, feminist, lesbian author, activist and poet, Audre Lorde, who said, <a href=https://www.themarginalian.org/2016/05/20/audre-lorde-silence-visibility/>“For those of us who write, it is necessary to scrutinise not only the truth of what we speak but the truth of that language by which we speak it,”</a> we chose to examine the words used when women made headlines.</p>
+		    <p class="description">Using keywords synonymous with “woman”, we collected and analyzed 382,139 headlines from the last decade published by the top 50 English-language news publications across four countries - The United States of America, India, South Africa, and The United Kingdom.</p>
+		</section>
+		
+		<!-- STACKED BAR SECTION -->
+		<section id='scrolly-side'>
+		      <div class='scrolly'>
+		  
+		         <figure>
+		            <div id="stickyStackedChart" class='sticky'></div>
+		         </figure>
+		  
+		        <article id="stackedChartLegend" class="stackedChartDescription">
+		            <div class="step" 
+		               
+		                
+		               
+		               task="drawbars" 
+		              data-index="0">
+		                <div class="step-inner">
+		                    <p class="scrolltext">Since 2005, a total of 1,231 unique words have been used by Indian, South African, British, and American publishers in headlines that report about women. These <span class=word-legend>words</span> are arranged here in a decreasing order of their frequency.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		               word="sue"   
+		               
+		               task="highlightwords" 
+		              data-index="1">
+		                <div class="step-inner">
+		                    <p class="scrolltext">The same word appears at different ranks in different countries. The United States, for example, has more stories around the word <span class=stackedBarTextAnnotation id=hover-black-none value=sue hovertype=inTextHover>sue</span>, compared to countries like India or South Africa where it may be a less common practice. ‘Suing’ someone in an American court can also gain international attention, like when ‘<a href=https://www.reuters.com/article/us-people-jeffrey-epstein-lawsuits-idUSKCN1V61BK>Two women sued Jeffrey Epstein’s estate over alleged sex abuse</a>’ and when ‘<a href=https://www.iol.co.za/entertainment/celebrity-news/international/rihanna-is-suing-her-father-for-exploiting-her-name-18835017>Rihanna sued her father for exploiting her name</a>’.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		               word="black"   
+		               
+		               task="highlightwords" 
+		              data-index="2">
+		                <div class="step-inner">
+		                    <p class="scrolltext"><span class=stackedBarTextAnnotation id=hover-black-none value=black hovertype=inTextHover>Black</span> women like Rihanna may be part of a marginalised group in the USA, UK, and South Africa, but they dominate the news in these countries nonetheless. South Africa, a nation still recovering from the impact of apartheid, is proudly reporting about their <a href=https://www.iol.co.za/lifestyle/style-beauty/beauty/meet-one-of-sas-most-prominent-black-female-doctors-19730305>prominent black female doctors</a>, <a href=​​https://www.iol.co.za/pretoria-news/sas-pioneering-black-female-philos>pioneering black female PhD candidates</a> while also reporting the events that continue to affect this community.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		               word="muslim"   
+		               
+		               task="highlightwords" 
+		              data-index="3">
+		                <div class="step-inner">
+		                    <p class="scrolltext">In India, the racial divide is not as contentious as the religious one. <span class=stackedBarTextAnnotation id=hover-black-none value=muslim hovertype=inTextHover>Muslim</span> appears more frequently in India, compared to the UK, USA, and South Africa, as local news often reports the religion of the story’s subject. Like Black women, Muslim women also are affected by <a href=https://www.vox.com/the-highlight/2019/5/20/18542843/intersectionality-conservatism-law-race-gender-discrimination>intersectionality</a>, that is, they are at a greater disadvantage within society because of gender and racial or religious biases. So any event that hurts the community, like acts of violence, or helps a community, like Rashida Tlaib ad Ilhan Omar becoming the <a href=https://www.cnbc.com/2018/11/07/rashida-tlaib-ilhan-omar-are-the-1st-muslim-women-elected-to-congress.html>first Mulsim women in Congress</a>, makes headlines.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		               word="first"   
+		               
+		               task="highlightwords" 
+		              data-index="4">
+		                <div class="step-inner">
+		                    <p class="scrolltext">Speaking of firsts, the first similarity we noticed between all the countries is the high frequency of the word <span class=stackedBarTextAnnotation id=hover-black-none value=first hovertype=inTextHover>first</span>. There are thousands of stories, nearly 8,000 to be precise, about trailblazing women that shattered glass ceilings. In the recent past, outside Kamala Harris’ widely covered ascension to <a href=https://www.nytimes.com/2020/11/07/us/politics/kamala-harris.html>Vice-Presidency</a>,  Zuzana Caputova became Slovakia’s first female <a href=https://www.theguardian.com/world/2019/mar/31/slovakia-elects-zuzana-caputova-first-female-president>President</a>, and Sahle-Work Zewde was chosen to be Ethiopia’s first female <a href=https://www.bbc.co.uk/news/world-africa-45976620>defence minister</a>.</p>
+		                    <p class="scrolltext">Flip a page or scroll a little more and you will see women from different races, ethnicities, and identities, becoming the first to <a href=https://www.businessinsider.com/meet-the-first-woman-to-lead-a-marine-corps-tank-platoon-2017-4?r=US&IR=T>lead</a> troops, <a href=https://abcnews.go.com/Sports/simone-manuel-female-african-american-swimmer-win-individual/story?id=41320577>win</a> medals, <a href=https://www.businessinsider.com/r-lockheed-f-35-gets-first-female-pilot-air-force-2015-5?r=US&IR=T>fly</a> fighter jets,<a href=https://www.businessinsider.in/women-in-saudi-arabia-will-be-allowed-to-drive-for-the-first-time--heres-what-they-still-cant-do/articleshow/60862745.cms>drive</a> cars and most of all, <a href=​​https://www.google.com/search?q=Interview%3A+Priya+Ramani+and+her+lawyer+Rebecca+John+on+%23MeToo+movement%C3%A2%E2%82%AC%E2%84%A2s+first+big+win+in+India&rlz=1C1UEAD_enIN932IN932&oq=Interview%3A+Priya+Ramani+and+her+lawyer+Rebecca+John+on+%23MeToo+movement%C3%A2%E2%82%AC%E2%84%A2s+first+big+win+in+India&aqs=chrome..69i57j69i58.227j0j7&sourceid=chrome&ie=UTF-8>raise</a> their voices.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		               word="man"   
+		               
+		               task="highlightwords" 
+		              data-index="5">
+		                <div class="step-inner">
+		                    <p class="scrolltext">In spite of these many firsts, the biggest similarity between the four countries, and the most used word among all headlines, is the word ‘man’.</p>
+		                    <p class="scrolltext"><span class=stackedBarTextAnnotation id=hover-black-none value=man hovertype=inTextHover>Man</span> appears more than 30,000 times and men make headlines along with women significantly more during horrific events than in historic ones.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		                
+		               theme="crimeandviolence"  
+		               task="highlightthemes" 
+		              data-index="6">
+		                <div class="step-inner">
+		                    <p class="scrolltext">We categorised the words used to report women-centred news into different themes. The first theme we noticed is <span class=stackedBarTextAnnotation id=inTextViolence-none value=violence>crime & violence</span>.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		               word="rape"   
+		               
+		               task="highlightwords" 
+		              data-index="7">
+		                <div class="step-inner">
+		                    <p class="scrolltext">There are nearly 4,000 stories of death, 6,000 stories of <span class=stackedBarTextAnnotation  value=rape hovertype=inTextHover  id=hover-red-none>rape</span>, and more than 10,000 stories of killing.</p>
+		                    <p class="scrolltext">These headlines disproportionately focus on the victim compared to the perpetrator. There are far fewer stories like the one about <a href=https://www.latimes.com/local/lanow/la-me-ln-man-charged-in-killing-robbery-of-transgender-woman-20150302-story.html>a man who was charged for the rape of an 11-year-old girl</a>, and a lot more about <a href=https://www.dnaindia.com/india/report-muzaffarnagar-woman-gang-raped-in-front-of-her-husband-at-gunpoint-2551004>women who were gang raped in front of their husbands</a> or  <a href=https://www.thenewsminute.com/article/gangraped-and-burned-acid-transgender-woman-hyderabad-needs-your-help-62453>transgender women</a> burned with acid.</p>
+		                    <p class="scrolltext">By omitting the cause of the violence and choosing to focus on the victim’s <a href=https://www.youtube.com/watch?v=It8UDcOUy10>circumstances, choices and character</a>, the issue becomes about the ‘protection of <a href=https://www.salon.com/2013/02/13/stop_calling_us_wives_and_moms/>daughters, mothers, and wives</a>’ rather than the perversion of the perpetrator.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		                
+		               theme="femalestereotypes"  
+		               task="highlightthemes" 
+		              data-index="8">
+		                <div class="step-inner">
+		                    <p class="scrolltext">This brings us to another prevalent theme in the set of words: gendered language. Daughter, mother, and wife rarely invoke the image of a transgender or non-binary person in a reader’s mind. While these labels are explicitly <span class=stackedBarTextAnnotation id=inTextStereotypes-none value=stereotypes>gendered language</span>, some other words merely become associated with a gender because of underlying stereotypes.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		               word="marry"   
+		               
+		               task="highlightwords" 
+		              data-index="9">
+		                <div class="step-inner">
+		                    <p class="scrolltext">We found words like body, child, and <span class=stackedBarTextAnnotation value=marry hovertype=inTextHover id=hover-green-none>marry</span> repeatedly becoming the topics of conversation in women-centred headlines. When women break out of these stereotypes and make headlines, the stories are told of a ‘woman’<a href=https://www.dailymail.co.uk/news/article-1114409/Drunken-woman-judge-suspended-forcibly-kissing-solicitor-swearing-prosecutor.html> judge</a>, a ‘woman’ <a href=https://www.dnaindia.com/india/report-uttar-pradesh-woman-police-officer-who-clashed-with-bjp-workers-transferred-2490067>police officer</a>, or a ‘woman’ <a href=https://www.thenewsminute.com/article/kerala-womens-commission-file-case-against-pc-george-comments-woman-actor-66685>actor</a>, lest the reader turn to the <a href=https://plato.stanford.edu/entries/feminism-language/>implicit male worldview</a> encoded in the English language.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		                
+		               theme="EPR"  
+		               task="highlightthemes" 
+		              data-index="10">
+		                <div class="step-inner">
+		                    <p class="scrolltext">The lifeboat that kept us wading through these words to identify themes, are women reclaiming their positions within titles of stories and refusing to remain in the margins. Stories of women, from Black, Dalit or, LGBTQIA2S+ communities, leading this reclamation in Parliaments, Congresses, High Courts, cities and capitals pushed us to identify three more themes in addition to <span class="stackedBarTextAnnotation" id="inTextViolence" value="crimeandviolence">crime & violence</span> and <span class="stackedBarTextAnnotation" id="inTextStereotypes" value="femalestereotypes">gendered language</span>: <span class="stackedBarTextAnnotation" id="inTextEmpowerment" value="empowerment">empowerement</span>, <span class="stackedBarTextAnnotation" id="inTextPeople" value="peopleandplaces">people & places</span> and, <span class="stackedBarTextAnnotation" id="inTextRace" value="raceethnicityandidentity">race, ethnicity, & identity</span>.</p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               
+		               word="slay"   
+		               
+		              
+		              data-index="11">
+		                <div class="step-inner">
+		                    <p class="scrolltext">This process of reclaiming space also led to reclaiming some words that once belonged in a certain theme but do not anymore. For instance, ‘slay’ started off as a purely violent word and evolved to represent slay queens and today, it can also be used in empowering contexts.</p>
+		                    <p class="scrolltext">Many such words fought off attempts to be boxed into themes and chose to remain in the gray area. <span class=hover-icon>Hover over the colored blocks</span> or search below to explore the words and themes on your own and drop us a note if you think you found another theme.</p>
+		                    <p class="scrolltext"><div id=wordSearch></div></p>
+		                </div>
+		            </div>
+		            <div class="step" 
+		               id="themebars"  
+		                
+		               
+		               task="themeBarsTransition" 
+		              data-index="12">
+		                <div class="step-inner">
+		                    <p class="scrolltext">We then went on to compare the themes for words common across all countries. Each <span class=freq-legend>word</span> is as high as the number of times it is used, and stacked upon other words in the same theme. It turns out, for every empowering story, we read nearly two stories of crime and violence.</p>
+		                </div>
+		            </div>
+		        </article>
+		     </div>
+		</section>
+		
+		<section>
+		   <div id="endStackedbarSection"></div>
+		      <p class="description">Be it empowerment or crime and violence, all headlines are designed to get the attention of the reader. Headlines can inspire the reader to care about something or simply present the reader with shock value. A few randomly picked headlines show that the latter is probably more prominent.</p>
+		
+		  <div class="exampleheadlines">
+		      <div class="tooltipTL" id="">
+		        <p class="deets">MAY 2015  |  TELEGRAPH.CO.UK</p>
+		        <p class="headline">Mum lets 6 year old daughter shaver her head to prove girls don&#x27;t have to be girly</p>
+		      </div>
+		      <div class="tooltipTL" id="">
+		        <p class="deets">NOV 2016  |  DAILYMAIL.COM</p>
+		        <p class="headline">Woman who gave birth on plane had no idea she was pregnant</p>
+		      </div>
+		      <div class="tooltipTL" id="">
+		        <p class="deets">APR 2016  |  FOXNEWS.COM</p>
+		        <p class="headline">More single women hunt for homes, not husbands</p>
+		      </div>
+		    <div class="btn-wrapper">
+		      <button id="shuffle-headlines">Shuffle<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></button>
+		    </div>
+		  </div>
+		</section>
+		
+		<!-- BARBELL SECTION -->
+		<section class="barbell-section">
+		  <div class="header">
+		    <h2 class="sectionHeader">Headlines about women are more sensational</h2>
+		  </div>
+		  <div id="sortLollipop">
+		      <p class="description"><span class=padded-dropcap>S</span>ensationalism is an editorial tactic. Although its use is rising, it is not new. The words in a sensational headline are carefully chosen for the purpose of enticing readers. After all, a story titled ‘<a href=https://news.sky.com/story/woman-28-charged-after-stabbing-in-barnsley-town-centre-11494085>Woman, 28, charged after 'stabbing' in Barnsley town centre</a>’ would potentially garner a semi-conscious glance from its reader while one titled ‘<a href=https://www.express.co.uk/news/uk/1014846/barnsley-stabbing-woman-market-trader-hero-south-yorkshire-uk-knives-police>Woman screamed 'KILL KILL KILL!' while repeatedly stabbing a man in Barnsley market attack</a>’ is more likely to see eyes widening and fingers clicking.</p>
+		      <p class="description">But, is this sensationalism more or less prominent in women-focused headlines? To find out, we used sentiment analysis, a machine learning technique to quantify emotion in text, to rate every headline with a polarity score. A headline with either extremely positive or extremely negative sentiment is considered sensational and hence, is given a higher polarity score. We then saw the trend over time. It turns out, women-focused headlines were a tad bit more sensational than other headlines.</p>
+		  </div>
+		  <div id="timeSeriesChart"></div>
+		  <div id="sortLollipop">
+		      <p class="description">We then compared the polarity of headlines about women with all other headlines for each publication. We ranked each outlet by the <strong>absolute polarity score</strong> of headlines about women and the <strong>% difference in the polarity scores</strong> between headlines about women and other headlines.</p>
+		      <p class="description">We found that outlets which sensationalize news about women more than other topics far exceed the number of outlets that do the opposite. The outlets that sensationalize headlines about women less are not all reporting news first hand, such as Nature or FiveThirtyEight, which do not deal with the everyday news but go deeper into significant topical trends.</p>
+		  </div>
+		
+		  <div class="barbellLegend">
+		    <div class="leg1">
+		      <p class="all-hed">All headlines</p>
+		      <p class="women-hed">Headlines about women</p>
+		    </div>
+		    <div class="leg2">
+		      <div class="smDot"></div>
+		      <div class="line"></div>
+		      <div class="lgDot"></div>
+		    </div>
+		  </div>
+		  <div class="barbellLabels">
+		      <p id="xAxisLabel">← Less Polarizing</p>
+		      <p id="xAxisLabel">More Polarizing →</p>
+		  </div>
+		
+		  <div class="barbellButtons">
+		    <button id="sortLollipopPol" class="lollipopTextbutton-active">absolute polarity score</button>
+		    <button id="sortLollipopDiff" class="lollipopTextbutton">% difference in the polarity scores</button>
+		  </div>
+		
+		  <div class="lollipop" class="svg-container" style="text-align: center;">
+		    <div id="lollipopChart"></div>
+		  </div>
+		    <p class="description">This can be tied back to the fact that a lot of stories when women make headlines are about crime and violence. Within these articles, strong imagery is often used to create shock value. The top 500 most sensationalized headlines mostly talk about brutal murders, horrific attacks, repeated rapes or violent crimes.</p>
+		</section>
+		
+		<!-- HEADLINE POLARITY SECTION -->
+		<section class="bubble-section">
+		  <div class="header">
+		      <h2 class="sectionHeader">Here’s how polarizing headlines are</h2>
+		    </div>
+		      <p class="description"><span class=padded-dropcap>W</span>e then tied the readership of every publication to the polarity score for their headlines about women. All outlets sensationalize their news to some extent (see all the bubbles huddled up closer to the right?). Those on the left end of the spectrum tend to be the ones focussing on finance news like Bloomberg in the United States and LiveMint in India, or on tech news such as techradar and cnet. Nature, a predominantly scientific publication, is the least sensational one but also has very limited reach.</p>
+		      <p class="description">BBC and New York Times are the largest publications with the least sensational news compared to the Dailymail, HuffingtonPost, Fox News or Aaj Tak who publish a lot more shock value.</p>
+		      <p class="description"><span class=hover-icon>Hover on each of the bubbles</a> and see the headlines for yourself.</p>
+		    <div class="bubbleFilters">
+		      <div class="left">
+		        <p class="annotationButton">Filter by</p>
+		        <div>
+		          <select style="font-weight: 600" id="countrydropdown" class="dropdownOptions"></select>
+		          <select style="font-weight: 600" id="pubdropdown" class="dropdownOptions"></select>
+		        </div>
+		      </div>
+		    </div>
+		  <section class="headline-polarity-section">
+		    <div class="bubble-wrapper">
+		      <div id="chartP" class="svg-container" style="text-align: center;"></div>
+		      <div class="chartLabels">
+		        <p id="xAxisLabel" class="xAxisLabel-left">← Less Polarizing</p>
+		        <p id="xAxisLabel" class="xAxisLabel-right">More Polarizing →</p>
+		      </div>
+		      <details>
+		        <summary>Read more about our polarity calculations</summary>
+		        <div class="inner">
+		            <p class="bubble-notes">We measure <strong>polarity</strong> by performing sentiment analysis on each headline using the Vader python package, where each headline gets a sentiment score from -1 to 1 (from more negative to more positive). Because we are interested in polarity, we take the absolute value of each headline's score.</p>
+		        </div>
+		      </details>
+		    </div>
+		  </section>
+		
+		  <!-- HEADLINE BIAS SECTION -->
+		  <section class="headline-bias-section">
+		    <div class="header" id="biasSection">
+		      <h2 class="sectionHeader">Here’s how biased headlines are</h2>
+		    </div>
+		      <p class="description"><span class=padded-dropcap>W</span>hile the theme of crime and violence got us delving into how sensational women-centred news is, the theme of gendered language led to the idea of measuring bias.</p>
+		      <p class="description">The initial idea of feminism that began 150 years ago with the suffragette movement disappeared after having made a few ripples. The metaphor of feminism as a recurring wave first appeared, in fact, <a href=https://www.vox.com/2018/3/20/16955588/feminism-waves-explained-first-second-third-fourth>when women made the headlines</a>. In March of 1968 Martha Weinman Lear’s piece was published in The New York times titled “<a href=https://www.nytimes.com/1968/03/10/archives/the-second-feminist-wave.html>The Second Feminist Wave</a>”. Apart from highlighting the role journalism and headlines play in shaping how society views a social movement, this piece marks the beginning of a time when a lot of attention was drawn to gender bias in language.</p>
+		      <p class="description">Gender bias within language both silences and emphasizes gender in negative ways. When ‘he’ is used to describe both men and women, it makes women invisible. When words like ‘actress’ or ‘congresswoman’ are created explicitly, it emphasizes the gender of a person when there is no need to do so. It is words like this that we  began to count - landlady, sister, wife, daughter, businesswoman, and prostitute. The more these words are used, the greater the gender bias in the headline.</p>
+		      <p class="description">We then counted the number of headlines that paired these words with underlying stereotypes associated with women - beautiful, emotional, supportive or dramatic. For example, the story where the ‘<a href=https://www.dailymail.co.uk/news/article-2840460/Life-Kardashians-d-stay-poverty-Thailand-13-year-old-orphan-girl-Kim-desperate-adopt-says-NO.html>Thai orphan girl Kim Kardashian was desperate to adopt says NO</a>’ by the Daily Mail could have very well been titled as the ‘<a href=https://www.usatoday.com/story/news/world/2014/11/24/kardashian-thai-orphanage/19477331/>Thai orphan shuns Kim Kardashian adoption offer</a>’ to reduce bias.  We counted the biased words to create a bias index for each publication. The bias index is more spread out than polarity scores with the Daily Mail being the most biased and the BBC among the least.</p>
+		      <p class="description">Go ahead, <span class=hover-icon>hover on the bubbles</span> and see for yourself if you think these headlines are extremely gendered.</p>
+		    <div class="bubble-wrapper">
+		      <div id="chartB" class="svg-container" style="text-align: center;"></div>
+		      <div class="chartLabels">
+		        <p id="xAxisLabel"class="xAxisLabel-left">← Less Biased</p>
+		        <p id="xAxisLabel" class="xAxisLabel-right">More Biased →</p>
+		      </div>
+		      <details>
+		        <summary>Read more about our bias calculations</summary>
+		        <div class="inner">
+		            <p class="bubble-notes">We measure <strong>gender bias</strong> by tracking the combined occurrence of gendered language and social stereotypes usually associated with women. We do this in two steps:</p>
+		            <p class="bubble-notes">1) We check if a headline contains gendered language (i.e. 'spokeswoman', 'chairwoman', 'she', 'her', 'bride', 'daughter', 'daughters', 'female', 'fiancee', 'girl', 'girlfriend' etc.).</p>
+		            <p class="bubble-notes">2) If it contains gendered language, we then count the number of words that are considered to be social stereotypes about women (i.e. 'weak', 'modest', 'virgin', 'slut', 'whore', 'sexy', 'feminine', 'sensitive', 'emotional', 'gentle', 'soft', 'pretty', 'bitch', 'sexual' etc.).</p>
+		            <p class="bubble-notes">Finally, we normalize this count for all headlines within each outlet as a score between 0 and 1, and we aggregate (i.e. average) this score for each outlet.</p>
+		        </div>
+		      </details>
+		    </div>
+		  </section>
+		</section>
+		
+		<!-- CONCLUSION -->
+		<section class="conclusion-section">
+		  <div class="header" id="conclusionSection">
+		    <h2 class="sectionHeader">Headline trends: Less gendered language. More empowering words.</h2>
+		  </div>
+		    <p class="description"><span class=padded-dropcap>T</span>he story of when women make headlines, like its title, is incomplete. It changes over time and space and allows the reader to keep re-interpreting and completing the title with every new headline, new country and new year they read about. Like most stories about people, it is full of contradictions. It is violent, cruel, sensational, biased, hopeful and empowering although not all of them in equal measure. At the end of this, we believe it is only fitting to leave you with two contradicting thoughts.</p>
+		    <p class="description">First is one of <a href=​​https://www.themarginalian.org/2013/04/29/craftsmanship-virginia-woolf-speaks-1937/>Virginia Woolf’s meditation on language</a>. We acknowledge that not all of her views were inclusive and progressive but we believe her thoughts on language still bear relevance to this story. “Since the only test of truth is length of life, and since words survive the chops and changes of time longer than any other substance, therefore they are the truest.” The words we consume shape the lens we use to look at society, and in this case, women. Although the words may disappear to become yesterday’s news, the lens stays on. This dissection of words demonstrates that the words used to talk about women making headlines can be biased, reinforcing existing stereotypes or unnecessarily underlining the gender of the person where there is no relevance. They can be sensational, taunting the reader to be shocked instead of inspiring them to care. They show that for every step forward with women becoming empowered, we take two steps back with women becoming victims of crime and violence. What’s more, the lens formed from these words often blindsides the reader to the perpetrators, making this issue a ‘women’s security’ problem rather than a ‘societal safety’ problem. If these words are the truest testament of our time, then we have a responsibility to examine, scrutinize, reflect and if possible, correct them before they become the lens we use to look at women.</p>
+		    <p class="description">The second thought is from the East; a <a href=https://www.quora.com/Does-the-saying-When-the-sage-points-at-the-moon-the-fool-looks-at-the-finger-really-have-Chinese-origins>Chan Buddhist’s meditation on language</a>, attributed to some and <a href=http://nhuir.nhu.edu.tw/retrieve/55344/the%20finger%20pointing.pdf>modified by many</a> along the way, says that “When a person points at the moon, the fool looks at the finger.” The moon here is the truth and the finger is language. Language can only point someone to the truth, it is not the truth in itself. After all, we can see the moon without anyone pointing us to it, can we not? After living through a deadly pandemic for over two years, we should know that no words can do justice to the loneliness, despair or grief that took over the world, they can only point someone to the general direction of our mental state. No words, sensational or not, biased or not, can truly explain the emotion, thought and spirit of an event when women make headlines, because words can only approximate.</p>
+		    <p class="description">To visualize this contradiction that words stand the test of time and that they are only a distant echo of the time in which they are relevant, we mapped how words in headlines about women change over time. It turns out, from a time when married women, by law, were <a href=https://www.youtube.com/watch?v=YD3toWpUe8M>considered the property of a man</a>, to single women <a href=https://www.forbes.com/sites/brendarichardson/2021/03/11/single-women-are-propping-up-the-first-time-home-buyer-segment/?sh=40216b13526d>owning more property as a group than single men</a>, society has come a long way.</p>
+		    <p class="description">This final visual is one we would love for you to get lost in, like we did. It feels like a photo album. Every time we saw an ebb or a flow of a word, we tried to find a ‘remember when’ memory to explain it. Remember when Caitlyn Jenner came out as transgender? That’s why ‘transgender’ shot up in 2015. Remember when the #MeToo movement took off? That explains the rise of ‘harassment’ in 2017, and the rise of ‘equality’. Remember when <a href=https://pudding.cool/2017/07/comics/?fbclid=IwAR2OpAxXYPwHjDAV98kTWe8equtFbo_OfP3hlym9aMBDpZAI4VqS76HpVuw>Wonder Woman</a> was released? That’s why there was a rise in ‘Wonder’.</p>
+		    <p class="description">Also notice how the use of some words fade out over time, like ‘sexy’, ‘fat’, ‘housewife’ or ‘gossip’ (gendered words mostly). Other words increase over time, like ‘founder’, ‘activist’, ‘leader’ or ‘appoint’ (empowering words mostly). Some words stand the test of time and are consistently used throughout like ‘knife’, ‘death’ or ‘drama’.</p>
+		    <p class="description">If you see an interesting rise, <span class=hover-icon>hover over the bubbles</span> on top to see if you can find a world event that could explain it. If you think that we missed out on an important event in your part of the world that can explain one of these tiny waves that words create, let us know.</p>
+		</section> 
+		
+		<!-- TEMPORAL CHART -->
+		<section class="temporal-chart-section" id="waveChartSection">
+		  <div class="temporalFilters">
+		    <div class="temporal-wrapper">
+		      <div class="left">
+		          <p class="annotationButton">Filter by</p>
+		          <div>
+		            <select style="font-weight: 600" id="countrydropdownTemporal" class="dropdownOptions"></select>
+		          </div>
+		        </div>
+		        <div class="right">
+		          <div class="categories">
+		            <button class="btn-theme active-btn-empowerment" id="btn-empowerment">Empowerment</button>
+		            <button class="btn-theme" id="btn-violence">Crime &#38; Violence</button>
+		            <button class="btn-theme" id="btn-stereotypes">Gendered Language</button>
+		            <button class="btn-theme" id="btn-race">Race, Ethnicity, &#38; Identity</button>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  <div id = "stickyXaxis" style="text-align: center;">
+		    <p>News Events</p>
+		  </div>
+		  <div id="smChart" class="svg-container3" style="text-align: center;"></div>
+		  <!--<div class="fade"></div>-->
+		  <!--<button class="see-more"><p>See more words</p></button>-->
+		</section>
+		
+		<!-- METHODS -->
+		<section class="methods-section">
+		  <hr class="methodSep">
+		  
+		  <h5 class="inputTitle">Methods</h4>
+		    <p class="methodDescription">To build the dataset of headlines we scraped data from Google News using RapidAPI, from the top 50 most visited publications according to <a href=https://www.similarweb.com/top-websites/india/category/news-and-media/>SimilarWeb</a> in the United States of America, United Kingdom, India and South Africa. We collected all the headlines tagged with the keywords synonymous with women.</p>
+		    <p class="methodDescription"><strong>Gendered language and bias calculation:</strong> To categorise words as gendered, we manually curated two dictionaries - gendered words and words that denote gender stereotypes. This was curated using existing research such as the work done by  Huimin Xu and team, published under the title ‘<a href=https://github.com/xuhuimin2017/storyshape>The Cinderella Complex</a>’ and the incredible research done by <a href=https://theswaddle.com/>The Swaddle</a> team. The methodology used to calculate bias was borrowed from the research done by Yasmeen Hitti and team, published under the title ‘<a href=https://aclanthology.org/W19-3802/>Proposed Taxonomy for Gender Bias in Text</a>’.</p>
+		    <p class="methodDescription"><strong>Theme dictionaries</strong>: The dictionaries of crime and violence, empowerment and race, ethnicity and identity were curated manually. In cases where the word had more than one contextual usage, we only classified those words that belonged to the same theme in no less than 90% of the cases. To process the words, we used existing NLP packages with modified stop words.</p>
+		    <p class="methodDescription"><strong>Polarity analysis</strong>: For analysing the polarity of each headline we used <a href=https://pypi.org/project/vaderSentiment/>vaderSentiment</a>. For the polarity comparison, we scraped headlines without any keyword tag from the top 50 publications across these countries. However, the number of headlines we used to calculate the baseline polarity is roughly one third of the headlines we used to calculate the polarity of woman’s news.</p>
+		    <p class="methodDescription">There were far more than 1,231 unique words in the original dataset. We filtered most of them manually making the analysis observer dependent and imperfect.</p>
+		    <p class="methodDescription">We collaborated with <a href=​​https://pudding.cool/author/jan-diehm>Jan Diehm</a>, <a href=https://pudding.cool/author/rob-smith>Rob Smith</a>, <a href=https://pudding.cool/author/russell-goldenberg>Russell Goldenberg</a>, and <a href=https://pudding.cool/author/michelle-mcghee>Michelle McGhee</a> for the piece and we’re quite grateful and happy for how it turned out!</p>
+		</section>  
+		
+		<!-- TOOLTIPS -->
+		<div class="tooltip"></div>
+	</main>
+
+	<footer class='pudding-footer'>
+	
+		<div class='footer-recirc'>
+			<div class='footer-recirc__articles'></div>
+		</div>
+	
+		<div class='footer-company'>
+			<div class='footer-company__cta'>
+				<ul class='footer-company__cta-list'>
+					<li>
+						<a href='https://facebook.com/pudding.viz/'>
+							<svg width="24" height="24" fill="#000000" stroke="currentColor" stroke-width=".2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+							<p>FACEBOOK</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://twitter.com/puddingviz/'>
+							<svg width="24" height="24" fill="#000" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+							<p>TWITTER</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://www.instagram.com/the.pudding'>
+							<svg width="24" height="24" id="Layer_1" x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve" viewBox="0 0 24 24">
+<path d="M17,23H7c-3.3,0-6-2.7-6-6V7c0-3.3,2.7-6,6-6h10c3.3,0,6,2.7,6,6v10C23,20.3,20.3,23,17,23z M7,3C4.8,3,3,4.8,3,7v10
+	c0,2.2,1.8,4,4,4h10c2.2,0,4-1.8,4-4V7c0-2.2-1.8-4-4-4H7z"/>
+<path d="M12,17c-1.1,0-2.1-0.3-3-1c-1.1-0.8-1.8-2-2-3.3C6.7,10,8.6,7.4,11.3,7c0.5-0.1,1-0.1,1.5,0c2.2,0.3,3.9,2,4.2,4.2l0,0
+	c0.2,1.3-0.1,2.6-0.9,3.7c-0.8,1.1-2,1.8-3.3,2C12.5,16.9,12.3,17,12,17z M12,9c-0.1,0-0.3,0-0.4,0c-1.6,0.2-2.8,1.8-2.5,3.4
+	c0.2,1.6,1.8,2.8,3.4,2.5c0.8-0.1,1.5-0.5,2-1.2s0.7-1.4,0.6-2.2l0,0c-0.2-1.3-1.2-2.3-2.5-2.5C12.3,9,12.2,9,12,9z"/>
+<path d="M17.5,7.5c-0.3,0-0.5-0.1-0.7-0.3c-0.1-0.1-0.2-0.2-0.2-0.3c-0.1-0.1-0.1-0.2-0.1-0.4c0-0.3,0.1-0.5,0.3-0.7
+	c0.4-0.4,1-0.4,1.4,0c0.2,0.2,0.3,0.4,0.3,0.7c0,0.1,0,0.3-0.1,0.4s-0.1,0.2-0.2,0.3C18,7.4,17.8,7.5,17.5,7.5z"/>
+</svg>
+							<p>INSTAGRAM</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://patreon.com/thepudding/'>
+							<svg id="Layer_1" width="24" height="24" x="0px" y="0px" enable-background="new 0 0 24 24" xml:space="preserve" viewBox="0 0 24 24">
+<g>
+
+		<path fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" d="
+		M15.7,3.3c-3.7,0-6.8,3-6.8,6.8c0,3.7,3,6.7,6.8,6.7c3.7,0,6.7-3,6.7-6.7C22.4,6.3,19.4,3.3,15.7,3.3"/>
+
+		<rect x="3.7" y="3.3" stroke-linecap="round" stroke-linejoin="round" width="3.3" height="18"/>
+</g>
+</svg>
+							<p>PATREON</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://pudding.cool/about'>
+							<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>
+							<p>ABOUT</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://pudding.cool/privacy/'>
+							<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+							<p>PRIVACY</p>
+						</a>
+					</li>
+					<li>
+						<a href='http://eepurl.com/czym6f'>
+							<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+							<p>NEWSLETTER</p>
+						</a>
+					</li>
+					<li>
+						<a href='https://pudding.cool/feed/index.xml'>
+							<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss" viewBox="0 0 24 24"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+							<p>RSS</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+	
+			<div class='footer-company__about'>
+				<svg id="wordmark" x="0px" y="0px" style="enable-background:new 0 0 192.6 50;" xml:space="preserve" viewBox="0 0 192.6 50">
+<g>
+	<path class="st0" d="M150.1,9.5c1.5,0,2.8,1.3,2.8,2.8s-1.3,2.8-2.8,2.8s-2.8-1.3-2.8-2.8S148.6,9.5,150.1,9.5z"/>
+	<path class="st0" d="M147.2,17.3h5.6v18.2h-5.6V17.3z"/>
+	<path class="st0" d="M77.1,9.5h-1.9h-7v19.3v6.7h5.6v-6.7v-1.4h1.4h1.9c4.9,0,8.9-4,8.9-8.9S82.1,9.5,77.1,9.5z M77.1,21.8h-1.9
+		h-1.4v-1.4v-3.8v-1.4h1.4h1.9c1.8,0,3.3,1.5,3.3,3.3S79,21.8,77.1,21.8z"/>
+	<path class="st0" d="M105.7,17.6h-5.6v8.9c0,1.8-1.5,3.3-3.3,3.3s-3.3-1.5-3.3-3.3v-8.9h-5.6v8.9c0,4.9,4,8.9,8.9,8.9
+		s8.9-4,8.9-8.9V17.6z"/>
+	<path class="st0" d="M164.1,17.6c-4.9,0-8.9,4-8.9,8.9v8.9h5.6v-8.9c0-1.8,1.5-3.3,3.3-3.3s3.3,1.5,3.3,3.3v8.9h5.6v-8.9
+		C173,21.6,169,17.6,164.1,17.6z"/>
+	<path class="st0" d="M119.7,16.2v1.4h-1.4h-1.9c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h7V16.2V9.5l-5.6,3.3
+		C119.7,12.8,119.7,16.2,119.7,16.2z M119.8,24.6v3.8v1.4h-1.4h-1.9c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9h1.4V24.6z"/>
+	<path class="st0" d="M139.3,16.2v1.4h-1.4H136c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h7V16.2V9.5l-5.6,3.3V16.2z M139.4,24.6v3.8
+		v1.4h-1.5H136c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9h1.4v1.4H139.4z"/>
+	<path class="st0" d="M183.7,17.6c-4.9,0-8.9,4-8.9,8.9s4,8.9,8.9,8.9h1.9h1.4v1.4v0.9v1.4v1.4c0,1.8-1.5,3.3-3.3,3.3
+		s-3.3-1.5-3.3-3.3V38l-5.6,3.3c0.4,4.5,4.2,8.1,8.9,8.1c4.9,0,8.9-4,8.9-8.9v-1.4v-2.3V17.6h-7H183.7z M187,23.4v1.4v3.8V30h-1.4
+		h-1.9c-1.8,0-3.3-1.5-3.3-3.3s1.5-3.3,3.3-3.3h1.9C185.6,23.4,187,23.4,187,23.4z"/>
+	<path class="st0" d="M28.6,17.6c-1.2,0-2.3,0.2-3.3,0.6V9.5l-5.6,3.3v13.7v2v6.9h5.6v-6.9l0,0v-2c0-1.8,1.5-3.3,3.3-3.3
+		s3.3,1.5,3.3,3.3v8.9h5.6v-8.9C37.5,21.6,33.5,17.6,28.6,17.6z"/>
+	<path class="st0" d="M17.8,9.5H0v5.6h6.1v20.3h5.6V15.1h6.1V9.5z"/>
+	<path class="st0" d="M48.3,30.2c-0.4,0-1.2-0.1-1.8-0.4l5.2-2.1l5.6-2.3l-1-2.3l-0.1-0.2c-0.1-0.3-0.3-0.6-0.5-1
+		c-0.1-0.1-0.1-0.2-0.2-0.3c0,0,0-0.1-0.1-0.1l-0.1-0.1l-0.1-0.1c-1.6-2.2-4-3.5-6.7-3.7l0,0h-0.6c-4.9,0-8.9,4-8.9,8.9
+		c0,0.4,0,0.9,0.1,1.4l0,0V28c0,0,0,0,0,0.1c0,0,0,0,0,0.1c0,0.3,0.1,0.5,0.2,0.8v0.1v0.1c0.1,0.3,0.2,0.7,0.4,1v0.1v0.1
+		c0.1,0.3,0.3,0.5,0.4,0.8c0,0.1,0.1,0.1,0.1,0.2l0,0c0.1,0.2,0.3,0.4,0.4,0.6c0,0,0,0,0,0.1c0,0,0,0.1,0.1,0.1l0.1,0.1
+		c1.7,2.1,4.4,3.4,7.2,3.4h6.1v-5.2C54.5,30.2,50.6,30.2,48.3,30.2L48.3,30.2z M56.2,22.9L56.2,22.9L56.2,22.9z M44.6,25.7
+		L44.6,25.7l-0.2,0.1c0.2-1.9,1.8-3.5,3.7-3.5c0.9,0,1.8,0.4,2.4,0.9L46.2,25L44.6,25.7L44.6,25.7z"/>
+</g>
+</svg>
+				<p class='footer-company__description'><a href='https://pudding.cool'>The Pudding</a> is a digital publication
+					that
+					explains ideas debated in culture with visual essays.</p>
+			</div>
+	
+		</div>
+	</footer>
+
+
+	<script src='https://pudding.cool/assets/scripts/d3.v6.0.0.min.js'></script>
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+	<script src="https://unpkg.com/scrollama"></script>
+	<script src="https://pudding.cool/assets/scripts/stickyfill.min.js"></script>
+	<script src='bundle.js?version=1642016431732' async></script>
+</body>
+
+</html>

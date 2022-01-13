@@ -1,3 +1,4 @@
+import { xor } from "lodash";
 import { eventDataNew } from "../utils/eventData";
 /* global d3 */
 
@@ -26,6 +27,8 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
     let $circleEvents = null;
     let $rulerG = null;
     let $tooltip = d3.selectAll(".tooltip");
+    let $pulse = null;
+    let showPulse = true;
 
     // colors
     const mainColor = "#3569DC";
@@ -59,9 +62,12 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           [item]: index,
         };
       }, {});
-      return data.sort(
-        (a, b) => sortByObject[a[sortField]] - sortByObject[b[sortField]]
-      );
+      return data.sort((a, b) => {
+        // force "metoo" to be first
+        if (a[0] === "metoo") return -100;
+        if (b[0] === "metoo") return 100;
+        return sortByObject[a[sortField]] - sortByObject[b[sortField]];
+      });
     };
 
     words = customSort({ data: words, sortBy, sortField: "theme" });
@@ -271,6 +277,10 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
     }
 
     function showTimeRuler(event, d) {
+      // remove pulse
+      showPulse = false;
+      $pulse.remove();
+
       let selection = d3.select(event.currentTarget);
 
       d3.selectAll(".event-circle").style("opacity", "0.5");
@@ -560,6 +570,42 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
 
         $circleEvents = $stickyAxis.append("g");
 
+        // annotation
+        const anno = $svg
+          .append("text")
+          .style("font-size", "14px")
+          .attr("class", "temporalAnno");
+
+        anno
+          .append("tspan")
+          .text("Hover over the circles above")
+          .attr("x", 0)
+          .style("font-weight", "bold");
+        anno
+          .append("tspan")
+          .text("to see events surrounding")
+          .attr("x", 0)
+          .attr("dy", 20);
+        anno
+          .append("tspan")
+          .text("the rise of the phrase")
+          .attr("x", 0)
+          .attr("dy", 20);
+        anno
+          .append("tspan")
+          .text('"me too", for example')
+          .attr("x", 0)
+          .attr("dy", 20);
+        // .style("font-weight", "bold");
+
+        // pulsing circle
+        if (showPulse) {
+          $pulse = d3
+            .select("div#stickyXaxis")
+            .append("circle")
+            .attr("class", "pulsating-circle");
+        }
+
         Chart.resize();
         Chart.render();
       },
@@ -619,6 +665,12 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
             return [d.word, { y, area, line }];
           })
         );
+
+        // pulse positioning
+        if (showPulse) {
+          $pulse.style("top", "24px");
+          $pulse.style("left", x(new Date("2019-01-01")) + "px");
+        }
 
         $cells.attr(
           "transform",
