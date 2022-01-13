@@ -152,7 +152,12 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         let rectCoordinates = e.target.getBoundingClientRect();
         $rectLabels = wordGroup
           .append("text")
-          .text(wordText + ": used " + wordFreq + " times since 2005")
+          .text(
+            wordText +
+              ": used " +
+              wordFreq.toLocaleString() +
+              " times since 2005"
+          )
           .attr("class", "stackedBarThemeHover")
           // .attr("x", rectCoordinates.x / 3.8)
           .attr("y", rectCoordinates.y * 0.75)
