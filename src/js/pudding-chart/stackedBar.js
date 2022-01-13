@@ -114,6 +114,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let wordGroup = d3.select(this);
       let wordText = wordGroup.attr("id");
       wordText = wordText.split("_")[0];
+      let wordFreq = Math.round(themesFreq.filter(d=>d.theme===wordGroup.filter(d=>d[0][0])._groups[0][0].__data__[0].key.theme)[0][wordText])
+      // console.log("themesfreq access", themesFreq.filter(d=>d.theme===wordGroup.filter(d=>d[0][0])._groups[0][0].__data__[0].key.theme)[0][wordText])
+      // console.log(wordGroup.filter(d=>d[0][0])._groups[0][0].__data__[0].data[wordText])
 
       $rect.style("opacity", "0.3");
 
@@ -143,10 +146,31 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         let rectCoordinates = e.target.getBoundingClientRect();
         $rectLabels = wordGroup
           .append("text")
-          .text(wordText)
+          .text(wordText + ": used " + wordFreq + " times since 2005")
           .attr("class", "stackedBarThemeHover")
-          .attr("x", rectCoordinates.x / 3.8)
-          .attr("y", rectCoordinates.y * 0.8);
+          // .attr("x", rectCoordinates.x / 3.8)
+          .attr("y", rectCoordinates.y * 0.75)
+          .attr("x", width-MARGIN_RIGHT*1.3)
+          // .attr("x", width/2)
+          // .attr("y", MARGIN_TOP/2)
+          .call(wrap, 100);
+        // $rectLabels = wordGroup
+        //   .append("text")
+        //   .text(wordText)
+        //   .attr("class", "stackedBarThemeHover")
+        //   // .attr("x", rectCoordinates.x / 3.8)
+        //   // .attr("y", rectCoordinates.y * 0.8)
+        //   // .attr("x", width-MARGIN_RIGHT)
+        //   .attr("x", width/2)
+        //   .attr("y", MARGIN_TOP/2)
+
+        // let $rectLabelsDesc = wordGroup
+        //   .append("text")
+        //   .text("used " + wordFreq + " times since 2005")
+        //   .attr("class", "scrolltext")
+        //   .attr("x", width/2)
+        //   .attr("y", MARGIN_TOP)
+        //   .call(wrap, 120);
       }
     }
 
@@ -236,7 +260,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .selectAll(".stackedBars")
         .selectAll(`rect`)
         .attr("fill", "#ded5bb")
-        .attr("opacity", "0.3");
+        .attr("opacity", "0.7");
 
       let violenceRects = d3
         .selectAll(".stackedBars")
@@ -424,6 +448,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         "race, ethnicity and identity",
       ];
 
+      console.log("themesFreq", themesFreq)
+
       let stackedData = d3
         .stack()
         .keys(themesFreq.columns.slice(2))
@@ -462,7 +488,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       yScale = d3
         .scaleLinear()
         .domain([0, maxY])
-        .range([height * 0.82, 0]);
+        .range([height * 0.77, 0]);
       yAccessor = (d) => d[1];
 
       var colorScale = d3
@@ -663,7 +689,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("fill", "#e7dfc8")
           .attr("opacity", "1")
           .attr("stroke", "#FEFAF1")
-          .attr("stroke-width", "1");
+          .attr("stroke-width", "0");
 
         // themes chart
         $rectThemes = $vis

@@ -13,7 +13,8 @@ import enterView from "enter-view";
 let dataFiles = [
   "headlines_site_rapi.csv",
   "headlines_cl_sent_rapi_reduced_bubble_120821.csv",
-  "country_time_freqrank_rapi_clean_120821.csv",
+  // "country_time_freqrank_rapi_clean_120821.csv",
+  "country_time_freqrank_rapi_clean_130122.csv",
   "polarity_comparison.csv",
   "country_freq_pivoted_all_091221.csv",
   "word_themes_all_101221.csv",
@@ -190,6 +191,9 @@ function changeTemporalDropdown() {
 
   d3.select("#smChart svg").remove();
   d3.select("#stickyXaxis svg").remove();
+
+  // remove pulse
+  d3.select(".pulsating-circle").remove();
 
   temporalData = [tempWords, filter_years, country, temporalVar, headlinesTemp];
   setupTemporalLine(temporalData);

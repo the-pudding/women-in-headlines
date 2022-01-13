@@ -425,9 +425,9 @@ h5 {
   max-width: $column-width;
   color: $off-black;
   font-family: $tiempos;
+  text-align: justify;
   margin: 0 auto;
   padding: 1rem 1rem;
-  text-align: left;
 }
 
 #endStackedbarSection + .description {
@@ -448,9 +448,10 @@ ul {
   font-style: italic;
 }
 
+
 .stackedChartDescription {
     max-width: 24rem;
-    text-align: left;
+    text-align: ljustifyeft;
     color: $off-black;
     font-family: $barlow;
     font-size: 18px;
@@ -462,7 +463,7 @@ ul {
   font-family: 'Tiempos Text Web';
   font-size: 18px;
   line-height: 1.75;
-  text-align: left;
+  text-align: justify;
   margin-bottom: 0;
 }
 
@@ -910,11 +911,11 @@ summary {
 .methodDescription {
   max-width: $column-width;
   font-family: $national;
+  text-align: justify;
   font-size: 14px;
   margin: 0 auto;
   padding: 1rem 1rem;
   line-height: 1.45;
-  text-align: left;
 }
 
 .methodSep {
@@ -1653,7 +1654,7 @@ article {
 
 #smChart {
   width: 100%;
-  height: 14000px;
+  height: 9000px;
   padding: 0 1rem;
   margin: 0 auto;
   max-width: 60rem;
@@ -1980,7 +1981,7 @@ label
   }
 
   #stickyXaxis {
-    top: 140px;
+    top: 150px;
   }
 
   .padded-dropcap {
@@ -1989,6 +1990,10 @@ label
 }
 
 @media only screen and (max-width: 600px) {
+  #smChart {
+    height: 5000px;
+  }
+
   .temporalAnno {
     transform: translate(10%, 50px);
     font-size: 13px;
@@ -2080,5 +2085,14 @@ label
 
   .dropdownOptions {
     font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .temporalFilters {
+    top: 250px;
+  }
+  #stickyXaxis {
+    top: 400px;
   }
 }

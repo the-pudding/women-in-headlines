@@ -29,6 +29,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
     let $tooltip = d3.selectAll(".tooltip");
     let $pulse = null;
     let showPulse = true;
+    let pulseCreated = false;
 
     // colors
     const mainColor = "#3569DC";
@@ -199,7 +200,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
     let height = 0;
     const MARGIN_TOP = 50;
     const MARGIN_BOTTOM = 20;
-    const MARGIN_LEFT = 80;
+    const MARGIN_LEFT = 55;
     const MARGIN_RIGHT = 0;
     const stickyAxisHeight = 300;
     const MS_TOP = 50;
@@ -667,7 +668,6 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         );
 
         // pulse positioning
-        console.log(x.domain(), x.range());
         if (showPulse) {
           $pulse.style("top", "24px");
           $pulse.style("left", "60%");
