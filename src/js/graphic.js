@@ -4564,7 +4564,6 @@ function init() {
 
   // tooltip function for the second chart
   function tooltipCluster(word, freq, theme, country, coords, pc_freq) {
-    console.log(word);
     d3.select("#tooltipCluster")
       .style("display", "block")
       .style("top", coords[1] + 10 + "px")
@@ -4585,7 +4584,6 @@ function init() {
   }
   // info (bottom right methodology info) tooltip function for the first chart
   function tooltipInfo(width, height) {
-    console.log("working");
     info = d3
       .select("#tooltipInfo")
       .style("display", "block")
@@ -4797,7 +4795,6 @@ function init() {
         cs.push(d.cluster);
       }
     });
-    console.log(cs);
 
     (n = data.length), // total number of nodes
       (m = cs.length); // number of distinct clusters
@@ -4809,7 +4806,6 @@ function init() {
     for (var i = 0; i < n; i++) {
       nodes.push(create_nodes(data, i));
     }
-    console.log(nodes);
 
     // select html element, add circles to chart, and define hover event (tooltip showing word frequency)
     var svg = wordClusters;
@@ -5049,11 +5045,8 @@ function init() {
     const links = data.links.map((d) => Object.create(d));
     const nodes = data.nodes.map((d) => Object.create(d));
 
-    console.log(data);
-
     // define scales
     extentWordFreq = d3.extent(nodes, (d) => d.perc_freq);
-    console.log(extentWordFreq);
 
     // scale for node size
     var bubbleRadius = d3
@@ -5064,7 +5057,6 @@ function init() {
       .range([0.1, 4]);
 
     extentLinkWeight = d3.extent(links, (d) => d.weight);
-    console.log(extentLinkWeight);
     // scale for link thickness
     var linkWeight = d3
       .scaleLinear()
@@ -5252,7 +5244,6 @@ function init() {
 
     // function to create interaction link between bar charts on the left and networks
     function barInteract(d) {
-      console.log(d.id);
       word = d.id;
 
       // 1) change opacity of other nodes
@@ -5280,8 +5271,6 @@ function init() {
         .select(bars)
         .select("rect#bar" + d.id)
         .attr("fill");
-
-      console.log(x, y);
 
       // select the bar that matches the specific node being hovered on and show information about frequency
       d3.select("#" + svgID + "wordBars")

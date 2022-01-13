@@ -424,17 +424,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
       let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
 
-      console.log(
-        "bars to remove",
-        $svg
-          .selectAll(".stackedBars")
-          .selectAll(`rect`)
-          .filter(
-            (d) =>
-              d.key.country !== "All countries" || d.key.theme === "No theme"
-          )
-      );
-
       // $svg.remove();
 
       // remove rects in other columns
@@ -459,8 +448,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         "race, ethnicity and identity",
       ];
 
-      console.log("themesFreq", themesFreq);
-
       let stackedData = d3
         .stack()
         .keys(themesFreq.columns.slice(2))
@@ -468,19 +455,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           themesFreq.filter((d) => d.theme !== "No theme")
         )
         .map((d) => (d.forEach((v) => (v.key = d.key)), d));
-
-      console.log(
-        "bars to transition",
-        $svg
-          .selectAll(".stackedBars")
-          .selectAll(`rect`)
-          .filter(
-            (d) =>
-              d.key.country === "All countries" &&
-              d.key.theme !== "No theme" &&
-              stackedData.map((c) => c.key).includes(d.key.word)
-          )
-      );
 
       xScale = d3
         .scaleBand()
@@ -522,14 +496,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
             d.key.country === "All countries" &&
             d.key.theme !== "No theme" &&
             stackedData.map((c) => c[0].key).includes(d.key.word)
-        )
-        .on("mouseover", (event, d) => console.log(d));
-
-      console.log(
-        "stackedwords",
-        stackedData.map((d) => d[0].key)
-      );
-      console.log(bars);
+        );
+      //.on("mouseover", (event, d) => console.log(d));
 
       themeRects = bars
         .transition()
@@ -667,7 +635,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .append("text")
           .attr("class", "stackedChartyTicks")
           .attr("transform", "translate(10,275) rotate(-90)")
-          .text("Frequency of use of headlines ⇢");
+          .text("Word frequency in headlines ⇢");
 
         x = d3
           .scaleBand()

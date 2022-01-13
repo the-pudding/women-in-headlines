@@ -48,7 +48,6 @@ d3.selection.prototype.puddingHorizontalStackedBar = function init(options) {
     let themesRank = data[2];
     let themesFreq = data[3];
 
-    console.log({ themes, themesRank, themesFreq });
     let series;
     let flags = [
       { country: "South Africa", flag: "assets/images/flags/south-africa.svg" },
@@ -65,7 +64,6 @@ d3.selection.prototype.puddingHorizontalStackedBar = function init(options) {
         themesFreq.filter((d) => d.theme !== "No theme")
       )
       .map((d) => (d.forEach((v) => (v.key = d.key)), d));
-    console.log({ stackedData });
 
     // dimensions
     let width = 0;
