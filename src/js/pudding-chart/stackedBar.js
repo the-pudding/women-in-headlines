@@ -236,7 +236,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .selectAll(".stackedBars")
         .selectAll(`rect`)
         .attr("fill", "#ded5bb")
-        .attr("opacity", "0.3");
+        .attr("opacity", "0.7");
 
       let violenceRects = d3
         .selectAll(".stackedBars")
@@ -462,7 +462,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       yScale = d3
         .scaleLinear()
         .domain([0, maxY])
-        .range([height * 0.82, 0]);
+        .range([height * 0.77, 0]);
       yAccessor = (d) => d[1];
 
       var colorScale = d3
@@ -663,7 +663,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("fill", "#e7dfc8")
           .attr("opacity", "1")
           .attr("stroke", "#FEFAF1")
-          .attr("stroke-width", "1");
+          .attr("stroke-width", "0");
 
         // themes chart
         $rectThemes = $vis
