@@ -61,7 +61,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     let height = 0;
     let MARGIN_TOP = 50;
     const FLAG_TOP = 80;
-    let MARGIN_BOTTOM = 80;
+    let MARGIN_BOTTOM = 50;
     const MARGIN_LEFT = 0;
     const MARGIN_RIGHT = 50;
     const themePad = 20;
@@ -432,8 +432,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         )
         .map((d) => (d.forEach((v) => (v.key = d.key)), d));
 
-      console.log({ stackedData });
-
       console.log(
         "bars to transition",
         $svg
@@ -537,9 +535,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       d3.selectAll("#abuse_group").remove();
 
       // Axes
-      $axis = $svg.append("g").attr("class", "g-axis");
-      $xAxisGroup = $axis.append("g").attr("class", "x axis");
-      $xAxis = $xAxisGroup.append("g");
+      // $axis = $svg.append("g").attr("class", "g-axis");
+      // $xAxisGroup = $axis.append("g").attr("class", "x axis");
+      // $xAxis = $xAxisGroup.append("g");
       $xAxis.call(d3.axisBottom(xScale));
 
       $xAxis.selectAll(".domain").remove();
@@ -549,13 +547,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       if (window.innerWidth < 600) {
         $xAxis.attr(
           "transform",
-          `translate(-16, ${height - MARGIN_BOTTOM + 40})`
+          `translate(-16, ${height - MARGIN_BOTTOM * 2})`
         );
       } else {
-        $xAxis.attr(
-          "transform",
-          `translate(0, ${height - MARGIN_BOTTOM + 10})`
-        );
+        $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM * 3})`);
       }
 
       $xAxis
@@ -621,7 +616,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         searchWords();
 
         $svg = $chart.append("svg").attr("class", "stackedChart");
-        MARGIN_BOTTOM = 80;
 
         // create axis
         $axis = $svg.append("g").attr("class", "g-axis");
@@ -764,7 +758,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         return Chart;
       },
       // on resize, update new dimensions
-      resizeCategoryChart() {
+      /*resizeCategoryChart() {
         MARGIN_BOTTOM = 90;
 
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
@@ -821,7 +815,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("width", xScale.bandwidth());
 
         return Chart;
-      },
+      },*/
       resize() {
         if (showThemes) return;
 
@@ -830,7 +824,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
         if (window.innerWidth < 600) {
-          height -= 120;
+          /*height -= 120;*/
         }
 
         $svg
