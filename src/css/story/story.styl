@@ -1911,6 +1911,13 @@ label
 }
 
 @media only screen and (max-width: 800px) {
+     #stickyXaxis {
+    top: 250px;
+  }
+  .temporalFilters {
+    padding-top: 8rem;
+  }
+
   #stickyStackedChart {
     margin: 0 auto;
   }
@@ -1982,16 +1989,22 @@ label
     margin: 0rem 0.25rem;
   }
 
-  #stickyXaxis {
-    top: 150px;
-  }
-
   .padded-dropcap {
     font-size: 48px;
   }
 }
 
 @media only screen and (max-width: 600px) {
+   #stickyXaxis {
+    top: 155px;
+  }
+  .temporalFilters {
+    padding-top: 1rem;
+  }
+
+  #stickyXaxis p {
+    left: 9%;
+  }
   #smChart {
     height: 5000px;
   }
@@ -2092,9 +2105,10 @@ label
 
 @media only screen and (max-width: 375px) {
   .temporalFilters {
-    top: 250px;
+    padding-top: 5rem;
+    top: 0;
   }
   #stickyXaxis {
-    top: 400px;
+    top: 220px;
   }
 }
