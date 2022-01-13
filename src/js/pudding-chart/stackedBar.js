@@ -114,7 +114,13 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let wordGroup = d3.select(this);
       let wordText = wordGroup.attr("id");
       wordText = wordText.split("_")[0];
-      let wordFreq = Math.round(themesFreq.filter(d=>d.theme===wordGroup.filter(d=>d[0][0])._groups[0][0].__data__[0].key.theme)[0][wordText])
+      let wordFreq = Math.round(
+        themesFreq.filter(
+          (d) =>
+            d.theme ===
+            wordGroup.filter((d) => d[0][0])._groups[0][0].__data__[0].key.theme
+        )[0][wordText]
+      );
       // console.log("themesfreq access", themesFreq.filter(d=>d.theme===wordGroup.filter(d=>d[0][0])._groups[0][0].__data__[0].key.theme)[0][wordText])
       // console.log(wordGroup.filter(d=>d[0][0])._groups[0][0].__data__[0].data[wordText])
 
@@ -150,7 +156,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("class", "stackedBarThemeHover")
           // .attr("x", rectCoordinates.x / 3.8)
           .attr("y", rectCoordinates.y * 0.75)
-          .attr("x", width-MARGIN_RIGHT*1.3)
+          .attr("x", width - MARGIN_RIGHT * 1.3)
           // .attr("x", width/2)
           // .attr("y", MARGIN_TOP/2)
           .call(wrap, 100);
@@ -448,7 +454,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         "race, ethnicity and identity",
       ];
 
-      console.log("themesFreq", themesFreq)
+      console.log("themesFreq", themesFreq);
 
       let stackedData = d3
         .stack()

@@ -124,8 +124,10 @@
       <div class="left">
         <p class="annotationButton">Filter by</p>
         <div>
-          <select style="font-weight: 600" id="countrydropdown" class="dropdownOptions" title="country dropdown"></select>
-          <select style="font-weight: 600" id="pubdropdown" class="dropdownOptions" title="publication dropdown"></select>
+          <label for="countrydropdown">Filter by country</label>
+          <label for="pubdropdown">Filter by publication</label>
+          <select style="font-weight: 600" id="countrydropdown" class="dropdownOptions"></select>
+          <select style="font-weight: 600" id="pubdropdown" class="dropdownOptions"></select>
         </div>
       </div>
     </div>
@@ -190,7 +192,8 @@
       <div class="left">
           <p class="annotationButton">Filter by</p>
           <div>
-            <select style="font-weight: 600" id="countrydropdownTemporal" class="dropdownOptions" title="timeline country dropdown"></select>
+            <label for="countrydropdownTemporal">Filter by country</label>
+            <select style="font-weight: 600" id="countrydropdownTemporal" class="dropdownOptions"></select>
           </div>
         </div>
         <div class="right">
@@ -215,7 +218,7 @@
 <section class="methods-section">
   <hr class="methodSep">
   
-  <h5 class="inputTitle">Methods</h4>
+  <h4 class="inputTitle">Methods</h4>
   {{#each copy.methods}}
     <p class="methodDescription">{{{value}}}</p>
   {{/each}}
