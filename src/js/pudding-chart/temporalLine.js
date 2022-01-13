@@ -667,9 +667,11 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
         );
 
         // pulse positioning
+        console.log(x.domain(), x.range());
         if (showPulse) {
           $pulse.style("top", "24px");
-          $pulse.style("left", x(new Date("2019-01-01")) + "px");
+          $pulse.style("left", "60%");
+          //$pulse.style("left", x(new Date("2016-01-01")) + "px");
         }
 
         $cells.attr(
