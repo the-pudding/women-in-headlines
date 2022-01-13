@@ -273,7 +273,7 @@ d3.selection.prototype.puddingBubble = function init(options) {
       }
 
       $tooltip.html(`<p class="tt-date">${d3.timeFormat("%b %Y")(
-        new Date(dataSubset[randomHeadline].time)
+        new Date(dataSubset[randomHeadline].time.replace(/-/g, "/"))
       )} | ${dataSubset[randomHeadline].site}</p>
                       <p class="tt-hed">${
                         dataSubset[randomHeadline].headline_no_site
