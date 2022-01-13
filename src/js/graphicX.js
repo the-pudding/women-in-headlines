@@ -312,10 +312,10 @@ function scrollToTheme() {
     scrollTo(targetDiv, 4032 - 100);
   }
   if ($ID === "stereotypes") {
-    scrollTo(targetDiv, 8138 - 100);
+    scrollTo(targetDiv, 6000 - 100);
   }
   if ($ID === "race") {
-    scrollTo(targetDiv, 12390 - 100);
+    scrollTo(targetDiv, 8138 - 100);
   }
 }
 
