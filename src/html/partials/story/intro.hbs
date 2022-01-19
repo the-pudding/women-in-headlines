@@ -84,6 +84,8 @@
   </div>
 
   <div class="barbellLegend">
+    <div class="hed" id="lollipopHed">Most outlets sensationalize headlines about women more than other topics</div>
+    <div class="dek" id="lollipopDek">Comparing x outlets over y years</div>
     <div class="leg1">
       <p class="all-hed">All headlines</p>
       <p class="women-hed">Headlines about women</p>
@@ -131,6 +133,9 @@
         </div>
       </div>
     </div>
+    
+    <div class="hed" id="polarityHed">News outlets arranged by polarity score</div>
+
   <section class="headline-polarity-section">
     <div class="bubble-wrapper">
       <div id="chartP" class="svg-container" style="text-align: center;"></div>
@@ -157,6 +162,9 @@
     {{#each copy.bias-outro}}
       <p class="description">{{{value}}}</p>
     {{/each}}
+
+    <div class="hed" id="biasHed">News outlets arranged by bias index</div>
+
     <div class="bubble-wrapper">
       <div id="chartB" class="svg-container" style="text-align: center;"></div>
       <div class="chartLabels">

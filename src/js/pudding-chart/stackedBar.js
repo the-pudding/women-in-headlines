@@ -457,17 +457,15 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       $xAxis.selectAll(".tick line").remove();
       $xAxis.selectAll(".tick .tickFlag").remove();
 
-      if (window.innerWidth < 600) {
-        $xAxis.attr(
-          "transform",
-          `translate(-16, ${height - MARGIN_BOTTOM * 2})`
-        );
-      } else {
-        $xAxis.attr(
-          "transform",
-          `translate(0, ${height * 0.77 - MARGIN_BOTTOM})`
-        );
-      }
+      // positioning x-axis labels
+      $xAxis.attr(
+        "transform",
+        `translate(-16, ${height * 0.77 - MARGIN_BOTTOM})`
+      );
+      $xAxis.attr(
+        "transform",
+        `translate(0, ${height * 0.77 - MARGIN_BOTTOM})`
+      );
 
       $xAxis
         .selectAll(".tick")
