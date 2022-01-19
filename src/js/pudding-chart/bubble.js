@@ -120,10 +120,17 @@ d3.selection.prototype.puddingBubble = function init(options) {
 
       const unique_countries = d3
         .map(data, (d) => d[attribute])
-        .filter(onlyUnique);
+        .filter(onlyUnique)
+        .sort((a, b) => {
+          if (a.toLowerCase() < b.toLowerCase()) return -1;
+          if (a.toLowerCase() > b.toLowerCase()) return 1;
+          return 0;
+        });
       attribute === "country_of_pub"
         ? unique_countries.unshift("Country")
         : unique_countries.unshift("Newsroom");
+
+      console.log({ unique_countries });
 
       select
         .selectAll("option")
