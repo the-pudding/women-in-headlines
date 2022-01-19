@@ -343,7 +343,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .attr("class", "dek")
         .attr("x", 0)
         .attr("dy", 24)
-        .text("Arranged by theme");
+        .text("Arranged by theme and sized by frequency");
 
       // remove y-axis thing
       $yAxisText.remove();
@@ -559,7 +559,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("class", "dek")
           .attr("x", 0)
           .attr("dy", 24)
-          .text("Arranged by country and frequency of occurence");
+          .text("Arranged by country and ordered by frequency");
 
         x = d3
           .scaleBand()
