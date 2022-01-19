@@ -60,7 +60,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // dimensions
     let width = 0;
     let height = 0;
-    let MARGIN_TOP = 100;
+    let MARGIN_TOP = 110;
     const FLAG_TOP = 80;
     let MARGIN_BOTTOM = 50;
     const MARGIN_LEFT = 0;
@@ -330,6 +330,24 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       $INcolumn.remove();
       $SAcolumn.remove();
 
+      // change title
+      $title.selectAll("tspan").remove();
+      $title
+        .append("tspan")
+        .attr("class", "hed")
+        .attr("x", 0)
+        .attr("dy", 0)
+        .text("Words used in headlines about women");
+      $title
+        .append("tspan")
+        .attr("class", "dek")
+        .attr("x", 0)
+        .attr("dy", 24)
+        .text("Arranged by theme");
+
+      // remove y-axis thing
+      $yAxisText.remove();
+
       const themeGroups = [
         "crime and violence",
         "female stereotypes",
@@ -445,7 +463,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           `translate(-16, ${height - MARGIN_BOTTOM * 2})`
         );
       } else {
-        $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM * 3})`);
+        $xAxis.attr(
+          "transform",
+          `translate(0, ${height * 0.77 - MARGIN_BOTTOM})`
+        );
       }
 
       $xAxis
@@ -696,7 +717,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
         $axis.attr("transform", `translate(0, ${MARGIN_TOP})`);
 
-        $title.attr("transform", `translate(0, -20)`);
+        $title.attr("transform", `translate(0, ${(MARGIN_TOP * -1) / 2})`);
 
         $xAxis
           .selectAll(".tick")
