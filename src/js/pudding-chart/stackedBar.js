@@ -40,6 +40,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     const $article = $container.select("article");
     const $stepSel = $article.selectAll(".step");
     const $wordSearch = d3.select("#wordSearch");
+    let $title = null;
 
     // data
     let data = $chart.datum();
@@ -59,7 +60,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     // dimensions
     let width = 0;
     let height = 0;
-    let MARGIN_TOP = 50;
+    let MARGIN_TOP = 100;
     const FLAG_TOP = 80;
     let MARGIN_BOTTOM = 50;
     const MARGIN_LEFT = 0;
@@ -306,117 +307,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       }
     }
 
-    // function renderThemeBars(data, dataFreq, themes, x, y, index) {
-    //   let $INcolumn = d3.selectAll(".india_class, .india_tick");
-    //   let $SAcolumn = d3.selectAll(".southafrica_class, .southafrica_tick");
-    //   let $UKcolumn = d3.selectAll(".uk_class, .uk_tick");
-    //   let $UScolumn = d3.selectAll(".usa_class, .usa_tick");
-    //   let $allColumn = d3.selectAll(".allcountries_class, .allcountries_tick");
-
-    //   $svg.remove();
-
-    //   const themeGroups = [
-    //     "crime and violence",
-    //     "female stereotypes",
-    //     "empowerment",
-    //     "people and places",
-    //     "race, ethnicity and identity",
-    //   ];
-
-    //   let stackedData = d3
-    //     .stack()
-    //     .keys(themesFreq.columns.slice(2))
-    //     .order(d3.stackOrderAscending)(
-    //       themesFreq.filter((d) => d.theme !== "No theme")
-    //     )
-    //     .map((d) => (d.forEach((v) => (v.key = d.key)), d));
-
-    //   console.log({ stackedData });
-
-    //   xScale = d3
-    //     .scaleBand()
-    //     .domain(themeGroups)
-    //     .range([0, width])
-    //     .padding([0.2]);
-    //   xAccessor = (d) => d.data.theme;
-
-    //   const maxY = stackedData.reduce((acc, currentValue) => {
-    //     currentValue.forEach((d) => {
-    //       if (d[0] > acc) acc = d[0];
-    //       if (d[1] > acc) acc = d[1];
-    //     });
-    //     return acc;
-    //   }, 0);
-    //   yScale = d3.scaleLinear().domain([0, maxY]).range([height, 0]);
-    //   yAccessor = (d) => d[1];
-
-    //   var colorScale = d3
-    //     .scaleOrdinal()
-    //     .domain(themeGroups)
-    //     .range(["#E76B2D", "#648FDC", "#A35FD0", "#F7DC5B", "#53B67C"]);
-
-    //   $svg = $chart.append("svg").attr("class", "horizontalStackedChart");
-    //   $svg.style("transform", "translate(0px, 10px)");
-    //   $vis = $svg.append("g").attr("class", "g-vis");
-
-    //   let bars = $vis.append("g").attr("class", "bars");
-    //   let wordGroups = bars
-    //     .selectAll("g")
-    //     .data(stackedData)
-    //     .enter()
-    //     .append("g")
-    //     .attr("class", (d) => `word ${d.key}`);
-
-    //   themeRects = wordGroups
-    //     .selectAll("rect")
-    //     .data((d) => d)
-    //     .enter()
-    //     .append("rect")
-    //     .attr("x", (d) => xScale(xAccessor(d)))
-    //     .attr("y", (d) => yScale(yAccessor(d)))
-    //     .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
-    //     .attr("width", xScale.bandwidth())
-    //     .attr("fill", (d) => colorScale(xAccessor(d)))
-    //     .attr("stroke-width", 0.5)
-    //     .attr("stroke", "#fefaf1")
-    //     .on("mouseover", (event, d)=>console.log(d));
-
-    //   // Axes
-    //   $axis = $svg.append("g").attr("class", "g-axis");
-    //   $xAxisGroup = $axis.append("g").attr("class", "x axis");
-    //   $xAxis = $xAxisGroup.append("g");
-    //   $xAxis.call(d3.axisBottom(xScale));
-
-    //   $xAxis.selectAll(".domain").remove();
-    //   $xAxis.selectAll(".tick line").remove();
-    //   $xAxis.selectAll(".tick .tickFlag").remove();
-
-    //   $xAxis.attr("transform", `translate(0, ${height - MARGIN_BOTTOM / 2})`);
-
-    //   $xAxis
-    //     .selectAll(".tick")
-    //     .attr("class", (d) => `${stripSpaces(d)}_tick tick`);
-
-    //   $xAxis
-    //     .selectAll(".tick text")
-    //     .attr("x", 0)
-    //     .attr("y", -5)
-    //     .attr("class", "stackedChartTicks")
-    //     .call(wrap, xScale.bandwidth());
-
-    //   $xAxis
-    //     .selectAll(".tick text")
-    //     .attr(
-    //       "transform",
-    //       (d, i) =>
-    //         `translate(${
-    //           xScale.bandwidth() - MARGIN_RIGHT + 12 + i * 10
-    //         }, 0) rotate(23)`
-    //     );
-
-    //   Chart.resizeCategoryChart();
-    // }
-
     function renderThemeBars(data, dataFreq, themes, x, y, index) {
       let $INcolumn = d3.selectAll(".india_class, .india_tick");
       let $SAcolumn = d3.selectAll(".southafrica_class, .southafrica_tick");
@@ -635,7 +525,22 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .append("text")
           .attr("class", "stackedChartyTicks")
           .attr("transform", "translate(10,275) rotate(-90)")
-          .text("Word frequency in headlines ⇢");
+          .text("← Word occurs more often");
+        //.text("Word occurs less often ⇢");
+
+        $title = $axis.append("text");
+        $title
+          .append("tspan")
+          .attr("class", "hed")
+          .attr("x", 0)
+          .attr("dy", 0)
+          .text("Words used in headlines about women");
+        $title
+          .append("tspan")
+          .attr("class", "dek")
+          .attr("x", 0)
+          .attr("dy", 24)
+          .text("Arranged by country and frequency of occurence");
 
         x = d3
           .scaleBand()
@@ -762,65 +667,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
         return Chart;
       },
-      // on resize, update new dimensions
-      /*resizeCategoryChart() {
-        MARGIN_BOTTOM = 90;
-
-        width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
-        height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
-
-        $svg
-          .attr("width", width + MARGIN_LEFT + MARGIN_RIGHT)
-          .attr("height", height + MARGIN_TOP + MARGIN_BOTTOM);
-
-        // responsive xAxis
-        $xAxisGroup.attr("transform", `translate(0,${FLAG_TOP})`);
-
-        xScale.range([MARGIN_LEFT, width - MARGIN_RIGHT]);
-        // xPad = xScale.padding();
-
-        $xAxis.call(d3.axisBottom(xScale));
-
-        $xAxis.selectAll(".domain").remove();
-        $xAxis.selectAll(".tick line").remove();
-        $xAxis.selectAll(".tick .tickFlag").remove();
-
-        $xAxis
-          .selectAll(".tick")
-          .attr("class", (d) => `${stripSpaces(d)}_tick tick`);
-
-        $xAxis
-          .selectAll(".tick text")
-          .attr("x", 0)
-          .attr("y", -5)
-          .attr("class", "stackedChartTicks")
-          .call(wrap, xScale.bandwidth());
-
-        $xAxis
-          .selectAll(".tick text")
-          .attr(
-            "transform",
-            (d, i) =>
-              `translate(${
-                xScale.bandwidth() - MARGIN_RIGHT + 10 + i * 8
-              }, 0) rotate(28)`
-          );
-
-        $xAxis.attr(
-          "transform",
-          `translate(0, ${height - MARGIN_BOTTOM * 1.5})`
-        );
-
-        yScale.range([height - MARGIN_BOTTOM, MARGIN_TOP]);
-
-        themeRects
-          .attr("x", (d) => xScale(xAccessor(d)))
-          .attr("y", (d) => yScale(yAccessor(d)))
-          .attr("height", (d) => yScale(d[0]) - yScale(d[1]))
-          .attr("width", xScale.bandwidth());
-
-        return Chart;
-      },*/
       resize() {
         if (showThemes) return;
 
@@ -847,6 +693,10 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         $xAxis.selectAll(".domain").remove();
         $xAxis.selectAll(".tick line").remove();
         $xAxis.selectAll(".tick .tickFlag").remove();
+
+        $axis.attr("transform", `translate(0, ${MARGIN_TOP})`);
+
+        $title.attr("transform", `translate(0, -20)`);
 
         $xAxis
           .selectAll(".tick")
