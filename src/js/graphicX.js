@@ -197,6 +197,9 @@ function changeTemporalDropdown() {
 
   temporalData = [tempWords, filter_years, country, temporalVar, headlinesTemp];
   setupTemporalLine(temporalData);
+
+  // remove pulse
+  d3.select(".pulsating-circle").remove();
 }
 
 function runEnterview() {
