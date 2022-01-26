@@ -544,7 +544,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .append("text")
           .attr("class", "stackedChartyTicks")
           .attr("transform", "translate(10,275) rotate(-90)")
-          .text("← Word occurs more often");
+          .text("Word occurs more often →");
         //.text("Word occurs less often ⇢");
 
         $title = $axis.append("text");
