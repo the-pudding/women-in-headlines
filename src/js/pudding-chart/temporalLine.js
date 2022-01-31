@@ -594,7 +594,7 @@ d3.selection.prototype.puddingTemporalLine = function init(options) {
           .attr("dy", 20);
         anno
           .append("tspan")
-          .text('"me too", for example')
+          .text("#metoo, for example")
           .attr("x", 0)
           .attr("dy", 20);
         // .style("font-weight", "bold");
