@@ -222,6 +222,13 @@
   <!--<button class="see-more"><p>See more words</p></button>-->
 </section>
 
+<!-- OUTRO -->
+<section class="outro-section">
+  {{#each copy.conclusion-outro}}
+    <p class="description">{{{value}}}</p>
+  {{/each}}
+</section> 
+
 <!-- METHODS -->
 <section class="methods-section">
   <hr class="methodSep">
@@ -231,6 +238,8 @@
     <p class="methodDescription">{{{value}}}</p>
   {{/each}}
 </section>  
+
+
 
 <!-- TOOLTIPS -->
 <div class="tooltip"></div>
