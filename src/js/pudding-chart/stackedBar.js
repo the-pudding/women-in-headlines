@@ -87,6 +87,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       const existing = document.querySelector(
         "#wordSearch .autocomplete__wrapper"
       );
+
       if (!existing) {
         Autocomplete({
           element: document.querySelector("#wordSearch"),
@@ -97,6 +98,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           confirmOnBlur: false,
           onConfirm(word) {
             $rectLabels.remove();
+            $svg.attr("");
             highlightWords(null, word, "search");
           },
         });
@@ -112,6 +114,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     }
 
     function showWord(e) {
+      $rectLabels.remove();
+
       let wordGroup = d3.select(this);
       let wordText = wordGroup.attr("id");
       wordText = wordText.split("_")[0];
@@ -125,7 +129,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       // console.log("themesfreq access", themesFreq.filter(d=>d.theme===wordGroup.filter(d=>d[0][0])._groups[0][0].__data__[0].key.theme)[0][wordText])
       // console.log(wordGroup.filter(d=>d[0][0])._groups[0][0].__data__[0].data[wordText])
 
-      $rect.style("opacity", "0.3");
+      $rect.attr("opacity", "0.3");
 
       let wordRects = wordGroup
         .selectAll("rect")
@@ -195,7 +199,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         .selectAll(
           ".crimeandviolence_class, .femalestereotypes_class, .empowerment_class, .peopleandplaces_class, .raceethnicityandidentity_class"
         )
-        .style("opacity", 1);
+        .attr("opacity", 1);
 
       let wordRects = wordGroup
         .selectAll("rect")
@@ -235,6 +239,9 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         d3.selectAll(`.stackedBars rect`).attr("opacity", "0.3");
 
         wordRects = d3.selectAll(`.${ID}_class`).attr("opacity", "1");
+        if (Array.from(wordRects)[0].__data__.key.theme === "No theme") {
+          wordRects.attr("fill", "#282828");
+        }
       } else {
         d3.selectAll(`.stackedBars rect`)
           .attr("fill", "#ded5bb")
