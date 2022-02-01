@@ -64,7 +64,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     const FLAG_TOP = 80;
     let MARGIN_BOTTOM = 50;
     const MARGIN_LEFT = 0;
-    const MARGIN_RIGHT = 50;
+    const MARGIN_RIGHT = 30;
     const themePad = 20;
     let xPad = null;
 
@@ -553,7 +553,8 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           .attr("class", "hed")
           .attr("x", 0)
           .attr("dy", 0)
-          .text("Words used in headlines about women");
+          .text("Words used in headlines about women")
+          .call(wrap, 300);
         $title
           .append("tspan")
           .attr("class", "dek")
@@ -617,6 +618,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         const word = sel.attr("word");
         const theme = sel.attr("theme");
 
+        $svg.style("pointer-events", "none");
         $rect.style("pointer-events", "none");
 
         if (index === 0) {
@@ -693,9 +695,15 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
         height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
 
-        if (window.innerWidth < 600) {
-          /*height -= 120;*/
-        }
+        // if (window.innerWidth < 600) {
+        //   /*height -= 120;*/
+        // }
+
+        console.log($chart.node().offsetWidth, {
+          MARGIN_LEFT,
+          MARGIN_RIGHT,
+          width,
+        });
 
         $svg
           .attr("width", width + MARGIN_LEFT + MARGIN_RIGHT)
