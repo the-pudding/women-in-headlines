@@ -64,7 +64,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
     const FLAG_TOP = 80;
     let MARGIN_BOTTOM = 50;
     const MARGIN_LEFT = 0;
-    const MARGIN_RIGHT = 30;
+    const MARGIN_RIGHT = 50;
     const themePad = 20;
     let xPad = null;
 
@@ -88,6 +88,20 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
         "#wordSearch .autocomplete__wrapper"
       );
 
+      const clearButton = d3.select("#clearSearch");
+      clearButton.on("click", () => {
+        const input = document.querySelector(
+          "#wordSearch .autocomplete__wrapper input"
+        );
+
+        input.value = "";
+        $rect.style("pointer-events", "auto");
+        $rect.attr("opacity", 1);
+        $rectLabels.remove();
+
+        highlightThemes(11, "EPR");
+      });
+
       if (!existing) {
         Autocomplete({
           element: document.querySelector("#wordSearch"),
@@ -98,7 +112,6 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
           confirmOnBlur: false,
           onConfirm(word) {
             $rectLabels.remove();
-            $svg.attr("");
             highlightWords(null, word, "search");
           },
         });
@@ -236,12 +249,17 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       let wordGroup = d3.select(`#${ID}_group`);
 
       if (index === 7 || index === 9 || userAction === "search") {
+        $rect.style("pointer-events", "none");
+
         d3.selectAll(`.stackedBars rect`).attr("opacity", "0.3");
 
-        wordRects = d3.selectAll(`.${ID}_class`).attr("opacity", "1");
-        if (Array.from(wordRects)[0].__data__.key.theme === "No theme") {
-          wordRects.attr("fill", "#282828");
-        }
+        wordRects = d3
+          .selectAll(`.${ID}_class`)
+          .attr("opacity", "1")
+          .attr("fill", "#282828");
+        // if (Array.from(wordRects)[0].__data__.key.theme === "No theme") {
+        //   wordRects.attr("fill", "#282828");
+        // }
       } else {
         d3.selectAll(`.stackedBars rect`)
           .attr("fill", "#ded5bb")
@@ -627,6 +645,7 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
 
         $svg.style("pointer-events", "none");
         $rect.style("pointer-events", "none");
+        if ($rectLabels) $rectLabels.style("pointer-events", "none");
 
         if (index === 0) {
           if ($rectLabels) $rectLabels.remove();
