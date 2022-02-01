@@ -717,19 +717,13 @@ d3.selection.prototype.puddingStackedBar = function init(options) {
       resize() {
         if (showThemes) return;
 
+        // if (window.innerWidth < 600) {
+        //   MARGIN_RIGHT = 30;
+        // }
+
         // defaults to grabbing dimensions from container element
         width = $chart.node().offsetWidth - MARGIN_LEFT - MARGIN_RIGHT;
         height = $chart.node().offsetHeight - MARGIN_TOP - MARGIN_BOTTOM;
-
-        // if (window.innerWidth < 600) {
-        //   /*height -= 120;*/
-        // }
-
-        console.log($chart.node().offsetWidth, {
-          MARGIN_LEFT,
-          MARGIN_RIGHT,
-          width,
-        });
 
         $svg
           .attr("width", width + MARGIN_LEFT + MARGIN_RIGHT)

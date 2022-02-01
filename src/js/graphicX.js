@@ -354,7 +354,7 @@ function updateExampleHeadlines() {
 
 function resize() {
   // 1. update height of step elements
-  const stepHeight = Math.floor(window.innerHeight * 0.75);
+  const stepHeight = Math.floor(window.innerHeight * 1.1);
   $step.style("height", stepHeight + "px");
 
   // 2. update width/height of graphic element
