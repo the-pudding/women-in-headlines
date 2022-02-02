@@ -130,8 +130,6 @@ d3.selection.prototype.puddingBubble = function init(options) {
         ? unique_countries.unshift("Country")
         : unique_countries.unshift("Newsroom");
 
-      console.log({ unique_countries });
-
       select
         .selectAll("option")
         .data(unique_countries)
