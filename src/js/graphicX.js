@@ -352,8 +352,10 @@ function updateExampleHeadlines() {
 
     let site = data[num].site;
     let date = data[num].time;
-    let month = new Date(date).toLocaleString("en-US", { month: "long" });
-    let year = new Date(date).getUTCFullYear();
+    let month = new Date(date.replace(/-/g, "/")).toLocaleString("en-US", {
+      month: "long",
+    });
+    let year = new Date(date.replace(/-/g, "/")).getUTCFullYear();
     let deets = `${month} ${year} | ${site}`;
     let headline = data[num].headline_no_site;
 
