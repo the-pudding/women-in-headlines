@@ -5,6 +5,8 @@ import linkFix from "./utils/link-fix";
 import modalSetup from "./utils/modal-a11y";
 import graphic from "./graphicX";
 import footer from "./footer";
+import { Marquee, loop } from "dynamic-marquee";
+import copy from "../../data/copy.json";
 
 const $body = d3.select("body");
 let previousWidth = 0;
@@ -27,6 +29,27 @@ function setupStickyHeader() {
 
     modalSetup($toggle, $toggle, $header, $menu, "a, button, .logo", true);
   }
+
+  // marquee
+  const marqueeEl = document.getElementById("marquee");
+  var marquee = (window.m = new Marquee(marqueeEl, {
+    rate: -100,
+  }));
+
+  window.l = loop(
+    marquee,
+    copy.marqueeArr.map((headline) => {
+      const headlineEl = document.createElement("div");
+      headlineEl.classList.add("marquee-headline");
+      headlineEl.innerHTML = headline.value;
+      return () => headlineEl;
+    }),
+    function () {
+      var $separator = document.createElement("div");
+      $separator.innerHTML = " ";
+      return $separator;
+    }
+  );
 }
 
 var aText = new Array("When", "Women", "Make", "Headlines");
