@@ -36,9 +36,13 @@ function setupStickyHeader() {
     rate: -100,
   }));
 
+  const randomizedHeadlines = copy.marqueeArr.sort(
+    (a, b) => 0.5 - Math.random()
+  );
+
   window.l = loop(
     marquee,
-    copy.marqueeArr.map((headline) => {
+    randomizedHeadlines.map((headline) => {
       const headlineEl = document.createElement("div");
       headlineEl.classList.add("marquee-headline");
       headlineEl.innerHTML = headline.value;
