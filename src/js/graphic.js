@@ -2591,7 +2591,7 @@ function init() {
       },
       {
         uid: 2,
-        name: "MEE TOO bill in U.S. Congress",
+        name: "ME TOO bill in U.S. Congress",
         category: 4,
         date: new Date(2018, 1, 18),
       },
