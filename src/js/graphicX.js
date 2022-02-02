@@ -125,11 +125,13 @@ function setupTemporalLine(data) {
 function scrollTo(element, offset) {
   scrollFromClick = true;
 
-  window.scroll({
-    behavior: "smooth",
-    left: 0,
-    top: element.offsetTop + offset,
-  });
+  element.scrollIntoView({ behavior: "smooth" });
+
+  // window.scroll({
+  //   behavior: "smooth",
+  //   left: 0,
+  //   top: element.offsetTop + offset,
+  // });
 
   setTimeout(() => {
     scrollFromClick = false;
@@ -270,7 +272,7 @@ function runEnterview() {
     },
   });
   enterView({
-    selector: "#cellasian",
+    selector: "#celltemple",
     offset: 0.5,
     enter: () => {
       if (!scrollFromClick) {
@@ -309,16 +311,24 @@ function scrollToTheme() {
   let targetDiv = d3.select("#smChart").node();
 
   if ($ID === "empowerment") {
-    scrollTo(targetDiv, -100);
+    let element = document.getElementById("cellmayor");
+    scrollTo(element, 0);
+    // scrollTo(targetDiv, -100);
   }
   if ($ID === "violence") {
-    scrollTo(targetDiv, 4032 - 100);
+    let element = document.getElementById("cellviolence");
+    scrollTo(element, 0);
+    // scrollTo(targetDiv, 4032 - 100);
   }
   if ($ID === "stereotypes") {
-    scrollTo(targetDiv, 6000 - 100);
+    let element = document.getElementById("cellemotional");
+    scrollTo(element, 0);
+    // scrollTo(targetDiv, 6000 - 100);
   }
   if ($ID === "race") {
-    scrollTo(targetDiv, 8138 - 100);
+    let element = document.getElementById("celltemple");
+    scrollTo(element, 0);
+    // scrollTo(targetDiv, 8138 - 100);
   }
 }
 
